@@ -8,13 +8,13 @@ import { UserContextProvider } from "../utils/auth/UserContext";
 
 const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
   return (
-    <UserContextProvider>
-      <ChakraProvider theme={theme}>
-        <QueryClientProvider client={queryClient}>
+    <ChakraProvider theme={theme}>
+      <QueryClientProvider client={queryClient}>
+        <UserContextProvider>
           <Component {...pageProps} />
-        </QueryClientProvider>
-      </ChakraProvider>
-    </UserContextProvider>
+        </UserContextProvider>
+      </QueryClientProvider>
+    </ChakraProvider>
   );
 };
 export default MyApp;

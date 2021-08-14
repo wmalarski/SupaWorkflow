@@ -6,6 +6,7 @@ import {
   useEffect,
   useState,
 } from "react";
+import { useUpdateAuth } from "../../services/auth/updateAuth";
 import { supabase } from "../../services/supabase";
 
 export type UserContextValue = {
@@ -27,19 +28,16 @@ export const UserContextProvider = ({
 }: UserContextProviderProps): JSX.Element => {
   const [user, setUser] = useState<User | null>(supabase.auth.user());
 
+  const { mutate: updateAuth } = useUpdateAuth();
+
   useEffect(() => {
     const { data } = supabase.auth.onAuthStateChange(async (event, session) => {
-      await fetch("/api/auth", {
-        method: "POST",
-        headers: new Headers({ "Content-Type": "application/json" }),
-        credentials: "same-origin",
-        body: JSON.stringify({ event, session }),
-      });
+      updateAuth({ event, session });
 
       setUser(session?.user ?? null);
     });
     return () => data?.unsubscribe?.();
-  }, []);
+  }, [updateAuth]);
 
   return (
     <UserContext.Provider value={{ user }}>{children}</UserContext.Provider>
