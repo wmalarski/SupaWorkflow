@@ -1,20 +1,17 @@
 import { WriteTransaction } from "replicache";
+import { DeleteMessageArgs } from "../../data/message/deleteMessage";
 import { InsertMessageArgs } from "../../data/message/insertMessage";
 
-export const createTodo = (
+export const createMessage = (
   tx: WriteTransaction,
   args: InsertMessageArgs
 ): void => {
   tx.put(`/message/${args.id}`, args);
 };
 
-export type RemoveTodoArgs = {
-  id: string;
-};
-
-export const removeTodo = (
+export const deleteMessage = (
   tx: WriteTransaction,
-  args: RemoveTodoArgs
+  args: DeleteMessageArgs
 ): void => {
   tx.del(`/message/${args.id}`);
 };

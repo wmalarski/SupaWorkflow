@@ -2,11 +2,11 @@ import { Button } from "@chakra-ui/react";
 import React from "react";
 import { JSONValue } from "replicache";
 import { Debug } from "../../../../atoms";
-import { UseCreateTodoArgs } from "../../../../services/rep/todos/hooks";
+import { UseCreateMessageArgs } from "../../../../services/rep/todos/hooks";
 
 export type TemplateEditorProps = {
   todos: JSONValue[];
-  onNewMessageClick: (args: UseCreateTodoArgs) => void;
+  onNewMessageClick: (args: UseCreateMessageArgs) => void;
 };
 
 const TemplateEditor = ({

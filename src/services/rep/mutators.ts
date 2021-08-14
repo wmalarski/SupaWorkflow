@@ -1,8 +1,8 @@
-import { createTodo, removeTodo } from "./todos/mutations";
+import { createMessage, deleteMessage } from "./todos/mutations";
 
 const mutators = {
-  createTodo,
-  removeTodo,
+  createMessage,
+  deleteMessage,
 };
 
 export type Mutations = {
@@ -14,5 +14,10 @@ export type Mutations = {
 };
 
 export type Mutation = Mutations[keyof Mutations];
+
+export type MutationPush = {
+  clientID: string;
+  mutations: Mutation[];
+};
 
 export default mutators;

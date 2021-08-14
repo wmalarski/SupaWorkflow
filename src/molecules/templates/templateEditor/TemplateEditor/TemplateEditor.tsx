@@ -1,5 +1,8 @@
 import React from "react";
-import { useCreateTodo, useTodos } from "../../../../services/rep/todos/hooks";
+import {
+  useCreateMessage,
+  useMessages,
+} from "../../../../services/rep/todos/hooks";
 import TemplateEditorView from "../TemplateEditorView/TemplateEditorView";
 
 type ViewProps = React.ComponentProps<typeof TemplateEditorView>;
@@ -11,9 +14,9 @@ export type TemplateEditorProps = {
 const TemplateEditor = ({
   View = TemplateEditorView,
 }: TemplateEditorProps): JSX.Element => {
-  const todos = useTodos();
+  const todos = useMessages();
 
-  const { mutate: handleNewMessageClick } = useCreateTodo();
+  const { mutate: handleNewMessageClick } = useCreateMessage();
 
   return <View todos={todos} onNewMessageClick={handleNewMessageClick} />;
 };

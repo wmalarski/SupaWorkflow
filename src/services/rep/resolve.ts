@@ -4,9 +4,9 @@ import { Mutation } from "./mutators";
 
 const resolve = async (mutation: Mutation): Promise<void> => {
   switch (mutation.name) {
-    case "createTodo":
+    case "createMessage":
       return void (await insertMessage(mutation.args));
-    case "removeTodo":
+    case "deleteMessage":
       return deleteMessage(mutation.args);
   }
 };

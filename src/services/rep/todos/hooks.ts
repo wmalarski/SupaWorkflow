@@ -9,7 +9,7 @@ import { useSubscribe } from "replicache-react";
 import { InsertMessageArgs } from "../../data/message/insertMessage";
 import rep from "../rep";
 
-export const useTodos = (): JSONValue[] =>
+export const useMessages = (): JSONValue[] =>
   useSubscribe(
     rep,
     async (tx) => {
@@ -20,12 +20,13 @@ export const useTodos = (): JSONValue[] =>
     []
   );
 
-export type UseCreateTodoArgs = Omit<InsertMessageArgs, "id">;
+export type UseCreateMessageArgs = Omit<InsertMessageArgs, "id">;
 
-export const createTodoMutation = (args: UseCreateTodoArgs): Promise<void> =>
-  rep.mutate.createTodo({ ...args, id: nanoid() });
+export const createMessageMutation = (
+  args: UseCreateMessageArgs
+): Promise<void> => rep.mutate.createMessage({ ...args, id: nanoid() });
 
-export const useCreateTodo = (
-  options?: UseMutationOptions<void, Error, UseCreateTodoArgs>
-): UseMutationResult<void, Error, UseCreateTodoArgs> =>
-  useMutation(createTodoMutation, options);
+export const useCreateMessage = (
+  options?: UseMutationOptions<void, Error, UseCreateMessageArgs>
+): UseMutationResult<void, Error, UseCreateMessageArgs> =>
+  useMutation(createMessageMutation, options);
