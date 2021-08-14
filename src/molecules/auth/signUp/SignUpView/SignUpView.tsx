@@ -1,7 +1,8 @@
+import { Alert, Button, Input, Text } from "@chakra-ui/react";
 import { PostgrestError, User } from "@supabase/supabase-js";
 import React from "react";
 import { useForm } from "react-hook-form";
-import { Alert, Button, Debug, Text, TextField } from "../../../../atoms";
+import { Debug } from "../../../../atoms";
 import useText from "../../../../utils/translations/useText";
 import {
   SignUpViewContext,
@@ -39,13 +40,13 @@ const SignUpView = ({
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Text>{text("signUpHeader")}</Text>
-      <TextField
+      <Input
         type="email"
         placeholder={text("emailPlaceholder")}
         {...register("email", options.email)}
       />
       {errors.email && <Alert variant="red">{errors.email.message}</Alert>}
-      <TextField
+      <Input
         type="password"
         placeholder={text("passwordPlaceholder")}
         {...register("password", options.password)}
@@ -53,7 +54,7 @@ const SignUpView = ({
       {errors.password && (
         <Alert variant="red">{errors.password.message}</Alert>
       )}
-      <TextField
+      <Input
         type="password"
         placeholder={text("confirmPasswordPlaceholder")}
         {...register("confirmPassword", options.confirmPassword)}

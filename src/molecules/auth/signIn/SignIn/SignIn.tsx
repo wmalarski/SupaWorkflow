@@ -1,5 +1,7 @@
+import { useRouter } from "next/router";
 import React from "react";
 import { useSignIn } from "../../../../services/auth/signIn";
+import paths from "../../../../utils/routing/paths";
 import SignInView, { SignInViewProps } from "../SignInView/SignInView";
 
 export type SignInProps = {
@@ -7,7 +9,16 @@ export type SignInProps = {
 };
 
 const SignIn = ({ View = SignInView }: SignInProps): JSX.Element => {
-  const { mutate: signUp, error, isLoading, data: user } = useSignIn();
+  const router = useRouter();
+
+  const {
+    mutate: signUp,
+    error,
+    isLoading,
+    data: user,
+  } = useSignIn({
+    onSuccess: () => router.push(paths.home),
+  });
 
   return (
     <View

@@ -6,7 +6,7 @@ export default {
   title: "Molecules/SignOut/SignOutView",
   component: SignOutView,
   argTypes: {
-    onSubmit: { action: "onSubmit" },
+    onSignOutClicked: { action: "onSignOutClicked" },
   },
 } as ComponentMeta<typeof SignOutView>;
 

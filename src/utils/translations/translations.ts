@@ -1,16 +1,20 @@
 const translation = {
-  fieldIsRequired: "Field is required",
-  errorMinLength: (min: number): string => `Min ${min}`,
+  appName: "SupaWorkflow",
+  // Auth
   signInHeader: "Sign In",
   signInButton: "Sign In",
+  signOutButton: "Sign Out",
+  signUpHeader: "Sign Up",
+  signUpButton: "Sign Up",
   emailPlaceholder: "Email",
   passwordPlaceholder: "Password",
   confirmPasswordPlaceholder: "Confirm Password",
   fieldIsDifferent: "Repeat password",
+
+  // Field Errors
+  fieldIsRequired: "Field is required",
+  errorMinLength: (min: number): string => `Min ${min}`,
   errorMaxLength: (max: number): string => `Max ${max}`,
-  signOutButton: "Sign Out",
-  signUpHeader: "Sign Up",
-  signUpButton: "Sign Up",
 };
 
 export type Translation = typeof translation;
