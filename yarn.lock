@@ -9753,7 +9753,7 @@ nano-time@1.0.0:
   dependencies:
     big-integer "^1.6.16"
 
-nanoid@^3.1.23:
+nanoid@^3.1.23, nanoid@^3.1.25:
   version "3.1.25"
   resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.1.25.tgz#09ca32747c0e543f0e1814b7d3793477f9c8e152"
   integrity sha512-rdwtIXaXCLFAQbnfqDRnI6jaRHp9fTcYBjtFKE8eezcZ7LuLjhUaQGNeMXf1HmRoCH32CLz6XwX0TtxEOS/A3Q==
@@ -11530,6 +11530,16 @@ repeat-string@^1.5.4, repeat-string@^1.6.1:
   version "1.6.1"
   resolved "https://registry.yarnpkg.com/repeat-string/-/repeat-string-1.6.1.tgz#8dcae470e1c88abc2d600fff4a776286da75e637"
   integrity sha1-jcrkcOHIirwtYA//Sndihtp15jc=
+
+replicache-react@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/replicache-react/-/replicache-react-1.0.0.tgz#33f8483efd1671b758c60ab7e83243ed45641101"
+  integrity sha512-ytQSf2bjBjxPlr5RYdzikrctZJxAMW0ojyRoU8PQw/UNaio1qS4of1x/KLCT9zXfAguLJN7c5B/ERPCLyKwpnw==
+
+replicache@^6.4.1:
+  version "6.4.1"
+  resolved "https://registry.yarnpkg.com/replicache/-/replicache-6.4.1.tgz#aed5788e9ff51f1b916d0f4155ed9d6477c868e1"
+  integrity sha512-3ZuLT+V1FzOp8Pedizu47+wjNK4WtM3XjWvszN1qrin356Xdvtc6+PvJHw6K+Dbc8DqyJrTRkGc2aW+738kQRw==
 
 require-directory@^2.1.1:
   version "2.1.1"

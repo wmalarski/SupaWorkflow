@@ -8,6 +8,10 @@
   "cSpell.words": [
     "Postgrest",
     "Upsert",
-    "supabase"
+    "chakra",
+    "mutators",
+    "replicache",
+    "supabase",
+    "wasm"
   ]
 }

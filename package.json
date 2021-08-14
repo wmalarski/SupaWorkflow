@@ -23,11 +23,14 @@
     "@supabase/supabase-js": "^1.21.0",
     "cross-fetch": "^3.1.4",
     "framer-motion": "^4",
+    "nanoid": "^3.1.25",
     "next": "11.1.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-hook-form": "^7.12.2",
-    "react-query": "^3.19.2"
+    "react-query": "^3.19.2",
+    "replicache": "^6.4.1",
+    "replicache-react": "^1.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.15.0",
