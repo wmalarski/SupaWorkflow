@@ -52,9 +52,6 @@ const handler = async (
     });
 
     await resolveSequence(mutations);
-
-    // await sendPoke();
-
     await updateClient({ id: push.clientID, last_mutation_id: mutationId });
   } catch (error: any) {
     console.log({ error });

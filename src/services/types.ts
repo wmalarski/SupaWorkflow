@@ -9,6 +9,11 @@ export type Message = {
   sender: string;
   content: string;
   ord: number;
+  version: number;
+};
+
+export type MessageVersion = {
+  max_version: number;
 };
 
 export type Client = {
@@ -19,6 +24,7 @@ export type Client = {
 export type TableMapping = {
   message: Message;
   client: Client;
+  messageVersion: MessageVersion;
 };
 
 export type ResponseError = {

@@ -7,7 +7,7 @@ import {
 import { Message } from "../../types";
 import fromSupabase from "../../utils/fromSupabase";
 
-export type InsertMessageArgs = Message;
+export type InsertMessageArgs = Omit<Message, "version">;
 
 export const insertMessage = async (
   args: InsertMessageArgs

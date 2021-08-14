@@ -14,4 +14,8 @@ export enum SupabaseErrorCode {
   UniquenessViolation = "23505",
 }
 
-export const TABLES: Record<keyof TableMapping, string> = {};
+export const TABLES: Record<keyof TableMapping, string> = {
+  client: "replicache_client",
+  message: "message",
+  messageVersion: "max_message_version",
+};

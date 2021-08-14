@@ -1,24 +1,52 @@
 import type { NextApiRequest, NextApiResponse } from "next";
+import {
+  selectClient,
+  selectClientKey,
+} from "../../services/data/client/selectClient";
+import {
+  selectMessages,
+  selectMessagesKey,
+} from "../../services/data/message/selectMessages";
+import { selectMessageVersion } from "../../services/data/message/selectMessageVersion";
 
-const handler = (_req: NextApiRequest, res: NextApiResponse): void => {
-  res.json({
-    lastMutationID: 0,
-    cookie: null,
-    patch: [
-      { op: "clear" },
-      {
+const handler = async (
+  req: NextApiRequest,
+  res: NextApiResponse
+): Promise<void> => {
+  const { clientID, cookie: version = 0 } = req.body;
+  console.log(`Processing pull`, JSON.stringify(req.body));
+
+  try {
+    const [client, changed, maxVersion] = await Promise.all([
+      selectClient({ queryKey: selectClientKey({ id: clientID }) }),
+      selectMessages({ queryKey: selectMessagesKey({ version }) }),
+      selectMessageVersion(),
+    ]);
+
+    const cookie = maxVersion?.max_version;
+    const lastMutationID = client?.last_mutation_id ?? 0;
+
+    console.log({ cookie, lastMutationID, changed });
+
+    const patch = [
+      ...[!version ? { op: "clear" } : []],
+      ...changed.map((row) => ({
         op: "put",
-        key: "message/qpdgkvpb9ao",
-        value: { from: "Jane", content: "Hey, what's for lunch?", order: 1 },
-      },
-      {
-        op: "put",
-        key: "message/5ahljadc408",
-        value: { from: "Fred", content: "tacos?", order: 2 },
-      },
-    ],
-  });
-  res.end();
+        key: `message/${row.id}`,
+        value: {
+          from: row.sender,
+          content: row.content,
+          order: row.ord,
+        },
+      })),
+    ];
+
+    res.json({ lastMutationID, cookie, patch });
+    res.end();
+  } catch (e) {
+    console.error(e);
+    res.status(500).send(e.toString());
+  }
 };
 
 export default handler;
