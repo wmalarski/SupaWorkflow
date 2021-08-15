@@ -22,6 +22,9 @@ const RepContext = createContext<RepContextValue>(rep);
 
 export const useRepContext = (): RepContextValue => useContext(RepContext);
 
+export const useRepMutations = (): RepContextValue["mutate"] =>
+  useRepContext().mutate;
+
 export type RepContextProviderProps = {
   children: ReactNode;
 };

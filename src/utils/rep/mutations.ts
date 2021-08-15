@@ -4,7 +4,7 @@ import { Message } from "../../services/types";
 const mutators = {
   createMessage: (
     tx: WriteTransaction,
-    args: Omit<Message, "version">
+    args: Omit<Message, "deleted" | "version">
   ): void => {
     tx.put(`/message/${args.id}`, args);
   },

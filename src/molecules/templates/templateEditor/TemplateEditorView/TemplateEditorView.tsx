@@ -1,16 +1,17 @@
-import { Button } from "@chakra-ui/react";
+import { Button, StackDivider, VStack } from "@chakra-ui/react";
+import { nanoid } from "nanoid";
 import React from "react";
-import { JSONValue } from "replicache";
-import { Debug } from "../../../../atoms";
-import { UseCreateMessageArgs } from "../../../../utils/rep/messages";
+import { Message } from "../../../../services/types";
+import { MutationArgs } from "../../../../utils/rep/types";
+import MessageListItem from "../MessageListItem/MessageListItem";
 
 export type TemplateEditorProps = {
-  todos: JSONValue[];
-  onNewMessageClick: (args: UseCreateMessageArgs) => void;
+  messages: Message[];
+  onNewMessageClick: (args: MutationArgs["createMessage"]) => void;
 };
 
 const TemplateEditor = ({
-  todos,
+  messages,
   onNewMessageClick,
 }: TemplateEditorProps): JSX.Element => {
   return (
@@ -18,7 +19,8 @@ const TemplateEditor = ({
       <Button
         onClick={() =>
           onNewMessageClick({
-            ord: todos.length,
+            id: nanoid(),
+            ord: messages.length,
             content: "ds",
             sender: "Me",
           })
@@ -26,7 +28,11 @@ const TemplateEditor = ({
       >
         New message
       </Button>
-      <Debug value={todos} />
+      <VStack divider={<StackDivider borderColor="gray.200" />}>
+        {messages.map((message) => (
+          <MessageListItem key={message.id} message={message} />
+        ))}
+      </VStack>
     </>
   );
 };

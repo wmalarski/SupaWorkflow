@@ -1,6 +1,6 @@
 import React from "react";
-import { useCreateMessage, useMessages } from "../../../../utils/rep/messages";
-import { RepContextProvider } from "../../../../utils/rep/RepContext";
+import { useMessages } from "../../../../utils/rep/messages";
+import { useRepMutations } from "../../../../utils/rep/RepContext";
 import TemplateEditorView from "../TemplateEditorView/TemplateEditorView";
 
 type ViewProps = React.ComponentProps<typeof TemplateEditorView>;
@@ -12,15 +12,11 @@ export type TemplateEditorProps = {
 const TemplateEditor = ({
   View = TemplateEditorView,
 }: TemplateEditorProps): JSX.Element => {
-  const todos = useMessages();
+  const messages = useMessages();
 
-  const { mutate: handleNewMessageClick } = useCreateMessage();
+  const { createMessage } = useRepMutations();
 
-  return (
-    <RepContextProvider>
-      <View todos={todos} onNewMessageClick={handleNewMessageClick} />
-    </RepContextProvider>
-  );
+  return <View messages={messages} onNewMessageClick={createMessage} />;
 };
 
 export default TemplateEditor;

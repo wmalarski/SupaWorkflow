@@ -10,6 +10,10 @@ export type Mutations = {
 
 export type Mutation = Mutations[keyof Mutations];
 
+export type MutationArgs = {
+  [key in keyof Mutations]: Mutations[key]["args"];
+};
+
 export type MutationPush = {
   clientID: string;
   mutations: Mutation[];

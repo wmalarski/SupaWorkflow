@@ -1,4 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
+import { PullResponse } from "replicache";
 import { selectClient } from "../../services/data/client/selectClient";
 import { selectMessages } from "../../services/data/message/selectMessages";
 import { selectMessageVersion } from "../../services/data/message/selectMessageVersion";
@@ -12,23 +13,27 @@ const handler = async (
   console.log(`Processing pull`, JSON.stringify(req.body));
 
   try {
-    console.log({ clientID, cookie: cookie ?? 0 });
-
     const [client, changed, maxVersion] = await Promise.all([
       selectClient({ id: clientID }),
       selectMessages({ version: cookie ?? 0 }),
       selectMessageVersion(),
     ]);
 
-    const newCookie = maxVersion?.max_version;
+    const newCookie = maxVersion?.max_version ?? 0;
     const lastMutationID = client?.last_mutation_id ?? 0;
 
     const patch = [
-      ...(!cookie ? [{ op: "clear" }] : []),
+      ...(!cookie ? [{ op: "clear" } as const] : []),
       ...changed.map(resolvePull),
     ];
 
-    res.json({ lastMutationID, cookie: newCookie, patch });
+    const response: PullResponse = {
+      cookie: newCookie,
+      lastMutationID,
+      patch,
+    };
+
+    res.json(response);
     res.end();
   } catch (e) {
     console.error("Here", e);

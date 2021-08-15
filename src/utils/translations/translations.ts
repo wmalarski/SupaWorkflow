@@ -11,6 +11,9 @@ const translation = {
   confirmPasswordPlaceholder: "Confirm Password",
   fieldIsDifferent: "Repeat password",
 
+  // Template editor
+  version: "Version",
+
   // Field Errors
   fieldIsRequired: "Field is required",
   errorMinLength: (min: number): string => `Min ${min}`,
