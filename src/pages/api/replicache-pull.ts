@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { selectClient } from "../../services/data/client/selectClient";
 import { selectMessages } from "../../services/data/message/selectMessages";
 import { selectMessageVersion } from "../../services/data/message/selectMessageVersion";
-import resolvePull from "../../services/rep/resolvePull";
+import resolvePull from "../../utils/rep/resolvePull";
 
 const handler = async (
   req: NextApiRequest,

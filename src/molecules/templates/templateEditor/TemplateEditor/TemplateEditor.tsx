@@ -1,8 +1,5 @@
 import React from "react";
-import {
-  useCreateMessage,
-  useMessages,
-} from "../../../../services/rep/messages";
+import { useCreateMessage, useMessages } from "../../../../utils/rep/messages";
 import { RepContextProvider } from "../../../../utils/rep/RepContext";
 import TemplateEditorView from "../TemplateEditorView/TemplateEditorView";
 

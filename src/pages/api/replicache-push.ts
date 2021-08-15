@@ -5,7 +5,7 @@ import {
   UpsertMessageArgs,
   upsertMessages,
 } from "../../services/data/message/upsertMessages";
-import resolvePush from "../../services/rep/resolvePush";
+import resolvePush from "../../utils/rep/resolvePush";
 import { Mutation, MutationPush } from "../../utils/rep/types";
 
 type ReduceAcc = {

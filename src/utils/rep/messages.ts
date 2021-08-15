@@ -6,9 +6,9 @@ import {
   UseMutationResult,
 } from "react-query";
 import { useSubscribe } from "replicache-react";
-import { useRepContext } from "../../utils/rep/RepContext";
-import { UpsertMessageArgs } from "../data/message/upsertMessages";
-import { Message } from "../types";
+import { UpsertMessageArgs } from "../../services/data/message/upsertMessages";
+import { Message } from "../../services/types";
+import { useRepContext } from "./RepContext";
 
 export const useMessages = (): Message[] => {
   const rep = useRepContext();

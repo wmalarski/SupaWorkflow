@@ -1,4 +1,4 @@
-import { Message } from "../types";
+import { Message } from "../../services/types";
 
 export type ResolvePullResult =
   | {
