@@ -4,4 +4,3 @@ export { default as SignUp } from "./auth/signUp/SignUp/SignUp";
 export { default as AnonHeader } from "./headers/anonHeader/AnonHeader/AnonHeader";
 export { default as Header } from "./headers/header/Header/Header";
 export { default as ProfileHeader } from "./headers/profileHeader/ProfileHeader/ProfileHeader";
-export { default as TemplateEditor } from "./templates/templateEditor/TemplateEditor/TemplateEditor";

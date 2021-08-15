@@ -1,6 +1,7 @@
 DROP TABLE IF EXISTS message
 DROP TABLE IF EXISTS replicache_client
 DROP SEQUENCE IF EXISTS version
+DROP TRIGGER set_version ON message;
 
 -- Stores chat messages    
 CREATE TABLE message (      
@@ -18,11 +19,9 @@ CREATE TABLE replicache_client (
 )
 
 -- Will be used for computing diffs for pull response    
-CREATE SEQUENCE version
+CREATE SEQUENCE version AS bigint
 
 -- Increment version on update
-DROP TRIGGER set_version ON message;
-
 CREATE OR REPLACE FUNCTION trigger_set_version()
 RETURNS TRIGGER AS $$
 BEGIN
@@ -31,8 +30,8 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE TRIGGER set_version
-BEFORE UPDATE ON message
+CREATE OR REPLACE TRIGGER set_version
+BEFORE UPDATE AND INSERT ON message
 FOR EACH ROW
 EXECUTE PROCEDURE trigger_set_version();
 

@@ -7,23 +7,23 @@ const handler = async (
   req: NextApiRequest,
   res: NextApiResponse
 ): Promise<void> => {
-  const { clientID, cookie: version = 0 } = req.body;
+  const { clientID, cookie } = req.body;
   console.log(`Processing pull`, JSON.stringify(req.body));
 
   try {
+    console.log({ clientID, cookie: cookie ?? 0 });
+
     const [client, changed, maxVersion] = await Promise.all([
       selectClient({ id: clientID }),
-      selectMessages({ version }),
+      selectMessages({ version: cookie ?? 0 }),
       selectMessageVersion(),
     ]);
 
-    const cookie = maxVersion?.max_version;
+    const newCookie = maxVersion?.max_version;
     const lastMutationID = client?.last_mutation_id ?? 0;
 
-    console.log({ cookie, lastMutationID, changed });
-
     const patch = [
-      ...[!version ? { op: "clear" } : []],
+      ...(!cookie ? [{ op: "clear" }] : []),
       ...changed.map((row) => ({
         op: "put",
         key: `message/${row.id}`,
@@ -35,10 +35,10 @@ const handler = async (
       })),
     ];
 
-    res.json({ lastMutationID, cookie, patch });
+    res.json({ lastMutationID, cookie: newCookie, patch });
     res.end();
   } catch (e) {
-    console.error(e);
+    console.error("Here", e);
     res.status(500).send(e.toString());
   }
 };

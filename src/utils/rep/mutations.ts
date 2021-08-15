@@ -4,6 +4,7 @@ import { InsertMessageArgs } from "../../services/data/message/insertMessage";
 
 const mutators = {
   createMessage: (tx: WriteTransaction, args: InsertMessageArgs): void => {
+    console.log("createMessage", args);
     tx.put(`/message/${args.id}`, args);
   },
   deleteMessage: (tx: WriteTransaction, args: DeleteMessageArgs): void => {

@@ -1,7 +1,6 @@
 import type { NextPage } from "next";
 import dynamic from "next/dynamic";
 import React from "react";
-import { Debug } from "../atoms";
 import { AnonNavigation, UserNavigation } from "../organisms";
 import Page from "../templates/Page/Page";
 import { useUserContext } from "../utils/auth/UserContext";
@@ -16,7 +15,6 @@ const Index: NextPage = () => {
 
   return (
     <Page header={user ? <UserNavigation /> : <AnonNavigation />}>
-      <Debug value={user} />
       <TemplateWorkspace />
     </Page>
   );

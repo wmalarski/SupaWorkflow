@@ -52,15 +52,16 @@ const handler = async (
     });
 
     await resolveSequence(mutations);
-    await updateClient({ id: push.clientID, last_mutation_id: mutationId });
-  } catch (error: any) {
+    const client = await updateClient({
+      id: push.clientID,
+      last_mutation_id: mutationId,
+    });
+
+    console.log("updated client", { client });
+  } catch (error) {
     console.log({ error });
   }
-  res.send("{}");
+  res.json({});
 };
-
-// async function sendPoke() {
-//   // TODO
-// }
 
 export default handler;

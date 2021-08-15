@@ -32,9 +32,11 @@ export const useCreateMessage = (
   const rep = useRepContext();
 
   const mutation = useCallback(
-    (args: UseCreateMessageArgs) =>
-      rep.mutate.createMessage({ ...args, id: nanoid() }),
-    [rep.mutate]
+    (args: UseCreateMessageArgs) => {
+      console.log("rep.mutate.createMessage", args, rep);
+      return rep.mutate.createMessage({ ...args, id: nanoid() });
+    },
+    [rep]
   );
 
   return useMutation(mutation, options);
