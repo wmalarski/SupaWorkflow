@@ -1,12 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import {
-  selectClient,
-  selectClientKey,
-} from "../../services/data/client/selectClient";
-import {
-  selectMessages,
-  selectMessagesKey,
-} from "../../services/data/message/selectMessages";
+import { selectClient } from "../../services/data/client/selectClient";
+import { selectMessages } from "../../services/data/message/selectMessages";
 import { selectMessageVersion } from "../../services/data/message/selectMessageVersion";
 
 const handler = async (
@@ -18,8 +12,8 @@ const handler = async (
 
   try {
     const [client, changed, maxVersion] = await Promise.all([
-      selectClient({ queryKey: selectClientKey({ id: clientID }) }),
-      selectMessages({ queryKey: selectMessagesKey({ version }) }),
+      selectClient({ id: clientID }),
+      selectMessages({ version }),
       selectMessageVersion(),
     ]);
 

@@ -1,9 +1,4 @@
-import { createMessage, deleteMessage } from "./todos/mutations";
-
-const mutators = {
-  createMessage,
-  deleteMessage,
-};
+import mutators from "./mutations";
 
 export type Mutations = {
   [key in keyof typeof mutators]: {
@@ -19,5 +14,3 @@ export type MutationPush = {
   clientID: string;
   mutations: Mutation[];
 };
-
-export default mutators;

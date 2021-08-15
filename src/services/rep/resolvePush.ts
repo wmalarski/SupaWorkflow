@@ -1,8 +1,8 @@
+import { Mutation } from "../../utils/rep/types";
 import { deleteMessage } from "../data/message/deleteMessage";
 import { insertMessage } from "../data/message/insertMessage";
-import { Mutation } from "./mutators";
 
-const resolve = async (mutation: Mutation): Promise<void> => {
+const resolvePush = async (mutation: Mutation): Promise<void> => {
   switch (mutation.name) {
     case "createMessage":
       return void (await insertMessage(mutation.args));
@@ -11,4 +11,4 @@ const resolve = async (mutation: Mutation): Promise<void> => {
   }
 };
 
-export default resolve;
+export default resolvePush;

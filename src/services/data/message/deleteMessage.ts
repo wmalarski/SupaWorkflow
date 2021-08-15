@@ -1,9 +1,3 @@
-import { PostgrestError } from "@supabase/supabase-js";
-import {
-  useMutation,
-  UseMutationOptions,
-  UseMutationResult,
-} from "react-query";
 import { Message } from "../../types";
 import fromSupabase from "../../utils/fromSupabase";
 
@@ -19,8 +13,3 @@ export const deleteMessage = async ({
 
   if (error) throw error;
 };
-
-export const useDeleteMessage = (
-  options?: UseMutationOptions<void, PostgrestError, DeleteMessageArgs>
-): UseMutationResult<void, PostgrestError, DeleteMessageArgs> =>
-  useMutation(deleteMessage, options);

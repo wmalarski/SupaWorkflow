@@ -1,9 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import selectOrInsertClient from "../../services/data/client/selectOrInsertClient";
 import { updateClient } from "../../services/data/client/updateClient";
-import { Mutation, MutationPush } from "../../services/rep/mutators";
-import resolve from "../../services/rep/resolve";
+import resolvePush from "../../services/rep/resolvePush";
 import resolveSequence from "../../services/utils/resolveSequence";
+import { Mutation, MutationPush } from "../../utils/rep/types";
 
 type ReduceAcc = {
   mutationId: number;
@@ -32,7 +32,7 @@ const reducer: (prev: ReduceAcc, mutation: Mutation) => ReduceAcc = (
   console.log("Processing mutation:", JSON.stringify(mutation));
   return {
     mutationId: expectedMutationID,
-    mutations: [...mutations, resolve(mutation)],
+    mutations: [...mutations, resolvePush(mutation)],
   };
 };
 

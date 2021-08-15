@@ -3,9 +3,7 @@ import { insertClient } from "./insertClient";
 import { selectClient } from "./selectClient";
 
 const selectOrInsertClient = async (id: string): Promise<Client> => {
-  const selected = await selectClient({
-    queryKey: ["Client", { id }],
-  });
+  const selected = await selectClient({ id });
   if (selected) return selected;
 
   const inserted = await insertClient({ id });

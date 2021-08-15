@@ -6,11 +6,8 @@ import { AnonNavigation, UserNavigation } from "../organisms";
 import Page from "../templates/Page/Page";
 import { useUserContext } from "../utils/auth/UserContext";
 
-const TemplateEditor = dynamic(
-  () =>
-    import(
-      "../molecules/templates/templateEditor/TemplateEditor/TemplateEditor"
-    ),
+const TemplateWorkspace = dynamic(
+  () => import("../organisms/TemplateWorkspace/TemplateWorkspace"),
   { ssr: false }
 );
 
@@ -20,7 +17,7 @@ const Index: NextPage = () => {
   return (
     <Page header={user ? <UserNavigation /> : <AnonNavigation />}>
       <Debug value={user} />
-      <TemplateEditor />
+      <TemplateWorkspace />
     </Page>
   );
 };

@@ -2,7 +2,8 @@ import React from "react";
 import {
   useCreateMessage,
   useMessages,
-} from "../../../../services/rep/todos/hooks";
+} from "../../../../services/rep/messages";
+import { RepContextProvider } from "../../../../utils/rep/RepContext";
 import TemplateEditorView from "../TemplateEditorView/TemplateEditorView";
 
 type ViewProps = React.ComponentProps<typeof TemplateEditorView>;
@@ -18,7 +19,11 @@ const TemplateEditor = ({
 
   const { mutate: handleNewMessageClick } = useCreateMessage();
 
-  return <View todos={todos} onNewMessageClick={handleNewMessageClick} />;
+  return (
+    <RepContextProvider>
+      <View todos={todos} onNewMessageClick={handleNewMessageClick} />
+    </RepContextProvider>
+  );
 };
 
 export default TemplateEditor;

@@ -2,7 +2,7 @@ import { Button } from "@chakra-ui/react";
 import React from "react";
 import { JSONValue } from "replicache";
 import { Debug } from "../../../../atoms";
-import { UseCreateMessageArgs } from "../../../../services/rep/todos/hooks";
+import { UseCreateMessageArgs } from "../../../../services/rep/messages";
 
 export type TemplateEditorProps = {
   todos: JSONValue[];
