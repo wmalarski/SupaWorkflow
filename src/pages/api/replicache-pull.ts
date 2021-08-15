@@ -2,6 +2,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { selectClient } from "../../services/data/client/selectClient";
 import { selectMessages } from "../../services/data/message/selectMessages";
 import { selectMessageVersion } from "../../services/data/message/selectMessageVersion";
+import resolvePull from "../../services/rep/resolvePull";
 
 const handler = async (
   req: NextApiRequest,
@@ -24,15 +25,7 @@ const handler = async (
 
     const patch = [
       ...(!cookie ? [{ op: "clear" }] : []),
-      ...changed.map((row) => ({
-        op: "put",
-        key: `message/${row.id}`,
-        value: {
-          from: row.sender,
-          content: row.content,
-          order: row.ord,
-        },
-      })),
+      ...changed.map(resolvePull),
     ];
 
     res.json({ lastMutationID, cookie: newCookie, patch });

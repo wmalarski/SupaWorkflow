@@ -1,13 +1,12 @@
 import { Mutation } from "../../utils/rep/types";
-import { deleteMessage } from "../data/message/deleteMessage";
-import { insertMessage } from "../data/message/insertMessage";
+import { UpsertMessageArgs } from "../data/message/upsertMessages";
 
-const resolvePush = async (mutation: Mutation): Promise<void> => {
+const resolvePush = (mutation: Mutation): UpsertMessageArgs => {
   switch (mutation.name) {
     case "createMessage":
-      return void (await insertMessage(mutation.args));
+      return mutation.args;
     case "deleteMessage":
-      return deleteMessage(mutation.args);
+      return { id: mutation.args.id, deleted: true };
   }
 };
 

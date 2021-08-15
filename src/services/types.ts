@@ -1,15 +1,10 @@
-export type NodeMeta = {
-  id: string;
-  name: string;
-  description: string;
-};
-
 export type Message = {
   id: string;
   sender: string;
   content: string;
   ord: number;
   version: number;
+  deleted: boolean;
 };
 
 export type MessageVersion = {

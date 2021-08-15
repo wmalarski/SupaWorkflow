@@ -5,26 +5,28 @@ import {
   UseMutationOptions,
   UseMutationResult,
 } from "react-query";
-import { JSONValue } from "replicache";
 import { useSubscribe } from "replicache-react";
 import { useRepContext } from "../../utils/rep/RepContext";
-import { InsertMessageArgs } from "../data/message/insertMessage";
+import { UpsertMessageArgs } from "../data/message/upsertMessages";
+import { Message } from "../types";
 
-export const useMessages = (): JSONValue[] => {
+export const useMessages = (): Message[] => {
   const rep = useRepContext();
 
-  return useSubscribe(
+  return useSubscribe<Message[]>(
     rep,
     async (tx) => {
       const list = await tx.scan({ prefix: "message/" }).entries().toArray();
-      console.log("list", list);
-      return list;
+      return list.map(([, message]) => message as Message);
     },
     []
   );
 };
 
-export type UseCreateMessageArgs = Omit<InsertMessageArgs, "id">;
+export type UseCreateMessageArgs = Omit<
+  Required<UpsertMessageArgs>,
+  "id" | "deleted" | "version"
+>;
 
 export const useCreateMessage = (
   options?: UseMutationOptions<void, Error, UseCreateMessageArgs>
@@ -32,10 +34,12 @@ export const useCreateMessage = (
   const rep = useRepContext();
 
   const mutation = useCallback(
-    (args: UseCreateMessageArgs) => {
-      console.log("rep.mutate.createMessage", args, rep);
-      return rep.mutate.createMessage({ ...args, id: nanoid() });
-    },
+    (args: UseCreateMessageArgs) =>
+      rep.mutate.createMessage({
+        ...args,
+        id: nanoid(),
+        deleted: false,
+      }),
     [rep]
   );
 

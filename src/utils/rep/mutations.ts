@@ -1,13 +1,14 @@
 import { WriteTransaction } from "replicache";
-import { DeleteMessageArgs } from "../../services/data/message/deleteMessage";
-import { InsertMessageArgs } from "../../services/data/message/insertMessage";
+import { Message } from "../../services/types";
 
 const mutators = {
-  createMessage: (tx: WriteTransaction, args: InsertMessageArgs): void => {
-    console.log("createMessage", args);
+  createMessage: (
+    tx: WriteTransaction,
+    args: Omit<Message, "version">
+  ): void => {
     tx.put(`/message/${args.id}`, args);
   },
-  deleteMessage: (tx: WriteTransaction, args: DeleteMessageArgs): void => {
+  deleteMessage: (tx: WriteTransaction, args: Pick<Message, "id">): void => {
     tx.del(`/message/${args.id}`);
   },
 };

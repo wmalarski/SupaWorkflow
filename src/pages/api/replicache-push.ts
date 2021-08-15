@@ -1,13 +1,16 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import selectOrInsertClient from "../../services/data/client/selectOrInsertClient";
 import { updateClient } from "../../services/data/client/updateClient";
+import {
+  UpsertMessageArgs,
+  upsertMessages,
+} from "../../services/data/message/upsertMessages";
 import resolvePush from "../../services/rep/resolvePush";
-import resolveSequence from "../../services/utils/resolveSequence";
 import { Mutation, MutationPush } from "../../utils/rep/types";
 
 type ReduceAcc = {
   mutationId: number;
-  mutations: Promise<void>[];
+  mutations: UpsertMessageArgs[];
 };
 
 const reducer: (prev: ReduceAcc, mutation: Mutation) => ReduceAcc = (
@@ -51,13 +54,12 @@ const handler = async (
       mutations: [],
     });
 
-    await resolveSequence(mutations);
-    const client = await updateClient({
+    await upsertMessages(mutations);
+
+    await updateClient({
       id: push.clientID,
       last_mutation_id: mutationId,
     });
-
-    console.log("updated client", { client });
   } catch (error) {
     console.log({ error });
   }
