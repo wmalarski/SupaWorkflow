@@ -3,10 +3,10 @@ import { Mutation } from "../../utils/rep/types";
 
 const resolvePush = (mutation: Mutation): UpsertMessageArgs => {
   switch (mutation.name) {
-    case "createMessage":
-      return mutation.args;
+    case "putMessage":
+      return { deleted: false, ...mutation.args };
     case "deleteMessage":
-      return { id: mutation.args.id, deleted: true };
+      return { deleted: true, ...mutation.args };
   }
 };
 

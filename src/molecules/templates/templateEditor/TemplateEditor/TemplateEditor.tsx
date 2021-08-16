@@ -14,9 +14,15 @@ const TemplateEditor = ({
 }: TemplateEditorProps): JSX.Element => {
   const messages = useMessages();
 
-  const { createMessage } = useRepMutations();
+  const { putMessage, deleteMessage } = useRepMutations();
 
-  return <View messages={messages} onNewMessageClick={createMessage} />;
+  return (
+    <View
+      messages={messages}
+      onDeleteClick={deleteMessage}
+      onMessageChange={putMessage}
+    />
+  );
 };
 
 export default TemplateEditor;

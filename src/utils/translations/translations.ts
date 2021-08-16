@@ -13,6 +13,10 @@ const translation = {
 
   // Template editor
   version: "Version",
+  deleteMessage: "Delete",
+  addMessage: "Add",
+  updateMessage: "Update",
+  editMessage: "Edit",
 
   // Field Errors
   fieldIsRequired: "Field is required",

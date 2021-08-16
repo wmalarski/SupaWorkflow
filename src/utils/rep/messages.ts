@@ -9,7 +9,9 @@ export const useMessages = (): Message[] => {
     rep,
     async (tx) => {
       const list = await tx.scan({ prefix: "message/" }).entries().toArray();
-      return list.map(([, message]) => message as Message);
+      return list
+        .map(([, message]) => message as Message)
+        .sort((a, b) => (a.ord = b.ord));
     },
     []
   );

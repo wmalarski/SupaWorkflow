@@ -1,7 +1,7 @@
 import { Message } from "../../types";
 import fromSupabase from "../../utils/fromSupabase";
 
-export type UpsertMessageArgs = Pick<Message, "id"> & Partial<Message>;
+export type UpsertMessageArgs = Omit<Message, "version">;
 
 export type UpsertMessagesArgs = UpsertMessageArgs | UpsertMessageArgs[];
 

@@ -33,9 +33,14 @@ const reducer: (prev: ReduceAcc, mutation: Mutation) => ReduceAcc = (
   }
 
   console.log("Processing mutation:", JSON.stringify(mutation));
+
+  const args = resolvePush(mutation);
+
+  if (!args) return prev;
+
   return {
     mutationId: expectedMutationID,
-    mutations: [...mutations, resolvePush(mutation)],
+    mutations: [...mutations, args],
   };
 };
 
@@ -53,6 +58,8 @@ const handler = async (
       mutationId: last_mutation_id,
       mutations: [],
     });
+
+    console.log("mutations", mutations);
 
     await upsertMessages(mutations);
 
