@@ -59,8 +59,6 @@ const handler = async (
       mutations: [],
     });
 
-    console.log("mutations", mutations);
-
     await upsertMessages(mutations);
 
     await updateClient({

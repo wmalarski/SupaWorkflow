@@ -36,7 +36,6 @@ const handler = async (
     res.json(response);
     res.end();
   } catch (e) {
-    console.error("Here", e);
     res.status(500).send(e.toString());
   }
 };

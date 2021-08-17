@@ -14,7 +14,8 @@
     "test:coverage": "jest --coverage",
     "prepare": "husky install",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "postinstall": "cp node_modules/replicache/out/*.wasm public/"
   },
   "dependencies": {
     "@chakra-ui/react": "^1.6.6",
