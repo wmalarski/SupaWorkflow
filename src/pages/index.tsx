@@ -15,7 +15,7 @@ const Index: NextPage = () => {
 
   return (
     <Page header={user ? <UserNavigation /> : <AnonNavigation />}>
-      <TemplateWorkspace />
+      <TemplateWorkspace templateId={1} />
     </Page>
   );
 };

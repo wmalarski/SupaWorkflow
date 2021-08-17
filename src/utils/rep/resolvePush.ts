@@ -5,7 +5,7 @@ const resolvePush = (mutation: Mutation): UpsertMessageArgs => {
   switch (mutation.name) {
     case "putMessage":
       return { deleted: false, ...mutation.args };
-    case "deleteMessage":
+    case "delMessage":
       return { deleted: true, ...mutation.args };
   }
 };

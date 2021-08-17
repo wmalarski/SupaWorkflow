@@ -7,7 +7,7 @@ import useText from "../../../../utils/translations/useText";
 export type MessageListItemProps = {
   message: Message;
   onMessageChange: (args: MutationArgs["putMessage"]) => void;
-  onDeleteClick: (args: MutationArgs["deleteMessage"]) => void;
+  onDeleteClick: (args: MutationArgs["delMessage"]) => void;
 };
 
 const MessageListItem = ({
@@ -17,14 +17,14 @@ const MessageListItem = ({
 }: MessageListItemProps): JSX.Element => {
   const text = useText();
 
-  const { content, id, sender, ord, version } = message;
+  const { id, data, template_id, updated_at, workflow_id } = message;
 
   const [isEditing, setIsEditing] = useState(false);
-  const [newContent, setNewContent] = useState(content);
+  const [newContent, setNewContent] = useState(data.name);
 
   return (
     <HStack>
-      <Heading size="sm">{sender}</Heading>
+      <Heading size="sm">{updated_at}</Heading>
       {isEditing ? (
         <>
           <Input
@@ -33,7 +33,12 @@ const MessageListItem = ({
           />
           <Button
             onClick={() => {
-              onMessageChange({ id, content: newContent, sender, ord });
+              onMessageChange({
+                id,
+                data: { kind: "test", name: newContent },
+                template_id,
+                workflow_id: null,
+              });
               setIsEditing(false);
             }}
           >
@@ -41,10 +46,11 @@ const MessageListItem = ({
           </Button>
         </>
       ) : (
-        <Text size="md">{content}</Text>
+        <Text size="md">{data.name}</Text>
       )}
-      <Text size="xs">{JSON.stringify({ ord, version })}</Text>
-      <Button onClick={() => onDeleteClick({ id, content, ord, sender })}>
+      <Button
+        onClick={() => onDeleteClick({ id, data, template_id, workflow_id })}
+      >
         {text("deleteMessage")}
       </Button>
       <Button onClick={() => setIsEditing((current) => !current)}>

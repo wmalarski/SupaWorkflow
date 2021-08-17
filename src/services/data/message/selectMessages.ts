@@ -2,15 +2,17 @@ import { Message } from "../../types";
 import fromSupabase from "../../utils/fromSupabase";
 
 export type SelectMessagesArgs = {
-  version: number;
+  updatedAt?: string;
 };
 
 export const selectMessages = async ({
-  version,
+  updatedAt,
 }: SelectMessagesArgs): Promise<Message[]> => {
-  const { data, error } = await fromSupabase("message")
-    .select("*")
-    .gt("version", version);
+  const builder = fromSupabase("message").select("*");
+
+  const { data, error } = await (updatedAt
+    ? builder.gt("updated_at", updatedAt)
+    : builder);
 
   if (error) throw error;
 

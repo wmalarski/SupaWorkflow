@@ -2,10 +2,16 @@ import React from "react";
 import TemplateEditor from "../../molecules/templates/templateEditor/TemplateEditor/TemplateEditor";
 import { RepContextProvider } from "../../utils/rep/RepContext";
 
-const TemplateWorkspace = (): JSX.Element => {
+export type TemplateWorkspaceProps = {
+  templateId: number;
+};
+
+const TemplateWorkspace = ({
+  templateId,
+}: TemplateWorkspaceProps): JSX.Element => {
   return (
     <RepContextProvider>
-      <TemplateEditor />
+      <TemplateEditor templateId={templateId} />
     </RepContextProvider>
   );
 };

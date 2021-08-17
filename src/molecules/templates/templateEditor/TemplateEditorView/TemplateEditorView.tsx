@@ -6,21 +6,20 @@ import MessageForm from "../MessageForm/MessageForm";
 import MessageListItem from "../MessageListItem/MessageListItem";
 
 export type TemplateEditorProps = {
+  templateId: number;
   messages: Message[];
   onMessageChange: (args: MutationArgs["putMessage"]) => void;
-  onDeleteClick: (args: MutationArgs["deleteMessage"]) => void;
+  onDeleteClick: (args: MutationArgs["delMessage"]) => void;
 };
 
 const TemplateEditor = ({
+  templateId,
   messages,
   onMessageChange,
   onDeleteClick,
 }: TemplateEditorProps): JSX.Element => (
   <>
-    <MessageForm
-      messagesLength={messages.length}
-      onCreateClick={onMessageChange}
-    />
+    <MessageForm templateId={templateId} onCreateClick={onMessageChange} />
     <VStack divider={<StackDivider borderColor="gray.200" />}>
       {messages.map((message) => (
         <MessageListItem

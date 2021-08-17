@@ -1,7 +1,7 @@
 import { Message } from "../../types";
 import fromSupabase from "../../utils/fromSupabase";
 
-export type UpsertMessageArgs = Omit<Message, "version">;
+export type UpsertMessageArgs = Omit<Message, "updated_at">;
 
 export type UpsertMessagesArgs = UpsertMessageArgs | UpsertMessageArgs[];
 

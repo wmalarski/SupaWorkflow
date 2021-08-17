@@ -5,18 +5,17 @@ import { MutationArgs } from "../../../../utils/rep/types";
 import useText from "../../../../utils/translations/useText";
 
 export type MessageFormProps = {
-  messagesLength: number;
+  templateId: number;
   onCreateClick: (args: MutationArgs["putMessage"]) => void;
 };
 
 const MessageForm = ({
-  messagesLength,
+  templateId,
   onCreateClick,
 }: MessageFormProps): JSX.Element => {
   const text = useText();
 
   const [content, setContent] = useState<string>("");
-  const [sender, setSender] = useState<string>("");
 
   return (
     <HStack>
@@ -24,17 +23,13 @@ const MessageForm = ({
         value={content}
         onChange={(event) => setContent(event.target.value)}
       />
-      <Input
-        value={sender}
-        onChange={(event) => setSender(event.target.value)}
-      />
       <Button
         onClick={() =>
           onCreateClick({
             id: nanoid(),
-            ord: messagesLength,
-            content,
-            sender,
+            data: { kind: "test", name: content },
+            template_id: templateId,
+            workflow_id: null,
           })
         }
       >

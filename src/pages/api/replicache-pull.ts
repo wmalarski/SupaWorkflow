@@ -2,7 +2,6 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { PullResponse } from "replicache";
 import { selectClient } from "../../services/data/client/selectClient";
 import { selectMessages } from "../../services/data/message/selectMessages";
-import { selectMessageVersion } from "../../services/data/message/selectMessageVersion";
 import resolvePull from "../../utils/rep/resolvePull";
 
 const handler = async (
@@ -13,14 +12,21 @@ const handler = async (
   console.log(`Processing pull`, JSON.stringify(req.body));
 
   try {
-    const [client, changed, maxVersion] = await Promise.all([
+    const [client, changed] = await Promise.all([
       selectClient({ id: clientID }),
-      selectMessages({ version: cookie ?? 0 }),
-      selectMessageVersion(),
+      selectMessages({ updatedAt: cookie }),
     ]);
 
-    const newCookie = maxVersion?.max_version ?? 0;
+    // TODO: check this logic
+    const dates = changed
+      .map((message) => new Date(message.updated_at).getTime())
+      .sort();
+
+    const lastDate = dates[dates.length - 1] ?? 0;
+    const newCookie = lastDate && new Date(lastDate).toISOString();
     const lastMutationID = client?.last_mutation_id ?? 0;
+
+    console.log({ changed, newCookie });
 
     const patch = [
       ...(!cookie ? [{ op: "clear" } as const] : []),
