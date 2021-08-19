@@ -1,24 +1,37 @@
 import { GetServerSideProps } from "next";
 import React from "react";
-import { Debug } from "../../../atoms";
 import { OrganizationDashboard } from "../../../molecules";
 import { UserNavigation } from "../../../organisms";
 import { supabase } from "../../../services/supabase";
+import { Organization, Profile, TeamMemberPair } from "../../../services/types";
+import {
+  defaultOrganization,
+  defaultProfile,
+} from "../../../services/utils/defaults";
 import Page from "../../../templates/Page/Page";
+import { OrganizationContextProvider } from "../../../utils/organization/OrganizationContext";
+import { ProfileContextProvider } from "../../../utils/profile/ProfileContext";
 import { validateParam } from "../../../utils/routing/params";
 
 export type OrganizationIdPageProps = {
-  organizationId: number;
+  organization: Organization;
+  profile: Profile;
+  teams: TeamMemberPair[];
 };
 
 const OrganizationIdPage = ({
-  organizationId,
+  organization,
+  profile,
+  teams,
 }: OrganizationIdPageProps): JSX.Element => {
   return (
-    <Page header={<UserNavigation />}>
-      <Debug value={{ organizationId }} />
-      <OrganizationDashboard />
-    </Page>
+    <ProfileContextProvider profile={profile}>
+      <OrganizationContextProvider organization={organization} teams={teams}>
+        <Page header={<UserNavigation />}>
+          <OrganizationDashboard />
+        </Page>
+      </OrganizationContextProvider>
+    </ProfileContextProvider>
   );
 };
 
@@ -31,7 +44,16 @@ export const getServerSideProps: GetServerSideProps<OrganizationIdPageProps> =
     const organizationId = validateParam(params?.organizationId, /\d+/);
 
     return organizationId
-      ? { props: { organizationId: Number(organizationId) } }
+      ? {
+          props: {
+            organization: {
+              ...defaultOrganization,
+              id: Number(organizationId),
+            },
+            profile: defaultProfile,
+            teams: [],
+          },
+        }
       : { notFound: true };
   };
 

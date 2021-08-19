@@ -1,22 +1,48 @@
 import { GetServerSideProps } from "next";
 import React from "react";
-import { Debug } from "../../../atoms";
 import { WorkflowEditor } from "../../../molecules";
 import { UserNavigation } from "../../../organisms";
 import { supabase } from "../../../services/supabase";
+import {
+  Organization,
+  Profile,
+  TeamMemberPair,
+  Workflow,
+} from "../../../services/types";
+import {
+  defaultOrganization,
+  defaultProfile,
+  defaultWorkflow,
+} from "../../../services/utils/defaults";
 import Page from "../../../templates/Page/Page";
+import { OrganizationContextProvider } from "../../../utils/organization/OrganizationContext";
+import { ProfileContextProvider } from "../../../utils/profile/ProfileContext";
 import { validateParam } from "../../../utils/routing/params";
+import { WorkflowContextProvider } from "../../../utils/workflow/WorkflowContext";
 
 export type WorkflowPageProps = {
-  workflowId: number;
+  workflow: Workflow;
+  organization: Organization;
+  profile: Profile;
+  teams: TeamMemberPair[];
 };
 
-const WorkflowPage = ({ workflowId }: WorkflowPageProps): JSX.Element => {
+const WorkflowPage = ({
+  workflow,
+  organization,
+  profile,
+  teams,
+}: WorkflowPageProps): JSX.Element => {
   return (
-    <Page header={<UserNavigation />}>
-      <Debug value={{ workflowId }} />
-      <WorkflowEditor />
-    </Page>
+    <ProfileContextProvider profile={profile}>
+      <OrganizationContextProvider organization={organization} teams={teams}>
+        <WorkflowContextProvider workflow={workflow}>
+          <Page header={<UserNavigation />}>
+            <WorkflowEditor />
+          </Page>
+        </WorkflowContextProvider>
+      </OrganizationContextProvider>
+    </ProfileContextProvider>
   );
 };
 
@@ -29,7 +55,14 @@ export const getServerSideProps: GetServerSideProps<WorkflowPageProps> =
     const workflowId = validateParam(params?.workflowId, /\d+/);
 
     return workflowId
-      ? { props: { workflowId: Number(workflowId) } }
+      ? {
+          props: {
+            workflow: { ...defaultWorkflow, id: Number(workflowId) },
+            organization: defaultOrganization,
+            profile: defaultProfile,
+            teams: [],
+          },
+        }
       : { notFound: true };
   };
 

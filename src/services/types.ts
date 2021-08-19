@@ -84,3 +84,8 @@ export type ResponseError = {
   error: string;
   error_description: string;
 };
+
+export type TeamMemberPair = {
+  team: Team;
+  member: TeamMember;
+};

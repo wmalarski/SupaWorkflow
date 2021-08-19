@@ -1,11 +1,22 @@
 import type { GetServerSideProps } from "next";
 import dynamic from "next/dynamic";
 import React from "react";
-import { Debug } from "../../../atoms";
-import { AnonNavigation, UserNavigation } from "../../../organisms";
+import { UserNavigation } from "../../../organisms";
 import { supabase } from "../../../services/supabase";
+import {
+  Organization,
+  Profile,
+  TeamMemberPair,
+  Template,
+} from "../../../services/types";
+import {
+  defaultOrganization,
+  defaultProfile,
+  defaultTemplate,
+} from "../../../services/utils/defaults";
 import Page from "../../../templates/Page/Page";
-import { useUserContext } from "../../../utils/auth/UserContext";
+import { OrganizationContextProvider } from "../../../utils/organization/OrganizationContext";
+import { ProfileContextProvider } from "../../../utils/profile/ProfileContext";
 import { validateParam } from "../../../utils/routing/params";
 
 const TemplateWorkspace = dynamic(
@@ -14,17 +25,26 @@ const TemplateWorkspace = dynamic(
 );
 
 export type TemplateIdPageProps = {
-  templateId: number;
+  template: Template;
+  organization: Organization;
+  profile: Profile;
+  teams: TeamMemberPair[];
 };
 
-const TemplateIdPage = ({ templateId }: TemplateIdPageProps): JSX.Element => {
-  const { user } = useUserContext();
-
+const TemplateIdPage = ({
+  template,
+  organization,
+  profile,
+  teams,
+}: TemplateIdPageProps): JSX.Element => {
   return (
-    <Page header={user ? <UserNavigation /> : <AnonNavigation />}>
-      <Debug value={{ templateId }} />
-      <TemplateWorkspace templateId={templateId} />
-    </Page>
+    <ProfileContextProvider profile={profile}>
+      <OrganizationContextProvider organization={organization} teams={teams}>
+        <Page header={<UserNavigation />}>
+          <TemplateWorkspace templateId={template.id} />
+        </Page>
+      </OrganizationContextProvider>
+    </ProfileContextProvider>
   );
 };
 
@@ -37,7 +57,17 @@ export const getServerSideProps: GetServerSideProps<TemplateIdPageProps> =
     const templateId = validateParam(params?.templateId, /\d+/);
 
     return templateId
-      ? { props: { templateId: Number(templateId) } }
+      ? {
+          props: {
+            template: {
+              ...defaultTemplate,
+              id: Number(templateId),
+            },
+            organization: defaultOrganization,
+            profile: defaultProfile,
+            teams: [],
+          },
+        }
       : { notFound: true };
   };
 
