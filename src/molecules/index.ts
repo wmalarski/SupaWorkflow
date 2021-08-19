@@ -4,6 +4,7 @@ export { default as SignUp } from "./auth/signUp/SignUp/SignUp";
 export { default as AnonHeader } from "./headers/anonHeader/AnonHeader/AnonHeader";
 export { default as Header } from "./headers/header/Header/Header";
 export { default as ProfileHeader } from "./headers/profileHeader/ProfileHeader/ProfileHeader";
+export { default as HeaderLanding } from "./landing/headerLanding/HeaderLanding/HeaderLanding";
 export { default as CreateOrganization } from "./organizations/createOrganization/CreateOrganization/CreateOrganization";
 export { default as OrganizationDashboard } from "./organizations/organizationDashboard/OrganizationDashboard/OrganizationDashboard";
 export { default as OrganizationsList } from "./organizations/organizationsList/OrganizationsList/OrganizationsList";
