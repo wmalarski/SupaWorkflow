@@ -25,13 +25,15 @@ const OrganizationsPage = ({
 };
 
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
-  const { user } = await supabase.auth.api.getUserByCookie(req);
-  if (!user) return { notFound: true };
-
   try {
+    const { user } = await supabase.auth.api.getUserByCookie(req);
+
+    if (!user) return { notFound: true };
+
     const profile = await selectProfile({ userId: user.id });
 
     if (!profile) return { notFound: true };
+
     return { props: { profile } };
   } catch (exception) {
     console.error(JSON.stringify(exception));

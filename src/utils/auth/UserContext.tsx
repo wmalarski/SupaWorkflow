@@ -26,9 +26,11 @@ export type UserContextProviderProps = {
 export const UserContextProvider = ({
   children,
 }: UserContextProviderProps): JSX.Element => {
-  const [user, setUser] = useState<User | null>(supabase.auth.user());
+  const [user, setUser] = useState<User | null>(null);
 
   const { mutate: updateAuth } = useUpdateAuth();
+
+  useEffect(() => setUser(supabase.auth.user()), []);
 
   useEffect(() => {
     const { data } = supabase.auth.onAuthStateChange(async (event, session) => {

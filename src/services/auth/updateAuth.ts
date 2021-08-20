@@ -14,7 +14,7 @@ export type UpdateAuthArgs = {
 export const updateAuth = (args: UpdateAuthArgs): Promise<Response> =>
   fetch("/api/auth", {
     method: "POST",
-    headers: new Headers({ "Content-Type": "application/json" }),
+    headers: { "Content-Type": "application/json" },
     credentials: "same-origin",
     body: JSON.stringify(args),
   });
