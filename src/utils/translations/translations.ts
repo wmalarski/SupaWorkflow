@@ -1,5 +1,8 @@
 const translation = {
+  // Navigation
   appName: "SupaWorkflow",
+  navigationOrganizations: "Dashboard",
+
   // Auth
   signInHeader: "Sign In",
   signInButton: "Sign In",

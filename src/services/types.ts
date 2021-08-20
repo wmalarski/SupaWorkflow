@@ -14,6 +14,15 @@ export type Organization = {
   avatar: string | null;
 };
 
+export type OrganizationRole = "mod" | "user" | "guest";
+
+export type OrganizationMember = {
+  id: number;
+  profile_id: number;
+  organization_id: number;
+  role: OrganizationRole;
+};
+
 export type Team = {
   id: number;
   organization_id: number;

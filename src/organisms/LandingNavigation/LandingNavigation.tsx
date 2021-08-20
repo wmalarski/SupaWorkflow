@@ -1,10 +1,11 @@
 import React from "react";
-import { ProfileHeader, SignOut } from "../../molecules";
+import { LandingHeader, ProfileHeader, SignOut } from "../../molecules";
 import { Header } from "../../templates";
 
-const UserNavigation = (): JSX.Element => {
+const LandingNavigation = (): JSX.Element => {
   return (
     <Header
+      left={<LandingHeader />}
       right={
         <>
           <ProfileHeader />
@@ -15,4 +16,4 @@ const UserNavigation = (): JSX.Element => {
   );
 };
 
-export default UserNavigation;
+export default LandingNavigation;

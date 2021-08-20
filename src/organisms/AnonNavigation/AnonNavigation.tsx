@@ -1,8 +1,9 @@
 import React from "react";
-import { AnonHeader, Header } from "../../molecules";
+import { AnonHeader } from "../../molecules";
+import { Header } from "../../templates";
 
 const AnonNavigation = (): JSX.Element => {
-  return <Header right={<AnonHeader />} />;
+  return <Header left={<AnonHeader />} />;
 };
 
 export default AnonNavigation;
