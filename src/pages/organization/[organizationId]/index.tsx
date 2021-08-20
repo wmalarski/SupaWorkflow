@@ -1,6 +1,10 @@
 import { GetServerSideProps } from "next";
 import React from "react";
-import { OrganizationDashboard } from "../../../molecules";
+import {
+  DashboardCorner,
+  DashboardSideBar,
+  OrganizationDashboard,
+} from "../../../molecules";
 import { UserNavigation } from "../../../organisms";
 import { supabase } from "../../../services/supabase";
 import { Organization, Profile, TeamMemberPair } from "../../../services/types";
@@ -8,7 +12,7 @@ import {
   defaultOrganization,
   defaultProfile,
 } from "../../../services/utils/defaults";
-import Page from "../../../templates/Page/Page";
+import GridTemplate from "../../../templates/GridPage/GridPage";
 import { OrganizationContextProvider } from "../../../utils/organization/OrganizationContext";
 import { ProfileContextProvider } from "../../../utils/profile/ProfileContext";
 import { validateParam } from "../../../utils/routing/params";
@@ -27,9 +31,13 @@ const OrganizationIdPage = ({
   return (
     <ProfileContextProvider profile={profile}>
       <OrganizationContextProvider organization={organization} teams={teams}>
-        <Page header={<UserNavigation />}>
+        <GridTemplate
+          corner={<DashboardCorner />}
+          header={<UserNavigation />}
+          sideBar={<DashboardSideBar />}
+        >
           <OrganizationDashboard />
-        </Page>
+        </GridTemplate>
       </OrganizationContextProvider>
     </ProfileContextProvider>
   );

@@ -1,11 +1,15 @@
 import type { GetServerSideProps } from "next";
 import React from "react";
-import { OrganizationsList } from "../../molecules";
+import {
+  DashboardCorner,
+  DashboardSideBar,
+  OrganizationsList,
+} from "../../molecules";
 import { UserNavigation } from "../../organisms";
 import { selectProfile } from "../../services/data/profile/selectProfile";
 import { supabase } from "../../services/supabase";
 import { Profile } from "../../services/types";
-import Page from "../../templates/Page/Page";
+import GridTemplate from "../../templates/GridPage/GridPage";
 import { ProfileContextProvider } from "../../utils/profile/ProfileContext";
 
 export type OrganizationsPageProps = {
@@ -17,9 +21,13 @@ const OrganizationsPage = ({
 }: OrganizationsPageProps): JSX.Element => {
   return (
     <ProfileContextProvider profile={profile}>
-      <Page header={<UserNavigation />}>
+      <GridTemplate
+        corner={<DashboardCorner />}
+        header={<UserNavigation />}
+        sideBar={<DashboardSideBar />}
+      >
         <OrganizationsList />
-      </Page>
+      </GridTemplate>
     </ProfileContextProvider>
   );
 };
@@ -36,7 +44,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
 
     return { props: { profile } };
   } catch (exception) {
-    console.error(JSON.stringify(exception));
+    console.log(JSON.stringify(exception));
     return { notFound: true };
   }
 };

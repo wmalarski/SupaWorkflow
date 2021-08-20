@@ -3,6 +3,10 @@ const translation = {
   appName: "SupaWorkflow",
   navigationOrganizations: "Dashboard",
 
+  // SideBar
+  sideBarOrganization: "Organizations",
+  sideBarNewOrganization: "New Organization",
+
   // Auth
   signInHeader: "Sign In",
   signInButton: "Sign In",

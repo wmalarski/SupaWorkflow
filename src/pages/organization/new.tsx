@@ -1,12 +1,15 @@
 import type { GetServerSideProps } from "next";
 import React from "react";
-import { Debug } from "../../atoms";
-import { CreateOrganization } from "../../molecules";
+import {
+  CreateOrganization,
+  DashboardCorner,
+  DashboardSideBar,
+} from "../../molecules";
 import { UserNavigation } from "../../organisms";
 import { selectProfile } from "../../services/data/profile/selectProfile";
 import { supabase } from "../../services/supabase";
 import { Profile } from "../../services/types";
-import Page from "../../templates/Page/Page";
+import GridTemplate from "../../templates/GridPage/GridPage";
 import { ProfileContextProvider } from "../../utils/profile/ProfileContext";
 
 export type NewOrganizationPageProps = {
@@ -18,10 +21,13 @@ const NewOrganizationPage = ({
 }: NewOrganizationPageProps): JSX.Element => {
   return (
     <ProfileContextProvider profile={profile}>
-      <Page header={<UserNavigation />}>
-        <Debug value={profile} />
+      <GridTemplate
+        corner={<DashboardCorner />}
+        header={<UserNavigation />}
+        sideBar={<DashboardSideBar />}
+      >
         <CreateOrganization />
-      </Page>
+      </GridTemplate>
     </ProfileContextProvider>
   );
 };
@@ -34,9 +40,10 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
     const profile = await selectProfile({ userId: user.id });
 
     if (!profile) return { notFound: true };
+
     return { props: { profile } };
   } catch (exception) {
-    console.error(JSON.stringify(exception));
+    console.log(JSON.stringify(exception));
     return { notFound: true };
   }
 };
