@@ -1,8 +1,15 @@
-import { Alert, Button, Input, Text } from "@chakra-ui/react";
+import {
+  Button,
+  FormControl,
+  FormErrorMessage,
+  FormLabel,
+  Heading,
+  Input,
+  VStack,
+} from "@chakra-ui/react";
 import { PostgrestError, User } from "@supabase/supabase-js";
 import React from "react";
 import { useForm } from "react-hook-form";
-import { Debug } from "../../../../atoms";
 import useText from "../../../../utils/translations/useText";
 import {
   SignUpViewContext,
@@ -21,7 +28,6 @@ export type SignUpViewProps = {
 const SignUpView = ({
   isLoading,
   error,
-  user,
   onSubmit,
 }: SignUpViewProps): JSX.Element => {
   const text = useText();
@@ -39,34 +45,36 @@ const SignUpView = ({
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Text>{text("signUpHeader")}</Text>
-      <Input
-        type="email"
-        placeholder={text("emailPlaceholder")}
-        {...register("email", options.email)}
-      />
-      {errors.email && <Alert variant="red">{errors.email.message}</Alert>}
-      <Input
-        type="password"
-        placeholder={text("passwordPlaceholder")}
-        {...register("password", options.password)}
-      />
-      {errors.password && (
-        <Alert variant="red">{errors.password.message}</Alert>
-      )}
-      <Input
-        type="password"
-        placeholder={text("confirmPasswordPlaceholder")}
-        {...register("confirmPassword", options.confirmPassword)}
-      />
-      {errors.confirmPassword && (
-        <Alert variant="red">{errors.confirmPassword.message}</Alert>
-      )}
-      {error && <Alert variant="red">{error.message}</Alert>}
-      <Button disabled={isLoading} type="submit">
-        {text("signUpButton")}
-      </Button>
-      <Debug value={user} />
+      <VStack>
+        <Heading>{text("signUpHeader")}</Heading>
+
+        <FormControl isInvalid={!!errors.email}>
+          <FormLabel>{text("emailPlaceholder")}</FormLabel>
+          <Input type="email" {...register("email", options.email)} />
+          <FormErrorMessage>{errors.email?.message}</FormErrorMessage>
+        </FormControl>
+
+        <FormControl isInvalid={!!errors.password}>
+          <FormLabel>{text("passwordPlaceholder")}</FormLabel>
+          <Input type="password" {...register("password", options.password)} />
+          <FormErrorMessage>{errors.password?.message}</FormErrorMessage>
+        </FormControl>
+
+        <FormControl isInvalid={!!errors.confirmPassword}>
+          <FormLabel>{text("confirmPasswordPlaceholder")}</FormLabel>
+          <Input
+            type="password"
+            {...register("password", options.confirmPassword)}
+          />
+          <FormErrorMessage>{errors.confirmPassword?.message}</FormErrorMessage>
+        </FormControl>
+
+        <FormErrorMessage>{error?.message}</FormErrorMessage>
+
+        <Button disabled={isLoading} type="submit">
+          {text("signUpButton")}
+        </Button>
+      </VStack>
     </form>
   );
 };

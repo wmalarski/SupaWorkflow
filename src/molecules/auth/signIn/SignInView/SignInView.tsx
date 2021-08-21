@@ -1,4 +1,12 @@
-import { Alert, Button, Input, Text } from "@chakra-ui/react";
+import {
+  Button,
+  FormControl,
+  FormErrorMessage,
+  FormLabel,
+  Heading,
+  Input,
+  VStack,
+} from "@chakra-ui/react";
 import { PostgrestError, User } from "@supabase/supabase-js";
 import React from "react";
 import { useForm } from "react-hook-form";
@@ -29,25 +37,27 @@ const SignInView = ({
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Text>{text("signInHeader")}</Text>
-      <Input
-        placeholder={text("emailPlaceholder")}
-        type="email"
-        {...register("email", options.email)}
-      />
-      {errors.email && <Alert variant="red">{errors.email.message}</Alert>}
-      <Input
-        placeholder={text("passwordPlaceholder")}
-        type="password"
-        {...register("password", options.password)}
-      />
-      {errors.password && (
-        <Alert variant="red">{errors.password.message}</Alert>
-      )}
-      {error && <Alert variant="red">{error.message}</Alert>}
-      <Button disabled={isLoading} type="submit">
-        {text("signInButton")}
-      </Button>
+      <VStack>
+        <Heading>{text("signInHeader")}</Heading>
+
+        <FormControl isInvalid={!!errors.email}>
+          <FormLabel>{text("emailPlaceholder")}</FormLabel>
+          <Input type="email" {...register("email", options.email)} />
+          <FormErrorMessage>{errors.email?.message}</FormErrorMessage>
+        </FormControl>
+
+        <FormControl isInvalid={!!errors.password}>
+          <FormLabel>{text("passwordPlaceholder")}</FormLabel>
+          <Input type="password" {...register("password", options.password)} />
+          <FormErrorMessage>{errors.password?.message}</FormErrorMessage>
+        </FormControl>
+
+        <FormErrorMessage>{error?.message}</FormErrorMessage>
+
+        <Button disabled={isLoading} type="submit">
+          {text("signInButton")}
+        </Button>
+      </VStack>
     </form>
   );
 };
