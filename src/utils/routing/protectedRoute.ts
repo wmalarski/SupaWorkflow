@@ -2,7 +2,7 @@ import { GetServerSideProps } from "next";
 import {
   selectOrganizationMember,
   selectOrganizationMemberKey,
-} from "../../services/data/organizationMember/selectOrganization";
+} from "../../services/data/organizationMember/selectOrganizationMember";
 import {
   selectProfile,
   selectProfileKey,
@@ -31,16 +31,21 @@ export type ProfileProtectedRouteProps = {
 
 export const profileProtectedRoute: GetServerSideProps<ProfileProtectedRouteProps> =
   async ({ req }) => {
-    const { user } = await supabase.auth.api.getUserByCookie(req);
-    if (!user) return { notFound: true };
+    try {
+      const { user } = await supabase.auth.api.getUserByCookie(req);
+      if (!user) return { notFound: true };
 
-    const profile = await selectProfile({
-      queryKey: selectProfileKey({ userId: user.id }),
-    });
+      const profile = await selectProfile({
+        queryKey: selectProfileKey({ userId: user.id }),
+      });
 
-    if (!profile) return { notFound: true };
+      if (!profile) return { notFound: true };
 
-    return { props: { profile } };
+      return { props: { profile } };
+    } catch (exception) {
+      console.log("profileProtectedRoute", exception);
+      return { notFound: true };
+    }
   };
 
 export type OrganizationProtectedRouteProps = ProfileProtectedRouteProps & {
@@ -50,21 +55,26 @@ export type OrganizationProtectedRouteProps = ProfileProtectedRouteProps & {
 
 export const organizationProtectedRoute: GetServerSideProps<OrganizationProtectedRouteProps> =
   async ({ params, req }) => {
-    const { user } = await supabase.auth.api.getUserByCookie(req);
-    if (!user) return { notFound: true };
+    try {
+      const { user } = await supabase.auth.api.getUserByCookie(req);
+      if (!user) return { notFound: true };
 
-    const organizationId = validateParam(params?.organizationId, /\d+/);
+      const organizationId = validateParam(params?.organizationId, /\d+/);
 
-    if (!organizationId) return { notFound: true };
+      if (!organizationId) return { notFound: true };
 
-    const props = await selectOrganizationMember({
-      queryKey: selectOrganizationMemberKey({
-        organizationId: Number(organizationId),
-        userId: user.id,
-      }),
-    });
+      const props = await selectOrganizationMember({
+        queryKey: selectOrganizationMemberKey({
+          organizationId: Number(organizationId),
+          userId: user.id,
+        }),
+      });
 
-    return !props ? { notFound: true } : { props };
+      return !props ? { notFound: true } : { props };
+    } catch (exception) {
+      console.log("organizationProtectedRoute", exception);
+      return { notFound: true };
+    }
   };
 
 export type TemplateProtectedRouteProps = OrganizationProtectedRouteProps & {
@@ -73,29 +83,34 @@ export type TemplateProtectedRouteProps = OrganizationProtectedRouteProps & {
 
 export const templateProtectedRoute: GetServerSideProps<TemplateProtectedRouteProps> =
   async ({ params, req }) => {
-    const { user } = await supabase.auth.api.getUserByCookie(req);
-    if (!user) return { notFound: true };
+    try {
+      const { user } = await supabase.auth.api.getUserByCookie(req);
+      if (!user) return { notFound: true };
 
-    const templateId = validateParam(params?.templateId, /\d+/);
-    const organizationId = validateParam(params?.organizationId, /\d+/);
+      const templateId = validateParam(params?.templateId, /\d+/);
+      const organizationId = validateParam(params?.organizationId, /\d+/);
 
-    if (!organizationId || !templateId) return { notFound: true };
+      if (!organizationId || !templateId) return { notFound: true };
 
-    const [template, organizationMember] = await Promise.all([
-      selectTemplate({
-        queryKey: selectTemplateKey({ id: Number(templateId) }),
-      }),
-      selectOrganizationMember({
-        queryKey: selectOrganizationMemberKey({
-          organizationId: Number(organizationId),
-          userId: user.id,
+      const [template, organizationMember] = await Promise.all([
+        selectTemplate({
+          queryKey: selectTemplateKey({ id: Number(templateId) }),
         }),
-      }),
-    ]);
+        selectOrganizationMember({
+          queryKey: selectOrganizationMemberKey({
+            organizationId: Number(organizationId),
+            userId: user.id,
+          }),
+        }),
+      ]);
 
-    return organizationMember && template
-      ? { props: { template, ...organizationMember } }
-      : { notFound: true };
+      return organizationMember && template
+        ? { props: { template, ...organizationMember } }
+        : { notFound: true };
+    } catch (exception) {
+      console.log("templateProtectedRoute", exception);
+      return { notFound: true };
+    }
   };
 
 export type WorkflowProtectedRouteProps = OrganizationProtectedRouteProps & {
@@ -104,27 +119,32 @@ export type WorkflowProtectedRouteProps = OrganizationProtectedRouteProps & {
 
 export const workflowProtectedRoute: GetServerSideProps<WorkflowProtectedRouteProps> =
   async ({ params, req }) => {
-    const { user } = await supabase.auth.api.getUserByCookie(req);
-    if (!user) return { notFound: true };
+    try {
+      const { user } = await supabase.auth.api.getUserByCookie(req);
+      if (!user) return { notFound: true };
 
-    const workflowId = validateParam(params?.workflowId, /\d+/);
-    const organizationId = validateParam(params?.organizationId, /\d+/);
+      const workflowId = validateParam(params?.workflowId, /\d+/);
+      const organizationId = validateParam(params?.organizationId, /\d+/);
 
-    if (!workflowId || !organizationId) return { notFound: true };
+      if (!workflowId || !organizationId) return { notFound: true };
 
-    const [workflow, organizationMember] = await Promise.all([
-      selectWorkflow({
-        queryKey: selectWorkflowKey({ id: Number(workflowId) }),
-      }),
-      selectOrganizationMember({
-        queryKey: selectOrganizationMemberKey({
-          organizationId: Number(organizationId),
-          userId: user.id,
+      const [workflow, organizationMember] = await Promise.all([
+        selectWorkflow({
+          queryKey: selectWorkflowKey({ id: Number(workflowId) }),
         }),
-      }),
-    ]);
+        selectOrganizationMember({
+          queryKey: selectOrganizationMemberKey({
+            organizationId: Number(organizationId),
+            userId: user.id,
+          }),
+        }),
+      ]);
 
-    return organizationMember && workflow
-      ? { props: { workflow, ...organizationMember } }
-      : { notFound: true };
+      return organizationMember && workflow
+        ? { props: { workflow, ...organizationMember } }
+        : { notFound: true };
+    } catch (exception) {
+      console.log("workflowProtectedRoute", exception);
+      return { notFound: true };
+    }
   };

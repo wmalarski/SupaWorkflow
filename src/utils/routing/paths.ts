@@ -1,16 +1,20 @@
 const paths = {
-  newWorkflow: (organizationId: number, templateId: number): string =>
+  template: (organizationId: number, templateId: number): string =>
     `/organization/${organizationId}/template/${templateId}`,
-  newTemplate: (organizationId: number): string =>
+  newWorkflow: (organizationId: number, templateId: number): string =>
+    `/organization/${organizationId}/template/${templateId}/new`,
+  templates: (organizationId: number): string =>
     `/organization/${organizationId}/template`,
+  newTemplate: (organizationId: number): string =>
+    `/organization/${organizationId}/template/new`,
+  workflow: (organizationId: number, workflowId: number): string =>
+    `/organization/${organizationId}/workflow/${workflowId}`,
+  workflows: (organizationId: number): string =>
+    `/organization/${organizationId}/workflow`,
   organization: (organizationId: number): string =>
     `/organization/${organizationId}`,
   organizations: "/organization",
   newOrganization: "/organization/new",
-  template: (templateId: number): string => `/template/${templateId}`,
-  templates: "/template",
-  workflow: (workflowId: number): string => `/workflow/${workflowId}`,
-  workflows: "/workflow",
   home: "/",
   signIn: "/signIn",
   signUp: "/signUp",

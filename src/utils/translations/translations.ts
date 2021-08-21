@@ -4,8 +4,11 @@ const translation = {
   navigationOrganizations: "Dashboard",
 
   // SideBar
-  sideBarOrganization: "Organizations",
+  sideBarOrganization: "Organization",
+  sideBarOrganizations: "Organizations",
   sideBarNewOrganization: "New Organization",
+  sideBarTemplates: "Templates",
+  sideBarNewTemplate: "New Template",
 
   // Auth
   signInHeader: "Sign In",

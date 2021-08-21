@@ -1,5 +1,5 @@
 import { createContext, ReactNode, useContext, useMemo } from "react";
-import { useSelectOrganizationMember } from "../../services/data/organizationMember/selectOrganization";
+import { useSelectOrganizationMember } from "../../services/data/organizationMember/selectOrganizationMember";
 import {
   Organization,
   OrganizationMember,

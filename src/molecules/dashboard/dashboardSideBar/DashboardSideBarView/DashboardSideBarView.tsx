@@ -17,7 +17,7 @@ const DashboardSideBarView = ({
 
   return (
     <VStack>
-      <Heading size="md">{text("sideBarOrganization")}</Heading>
+      <Heading size="md">{text("sideBarOrganizations")}</Heading>
       <Link href={paths.newOrganization}>{text("sideBarNewOrganization")}</Link>
       {organizations?.map((organization) => (
         <Link key={organization.id} href={paths.organization(organization.id)}>

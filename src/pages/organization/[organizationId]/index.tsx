@@ -1,8 +1,8 @@
 import React from "react";
 import {
   DashboardCorner,
-  DashboardSideBar,
   OrganizationDashboard,
+  OrganizationSideBar,
 } from "../../../molecules";
 import { UserNavigation } from "../../../organisms";
 import GridTemplate from "../../../templates/GridPage/GridPage";
@@ -26,7 +26,7 @@ const OrganizationIdPage = ({
       <GridTemplate
         corner={<DashboardCorner />}
         header={<UserNavigation />}
-        sideBar={<DashboardSideBar />}
+        sideBar={<OrganizationSideBar />}
       >
         <OrganizationDashboard />
       </GridTemplate>
