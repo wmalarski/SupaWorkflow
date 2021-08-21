@@ -81,6 +81,7 @@ export type Client = {
 export type TableMapping = {
   profile: Profile;
   organization: Organization;
+  organizationMember: OrganizationMember;
   team: Team;
   teamMember: TeamMember;
   template: Template;

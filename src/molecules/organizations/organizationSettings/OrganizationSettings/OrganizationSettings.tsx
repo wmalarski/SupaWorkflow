@@ -1,7 +1,9 @@
 import { useRouter } from "next/router";
 import React from "react";
-import { useDeleteOrganization } from "../../../../services/data/organization/deleteOrganization";
-import { useUpdateOrganization } from "../../../../services/data/organization/updateOrganization";
+import {
+  useDeleteOrganization,
+  useUpdateOrganization,
+} from "../../../../services";
 import { paths, useOrganizationContext } from "../../../../utils";
 import OrganizationSettingsView from "../OrganizationSettingsView/OrganizationSettingsView";
 

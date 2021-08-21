@@ -5,7 +5,7 @@ import {
   UseQueryOptions,
   UseQueryResult,
 } from "react-query";
-import { supabase } from "../../supabase";
+import { supabase, TABLES } from "../../supabase";
 import {
   Organization,
   OrganizationMember,
@@ -43,7 +43,7 @@ export const selectOrganizationMember = async ({
   queryKey: [, { roles, userId, organizationId }],
 }: QueryFunctionContext<SelectOrganizationMemberKey>): Promise<SelectOrganizationMemberResult | null> => {
   const builder = supabase
-    .from<QueryResult>("organization_member")
+    .from<QueryResult>(TABLES.organizationMember)
     .select(
       `
       *,

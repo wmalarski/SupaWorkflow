@@ -38,6 +38,17 @@ const translation = {
   deleteOrganizationDescription: "Delete Organization",
   deleteOrganizationSubmit: "Delete",
 
+  // Organization members
+  organizationMemberHeaderIndex: "Id",
+  organizationMemberHeaderName: "Name",
+  organizationMemberHeaderRole: "Role",
+  organizationMemberHeaderDelete: "Remove",
+  organizationMemberOwner: "Owner",
+  organizationMemberMod: "Mod",
+  organizationMemberUser: "User",
+  organizationMemberGuest: "Guest",
+  deleteOrganizationMember: "Remove",
+
   // Add template
   addTemplateHeader: "Add new template",
   addTemplateName: "Name",

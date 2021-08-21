@@ -17,6 +17,7 @@ export enum SupabaseErrorCode {
 export const TABLES: Record<keyof TableMapping, string> = {
   client: "replicache_client",
   organization: "organization",
+  organizationMember: "organization_member",
   profile: "profile",
   team: "team",
   teamMember: "team_member",
