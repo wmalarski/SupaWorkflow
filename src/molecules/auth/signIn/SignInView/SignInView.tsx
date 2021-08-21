@@ -10,7 +10,7 @@ import {
 import { PostgrestError, User } from "@supabase/supabase-js";
 import React from "react";
 import { useForm } from "react-hook-form";
-import useText from "../../../../utils/translations/useText";
+import { useText } from "../../../../utils";
 import { SignInViewData, useSignInViewOptions } from "./SignInView.utils";
 
 export type SignInViewProps = {

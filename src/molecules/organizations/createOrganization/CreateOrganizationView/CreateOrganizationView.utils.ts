@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { RegisterOptions } from "react-hook-form";
-import useText from "../../../../utils/translations/useText";
+import { useText } from "../../../../utils";
 
 export type CreateOrganizationViewData = {
   name: string;

@@ -5,25 +5,25 @@ import {
   DashboardSideBar,
 } from "../../molecules";
 import { UserNavigation } from "../../organisms";
-import GridTemplate from "../../templates/GridPage/GridPage";
-import { ProfileContextProvider } from "../../utils/contexts/ProfileContext";
+import { GridPage } from "../../templates";
 import {
+  ProfileContextProvider,
   profileProtectedRoute,
   ProfileProtectedRouteProps,
-} from "../../utils/routing/protectedRoute";
+} from "../../utils";
 
 const NewOrganizationPage = ({
   profile,
 }: ProfileProtectedRouteProps): JSX.Element => {
   return (
     <ProfileContextProvider profile={profile}>
-      <GridTemplate
+      <GridPage
         corner={<DashboardCorner />}
         header={<UserNavigation />}
         sideBar={<DashboardSideBar />}
       >
         <CreateOrganization />
-      </GridTemplate>
+      </GridPage>
     </ProfileContextProvider>
   );
 };

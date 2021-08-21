@@ -1,13 +1,13 @@
 import React from "react";
 import { WorkflowEditor } from "../../../../../molecules";
 import { UserNavigation } from "../../../../../organisms";
-import Page from "../../../../../templates/Page/Page";
-import { OrganizationContextProvider } from "../../../../../utils/contexts/OrganizationContext";
-import { WorkflowContextProvider } from "../../../../../utils/contexts/WorkflowContext";
+import { Page } from "../../../../../templates";
 import {
+  OrganizationContextProvider,
+  WorkflowContextProvider,
   workflowProtectedRoute,
   WorkflowProtectedRouteProps,
-} from "../../../../../utils/routing/protectedRoute";
+} from "../../../../../utils";
 
 const WorkflowPage = ({
   workflow,

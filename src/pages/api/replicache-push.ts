@@ -1,12 +1,11 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import selectOrInsertClient from "../../services/data/client/selectOrInsertClient";
-import { updateClient } from "../../services/data/client/updateClient";
 import {
+  selectOrInsertClient,
+  updateClient,
   UpsertMessageArgs,
   upsertMessages,
-} from "../../services/data/message/upsertMessages";
-import resolvePush from "../../utils/rep/resolvePush";
-import { Mutation, MutationPush } from "../../utils/rep/types";
+} from "../../services";
+import { Mutation, MutationPush, resolvePush } from "../../utils";
 
 type ReduceAcc = {
   mutationId: number;

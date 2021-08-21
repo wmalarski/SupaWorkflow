@@ -1,8 +1,7 @@
 import { useRouter } from "next/router";
 import React from "react";
-import { useInsertOrganization } from "../../../../services/data/organization/insertOrganization";
-import { useProfileContext } from "../../../../utils/contexts/ProfileContext";
-import paths from "../../../../utils/routing/paths";
+import { useInsertOrganization } from "../../../../services";
+import { paths, useProfileContext } from "../../../../utils";
 import CreateOrganizationView from "../CreateOrganizationView/CreateOrganizationView";
 
 type ViewProps = React.ComponentProps<typeof CreateOrganizationView>;

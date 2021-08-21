@@ -6,8 +6,7 @@ import {
   useEffect,
   useState,
 } from "react";
-import { useUpdateAuth } from "../../services/auth/updateAuth";
-import { supabase } from "../../services/supabase";
+import { supabase, useUpdateAuth } from "../../services";
 
 export type UserContextValue = {
   user: User | null;

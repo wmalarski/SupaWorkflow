@@ -1,7 +1,5 @@
 import { createContext, ReactNode, useContext, useMemo } from "react";
-import { useSelectProfile } from "../../services/data/profile/selectProfile";
-import { Profile } from "../../services/types";
-import { defaultProfile } from "../../services/utils/defaults";
+import { defaultProfile, Profile, useSelectProfile } from "../../services";
 
 export type ProfileContextValue = {
   profile: Profile;

@@ -1,13 +1,13 @@
 import dynamic from "next/dynamic";
 import React from "react";
 import { UserNavigation } from "../../../../../organisms";
-import Page from "../../../../../templates/Page/Page";
-import { OrganizationContextProvider } from "../../../../../utils/contexts/OrganizationContext";
-import { TemplateContextProvider } from "../../../../../utils/contexts/TemplateContext";
+import { Page } from "../../../../../templates";
 import {
+  OrganizationContextProvider,
+  TemplateContextProvider,
   templateProtectedRoute,
   TemplateProtectedRouteProps,
-} from "../../../../../utils/routing/protectedRoute";
+} from "../../../../../utils";
 
 const TemplateWorkspace = dynamic(
   () => import("../../../../../organisms/TemplateWorkspace/TemplateWorkspace"),

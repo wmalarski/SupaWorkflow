@@ -5,12 +5,12 @@ import {
   OrganizationSideBar,
 } from "../../../molecules";
 import { UserNavigation } from "../../../organisms";
-import GridTemplate from "../../../templates/GridPage/GridPage";
-import { OrganizationContextProvider } from "../../../utils/contexts/OrganizationContext";
+import { GridPage } from "../../../templates";
 import {
+  OrganizationContextProvider,
   organizationProtectedRoute,
   OrganizationProtectedRouteProps,
-} from "../../../utils/routing/protectedRoute";
+} from "../../../utils";
 
 const OrganizationIdPage = ({
   organization,
@@ -23,13 +23,13 @@ const OrganizationIdPage = ({
       member={member}
       profile={profile}
     >
-      <GridTemplate
+      <GridPage
         corner={<DashboardCorner />}
         header={<UserNavigation />}
         sideBar={<OrganizationSideBar />}
       >
         <OrganizationDashboard />
-      </GridTemplate>
+      </GridPage>
     </OrganizationContextProvider>
   );
 };

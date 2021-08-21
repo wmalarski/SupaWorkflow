@@ -1,7 +1,7 @@
 import { StackDivider, VStack } from "@chakra-ui/react";
 import React from "react";
-import { Message } from "../../../../services/types";
-import { MutationArgs } from "../../../../utils/rep/types";
+import { Message } from "../../../../services";
+import { MutationArgs } from "../../../../utils";
 import MessageForm from "../MessageForm/MessageForm";
 import MessageListItem from "../MessageListItem/MessageListItem";
 

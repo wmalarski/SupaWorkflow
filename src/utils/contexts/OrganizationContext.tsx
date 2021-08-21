@@ -1,14 +1,12 @@
 import { createContext, ReactNode, useContext, useMemo } from "react";
-import { useSelectOrganizationMember } from "../../services/data/organizationMember/selectOrganizationMember";
-import {
-  Organization,
-  OrganizationMember,
-  Profile,
-} from "../../services/types";
 import {
   defaultOrganization,
   defaultOrganizationMember,
-} from "../../services/utils/defaults";
+  Organization,
+  OrganizationMember,
+  Profile,
+  useSelectOrganizationMember,
+} from "../../services";
 import ProfileContext from "./ProfileContext";
 
 export type OrganizationValue = {

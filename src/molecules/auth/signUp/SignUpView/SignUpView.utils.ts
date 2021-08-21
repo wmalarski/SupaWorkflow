@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { RegisterOptions, Resolver } from "react-hook-form";
-import useText, { UseTextFnc } from "../../../../utils/translations/useText";
+import { useText, UseTextFnc } from "../../../../utils";
 
 export type SignUpViewData = {
   email: string;

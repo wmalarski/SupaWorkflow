@@ -1,6 +1,6 @@
 import React from "react";
-import { useSelectTemplates } from "../../../../services/data/template/selectTemplates";
-import { useOrganizationContext } from "../../../../utils/contexts/OrganizationContext";
+import { useSelectTemplates } from "../../../../services";
+import { useOrganizationContext } from "../../../../utils";
 import OrganizationSideBarView from "../OrganizationSideBarView/OrganizationSideBarView";
 
 type ViewProps = React.ComponentProps<typeof OrganizationSideBarView>;

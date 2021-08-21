@@ -1,7 +1,5 @@
 import { createContext, ReactNode, useContext, useMemo } from "react";
-import { useSelectWorkflow } from "../../services/data/workflow/selectWorkflow";
-import { Workflow } from "../../services/types";
-import { defaultWorkflow } from "../../services/utils/defaults";
+import { defaultWorkflow, useSelectWorkflow, Workflow } from "../../services";
 
 export type WorkflowContextValue = {
   workflow: Workflow;

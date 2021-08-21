@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "../../../../atoms";
-import paths from "../../../../utils/routing/paths";
-import useText from "../../../../utils/translations/useText";
+import { paths, useText } from "../../../../utils";
 
 const LandingHeaderView = (): JSX.Element => {
   const text = useText();

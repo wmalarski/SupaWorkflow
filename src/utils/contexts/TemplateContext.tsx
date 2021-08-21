@@ -1,7 +1,5 @@
 import { createContext, ReactNode, useContext, useMemo } from "react";
-import { useSelectTemplate } from "../../services/data/template/selectTemplate";
-import { Template } from "../../services/types";
-import { defaultTemplate } from "../../services/utils/defaults";
+import { defaultTemplate, Template, useSelectTemplate } from "../../services";
 
 export type TemplateContextValue = {
   template: Template;

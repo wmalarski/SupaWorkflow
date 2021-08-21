@@ -1,5 +1,5 @@
 import { PatchOperation } from "replicache";
-import { Message } from "../../services/types";
+import { Message } from "../../services";
 import repKeys from "./repKeys";
 
 const resolvePull = (message: Message): PatchOperation => {

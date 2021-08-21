@@ -1,28 +1,20 @@
 import { GetServerSideProps } from "next";
 import {
-  selectOrganizationMember,
-  selectOrganizationMemberKey,
-} from "../../services/data/organizationMember/selectOrganizationMember";
-import {
-  selectProfile,
-  selectProfileKey,
-} from "../../services/data/profile/selectProfile";
-import {
-  selectTemplate,
-  selectTemplateKey,
-} from "../../services/data/template/selectTemplate";
-import {
-  selectWorkflow,
-  selectWorkflowKey,
-} from "../../services/data/workflow/selectWorkflow";
-import { supabase } from "../../services/supabase";
-import {
   Organization,
   OrganizationMember,
   Profile,
+  selectOrganizationMember,
+  selectOrganizationMemberKey,
+  selectProfile,
+  selectProfileKey,
+  selectTemplate,
+  selectTemplateKey,
+  selectWorkflow,
+  selectWorkflowKey,
+  supabase,
   Template,
   Workflow,
-} from "../../services/types";
+} from "../../services";
 import { validateParam } from "./params";
 
 export type ProfileProtectedRouteProps = {

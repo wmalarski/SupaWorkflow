@@ -2,8 +2,8 @@ import type { NextPage } from "next";
 import React from "react";
 import { LandingTop } from "../molecules";
 import { AnonNavigation, LandingNavigation } from "../organisms";
-import Page from "../templates/Page/Page";
-import { useUserContext } from "../utils/auth/UserContext";
+import { Page } from "../templates";
+import { useUserContext } from "../utils";
 
 const Index: NextPage = () => {
   const { user } = useUserContext();

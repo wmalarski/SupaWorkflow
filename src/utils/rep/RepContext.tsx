@@ -6,7 +6,7 @@ import {
   useState,
 } from "react";
 import { Replicache } from "replicache";
-import { useSubscribeClient } from "../../services/data/client/subscribeClient";
+import { useSubscribeClient } from "../../services";
 import mutators from "./mutations";
 
 export type RepContextValue = Replicache<typeof mutators>;

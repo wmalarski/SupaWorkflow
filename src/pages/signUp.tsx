@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import React from "react";
 import { SignUp } from "../molecules";
 import { AnonNavigation } from "../organisms";
-import Page from "../templates/Page/Page";
+import { Page } from "../templates";
 
 const SignUpPage: NextPage = () => {
   return (

@@ -10,8 +10,8 @@ import {
 import { PostgrestError } from "@supabase/supabase-js";
 import React from "react";
 import { useForm } from "react-hook-form";
-import { Organization } from "../../../../services/types";
-import useText from "../../../../utils/translations/useText";
+import { Organization } from "../../../../services";
+import { useText } from "../../../../utils";
 import {
   CreateOrganizationViewData,
   useCreateOrganizationViewOptions,

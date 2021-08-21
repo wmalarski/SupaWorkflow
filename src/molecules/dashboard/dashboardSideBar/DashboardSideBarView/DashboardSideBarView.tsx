@@ -1,9 +1,8 @@
 import { Heading, Text, VStack } from "@chakra-ui/react";
 import React from "react";
 import { Link } from "../../../../atoms";
-import { Organization } from "../../../../services/types";
-import paths from "../../../../utils/routing/paths";
-import useText from "../../../../utils/translations/useText";
+import { Organization } from "../../../../services";
+import { paths, useText } from "../../../../utils";
 
 export type DashboardSideBarViewProps = {
   organizations?: Organization[] | null;

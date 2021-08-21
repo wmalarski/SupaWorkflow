@@ -1,4 +1,4 @@
-import { UpsertMessageArgs } from "../../services/data/message/upsertMessages";
+import { UpsertMessageArgs } from "../../services";
 import { Mutation } from "../../utils/rep/types";
 
 const resolvePush = (mutation: Mutation): UpsertMessageArgs => {

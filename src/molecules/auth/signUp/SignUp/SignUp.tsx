@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import React from "react";
-import { useSignUp } from "../../../../services/auth/signUp";
-import paths from "../../../../utils/routing/paths";
+import { useSignUp } from "../../../../services";
+import { paths } from "../../../../utils";
 import SignUpView, { SignUpViewProps } from "../SignUpView/SignUpView";
 
 export type SignUpProps = {

@@ -1,9 +1,7 @@
 import { Heading, Link, Text, VStack } from "@chakra-ui/react";
 import React from "react";
-import { Template } from "../../../../services/types";
-import { useOrganizationContext } from "../../../../utils/contexts/OrganizationContext";
-import paths from "../../../../utils/routing/paths";
-import useText from "../../../../utils/translations/useText";
+import { Template } from "../../../../services";
+import { paths, useOrganizationContext, useText } from "../../../../utils";
 
 export type OrganizationSideBarViewProps = {
   templates?: Template[] | null;

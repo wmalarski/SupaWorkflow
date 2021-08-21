@@ -1,8 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { PullResponse } from "replicache";
-import { selectClient } from "../../services/data/client/selectClient";
-import { selectMessages } from "../../services/data/message/selectMessages";
-import resolvePull from "../../utils/rep/resolvePull";
+import { selectClient, selectMessages } from "../../services";
+import { resolvePull } from "../../utils";
 
 const handler = async (
   req: NextApiRequest,

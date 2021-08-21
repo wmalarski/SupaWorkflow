@@ -2,12 +2,12 @@ import React from "react";
 import { Debug } from "../../../../atoms";
 import { TemplatesList } from "../../../../molecules";
 import { UserNavigation } from "../../../../organisms";
-import Page from "../../../../templates/Page/Page";
-import { OrganizationContextProvider } from "../../../../utils/contexts/OrganizationContext";
+import { Page } from "../../../../templates";
 import {
+  OrganizationContextProvider,
   organizationProtectedRoute,
   OrganizationProtectedRouteProps,
-} from "../../../../utils/routing/protectedRoute";
+} from "../../../../utils";
 
 const TemplatesPage = ({
   profile,

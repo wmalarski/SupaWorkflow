@@ -1,5 +1,5 @@
 import { useSubscribe } from "replicache-react";
-import { Message } from "../../services/types";
+import { Message } from "../../services";
 import { useRepContext } from "./RepContext";
 import repKeys from "./repKeys";
 
