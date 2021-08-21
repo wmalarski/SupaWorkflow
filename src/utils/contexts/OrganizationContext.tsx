@@ -1,9 +1,15 @@
 import { createContext, ReactNode, useContext, useMemo } from "react";
-import { Organization, OrganizationMember } from "../../services/types";
+import { useSelectOrganizationMember } from "../../services/data/organizationMember/selectOrganization";
+import {
+  Organization,
+  OrganizationMember,
+  Profile,
+} from "../../services/types";
 import {
   defaultOrganization,
   defaultOrganizationMember,
 } from "../../services/utils/defaults";
+import ProfileContext from "./ProfileContext";
 
 export type OrganizationValue = {
   organization: Organization;
@@ -32,28 +38,38 @@ export const useOrganizationContext = (): OrganizationValue => {
 export type OrganizationContextProviderProps = {
   organization: Organization;
   member: OrganizationMember;
+  profile: Profile;
   children: ReactNode;
 };
 
 export const OrganizationContextProvider = ({
   organization,
   member,
+  profile,
   children,
-}: OrganizationContextProviderProps): JSX.Element => (
-  <OrganizationContext.Provider
-    value={useMemo(
-      () => ({
-        value: {
-          organization,
-          member,
-        },
-        isInitialized: true,
-      }),
-      [organization, member]
-    )}
-  >
-    {children}
-  </OrganizationContext.Provider>
-);
+}: OrganizationContextProviderProps): JSX.Element => {
+  const { data } = useSelectOrganizationMember(
+    { organizationId: organization.id, userId: profile.user_id },
+    { initialData: { member, profile, organization } }
+  );
+
+  const profileValue = useMemo(
+    () => ({ profile: data?.profile ?? profile, isInitialized: true }),
+    [data, profile]
+  );
+
+  const organizationValue = useMemo(
+    () => ({ value: data ?? { member, organization }, isInitialized: true }),
+    [data, member, organization]
+  );
+
+  return (
+    <ProfileContext.Provider value={profileValue}>
+      <OrganizationContext.Provider value={organizationValue}>
+        {children}
+      </OrganizationContext.Provider>
+    </ProfileContext.Provider>
+  );
+};
 
 export default OrganizationContext;

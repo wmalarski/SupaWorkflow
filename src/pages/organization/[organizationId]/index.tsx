@@ -6,8 +6,7 @@ import {
 } from "../../../molecules";
 import { UserNavigation } from "../../../organisms";
 import GridTemplate from "../../../templates/GridPage/GridPage";
-import { OrganizationContextProvider } from "../../../utils/organization/OrganizationContext";
-import { ProfileContextProvider } from "../../../utils/profile/ProfileContext";
+import { OrganizationContextProvider } from "../../../utils/contexts/OrganizationContext";
 import {
   organizationProtectedRoute,
   OrganizationProtectedRouteProps,
@@ -19,17 +18,19 @@ const OrganizationIdPage = ({
   member,
 }: OrganizationProtectedRouteProps): JSX.Element => {
   return (
-    <ProfileContextProvider profile={profile}>
-      <OrganizationContextProvider organization={organization} member={member}>
-        <GridTemplate
-          corner={<DashboardCorner />}
-          header={<UserNavigation />}
-          sideBar={<DashboardSideBar />}
-        >
-          <OrganizationDashboard />
-        </GridTemplate>
-      </OrganizationContextProvider>
-    </ProfileContextProvider>
+    <OrganizationContextProvider
+      organization={organization}
+      member={member}
+      profile={profile}
+    >
+      <GridTemplate
+        corner={<DashboardCorner />}
+        header={<UserNavigation />}
+        sideBar={<DashboardSideBar />}
+      >
+        <OrganizationDashboard />
+      </GridTemplate>
+    </OrganizationContextProvider>
   );
 };
 

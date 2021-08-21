@@ -1,9 +1,20 @@
 import { GetServerSideProps } from "next";
-import { selectOrganizationMember } from "../../services/data/organizationMember/selectOrganization";
+import {
+  selectOrganizationMember,
+  selectOrganizationMemberKey,
+} from "../../services/data/organizationMember/selectOrganization";
 import {
   selectProfile,
   selectProfileKey,
 } from "../../services/data/profile/selectProfile";
+import {
+  selectTemplate,
+  selectTemplateKey,
+} from "../../services/data/template/selectTemplate";
+import {
+  selectWorkflow,
+  selectWorkflowKey,
+} from "../../services/data/workflow/selectWorkflow";
 import { supabase } from "../../services/supabase";
 import {
   Organization,
@@ -12,10 +23,6 @@ import {
   Template,
   Workflow,
 } from "../../services/types";
-import {
-  defaultTemplate,
-  defaultWorkflow,
-} from "../../services/utils/defaults";
 import { validateParam } from "./params";
 
 export type ProfileProtectedRouteProps = {
@@ -51,8 +58,10 @@ export const organizationProtectedRoute: GetServerSideProps<OrganizationProtecte
     if (!organizationId) return { notFound: true };
 
     const props = await selectOrganizationMember({
-      organizationId: Number(organizationId),
-      userId: user.id,
+      queryKey: selectOrganizationMemberKey({
+        organizationId: Number(organizationId),
+        userId: user.id,
+      }),
     });
 
     return !props ? { notFound: true } : { props };
@@ -67,27 +76,25 @@ export const templateProtectedRoute: GetServerSideProps<TemplateProtectedRoutePr
     const { user } = await supabase.auth.api.getUserByCookie(req);
     if (!user) return { notFound: true };
 
-    // Needed: profile, organization, template
     const templateId = validateParam(params?.templateId, /\d+/);
     const organizationId = validateParam(params?.organizationId, /\d+/);
 
-    if (!organizationId) return { notFound: true };
+    if (!organizationId || !templateId) return { notFound: true };
 
-    const organizationMember = await selectOrganizationMember({
-      organizationId: Number(organizationId),
-      userId: user.id,
-    });
+    const [template, organizationMember] = await Promise.all([
+      selectTemplate({
+        queryKey: selectTemplateKey({ id: Number(templateId) }),
+      }),
+      selectOrganizationMember({
+        queryKey: selectOrganizationMemberKey({
+          organizationId: Number(organizationId),
+          userId: user.id,
+        }),
+      }),
+    ]);
 
-    return organizationMember && templateId
-      ? {
-          props: {
-            template: {
-              ...defaultTemplate,
-              id: Number(templateId),
-            },
-            ...organizationMember,
-          },
-        }
+    return organizationMember && template
+      ? { props: { template, ...organizationMember } }
       : { notFound: true };
   };
 
@@ -100,26 +107,24 @@ export const workflowProtectedRoute: GetServerSideProps<WorkflowProtectedRoutePr
     const { user } = await supabase.auth.api.getUserByCookie(req);
     if (!user) return { notFound: true };
 
-    // Needed: profile, organization, workflow
-    const templateId = validateParam(params?.templateId, /\d+/);
+    const workflowId = validateParam(params?.workflowId, /\d+/);
     const organizationId = validateParam(params?.organizationId, /\d+/);
 
-    if (!organizationId) return { notFound: true };
+    if (!workflowId || !organizationId) return { notFound: true };
 
-    const organizationMember = await selectOrganizationMember({
-      organizationId: Number(organizationId),
-      userId: user.id,
-    });
+    const [workflow, organizationMember] = await Promise.all([
+      selectWorkflow({
+        queryKey: selectWorkflowKey({ id: Number(workflowId) }),
+      }),
+      selectOrganizationMember({
+        queryKey: selectOrganizationMemberKey({
+          organizationId: Number(organizationId),
+          userId: user.id,
+        }),
+      }),
+    ]);
 
-    return organizationMember && templateId
-      ? {
-          props: {
-            workflow: {
-              ...defaultWorkflow,
-              id: Number(templateId),
-            },
-            ...organizationMember,
-          },
-        }
+    return organizationMember && workflow
+      ? { props: { workflow, ...organizationMember } }
       : { notFound: true };
   };

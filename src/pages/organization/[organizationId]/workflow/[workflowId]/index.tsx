@@ -2,13 +2,12 @@ import React from "react";
 import { WorkflowEditor } from "../../../../../molecules";
 import { UserNavigation } from "../../../../../organisms";
 import Page from "../../../../../templates/Page/Page";
-import { OrganizationContextProvider } from "../../../../../utils/organization/OrganizationContext";
-import { ProfileContextProvider } from "../../../../../utils/profile/ProfileContext";
+import { OrganizationContextProvider } from "../../../../../utils/contexts/OrganizationContext";
+import { WorkflowContextProvider } from "../../../../../utils/contexts/WorkflowContext";
 import {
   workflowProtectedRoute,
   WorkflowProtectedRouteProps,
 } from "../../../../../utils/routing/protectedRoute";
-import { WorkflowContextProvider } from "../../../../../utils/workflow/WorkflowContext";
 
 const WorkflowPage = ({
   workflow,
@@ -17,15 +16,17 @@ const WorkflowPage = ({
   member,
 }: WorkflowProtectedRouteProps): JSX.Element => {
   return (
-    <ProfileContextProvider profile={profile}>
-      <OrganizationContextProvider organization={organization} member={member}>
-        <WorkflowContextProvider workflow={workflow}>
-          <Page header={<UserNavigation />}>
-            <WorkflowEditor />
-          </Page>
-        </WorkflowContextProvider>
-      </OrganizationContextProvider>
-    </ProfileContextProvider>
+    <OrganizationContextProvider
+      organization={organization}
+      member={member}
+      profile={profile}
+    >
+      <WorkflowContextProvider workflow={workflow}>
+        <Page header={<UserNavigation />}>
+          <WorkflowEditor />
+        </Page>
+      </WorkflowContextProvider>
+    </OrganizationContextProvider>
   );
 };
 

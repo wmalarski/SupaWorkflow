@@ -1,3 +1,10 @@
+import { PostgrestError } from "@supabase/supabase-js";
+import {
+  QueryFunctionContext,
+  useQuery,
+  UseQueryOptions,
+  UseQueryResult,
+} from "react-query";
 import { supabase } from "../../supabase";
 import { Organization, OrganizationMember, Profile } from "../../types";
 
@@ -5,6 +12,15 @@ export type SelectOrganizationMemberArgs = {
   userId: string;
   organizationId: number;
 };
+
+export type SelectOrganizationMemberKey = [
+  "OrganizationMember",
+  SelectOrganizationMemberArgs
+];
+
+export const selectOrganizationMemberKey = (
+  args: SelectOrganizationMemberArgs
+): SelectOrganizationMemberKey => ["OrganizationMember", args];
 
 type QueryResult = OrganizationMember & {
   profile: Profile;
@@ -18,9 +34,8 @@ export type SelectOrganizationMemberResult = {
 };
 
 export const selectOrganizationMember = async ({
-  userId,
-  organizationId,
-}: SelectOrganizationMemberArgs): Promise<SelectOrganizationMemberResult | null> => {
+  queryKey: [, { userId, organizationId }],
+}: QueryFunctionContext<SelectOrganizationMemberKey>): Promise<SelectOrganizationMemberResult | null> => {
   const { data, error } = await supabase
     .from<QueryResult>("organization_member")
     .select(
@@ -46,3 +61,18 @@ export const selectOrganizationMember = async ({
 
   return { member, organization, profile };
 };
+
+export const useSelectOrganizationMember = (
+  args: SelectOrganizationMemberArgs,
+  options?: UseQueryOptions<
+    SelectOrganizationMemberResult | null,
+    PostgrestError,
+    SelectOrganizationMemberResult | null,
+    SelectOrganizationMemberKey
+  >
+): UseQueryResult<SelectOrganizationMemberResult | null, PostgrestError> =>
+  useQuery(
+    selectOrganizationMemberKey(args),
+    selectOrganizationMember,
+    options
+  );

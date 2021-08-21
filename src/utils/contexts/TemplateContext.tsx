@@ -1,4 +1,5 @@
-import { createContext, ReactNode, useContext } from "react";
+import { createContext, ReactNode, useContext, useMemo } from "react";
+import { useSelectTemplate } from "../../services/data/template/selectTemplate";
 import { Template } from "../../services/types";
 import { defaultTemplate } from "../../services/utils/defaults";
 
@@ -26,10 +27,22 @@ export type TemplateContextProviderProps = {
 export const TemplateContextProvider = ({
   template,
   children,
-}: TemplateContextProviderProps): JSX.Element => (
-  <TemplateContext.Provider value={{ template, isInitialized: true }}>
-    {children}
-  </TemplateContext.Provider>
-);
+}: TemplateContextProviderProps): JSX.Element => {
+  const { data } = useSelectTemplate(
+    { id: template.id },
+    { initialData: template }
+  );
+
+  const value = useMemo(
+    () => ({ template: data ?? template, isInitialized: true }),
+    [data, template]
+  );
+
+  return (
+    <TemplateContext.Provider value={value}>
+      {children}
+    </TemplateContext.Provider>
+  );
+};
 
 export default TemplateContext;

@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import React from "react";
 import { useInsertOrganization } from "../../../../services/data/organization/insertOrganization";
-import { useProfileContext } from "../../../../utils/profile/ProfileContext";
+import { useProfileContext } from "../../../../utils/contexts/ProfileContext";
 import paths from "../../../../utils/routing/paths";
 import CreateOrganizationView from "../CreateOrganizationView/CreateOrganizationView";
 

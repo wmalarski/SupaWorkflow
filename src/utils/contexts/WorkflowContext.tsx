@@ -1,4 +1,5 @@
-import { createContext, ReactNode, useContext } from "react";
+import { createContext, ReactNode, useContext, useMemo } from "react";
+import { useSelectWorkflow } from "../../services/data/workflow/selectWorkflow";
 import { Workflow } from "../../services/types";
 import { defaultWorkflow } from "../../services/utils/defaults";
 
@@ -26,10 +27,22 @@ export type WorkflowContextProviderProps = {
 export const WorkflowContextProvider = ({
   workflow,
   children,
-}: WorkflowContextProviderProps): JSX.Element => (
-  <WorkflowContext.Provider value={{ workflow, isInitialized: true }}>
-    {children}
-  </WorkflowContext.Provider>
-);
+}: WorkflowContextProviderProps): JSX.Element => {
+  const { data } = useSelectWorkflow(
+    { id: workflow.id },
+    { initialData: workflow }
+  );
+
+  const value = useMemo(
+    () => ({ workflow: data ?? workflow, isInitialized: true }),
+    [data, workflow]
+  );
+
+  return (
+    <WorkflowContext.Provider value={value}>
+      {children}
+    </WorkflowContext.Provider>
+  );
+};
 
 export default WorkflowContext;

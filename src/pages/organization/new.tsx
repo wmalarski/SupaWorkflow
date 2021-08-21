@@ -6,7 +6,7 @@ import {
 } from "../../molecules";
 import { UserNavigation } from "../../organisms";
 import GridTemplate from "../../templates/GridPage/GridPage";
-import { ProfileContextProvider } from "../../utils/profile/ProfileContext";
+import { ProfileContextProvider } from "../../utils/contexts/ProfileContext";
 import {
   profileProtectedRoute,
   ProfileProtectedRouteProps,
