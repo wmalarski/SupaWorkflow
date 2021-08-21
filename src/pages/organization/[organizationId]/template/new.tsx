@@ -2,17 +2,13 @@ import { GetServerSideProps } from "next";
 import React from "react";
 import { CreateTemplate } from "../../../../molecules";
 import { UserNavigation } from "../../../../organisms";
+import { selectOrganizationMember } from "../../../../services/data/organizationMember/selectOrganization";
 import { supabase } from "../../../../services/supabase";
 import {
   Organization,
   OrganizationMember,
   Profile,
 } from "../../../../services/types";
-import {
-  defaultOrganization,
-  defaultOrganizationMember,
-  defaultProfile,
-} from "../../../../services/utils/defaults";
 import Page from "../../../../templates/Page/Page";
 import { OrganizationContextProvider } from "../../../../utils/organization/OrganizationContext";
 import { ProfileContextProvider } from "../../../../utils/profile/ProfileContext";
@@ -45,21 +41,16 @@ export const getServerSideProps: GetServerSideProps<OrganizationNewTemplateProps
     const { user } = await supabase.auth.api.getUserByCookie(req);
     if (!user) return { notFound: true };
 
-    // Needed: profile, organization
     const organizationId = validateParam(params?.organizationId, /\d+/);
 
-    return organizationId
-      ? {
-          props: {
-            organization: {
-              ...defaultOrganization,
-              id: Number(organizationId),
-            },
-            profile: defaultProfile,
-            member: defaultOrganizationMember,
-          },
-        }
-      : { notFound: true };
+    if (!organizationId) return { notFound: true };
+
+    const props = await selectOrganizationMember({
+      organizationId: Number(organizationId),
+      userId: user.id,
+    });
+
+    return !props ? { notFound: true } : { props };
   };
 
 export default OrganizationNewTemplate;

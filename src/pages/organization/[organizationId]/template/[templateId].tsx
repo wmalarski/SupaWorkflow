@@ -2,6 +2,7 @@ import { GetServerSideProps } from "next";
 import React from "react";
 import { CreateWorkflow } from "../../../../molecules";
 import { UserNavigation } from "../../../../organisms";
+import { selectOrganizationMember } from "../../../../services/data/organizationMember/selectOrganization";
 import { supabase } from "../../../../services/supabase";
 import {
   Organization,
@@ -9,12 +10,7 @@ import {
   Profile,
   Template,
 } from "../../../../services/types";
-import {
-  defaultOrganization,
-  defaultOrganizationMember,
-  defaultProfile,
-  defaultTemplate,
-} from "../../../../services/utils/defaults";
+import { defaultTemplate } from "../../../../services/utils/defaults";
 import Page from "../../../../templates/Page/Page";
 import { OrganizationContextProvider } from "../../../../utils/organization/OrganizationContext";
 import { ProfileContextProvider } from "../../../../utils/profile/ProfileContext";
@@ -56,19 +52,23 @@ export const getServerSideProps: GetServerSideProps<OrganizationTemplatePageProp
     const organizationId = validateParam(params?.organizationId, /\d+/);
     const templateId = validateParam(params?.templateId, /\d+/);
 
-    return organizationId && templateId
+    if (!organizationId) return { notFound: true };
+
+    const organizationMember = await selectOrganizationMember({
+      organizationId: Number(organizationId),
+      userId: user.id,
+    });
+
+    if (!organizationMember) return { notFound: true };
+
+    return templateId
       ? {
           props: {
             template: {
               ...defaultTemplate,
               id: Number(templateId),
             },
-            organization: {
-              ...defaultOrganization,
-              id: Number(organizationId),
-            },
-            profile: defaultProfile,
-            member: defaultOrganizationMember,
+            ...organizationMember,
           },
         }
       : { notFound: true };
