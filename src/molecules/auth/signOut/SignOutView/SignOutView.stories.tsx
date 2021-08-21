@@ -3,7 +3,7 @@ import React from "react";
 import SignOutView from "./SignOutView";
 
 export default {
-  title: "Molecules/Auth/SignOut/SignOutView",
+  title: "Molecules/Auth/SignOutView",
   component: SignOutView,
   argTypes: {
     onSignOutClicked: { action: "onSignOutClicked" },

@@ -28,7 +28,7 @@ const SignInView = ({
   const text = useText();
 
   const {
-    formState: { errors },
+    formState: { errors, isValid, isDirty },
     register,
     handleSubmit,
   } = useForm<SignInViewData>();
@@ -54,7 +54,11 @@ const SignInView = ({
 
         <FormErrorMessage>{error?.message}</FormErrorMessage>
 
-        <Button disabled={isLoading} type="submit">
+        <Button
+          isDisabled={!isValid || !isDirty}
+          isLoading={isLoading}
+          type="submit"
+        >
           {text("signInButton")}
         </Button>
       </VStack>

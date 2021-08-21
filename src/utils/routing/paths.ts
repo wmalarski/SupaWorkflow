@@ -15,6 +15,8 @@ const paths = {
     `/organization/${organizationId}`,
   organizationMembers: (organizationId: number): string =>
     `/organization/${organizationId}/members`,
+  organizationSettings: (organizationId: number): string =>
+    `/organization/${organizationId}/settings`,
   organizations: "/organization",
   newOrganization: "/organization/new",
   home: "/",

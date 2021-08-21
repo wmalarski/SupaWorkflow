@@ -4,7 +4,7 @@ import { defaultUser } from "../../../../services";
 import SignUpView from "./SignUpView";
 
 export default {
-  title: "Molecules/Auth/SignUp/SignUpView",
+  title: "Molecules/Auth/SignUpView",
   component: SignUpView,
   argTypes: {
     onSubmit: { action: "onSubmit" },

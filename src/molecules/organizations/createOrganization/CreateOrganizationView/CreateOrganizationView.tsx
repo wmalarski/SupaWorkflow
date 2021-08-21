@@ -34,7 +34,7 @@ const CreateOrganizationView = ({
   const options = useCreateOrganizationViewOptions();
 
   const {
-    formState: { errors },
+    formState: { errors, isValid, isDirty },
     register,
     handleSubmit,
   } = useForm<CreateOrganizationViewData>();
@@ -58,7 +58,11 @@ const CreateOrganizationView = ({
 
         <FormErrorMessage>{error?.message}</FormErrorMessage>
 
-        <Button disabled={isLoading} type="submit">
+        <Button
+          isDisabled={!isValid || !isDirty}
+          isLoading={isLoading}
+          type="submit"
+        >
           {text("addOrganizationSubmit")}
         </Button>
       </VStack>

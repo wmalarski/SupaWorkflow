@@ -1,7 +1,12 @@
 import { Heading, Link, Text, VStack } from "@chakra-ui/react";
 import React from "react";
 import { Template } from "../../../../services";
-import { paths, useOrganizationContext, useText } from "../../../../utils";
+import {
+  OrganizationRoleGuard,
+  paths,
+  useOrganizationContext,
+  useText,
+} from "../../../../utils";
 
 export type OrganizationSideBarViewProps = {
   templates?: Template[] | null;
@@ -20,6 +25,11 @@ const OrganizationSideBarView = ({
       <Link href={paths.organizationMembers(organization.id)}>
         {text("sideBarMembers")}
       </Link>
+      <OrganizationRoleGuard roles={["mod", "owner"]}>
+        <Link href={paths.organizationSettings(organization.id)}>
+          {text("sideBarSettings")}
+        </Link>
+      </OrganizationRoleGuard>
       <Heading size="md">{text("sideBarTemplates")}</Heading>
       <Link href={paths.newTemplate(organization.id)}>
         {text("sideBarNewTemplate")}

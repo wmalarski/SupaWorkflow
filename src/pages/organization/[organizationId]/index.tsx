@@ -34,6 +34,6 @@ const OrganizationIdPage = ({
   );
 };
 
-export const getServerSideProps = organizationProtectedRoute;
+export const getServerSideProps = organizationProtectedRoute();
 
 export default OrganizationIdPage;

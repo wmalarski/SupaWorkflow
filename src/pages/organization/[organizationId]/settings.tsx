@@ -1,7 +1,7 @@
 import React from "react";
 import {
   DashboardCorner,
-  OrganizationMembers,
+  OrganizationSettings,
   OrganizationSideBar,
 } from "../../../molecules";
 import { UserNavigation } from "../../../organisms";
@@ -12,7 +12,7 @@ import {
   OrganizationProtectedRouteProps,
 } from "../../../utils";
 
-const OrganizationMembersPage = ({
+const OrganizationSettingsPage = ({
   organization,
   profile,
   member,
@@ -28,12 +28,12 @@ const OrganizationMembersPage = ({
         header={<UserNavigation />}
         sideBar={<OrganizationSideBar />}
       >
-        <OrganizationMembers />
+        <OrganizationSettings />
       </GridPage>
     </OrganizationContextProvider>
   );
 };
 
-export const getServerSideProps = organizationProtectedRoute();
+export const getServerSideProps = organizationProtectedRoute(["owner", "mod"]);
 
-export default OrganizationMembersPage;
+export default OrganizationSettingsPage;

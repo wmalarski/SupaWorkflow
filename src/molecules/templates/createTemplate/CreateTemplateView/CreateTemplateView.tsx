@@ -34,7 +34,7 @@ const CreateTemplateView = ({
   const options = useCreateTemplateViewOptions();
 
   const {
-    formState: { errors },
+    formState: { errors, isDirty, isValid },
     register,
     handleSubmit,
   } = useForm<CreateTemplateViewData>();
@@ -58,7 +58,11 @@ const CreateTemplateView = ({
 
         <FormErrorMessage>{error?.message}</FormErrorMessage>
 
-        <Button disabled={isLoading} type="submit">
+        <Button
+          isDisabled={!isValid || !isDirty}
+          isLoading={isLoading}
+          type="submit"
+        >
           {text("addTemplateSubmit")}
         </Button>
       </VStack>

@@ -28,6 +28,6 @@ const TemplatesPage = ({
   );
 };
 
-export const getServerSideProps = organizationProtectedRoute;
+export const getServerSideProps = organizationProtectedRoute();
 
 export default TemplatesPage;

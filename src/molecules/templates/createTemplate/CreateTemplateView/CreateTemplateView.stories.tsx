@@ -3,7 +3,7 @@ import React from "react";
 import CreateTemplateView from "./CreateTemplateView";
 
 export default {
-  title: "Molecule/Templates/CreateTemplate/CreateTemplateView",
+  title: "Molecules/Templates/CreateTemplateView",
   component: CreateTemplateView,
 } as ComponentMeta<typeof CreateTemplateView>;
 

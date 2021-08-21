@@ -4,6 +4,7 @@ import {
   defaultOrganizationMember,
   Organization,
   OrganizationMember,
+  OrganizationRole,
   Profile,
   useSelectOrganizationMember,
 } from "../../services";
@@ -68,6 +69,20 @@ export const OrganizationContextProvider = ({
       </OrganizationContext.Provider>
     </ProfileContext.Provider>
   );
+};
+
+export type OrganizationRoleGuardProps = {
+  roles: OrganizationRole[];
+  children: React.ReactNode;
+};
+
+export const OrganizationRoleGuard = ({
+  children,
+  roles,
+}: OrganizationRoleGuardProps): JSX.Element | null => {
+  const { member } = useOrganizationContext();
+
+  return roles.includes(member.role) ? <>{children}</> : null;
 };
 
 export default OrganizationContext;

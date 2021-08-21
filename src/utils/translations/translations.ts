@@ -7,6 +7,7 @@ const translation = {
   sideBarOrganization: "Organization",
   sideBarOrganizations: "Organizations",
   sideBarMembers: "Members",
+  sideBarSettings: "Settings",
   sideBarNewOrganization: "New Organization",
   sideBarTemplates: "Templates",
   sideBarNewTemplate: "New Template",
@@ -27,6 +28,15 @@ const translation = {
   addOrganizationName: "Name",
   addOrganizationDescription: "Description",
   addOrganizationSubmit: "Save",
+
+  // Organization settings
+  updateOrganizationHeader: "Update Organization",
+  updateOrganizationName: "Name",
+  updateOrganizationDescription: "Description",
+  updateOrganizationSubmit: "Save",
+  updateOrganizationSuccess: "Organization updated",
+  deleteOrganizationDescription: "Delete Organization",
+  deleteOrganizationSubmit: "Delete",
 
   // Add template
   addTemplateHeader: "Add new template",

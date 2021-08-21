@@ -2,6 +2,7 @@ import { GetServerSideProps } from "next";
 import {
   Organization,
   OrganizationMember,
+  OrganizationRole,
   Profile,
   selectOrganizationMember,
   selectOrganizationMemberKey,
@@ -45,7 +46,10 @@ export type OrganizationProtectedRouteProps = ProfileProtectedRouteProps & {
   member: OrganizationMember;
 };
 
-export const organizationProtectedRoute: GetServerSideProps<OrganizationProtectedRouteProps> =
+export const organizationProtectedRoute: (
+  role?: OrganizationRole[]
+) => GetServerSideProps<OrganizationProtectedRouteProps> =
+  (roles) =>
   async ({ params, req }) => {
     try {
       const { user } = await supabase.auth.api.getUserByCookie(req);
@@ -57,6 +61,7 @@ export const organizationProtectedRoute: GetServerSideProps<OrganizationProtecte
 
       const props = await selectOrganizationMember({
         queryKey: selectOrganizationMemberKey({
+          roles,
           organizationId: Number(organizationId),
           userId: user.id,
         }),
@@ -73,7 +78,10 @@ export type TemplateProtectedRouteProps = OrganizationProtectedRouteProps & {
   template: Template;
 };
 
-export const templateProtectedRoute: GetServerSideProps<TemplateProtectedRouteProps> =
+export const templateProtectedRoute: (
+  roles?: OrganizationRole[]
+) => GetServerSideProps<TemplateProtectedRouteProps> =
+  (roles) =>
   async ({ params, req }) => {
     try {
       const { user } = await supabase.auth.api.getUserByCookie(req);
@@ -90,6 +98,7 @@ export const templateProtectedRoute: GetServerSideProps<TemplateProtectedRoutePr
         }),
         selectOrganizationMember({
           queryKey: selectOrganizationMemberKey({
+            roles,
             organizationId: Number(organizationId),
             userId: user.id,
           }),
@@ -109,7 +118,10 @@ export type WorkflowProtectedRouteProps = OrganizationProtectedRouteProps & {
   workflow: Workflow;
 };
 
-export const workflowProtectedRoute: GetServerSideProps<WorkflowProtectedRouteProps> =
+export const workflowProtectedRoute: (
+  roles?: OrganizationRole[]
+) => GetServerSideProps<WorkflowProtectedRouteProps> =
+  (roles) =>
   async ({ params, req }) => {
     try {
       const { user } = await supabase.auth.api.getUserByCookie(req);
@@ -126,6 +138,7 @@ export const workflowProtectedRoute: GetServerSideProps<WorkflowProtectedRoutePr
         }),
         selectOrganizationMember({
           queryKey: selectOrganizationMemberKey({
+            roles,
             organizationId: Number(organizationId),
             userId: user.id,
           }),

@@ -34,6 +34,6 @@ const OrganizationNewTemplate = ({
   );
 };
 
-export const getServerSideProps = organizationProtectedRoute;
+export const getServerSideProps = organizationProtectedRoute();
 
 export default OrganizationNewTemplate;

@@ -28,6 +28,6 @@ const WorkflowsPage = ({
   );
 };
 
-export const getServerSideProps = organizationProtectedRoute;
+export const getServerSideProps = organizationProtectedRoute();
 
 export default WorkflowsPage;

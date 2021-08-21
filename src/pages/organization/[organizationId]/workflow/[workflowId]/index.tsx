@@ -30,6 +30,6 @@ const WorkflowPage = ({
   );
 };
 
-export const getServerSideProps = workflowProtectedRoute;
+export const getServerSideProps = workflowProtectedRoute();
 
 export default WorkflowPage;

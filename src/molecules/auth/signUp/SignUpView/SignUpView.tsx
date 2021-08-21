@@ -35,7 +35,7 @@ const SignUpView = ({
   const options = useSignUpViewOptions();
 
   const {
-    formState: { errors },
+    formState: { errors, isDirty, isValid },
     register,
     handleSubmit,
   } = useForm<SignUpViewData, SignUpViewContext>({
@@ -71,7 +71,11 @@ const SignUpView = ({
 
         <FormErrorMessage>{error?.message}</FormErrorMessage>
 
-        <Button disabled={isLoading} type="submit">
+        <Button
+          isDisabled={!isValid || !isDirty}
+          isLoading={isLoading}
+          type="submit"
+        >
           {text("signUpButton")}
         </Button>
       </VStack>

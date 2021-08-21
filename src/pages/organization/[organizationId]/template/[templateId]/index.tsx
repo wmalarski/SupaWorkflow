@@ -33,6 +33,6 @@ const TemplateIdPage = ({
   </OrganizationContextProvider>
 );
 
-export const getServerSideProps = templateProtectedRoute;
+export const getServerSideProps = templateProtectedRoute();
 
 export default TemplateIdPage;

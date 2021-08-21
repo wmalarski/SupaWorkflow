@@ -6,9 +6,15 @@ import {
   UseQueryResult,
 } from "react-query";
 import { supabase } from "../../supabase";
-import { Organization, OrganizationMember, Profile } from "../../types";
+import {
+  Organization,
+  OrganizationMember,
+  OrganizationRole,
+  Profile,
+} from "../../types";
 
 export type SelectOrganizationMemberArgs = {
+  roles?: OrganizationRole[];
   userId: string;
   organizationId: number;
 };
@@ -34,9 +40,9 @@ export type SelectOrganizationMemberResult = {
 };
 
 export const selectOrganizationMember = async ({
-  queryKey: [, { userId, organizationId }],
+  queryKey: [, { roles, userId, organizationId }],
 }: QueryFunctionContext<SelectOrganizationMemberKey>): Promise<SelectOrganizationMemberResult | null> => {
-  const { data, error } = await supabase
+  const builder = supabase
     .from<QueryResult>("organization_member")
     .select(
       `
@@ -50,8 +56,11 @@ export const selectOrganizationMember = async ({
       `
     )
     .match({ "profile.user_id": userId })
-    .eq("organization_id", organizationId)
-    .limit(1);
+    .eq("organization_id", organizationId);
+
+  const rolesBuilder = roles ? builder.in("role", roles) : builder;
+
+  const { data, error } = await rolesBuilder.limit(1);
 
   if (error) throw error;
 
