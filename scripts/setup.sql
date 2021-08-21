@@ -127,6 +127,23 @@ CREATE TRIGGER default_organization
 AFTER INSERT ON public.profile
 FOR EACH ROW EXECUTE PROCEDURE create_default_organization();
 
+-- Add author as member to organization
+CREATE OR REPLACE FUNCTION create_default_organization_member()
+RETURNS TRIGGER AS $$
+  BEGIN
+    INSERT INTO public.organization_member (profile_id, organization_id, role)
+    VALUES(new.author_id, new.id, 'owner');
+  
+    RETURN NEW;
+  END;
+$$
+LANGUAGE plpgsql SECURITY DEFINER;
+
+DROP TRIGGER IF EXISTS default_organization_member on public.organization;
+CREATE TRIGGER default_organization_member
+AFTER INSERT ON public.organization
+FOR EACH ROW EXECUTE PROCEDURE create_default_organization_member();
+
 -- Update updated_at time
 create extension if not exists moddatetime schema extensions;
 

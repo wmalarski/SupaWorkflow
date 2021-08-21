@@ -3,7 +3,10 @@ import React from "react";
 import { Debug } from "../../atoms";
 import { TemplatesList } from "../../molecules";
 import { UserNavigation } from "../../organisms";
-import { selectProfile } from "../../services/data/profile/selectProfile";
+import {
+  selectProfile,
+  selectProfileKey,
+} from "../../services/data/profile/selectProfile";
 import { supabase } from "../../services/supabase";
 import { Profile } from "../../services/types";
 import Page from "../../templates/Page/Page";
@@ -29,9 +32,12 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   if (!user) return { notFound: true };
 
   try {
-    const profile = await selectProfile({ userId: user.id });
+    const profile = await selectProfile({
+      queryKey: selectProfileKey({ userId: user.id }),
+    });
 
     if (!profile) return { notFound: true };
+
     return { props: { profile } };
   } catch (exception) {
     console.error(JSON.stringify(exception));

@@ -5,12 +5,13 @@ import { UserNavigation } from "../../../organisms";
 import { supabase } from "../../../services/supabase";
 import {
   Organization,
+  OrganizationMember,
   Profile,
-  TeamMemberPair,
   Workflow,
 } from "../../../services/types";
 import {
   defaultOrganization,
+  defaultOrganizationMember,
   defaultProfile,
   defaultWorkflow,
 } from "../../../services/utils/defaults";
@@ -24,18 +25,18 @@ export type WorkflowPageProps = {
   workflow: Workflow;
   organization: Organization;
   profile: Profile;
-  teams: TeamMemberPair[];
+  member: OrganizationMember;
 };
 
 const WorkflowPage = ({
   workflow,
   organization,
   profile,
-  teams,
+  member,
 }: WorkflowPageProps): JSX.Element => {
   return (
     <ProfileContextProvider profile={profile}>
-      <OrganizationContextProvider organization={organization} teams={teams}>
+      <OrganizationContextProvider organization={organization} member={member}>
         <WorkflowContextProvider workflow={workflow}>
           <Page header={<UserNavigation />}>
             <WorkflowEditor />
@@ -60,7 +61,7 @@ export const getServerSideProps: GetServerSideProps<WorkflowPageProps> =
             workflow: { ...defaultWorkflow, id: Number(workflowId) },
             organization: defaultOrganization,
             profile: defaultProfile,
-            teams: [],
+            member: defaultOrganizationMember,
           },
         }
       : { notFound: true };

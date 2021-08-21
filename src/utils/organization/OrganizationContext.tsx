@@ -1,14 +1,13 @@
 import { createContext, ReactNode, useContext, useMemo } from "react";
-import { Organization, TeamMemberPair } from "../../services/types";
+import { Organization, OrganizationMember } from "../../services/types";
 import {
   defaultOrganization,
-  defaultTeam,
-  defaultTeamMember,
+  defaultOrganizationMember,
 } from "../../services/utils/defaults";
 
 export type OrganizationValue = {
   organization: Organization;
-  teams: TeamMemberPair[];
+  member: OrganizationMember;
 };
 
 export type OrganizationContextValue = {
@@ -19,7 +18,7 @@ export type OrganizationContextValue = {
 const OrganizationContext = createContext<OrganizationContextValue>({
   value: {
     organization: defaultOrganization,
-    teams: [{ member: defaultTeamMember, team: defaultTeam }],
+    member: defaultOrganizationMember,
   },
   isInitialized: false,
 });
@@ -32,13 +31,13 @@ export const useOrganizationContext = (): OrganizationValue => {
 
 export type OrganizationContextProviderProps = {
   organization: Organization;
-  teams: TeamMemberPair[];
+  member: OrganizationMember;
   children: ReactNode;
 };
 
 export const OrganizationContextProvider = ({
   organization,
-  teams,
+  member,
   children,
 }: OrganizationContextProviderProps): JSX.Element => (
   <OrganizationContext.Provider
@@ -46,11 +45,11 @@ export const OrganizationContextProvider = ({
       () => ({
         value: {
           organization,
-          teams,
+          member,
         },
         isInitialized: true,
       }),
-      [organization, teams]
+      [organization, member]
     )}
   >
     {children}

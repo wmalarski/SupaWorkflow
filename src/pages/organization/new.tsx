@@ -6,7 +6,10 @@ import {
   DashboardSideBar,
 } from "../../molecules";
 import { UserNavigation } from "../../organisms";
-import { selectProfile } from "../../services/data/profile/selectProfile";
+import {
+  selectProfile,
+  selectProfileKey,
+} from "../../services/data/profile/selectProfile";
 import { supabase } from "../../services/supabase";
 import { Profile } from "../../services/types";
 import GridTemplate from "../../templates/GridPage/GridPage";
@@ -37,7 +40,9 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   if (!user) return { notFound: true };
 
   try {
-    const profile = await selectProfile({ userId: user.id });
+    const profile = await selectProfile({
+      queryKey: selectProfileKey({ userId: user.id }),
+    });
 
     if (!profile) return { notFound: true };
 

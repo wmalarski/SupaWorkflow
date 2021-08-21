@@ -1,6 +1,7 @@
 import { User } from "@supabase/supabase-js";
 import {
   Organization,
+  OrganizationMember,
   Profile,
   Team,
   TeamMember,
@@ -66,4 +67,11 @@ export const defaultTeam: Team = {
   id: 1,
   name: "Team Name",
   organization_id: 1,
+};
+
+export const defaultOrganizationMember: OrganizationMember = {
+  id: 1,
+  organization_id: 1,
+  profile_id: 1,
+  role: "user",
 };

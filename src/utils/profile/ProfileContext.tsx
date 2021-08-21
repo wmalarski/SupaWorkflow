@@ -1,4 +1,5 @@
-import { createContext, ReactNode, useContext } from "react";
+import { createContext, ReactNode, useContext, useMemo } from "react";
+import { useSelectProfile } from "../../services/data/profile/selectProfile";
 import { Profile } from "../../services/types";
 import { defaultProfile } from "../../services/utils/defaults";
 
@@ -26,10 +27,20 @@ export type ProfileContextProviderProps = {
 export const ProfileContextProvider = ({
   profile,
   children,
-}: ProfileContextProviderProps): JSX.Element => (
-  <ProfileContext.Provider value={{ profile, isInitialized: true }}>
-    {children}
-  </ProfileContext.Provider>
-);
+}: ProfileContextProviderProps): JSX.Element => {
+  const { data } = useSelectProfile(
+    { userId: profile.user_id },
+    { initialData: profile }
+  );
+
+  const value = useMemo(
+    () => ({ profile: data ?? profile, isInitialized: true }),
+    [data, profile]
+  );
+
+  return (
+    <ProfileContext.Provider value={value}>{children}</ProfileContext.Provider>
+  );
+};
 
 export default ProfileContext;

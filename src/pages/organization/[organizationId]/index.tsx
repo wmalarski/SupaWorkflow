@@ -7,9 +7,14 @@ import {
 } from "../../../molecules";
 import { UserNavigation } from "../../../organisms";
 import { supabase } from "../../../services/supabase";
-import { Organization, Profile, TeamMemberPair } from "../../../services/types";
+import {
+  Organization,
+  OrganizationMember,
+  Profile,
+} from "../../../services/types";
 import {
   defaultOrganization,
+  defaultOrganizationMember,
   defaultProfile,
 } from "../../../services/utils/defaults";
 import GridTemplate from "../../../templates/GridPage/GridPage";
@@ -20,17 +25,17 @@ import { validateParam } from "../../../utils/routing/params";
 export type OrganizationIdPageProps = {
   organization: Organization;
   profile: Profile;
-  teams: TeamMemberPair[];
+  member: OrganizationMember;
 };
 
 const OrganizationIdPage = ({
   organization,
   profile,
-  teams,
+  member,
 }: OrganizationIdPageProps): JSX.Element => {
   return (
     <ProfileContextProvider profile={profile}>
-      <OrganizationContextProvider organization={organization} teams={teams}>
+      <OrganizationContextProvider organization={organization} member={member}>
         <GridTemplate
           corner={<DashboardCorner />}
           header={<UserNavigation />}
@@ -59,7 +64,7 @@ export const getServerSideProps: GetServerSideProps<OrganizationIdPageProps> =
               id: Number(organizationId),
             },
             profile: defaultProfile,
-            teams: [],
+            member: defaultOrganizationMember,
           },
         }
       : { notFound: true };

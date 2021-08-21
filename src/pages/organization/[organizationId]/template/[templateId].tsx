@@ -5,12 +5,13 @@ import { UserNavigation } from "../../../../organisms";
 import { supabase } from "../../../../services/supabase";
 import {
   Organization,
+  OrganizationMember,
   Profile,
-  TeamMemberPair,
   Template,
 } from "../../../../services/types";
 import {
   defaultOrganization,
+  defaultOrganizationMember,
   defaultProfile,
   defaultTemplate,
 } from "../../../../services/utils/defaults";
@@ -24,18 +25,18 @@ export type OrganizationTemplatePageProps = {
   template: Template;
   organization: Organization;
   profile: Profile;
-  teams: TeamMemberPair[];
+  member: OrganizationMember;
 };
 
 const OrganizationTemplatePage = ({
   template,
   organization,
   profile,
-  teams,
+  member,
 }: OrganizationTemplatePageProps): JSX.Element => {
   return (
     <ProfileContextProvider profile={profile}>
-      <OrganizationContextProvider organization={organization} teams={teams}>
+      <OrganizationContextProvider organization={organization} member={member}>
         <TemplateContextProvider template={template}>
           <Page header={<UserNavigation />}>
             <CreateWorkflow />
@@ -67,7 +68,7 @@ export const getServerSideProps: GetServerSideProps<OrganizationTemplatePageProp
               id: Number(organizationId),
             },
             profile: defaultProfile,
-            teams: [],
+            member: defaultOrganizationMember,
           },
         }
       : { notFound: true };
