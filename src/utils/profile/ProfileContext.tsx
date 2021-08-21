@@ -15,7 +15,7 @@ const ProfileContext = createContext<ProfileContextValue>({
 
 export const useProfileContext = (): Profile => {
   const value = useContext(ProfileContext);
-  if (value.isInitialized) throw "Profile Context not initialized";
+  if (!value.isInitialized) throw "Profile Context not initialized";
   return value.profile;
 };
 

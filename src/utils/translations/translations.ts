@@ -18,6 +18,12 @@ const translation = {
   confirmPasswordPlaceholder: "Confirm Password",
   fieldIsDifferent: "Repeat password",
 
+  // Add organization
+  addOrganizationHeader: "Add new organization",
+  addOrganizationName: "Name",
+  addOrganizationDescription: "Description",
+  addOrganizationSubmit: "Save",
+
   // Template editor
   version: "Version",
   deleteMessage: "Delete",

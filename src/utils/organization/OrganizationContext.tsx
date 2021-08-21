@@ -25,7 +25,7 @@ const OrganizationContext = createContext<OrganizationContextValue>({
 
 export const useOrganizationContext = (): OrganizationValue => {
   const context = useContext(OrganizationContext);
-  if (context.isInitialized) throw "Organization Context not initialized";
+  if (!context.isInitialized) throw "Organization Context not initialized";
   return context.value;
 };
 

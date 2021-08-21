@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import React from "react";
 import DashboardHeaderView from "../DashboardHeaderView/DashboardHeaderView";
 
@@ -11,10 +10,6 @@ export type DashboardHeaderProps = {
 const DashboardHeader = ({
   View = DashboardHeaderView,
 }: DashboardHeaderProps): JSX.Element => {
-  const router = useRouter();
-
-  console.log({ router });
-
   return <View data="hello" />;
 };
 

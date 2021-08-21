@@ -14,7 +14,7 @@ const WorkflowContext = createContext<WorkflowContextValue>({
 
 export const useWorkflowContext = (): Workflow => {
   const value = useContext(WorkflowContext);
-  if (value.isInitialized) throw "Workflow Context not initialized";
+  if (!value.isInitialized) throw "Workflow Context not initialized";
   return value.workflow;
 };
 

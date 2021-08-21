@@ -14,7 +14,7 @@ const TemplateContext = createContext<TemplateContextValue>({
 
 export const useTemplateContext = (): Template => {
   const value = useContext(TemplateContext);
-  if (value.isInitialized) throw "Template Context not initialized";
+  if (!value.isInitialized) throw "Template Context not initialized";
   return value.template;
 };
 

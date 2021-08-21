@@ -1,4 +1,8 @@
+import { useRouter } from "next/router";
 import React from "react";
+import { useInsertOrganization } from "../../../../services/data/organization/insertOrganization";
+import { useProfileContext } from "../../../../utils/profile/ProfileContext";
+import paths from "../../../../utils/routing/paths";
 import CreateOrganizationView from "../CreateOrganizationView/CreateOrganizationView";
 
 type ViewProps = React.ComponentProps<typeof CreateOrganizationView>;
@@ -10,7 +14,35 @@ export type CreateOrganizationProps = {
 const CreateOrganization = ({
   View = CreateOrganizationView,
 }: CreateOrganizationProps): JSX.Element => {
-  return <View data="hello" />;
+  const router = useRouter();
+
+  const profile = useProfileContext();
+
+  const {
+    mutate: insertOrganization,
+    data: organization,
+    isLoading,
+    error,
+  } = useInsertOrganization({
+    onSuccess: (organization) =>
+      router.push(paths.organization(organization.id)),
+  });
+
+  return (
+    <View
+      isLoading={isLoading}
+      organization={organization}
+      error={error}
+      onSubmit={(data) =>
+        insertOrganization({
+          author_id: profile.id,
+          avatar: null,
+          description: data.description,
+          name: data.name,
+        })
+      }
+    />
+  );
 };
 
 export default CreateOrganization;
