@@ -1,6 +1,6 @@
 import React from "react";
 import TemplateEditor from "../../molecules/templates/templateEditor/TemplateEditor/TemplateEditor";
-import { RepContextProvider } from "../../utils";
+import { RepContextProvider } from "../../utils/rep/RepContext";
 
 export type TemplateWorkspaceProps = {
   templateId: number;

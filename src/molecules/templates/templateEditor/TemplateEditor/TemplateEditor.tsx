@@ -1,5 +1,6 @@
 import React from "react";
-import { useMessages, useRepMutations } from "../../../../utils";
+import { useMessages } from "../../../../utils/rep";
+import { useRepMutations } from "../../../../utils/rep/RepContext";
 import TemplateEditorView from "../TemplateEditorView/TemplateEditorView";
 
 type ViewProps = React.ComponentProps<typeof TemplateEditorView>;

@@ -36,7 +36,7 @@ const CreateOrganization = ({
         insertOrganization({
           author_id: profile.id,
           avatar: null,
-          description: data.description,
+          description: data.description ?? "",
           name: data.name,
         })
       }

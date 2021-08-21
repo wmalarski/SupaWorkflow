@@ -5,7 +5,7 @@ import {
   UpsertMessageArgs,
   upsertMessages,
 } from "../../services";
-import { Mutation, MutationPush, resolvePush } from "../../utils";
+import { Mutation, MutationPush, resolvePush } from "../../utils/rep";
 
 type ReduceAcc = {
   mutationId: number;

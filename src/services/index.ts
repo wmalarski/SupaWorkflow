@@ -14,6 +14,7 @@ export * from "./data/organization/insertOrganization";
 export * from "./data/organization/selectOrganizations";
 export * from "./data/organizationMember/selectOrganizationMember";
 export * from "./data/profile/selectProfile";
+export * from "./data/template/insertTemplate";
 export * from "./data/template/selectTemplate";
 export * from "./data/template/selectTemplates";
 export * from "./data/workflow/selectWorkflow";

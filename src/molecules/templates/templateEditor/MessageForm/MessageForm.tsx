@@ -1,7 +1,8 @@
 import { Button, HStack, Input } from "@chakra-ui/react";
 import { nanoid } from "nanoid";
 import React, { useState } from "react";
-import { MutationArgs, useText } from "../../../../utils";
+import { useText } from "../../../../utils";
+import { MutationArgs } from "../../../../utils/rep";
 
 export type MessageFormProps = {
   templateId: number;

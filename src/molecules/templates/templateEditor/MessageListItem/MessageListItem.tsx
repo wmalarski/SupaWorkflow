@@ -1,7 +1,8 @@
 import { Button, Heading, HStack, Input, Text } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { Message } from "../../../../services";
-import { MutationArgs, useText } from "../../../../utils";
+import { useText } from "../../../../utils";
+import { MutationArgs } from "../../../../utils/rep";
 
 export type MessageListItemProps = {
   message: Message;

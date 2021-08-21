@@ -27,6 +27,12 @@ const translation = {
   addOrganizationDescription: "Description",
   addOrganizationSubmit: "Save",
 
+  // Add template
+  addTemplateHeader: "Add new template",
+  addTemplateName: "Name",
+  addTemplateDescription: "Description",
+  addTemplateSubmit: "Save",
+
   // Template editor
   version: "Version",
   deleteMessage: "Delete",
