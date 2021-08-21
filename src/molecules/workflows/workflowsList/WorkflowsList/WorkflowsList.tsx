@@ -13,4 +13,4 @@ const WorkflowsList = ({
   return <View data="hello" />;
 };
 
-export default WorkflowsList;
+export default React.memo(WorkflowsList);

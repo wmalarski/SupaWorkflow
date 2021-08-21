@@ -13,4 +13,4 @@ const DashboardHeader = ({
   return <View data="hello" />;
 };
 
-export default DashboardHeader;
+export default React.memo(DashboardHeader);

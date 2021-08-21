@@ -35,4 +35,4 @@ const SignIn = ({ View = SignInView }: SignInProps): JSX.Element => {
   );
 };
 
-export default SignIn;
+export default React.memo(SignIn);

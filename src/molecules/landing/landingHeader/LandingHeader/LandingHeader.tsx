@@ -13,4 +13,4 @@ const LandingHeader = ({
   return <View />;
 };
 
-export default LandingHeader;
+export default React.memo(LandingHeader);

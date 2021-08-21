@@ -44,4 +44,4 @@ const CreateOrganization = ({
   );
 };
 
-export default CreateOrganization;
+export default React.memo(CreateOrganization);

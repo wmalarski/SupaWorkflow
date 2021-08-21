@@ -13,4 +13,4 @@ const DashboardCorner = ({
   return <View />;
 };
 
-export default DashboardCorner;
+export default React.memo(DashboardCorner);

@@ -8,6 +8,7 @@ export { default as LandingHeader } from "./landing/landingHeader/LandingHeader/
 export { default as LandingTop } from "./landing/landingTop/LandingTop/LandingTop";
 export { default as CreateOrganization } from "./organizations/createOrganization/CreateOrganization/CreateOrganization";
 export { default as OrganizationDashboard } from "./organizations/organizationDashboard/OrganizationDashboard/OrganizationDashboard";
+export { default as OrganizationMembers } from "./organizations/organizationMembers/OrganizationMembers/OrganizationMembers";
 export { default as OrganizationSideBar } from "./organizations/organizationSideBar/OrganizationSideBar/OrganizationSideBar";
 export { default as OrganizationsList } from "./organizations/organizationsList/OrganizationsList/OrganizationsList";
 export { default as ProfileHeader } from "./profile/profileHeader/ProfileHeader/ProfileHeader";

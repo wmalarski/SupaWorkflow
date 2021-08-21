@@ -13,4 +13,4 @@ const ProfileHeader = ({
   return <View data="" />;
 };
 
-export default ProfileHeader;
+export default React.memo(ProfileHeader);

@@ -13,4 +13,4 @@ const CreateWorkflow = ({
   return <View data="hello" />;
 };
 
-export default CreateWorkflow;
+export default React.memo(CreateWorkflow);

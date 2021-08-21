@@ -17,4 +17,4 @@ const SignOut = ({ View = SignOutView }: SignOutProps): JSX.Element => {
   return <View onSignOutClicked={signOut} />;
 };
 
-export default SignOut;
+export default React.memo(SignOut);

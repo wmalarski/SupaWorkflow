@@ -44,4 +44,4 @@ const CreateTemplate = ({
   );
 };
 
-export default CreateTemplate;
+export default React.memo(CreateTemplate);

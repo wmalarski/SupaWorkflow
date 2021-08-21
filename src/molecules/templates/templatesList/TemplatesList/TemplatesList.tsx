@@ -13,4 +13,4 @@ const TemplatesList = ({
   return <View data="hello" />;
 };
 
-export default TemplatesList;
+export default React.memo(TemplatesList);

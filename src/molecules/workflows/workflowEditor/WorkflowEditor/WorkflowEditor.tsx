@@ -13,4 +13,4 @@ const WorkflowEditor = ({
   return <View data="hello" />;
 };
 
-export default WorkflowEditor;
+export default React.memo(WorkflowEditor);

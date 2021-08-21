@@ -13,4 +13,4 @@ const OrganizationsList = ({
   return <View data="hello" />;
 };
 
-export default OrganizationsList;
+export default React.memo(OrganizationsList);

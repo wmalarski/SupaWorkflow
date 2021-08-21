@@ -13,4 +13,4 @@ const LandingTop = ({
   return <View data="hello" />;
 };
 
-export default LandingTop;
+export default React.memo(LandingTop);

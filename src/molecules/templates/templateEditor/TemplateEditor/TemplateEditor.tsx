@@ -29,4 +29,4 @@ const TemplateEditor = ({
   );
 };
 
-export default TemplateEditor;
+export default React.memo(TemplateEditor);

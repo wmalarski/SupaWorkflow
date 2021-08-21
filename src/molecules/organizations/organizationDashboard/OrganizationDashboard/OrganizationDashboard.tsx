@@ -13,4 +13,4 @@ const OrganizationDashboard = ({
   return <View data="hello" />;
 };
 
-export default OrganizationDashboard;
+export default React.memo(OrganizationDashboard);

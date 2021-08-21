@@ -13,4 +13,4 @@ const AnonHeader = ({
   return <View />;
 };
 
-export default AnonHeader;
+export default React.memo(AnonHeader);

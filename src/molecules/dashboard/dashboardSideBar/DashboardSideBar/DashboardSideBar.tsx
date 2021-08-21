@@ -16,4 +16,4 @@ const DashboardSideBar = ({
   return <View organizations={organizations} isLoading={isLoading} />;
 };
 
-export default DashboardSideBar;
+export default React.memo(DashboardSideBar);

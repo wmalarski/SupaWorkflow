@@ -17,6 +17,9 @@ const OrganizationSideBarView = ({
   return (
     <VStack>
       <Heading size="md">{text("sideBarOrganization")}</Heading>
+      <Link href={paths.organizationMembers(organization.id)}>
+        {text("sideBarMembers")}
+      </Link>
       <Heading size="md">{text("sideBarTemplates")}</Heading>
       <Link href={paths.newTemplate(organization.id)}>
         {text("sideBarNewTemplate")}

@@ -21,4 +21,4 @@ const OrganizationSideBar = ({
   return <View templates={templates} />;
 };
 
-export default OrganizationSideBar;
+export default React.memo(OrganizationSideBar);

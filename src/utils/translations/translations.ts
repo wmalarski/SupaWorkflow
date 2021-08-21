@@ -6,6 +6,7 @@ const translation = {
   // SideBar
   sideBarOrganization: "Organization",
   sideBarOrganizations: "Organizations",
+  sideBarMembers: "Members",
   sideBarNewOrganization: "New Organization",
   sideBarTemplates: "Templates",
   sideBarNewTemplate: "New Template",
