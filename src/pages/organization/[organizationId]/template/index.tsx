@@ -1,5 +1,6 @@
 import React from "react";
-import { CreateTemplate } from "../../../../molecules";
+import { Debug } from "../../../../atoms";
+import { TemplatesList } from "../../../../molecules";
 import { UserNavigation } from "../../../../organisms";
 import Page from "../../../../templates/Page/Page";
 import { OrganizationContextProvider } from "../../../../utils/organization/OrganizationContext";
@@ -9,16 +10,17 @@ import {
   OrganizationProtectedRouteProps,
 } from "../../../../utils/routing/protectedRoute";
 
-const OrganizationNewTemplate = ({
-  organization,
+const TemplatesPage = ({
   profile,
   member,
+  organization,
 }: OrganizationProtectedRouteProps): JSX.Element => {
   return (
     <ProfileContextProvider profile={profile}>
       <OrganizationContextProvider organization={organization} member={member}>
         <Page header={<UserNavigation />}>
-          <CreateTemplate />
+          <Debug value={profile} />
+          <TemplatesList />
         </Page>
       </OrganizationContextProvider>
     </ProfileContextProvider>
@@ -27,4 +29,4 @@ const OrganizationNewTemplate = ({
 
 export const getServerSideProps = organizationProtectedRoute;
 
-export default OrganizationNewTemplate;
+export default TemplatesPage;
