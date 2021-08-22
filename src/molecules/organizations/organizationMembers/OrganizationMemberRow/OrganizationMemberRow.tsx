@@ -35,7 +35,6 @@ const OrganizationMemberRow = ({
       <OrganizationRoleGuard roles={["mod", "owner"]}>
         <Td>
           <Select
-            placeholder="Select option"
             value={member.role}
             isDisabled={isAuthor}
             onChange={(event) =>

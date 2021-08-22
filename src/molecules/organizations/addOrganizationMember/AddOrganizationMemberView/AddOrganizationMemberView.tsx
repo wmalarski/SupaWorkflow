@@ -5,20 +5,23 @@ import {
   FormLabel,
   Heading,
   Input,
+  Select,
   VStack,
 } from "@chakra-ui/react";
 import { PostgrestError } from "@supabase/supabase-js";
 import React from "react";
 import { useForm } from "react-hook-form";
+import { OrganizationRole } from "../../../../services";
 import { useEmailValidator, useText } from "../../../../utils";
 
 export type AddOrganizationMemberViewData = {
   email: string;
+  role: OrganizationRole;
 };
 
 export type AddOrganizationMemberViewProps = {
-  error: PostgrestError | null;
-  isLoading: boolean;
+  error?: PostgrestError | null;
+  isLoading?: boolean;
   onSubmit: (data: AddOrganizationMemberViewData) => void;
 };
 
@@ -37,8 +40,6 @@ const AddOrganizationMemberView = ({
 
   const emailValidator = useEmailValidator();
 
-  console.log({ a: !isValid || isDirty, isValid, isDirty, errors });
-
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <VStack>
@@ -50,13 +51,20 @@ const AddOrganizationMemberView = ({
           <FormErrorMessage>{errors.email?.message}</FormErrorMessage>
         </FormControl>
 
+        <FormControl isInvalid={!!errors.role}>
+          <FormLabel>{text("addOrganizationMemberRole")}</FormLabel>
+
+          <Select {...register("role")}>
+            <option value="mod">{text("organizationMemberMod")}</option>
+            <option value="user">{text("organizationMemberUser")}</option>
+            <option value="guest">{text("organizationMemberGuest")}</option>
+          </Select>
+          <FormErrorMessage>{errors.role?.message}</FormErrorMessage>
+        </FormControl>
+
         <FormErrorMessage>{error?.message}</FormErrorMessage>
 
-        <Button
-          isDisabled={!!errors.email || !isDirty}
-          isLoading={isLoading}
-          type="submit"
-        >
+        <Button isDisabled={!isDirty} isLoading={isLoading} type="submit">
           {text("addOrganizationMemberButton")}
         </Button>
       </VStack>

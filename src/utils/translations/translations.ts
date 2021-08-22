@@ -54,6 +54,7 @@ const translation = {
   // Add Organization member
   addOrganizationMemberHeader: "Add Member",
   addOrganizationMemberButton: "Invite",
+  addOrganizationMemberRole: "Role",
 
   // Add template
   addTemplateHeader: "Add new template",
