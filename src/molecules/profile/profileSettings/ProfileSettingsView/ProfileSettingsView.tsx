@@ -10,26 +10,26 @@ import {
 import { PostgrestError } from "@supabase/supabase-js";
 import React from "react";
 import { useForm } from "react-hook-form";
-import { Organization } from "../../../../services";
+import { Profile } from "../../../../services";
 import { useText, useTextValidator } from "../../../../utils";
 
-export type CreateOrganizationViewData = {
+export type ProfileSettingsViewData = {
   name: string;
-  description: string;
 };
 
-export type CreateOrganizationViewProps = {
+export type ProfileSettingsViewProps = {
   isLoading: boolean;
+  profile: Profile;
   error?: PostgrestError | null;
-  organization?: Organization | null;
-  onSubmit: (data: CreateOrganizationViewData) => void;
+  onSubmit: (data: ProfileSettingsViewData) => void;
 };
 
-const CreateOrganizationView = ({
+const ProfileSettingsView = ({
   isLoading,
   error,
+  profile,
   onSubmit,
-}: CreateOrganizationViewProps): JSX.Element => {
+}: ProfileSettingsViewProps): JSX.Element => {
   const text = useText();
 
   const nameValidator = useTextValidator({
@@ -42,23 +42,19 @@ const CreateOrganizationView = ({
     formState: { errors, isValid, isDirty },
     register,
     handleSubmit,
-  } = useForm<CreateOrganizationViewData>();
+  } = useForm<ProfileSettingsViewData>({
+    defaultValues: { name: profile.name },
+  });
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <VStack>
-        <Heading>{text("addOrganizationHeader")}</Heading>
+        <Heading>{text("profileSettingsHeader")}</Heading>
 
         <FormControl isInvalid={!!errors.name}>
-          <FormLabel>{text("addOrganizationName")}</FormLabel>
+          <FormLabel>{text("profileSettingsName")}</FormLabel>
           <Input {...register("name", nameValidator)} />
           <FormErrorMessage>{errors.name?.message}</FormErrorMessage>
-        </FormControl>
-
-        <FormControl isInvalid={!!errors.description}>
-          <FormLabel>{text("addOrganizationDescription")}</FormLabel>
-          <Input {...register("description")} />
-          <FormErrorMessage>{errors.description?.message}</FormErrorMessage>
         </FormControl>
 
         <FormErrorMessage>{error?.message}</FormErrorMessage>
@@ -68,11 +64,11 @@ const CreateOrganizationView = ({
           isLoading={isLoading}
           type="submit"
         >
-          {text("addOrganizationSubmit")}
+          {text("profileSettingsSave")}
         </Button>
       </VStack>
     </form>
   );
 };
 
-export default CreateOrganizationView;
+export default ProfileSettingsView;

@@ -19,6 +19,7 @@ const paths = {
     `/organization/${organizationId}/settings`,
   organizations: "/organization",
   newOrganization: "/organization/new",
+  profile: "/organization/profile",
   home: "/",
   signIn: "/signIn",
   signUp: "/signUp",

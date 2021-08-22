@@ -23,6 +23,8 @@ const DashboardSideBarView = ({
           <Text fontSize="sm">{organization.name}</Text>
         </Link>
       ))}
+      <Heading size="md">{text("sideBarProfile")}</Heading>
+      <Link href={paths.profile}>{text("sideBarProfileSettings")}</Link>
     </VStack>
   );
 };

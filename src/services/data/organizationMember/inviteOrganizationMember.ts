@@ -3,9 +3,11 @@ import {
   useMutation,
   UseMutationOptions,
   UseMutationResult,
+  useQueryClient,
 } from "react-query";
 import { supabase } from "../../supabase";
 import { OrganizationRole } from "../../types";
+import { selectAllOrganizationMembersKey } from "./selectOrganizationMembers";
 
 export type InviteOrganizationMemberArgs = {
   organizationId: number;
@@ -37,5 +39,14 @@ export const useInviteOrganizationMember = (
     PostgrestError,
     InviteOrganizationMemberArgs
   >
-): UseMutationResult<void, PostgrestError, InviteOrganizationMemberArgs> =>
-  useMutation(inviteOrganizationMember, options);
+): UseMutationResult<void, PostgrestError, InviteOrganizationMemberArgs> => {
+  const queryClient = useQueryClient();
+
+  return useMutation(inviteOrganizationMember, {
+    ...options,
+    onSuccess: (item, variables, ...args) => {
+      queryClient.invalidateQueries(selectAllOrganizationMembersKey());
+      options?.onSuccess?.(item, variables, ...args);
+    },
+  });
+};

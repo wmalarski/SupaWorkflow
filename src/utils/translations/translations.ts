@@ -13,6 +13,8 @@ const translation = {
   sideBarNewOrganization: "New Organization",
   sideBarTemplates: "Templates",
   sideBarNewTemplate: "New Template",
+  sideBarProfile: "Profile",
+  sideBarProfileSettings: "Settings",
 
   // Auth
   signInHeader: "Sign In",
@@ -24,6 +26,11 @@ const translation = {
   passwordPlaceholder: "Password",
   confirmPasswordPlaceholder: "Confirm Password",
   fieldIsDifferent: "Repeat password",
+
+  // Profile Settings
+  profileSettingsHeader: "Edit Profile",
+  profileSettingsName: "Name",
+  profileSettingsSave: "Save",
 
   // Add organization
   addOrganizationHeader: "Add new organization",
