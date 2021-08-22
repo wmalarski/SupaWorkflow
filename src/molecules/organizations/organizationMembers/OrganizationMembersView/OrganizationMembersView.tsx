@@ -1,5 +1,6 @@
 import { Table, Tbody, Th, Thead, Tr, VStack } from "@chakra-ui/react";
 import React from "react";
+import { Pagination } from "../../../../atoms";
 import {
   OrganizationRole,
   SelectOrganizationMembersResult,
@@ -9,6 +10,7 @@ import OrganizationMemberRow from "../OrganizationMemberRow/OrganizationMemberRo
 
 export type OrganizationMembersViewProps = {
   page: number;
+  pageSize: number;
   members?: SelectOrganizationMembersResult | null;
   authorId: number;
   isLoading: boolean;
@@ -20,10 +22,14 @@ export type OrganizationMembersViewProps = {
 };
 
 const OrganizationMembersView = ({
+  page,
+  pageSize,
   members,
   authorId,
+  isLoading,
   isUpdateLoading,
   loadingMemberId,
+  onPageChange,
   onDeleteClick,
   onUpdateClick,
 }: OrganizationMembersViewProps): JSX.Element => {
@@ -56,6 +62,16 @@ const OrganizationMembersView = ({
           ))}
         </Tbody>
       </Table>
+      <Pagination
+        page={page}
+        onPageChange={onPageChange}
+        maxPage={Math.floor((members?.count ?? 0) / pageSize)}
+        isLoading={isLoading}
+        left={text("previousPage")}
+        right={text("nextPage")}
+      >
+        {page + 1}
+      </Pagination>
     </VStack>
   );
 };

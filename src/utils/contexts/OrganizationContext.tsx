@@ -39,6 +39,7 @@ export type OrganizationContextProviderProps = {
   member: OrganizationMember;
   profile: Profile;
   children: ReactNode;
+  enabled?: boolean;
 };
 
 export const OrganizationContextProvider = ({
@@ -46,10 +47,11 @@ export const OrganizationContextProvider = ({
   member,
   profile,
   children,
+  enabled,
 }: OrganizationContextProviderProps): JSX.Element => {
   const { data } = useSelectOrganizationMember(
     { organizationId: organization.id, userId: profile.user_id },
-    { initialData: { member, profile, organization } }
+    { initialData: { member, profile, organization }, enabled }
   );
 
   const profileValue = useMemo(

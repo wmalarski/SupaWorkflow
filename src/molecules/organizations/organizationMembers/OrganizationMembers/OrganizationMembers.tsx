@@ -40,6 +40,7 @@ const OrganizationMembers = ({
   return (
     <View
       page={page}
+      pageSize={PAGE_SIZE}
       onPageChange={setPage}
       members={members}
       isLoading={isLoading}

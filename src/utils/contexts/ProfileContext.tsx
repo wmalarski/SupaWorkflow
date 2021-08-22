@@ -20,15 +20,17 @@ export const useProfileContext = (): Profile => {
 export type ProfileContextProviderProps = {
   profile: Profile;
   children: ReactNode;
+  enabled?: boolean;
 };
 
 export const ProfileContextProvider = ({
   profile,
   children,
+  enabled,
 }: ProfileContextProviderProps): JSX.Element => {
   const { data } = useSelectProfile(
     { userId: profile.user_id },
-    { initialData: profile }
+    { initialData: profile, enabled }
   );
 
   const value = useMemo(

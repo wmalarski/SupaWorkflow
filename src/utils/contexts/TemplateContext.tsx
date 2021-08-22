@@ -20,15 +20,17 @@ export const useTemplateContext = (): Template => {
 export type TemplateContextProviderProps = {
   template: Template;
   children: ReactNode;
+  enabled?: boolean;
 };
 
 export const TemplateContextProvider = ({
   template,
   children,
+  enabled,
 }: TemplateContextProviderProps): JSX.Element => {
   const { data } = useSelectTemplate(
     { id: template.id },
-    { initialData: template }
+    { initialData: template, enabled }
   );
 
   const value = useMemo(

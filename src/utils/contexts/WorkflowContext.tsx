@@ -20,15 +20,17 @@ export const useWorkflowContext = (): Workflow => {
 export type WorkflowContextProviderProps = {
   workflow: Workflow;
   children: ReactNode;
+  enabled?: boolean;
 };
 
 export const WorkflowContextProvider = ({
   workflow,
   children,
+  enabled,
 }: WorkflowContextProviderProps): JSX.Element => {
   const { data } = useSelectWorkflow(
     { id: workflow.id },
-    { initialData: workflow }
+    { initialData: workflow, enabled }
   );
 
   const value = useMemo(

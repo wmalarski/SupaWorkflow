@@ -2,6 +2,8 @@ const translation = {
   // Navigation
   appName: "SupaWorkflow",
   navigationOrganizations: "Dashboard",
+  nextPage: "Next Page",
+  previousPage: "Previous Page",
 
   // SideBar
   sideBarOrganization: "Organization",
