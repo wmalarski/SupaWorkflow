@@ -2,6 +2,7 @@ export { default as SignIn } from "./auth/signIn/SignIn/SignIn";
 export { default as SignOut } from "./auth/signOut/SignOut/SignOut";
 export { default as SignUp } from "./auth/signUp/SignUp/SignUp";
 export { default as DashboardCorner } from "./dashboard/dashboardCorner/DashboardCorner/DashboardCorner";
+export { default as DashboardHeader } from "./dashboard/dashboardHeader/DashboardHeader/DashboardHeader";
 export { default as DashboardSideBar } from "./dashboard/dashboardSideBar/DashboardSideBar/DashboardSideBar";
 export { default as AnonHeader } from "./landing/anonHeader/AnonHeader/AnonHeader";
 export { default as LandingHeader } from "./landing/landingHeader/LandingHeader/LandingHeader";

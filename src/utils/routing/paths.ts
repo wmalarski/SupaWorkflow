@@ -3,7 +3,7 @@ const paths = {
     `/dashboard/${organizationId}/team/${teamId}`,
   teams: (organizationId: number): string =>
     `/dashboard/${organizationId}/team`,
-  newTeams: (organizationId: number): string =>
+  newTeam: (organizationId: number): string =>
     `/dashboard/${organizationId}/team/new`,
   template: (organizationId: number, templateId: number): string =>
     `/dashboard/${organizationId}/template/${templateId}`,
