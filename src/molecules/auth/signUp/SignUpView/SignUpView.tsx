@@ -10,19 +10,29 @@ import {
 import { PostgrestError, User } from "@supabase/supabase-js";
 import React from "react";
 import { useForm } from "react-hook-form";
-import { useText } from "../../../../utils";
 import {
-  SignUpViewContext,
-  SignUpViewData,
-  signUpViewResolver,
-  useSignUpViewOptions,
-} from "./SignUpView.utils";
+  confirmPasswordResolver,
+  useEmailValidator,
+  usePasswordValidator,
+  useText,
+  UseTextFnc,
+} from "../../../../utils";
 
 export type SignUpViewProps = {
   isLoading: boolean;
   error: PostgrestError | null;
   user?: User | null;
   onSubmit: (data: SignUpViewData) => void;
+};
+
+export type SignUpViewData = {
+  email: string;
+  password: string;
+  confirmPassword: string;
+};
+
+export type SignUpViewContext = {
+  text: UseTextFnc;
 };
 
 const SignUpView = ({
@@ -32,14 +42,15 @@ const SignUpView = ({
 }: SignUpViewProps): JSX.Element => {
   const text = useText();
 
-  const options = useSignUpViewOptions();
+  const emailValidator = useEmailValidator();
+  const passwordValidator = usePasswordValidator();
 
   const {
     formState: { errors, isDirty, isValid },
     register,
     handleSubmit,
   } = useForm<SignUpViewData, SignUpViewContext>({
-    resolver: signUpViewResolver,
+    resolver: confirmPasswordResolver,
     context: { text },
   });
 
@@ -50,22 +61,19 @@ const SignUpView = ({
 
         <FormControl isInvalid={!!errors.email}>
           <FormLabel>{text("emailPlaceholder")}</FormLabel>
-          <Input type="email" {...register("email", options.email)} />
+          <Input type="email" {...register("email", emailValidator)} />
           <FormErrorMessage>{errors.email?.message}</FormErrorMessage>
         </FormControl>
 
         <FormControl isInvalid={!!errors.password}>
           <FormLabel>{text("passwordPlaceholder")}</FormLabel>
-          <Input type="password" {...register("password", options.password)} />
+          <Input type="password" {...register("password", passwordValidator)} />
           <FormErrorMessage>{errors.password?.message}</FormErrorMessage>
         </FormControl>
 
         <FormControl isInvalid={!!errors.confirmPassword}>
           <FormLabel>{text("confirmPasswordPlaceholder")}</FormLabel>
-          <Input
-            type="password"
-            {...register("password", options.confirmPassword)}
-          />
+          <Input type="password" {...register("password", passwordValidator)} />
           <FormErrorMessage>{errors.confirmPassword?.message}</FormErrorMessage>
         </FormControl>
 

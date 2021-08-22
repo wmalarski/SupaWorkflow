@@ -11,17 +11,18 @@ import { PostgrestError } from "@supabase/supabase-js";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { Template } from "../../../../services";
-import { useText } from "../../../../utils";
-import {
-  CreateTemplateViewData,
-  useCreateTemplateViewOptions,
-} from "./CreateTemplateView.utils";
+import { useText, useTextValidator } from "../../../../utils";
 
 export type CreateTemplateViewProps = {
   isLoading: boolean;
   error?: PostgrestError | null;
   template?: Template | null;
   onSubmit: (data: CreateTemplateViewData) => void;
+};
+
+export type CreateTemplateViewData = {
+  name: string;
+  description: string;
 };
 
 const CreateTemplateView = ({
@@ -31,7 +32,11 @@ const CreateTemplateView = ({
 }: CreateTemplateViewProps): JSX.Element => {
   const text = useText();
 
-  const options = useCreateTemplateViewOptions();
+  const nameValidator = useTextValidator({
+    maxLength: 32,
+    minLength: 3,
+    required: true,
+  });
 
   const {
     formState: { errors, isDirty, isValid },
@@ -46,13 +51,13 @@ const CreateTemplateView = ({
 
         <FormControl isInvalid={!!errors.name}>
           <FormLabel>{text("addTemplateName")}</FormLabel>
-          <Input {...register("name", options.name)} />
+          <Input {...register("name", nameValidator)} />
           <FormErrorMessage>{errors.name?.message}</FormErrorMessage>
         </FormControl>
 
         <FormControl isInvalid={!!errors.description}>
           <FormLabel>{text("addTemplateDescription")}</FormLabel>
-          <Input {...register("description", options.description)} />
+          <Input {...register("description")} />
           <FormErrorMessage>{errors.description?.message}</FormErrorMessage>
         </FormControl>
 

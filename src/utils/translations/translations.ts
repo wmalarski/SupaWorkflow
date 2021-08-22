@@ -51,6 +51,10 @@ const translation = {
   organizationMemberGuest: "Guest",
   deleteOrganizationMember: "Remove",
 
+  // Add Organization member
+  addOrganizationMemberHeader: "Add Member",
+  addOrganizationMemberButton: "Invite",
+
   // Add template
   addTemplateHeader: "Add new template",
   addTemplateName: "Name",

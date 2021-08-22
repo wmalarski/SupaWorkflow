@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  AddOrganizationMember,
   DashboardCorner,
   OrganizationMembers,
   OrganizationSideBar,
@@ -28,6 +29,7 @@ const OrganizationMembersPage = ({
         header={<UserNavigation />}
         sideBar={<OrganizationSideBar />}
       >
+        <AddOrganizationMember />
         <OrganizationMembers />
       </GridPage>
     </OrganizationContextProvider>

@@ -3,6 +3,7 @@ export * from "./contexts/ProfileContext";
 export * from "./contexts/TemplateContext";
 export * from "./contexts/UserContext";
 export * from "./contexts/WorkflowContext";
+export * from "./forms/validators";
 export { default as paths } from "./routing/paths";
 export * from "./routing/protectedRoute";
 export { default as useText } from "./translations/useText";

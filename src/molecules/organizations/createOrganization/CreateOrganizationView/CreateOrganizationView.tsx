@@ -11,17 +11,18 @@ import { PostgrestError } from "@supabase/supabase-js";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { Organization } from "../../../../services";
-import { useText } from "../../../../utils";
-import {
-  CreateOrganizationViewData,
-  useCreateOrganizationViewOptions,
-} from "./CreateOrganizationView.utils";
+import { useText, useTextValidator } from "../../../../utils";
 
 export type CreateOrganizationViewProps = {
   isLoading: boolean;
   error?: PostgrestError | null;
   organization?: Organization | null;
   onSubmit: (data: CreateOrganizationViewData) => void;
+};
+
+export type CreateOrganizationViewData = {
+  name: string;
+  description: string;
 };
 
 const CreateOrganizationView = ({
@@ -31,7 +32,11 @@ const CreateOrganizationView = ({
 }: CreateOrganizationViewProps): JSX.Element => {
   const text = useText();
 
-  const options = useCreateOrganizationViewOptions();
+  const nameValidator = useTextValidator({
+    maxLength: 32,
+    minLength: 3,
+    required: true,
+  });
 
   const {
     formState: { errors, isValid, isDirty },
@@ -46,13 +51,13 @@ const CreateOrganizationView = ({
 
         <FormControl isInvalid={!!errors.name}>
           <FormLabel>{text("addOrganizationName")}</FormLabel>
-          <Input {...register("name", options.name)} />
+          <Input {...register("name", nameValidator)} />
           <FormErrorMessage>{errors.name?.message}</FormErrorMessage>
         </FormControl>
 
         <FormControl isInvalid={!!errors.description}>
           <FormLabel>{text("addOrganizationDescription")}</FormLabel>
-          <Input {...register("description", options.description)} />
+          <Input {...register("description")} />
           <FormErrorMessage>{errors.description?.message}</FormErrorMessage>
         </FormControl>
 

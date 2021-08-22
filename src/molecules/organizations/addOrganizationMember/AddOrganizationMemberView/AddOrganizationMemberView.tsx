@@ -7,47 +7,42 @@ import {
   Input,
   VStack,
 } from "@chakra-ui/react";
-import { PostgrestError, User } from "@supabase/supabase-js";
+import { PostgrestError } from "@supabase/supabase-js";
 import React from "react";
 import { useForm } from "react-hook-form";
-import {
-  useEmailValidator,
-  usePasswordValidator,
-  useText,
-} from "../../../../utils";
+import { useEmailValidator, useText } from "../../../../utils";
 
-export type SignInViewData = {
+export type AddOrganizationMemberViewData = {
   email: string;
-  password: string;
 };
 
-export type SignInViewProps = {
-  isLoading: boolean;
+export type AddOrganizationMemberViewProps = {
   error: PostgrestError | null;
-  user?: User | null;
-  onSubmit: (data: SignInViewData) => void;
+  isLoading: boolean;
+  onSubmit: (data: AddOrganizationMemberViewData) => void;
 };
 
-const SignInView = ({
-  isLoading,
+const AddOrganizationMemberView = ({
   error,
+  isLoading,
   onSubmit,
-}: SignInViewProps): JSX.Element => {
+}: AddOrganizationMemberViewProps): JSX.Element => {
   const text = useText();
 
   const {
     formState: { errors, isValid, isDirty },
     register,
     handleSubmit,
-  } = useForm<SignInViewData>();
+  } = useForm<AddOrganizationMemberViewData>();
 
   const emailValidator = useEmailValidator();
-  const passwordValidator = usePasswordValidator();
+
+  console.log({ a: !isValid || isDirty, isValid, isDirty, errors });
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <VStack>
-        <Heading>{text("signInHeader")}</Heading>
+        <Heading>{text("addOrganizationMemberHeader")}</Heading>
 
         <FormControl isInvalid={!!errors.email}>
           <FormLabel>{text("emailPlaceholder")}</FormLabel>
@@ -55,24 +50,18 @@ const SignInView = ({
           <FormErrorMessage>{errors.email?.message}</FormErrorMessage>
         </FormControl>
 
-        <FormControl isInvalid={!!errors.password}>
-          <FormLabel>{text("passwordPlaceholder")}</FormLabel>
-          <Input type="password" {...register("password", passwordValidator)} />
-          <FormErrorMessage>{errors.password?.message}</FormErrorMessage>
-        </FormControl>
-
         <FormErrorMessage>{error?.message}</FormErrorMessage>
 
         <Button
-          isDisabled={isValid || !isDirty}
+          isDisabled={!!errors.email || !isDirty}
           isLoading={isLoading}
           type="submit"
         >
-          {text("signInButton")}
+          {text("addOrganizationMemberButton")}
         </Button>
       </VStack>
     </form>
   );
 };
 
-export default SignInView;
+export default AddOrganizationMemberView;

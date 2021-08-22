@@ -59,7 +59,7 @@ export const organizationProtectedRoute: (
 
       if (!organizationId) return { notFound: true };
 
-      const props = await selectOrganizationMember({
+      const organizationMember = await selectOrganizationMember({
         queryKey: selectOrganizationMemberKey({
           roles,
           organizationId: Number(organizationId),
@@ -67,7 +67,11 @@ export const organizationProtectedRoute: (
         }),
       });
 
-      return !props ? { notFound: true } : { props };
+      const { member, organization, profile } = organizationMember ?? {};
+
+      return member && organization && profile
+        ? { props: { member, organization, profile } }
+        : { notFound: true };
     } catch (exception) {
       console.log("organizationProtectedRoute", exception);
       return { notFound: true };
@@ -105,8 +109,10 @@ export const templateProtectedRoute: (
         }),
       ]);
 
-      return organizationMember && template
-        ? { props: { template, ...organizationMember } }
+      const { member, organization, profile } = organizationMember ?? {};
+
+      return member && organization && profile && template
+        ? { props: { template, member, organization, profile } }
         : { notFound: true };
     } catch (exception) {
       console.log("templateProtectedRoute", exception);
@@ -145,8 +151,10 @@ export const workflowProtectedRoute: (
         }),
       ]);
 
-      return organizationMember && workflow
-        ? { props: { workflow, ...organizationMember } }
+      const { member, organization, profile } = organizationMember ?? {};
+
+      return member && organization && profile && workflow
+        ? { props: { workflow, member, organization, profile } }
         : { notFound: true };
     } catch (exception) {
       console.log("workflowProtectedRoute", exception);

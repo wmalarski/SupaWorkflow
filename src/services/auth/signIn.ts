@@ -7,7 +7,10 @@ import {
 import { supabase } from "../supabase";
 
 export const signIn = async (args: UserCredentials): Promise<User> => {
-  const { error, user } = await supabase.auth.signIn(args);
+  const { error, user, data, session, provider, url } =
+    await supabase.auth.signIn(args);
+
+  console.log({ error, user, data, session, provider, url });
 
   if (error || !user) throw error;
 
