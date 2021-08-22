@@ -1,4 +1,10 @@
 const paths = {
+  team: (organizationId: number, teamId: number): string =>
+    `/dashboard/${organizationId}/team/${teamId}`,
+  teams: (organizationId: number): string =>
+    `/dashboard/${organizationId}/team`,
+  newTeams: (organizationId: number): string =>
+    `/dashboard/${organizationId}/team/new`,
   template: (organizationId: number, templateId: number): string =>
     `/dashboard/${organizationId}/template/${templateId}`,
   newWorkflow: (organizationId: number, templateId: number): string =>
@@ -17,8 +23,6 @@ const paths = {
     `/dashboard/${organizationId}/members`,
   organizationSettings: (organizationId: number): string =>
     `/dashboard/${organizationId}/settings`,
-  teams: (organizationId: number): string =>
-    `/dashboard/${organizationId}/teams`,
   organizations: "/dashboard",
   newOrganization: "/dashboard/new",
   profile: "/dashboard/profile",

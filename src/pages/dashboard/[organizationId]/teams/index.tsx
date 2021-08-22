@@ -3,14 +3,14 @@ import {
   DashboardCorner,
   OrganizationSideBar,
   OrganizationTeams,
-} from "../../../molecules";
-import { UserNavigation } from "../../../organisms";
-import { GridPage } from "../../../templates";
+} from "../../../../molecules";
+import { UserNavigation } from "../../../../organisms";
+import { GridPage } from "../../../../templates";
 import {
   OrganizationContextProvider,
   organizationProtectedRoute,
   OrganizationProtectedRouteProps,
-} from "../../../utils";
+} from "../../../../utils";
 
 const OrganizationTeamsPage = ({
   organization,

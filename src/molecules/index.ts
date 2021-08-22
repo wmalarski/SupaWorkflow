@@ -14,6 +14,9 @@ export { default as OrganizationSettings } from "./organizations/organizationSet
 export { default as OrganizationSideBar } from "./organizations/organizationSideBar/OrganizationSideBar/OrganizationSideBar";
 export { default as OrganizationsList } from "./organizations/organizationsList/OrganizationsList/OrganizationsList";
 export { default as ProfileHeader } from "./profile/profileHeader/ProfileHeader/ProfileHeader";
+export { default as NewOrganizationTeam } from "./teams/newOrganizationTeam/NewOrganizationTeam/NewOrganizationTeam";
+export { default as NewTeamMember } from "./teams/newTeamMember/NewTeamMember/NewTeamMember";
+export { default as OrganizationTeam } from "./teams/organizationTeam/OrganizationTeam/OrganizationTeam";
 export { default as OrganizationTeams } from "./teams/organizationTeams/OrganizationTeams/OrganizationTeams";
 export { default as CreateTemplate } from "./templates/createTemplate/CreateTemplate/CreateTemplate";
 export { default as TemplatesList } from "./templates/templatesList/TemplatesList/TemplatesList";
