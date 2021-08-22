@@ -13,10 +13,12 @@ const paths = {
     `/dashboard/${organizationId}/workflow`,
   organization: (organizationId: number): string =>
     `/dashboard/${organizationId}`,
-  organizationMembers: (organizationId: number): string =>
+  members: (organizationId: number): string =>
     `/dashboard/${organizationId}/members`,
   organizationSettings: (organizationId: number): string =>
     `/dashboard/${organizationId}/settings`,
+  teams: (organizationId: number): string =>
+    `/dashboard/${organizationId}/teams`,
   organizations: "/dashboard",
   newOrganization: "/dashboard/new",
   profile: "/dashboard/profile",

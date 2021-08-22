@@ -6,14 +6,15 @@ export { default as DashboardSideBar } from "./dashboard/dashboardSideBar/Dashbo
 export { default as AnonHeader } from "./landing/anonHeader/AnonHeader/AnonHeader";
 export { default as LandingHeader } from "./landing/landingHeader/LandingHeader/LandingHeader";
 export { default as LandingTop } from "./landing/landingTop/LandingTop/LandingTop";
-export { default as AddOrganizationMember } from "./organizations/addOrganizationMember/AddOrganizationMember/AddOrganizationMember";
+export { default as AddOrganizationMember } from "./members/addOrganizationMember/AddOrganizationMember/AddOrganizationMember";
+export { default as OrganizationMembers } from "./members/organizationMembers/OrganizationMembers/OrganizationMembers";
 export { default as CreateOrganization } from "./organizations/createOrganization/CreateOrganization/CreateOrganization";
 export { default as OrganizationDashboard } from "./organizations/organizationDashboard/OrganizationDashboard/OrganizationDashboard";
-export { default as OrganizationMembers } from "./organizations/organizationMembers/OrganizationMembers/OrganizationMembers";
 export { default as OrganizationSettings } from "./organizations/organizationSettings/OrganizationSettings/OrganizationSettings";
 export { default as OrganizationSideBar } from "./organizations/organizationSideBar/OrganizationSideBar/OrganizationSideBar";
 export { default as OrganizationsList } from "./organizations/organizationsList/OrganizationsList/OrganizationsList";
 export { default as ProfileHeader } from "./profile/profileHeader/ProfileHeader/ProfileHeader";
+export { default as OrganizationTeams } from "./teams/organizationTeams/OrganizationTeams/OrganizationTeams";
 export { default as CreateTemplate } from "./templates/createTemplate/CreateTemplate/CreateTemplate";
 export { default as TemplatesList } from "./templates/templatesList/TemplatesList/TemplatesList";
 export { default as CreateWorkflow } from "./workflows/createWorkflow/CreateWorkflow/CreateWorkflow";

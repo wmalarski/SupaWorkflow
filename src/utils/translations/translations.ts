@@ -15,6 +15,7 @@ const translation = {
   sideBarNewTemplate: "New Template",
   sideBarProfile: "Profile",
   sideBarProfileSettings: "Settings",
+  sideBarTeams: "Teams",
 
   // Auth
   signInHeader: "Sign In",

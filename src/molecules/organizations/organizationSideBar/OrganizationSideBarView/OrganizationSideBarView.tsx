@@ -22,14 +22,16 @@ const OrganizationSideBarView = ({
   return (
     <VStack>
       <Heading size="md">{text("sideBarOrganization")}</Heading>
-      <Link href={paths.organizationMembers(organization.id)}>
+      <Link href={paths.members(organization.id)}>
         {text("sideBarMembers")}
       </Link>
+      <Link href={paths.teams(organization.id)}>{text("sideBarTeams")}</Link>
       <OrganizationRoleGuard roles={["mod", "owner"]}>
         <Link href={paths.organizationSettings(organization.id)}>
           {text("sideBarSettings")}
         </Link>
       </OrganizationRoleGuard>
+
       <Heading size="md">{text("sideBarTemplates")}</Heading>
       <Link href={paths.newTemplate(organization.id)}>
         {text("sideBarNewTemplate")}
