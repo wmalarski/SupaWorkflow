@@ -10,9 +10,8 @@ export const mapRouteToLinks = ({
   route,
   path,
   text,
-}: MapRouteToLinksArgs): MapRouteReturn[] => {
-  console.log({ route, path });
-  return route
+}: MapRouteToLinksArgs): MapRouteReturn[] =>
+  route
     .split("/")
     .reduce<string[]>((prev, curr) => {
       const acc = prev.length === 0 ? curr : `${prev[prev.length - 1]}/${curr}`;
@@ -22,4 +21,3 @@ export const mapRouteToLinks = ({
       const link = mapRoute({ path, text, route: curr });
       return link ? [...prev, link] : prev;
     }, []);
-};

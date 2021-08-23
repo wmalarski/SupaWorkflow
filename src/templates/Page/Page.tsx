@@ -1,15 +1,18 @@
+import { Box, Center, Text } from "@chakra-ui/react";
 import Head from "next/head";
 import Image from "next/image";
-import { PropsWithChildren } from "react";
+import React, { PropsWithChildren } from "react";
 
 export type PageProps = {
   appTitle?: string;
   header?: React.ReactNode;
+  hideFooter?: boolean;
 };
 
 const Page = ({
   children,
   header,
+  hideFooter,
   appTitle = "SupaWorkflow",
 }: PropsWithChildren<PageProps>): JSX.Element => (
   <div>
@@ -19,22 +22,39 @@ const Page = ({
       <link rel="icon" href="/favicon.ico" />
     </Head>
 
-    <header>{header}</header>
+    {header && (
+      <header>
+        <Box h={40} p={10}>
+          {header}
+        </Box>
+      </header>
+    )}
 
     <main>{children}</main>
 
-    <footer>
-      <a
-        href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Powered by{" "}
-        <span>
-          <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-        </span>
-      </a>
-    </footer>
+    {!hideFooter && (
+      <footer>
+        <Center>
+          <a
+            href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Text>
+              Powered by{" "}
+              <span>
+                <Image
+                  src="/vercel.svg"
+                  alt="Vercel Logo"
+                  width={72}
+                  height={16}
+                />
+              </span>
+            </Text>
+          </a>
+        </Center>
+      </footer>
+    )}
   </div>
 );
 

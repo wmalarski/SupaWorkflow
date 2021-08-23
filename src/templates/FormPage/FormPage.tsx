@@ -1,20 +1,14 @@
-import { Grid, GridItem } from "@chakra-ui/react";
+import { Container, Grid, GridItem } from "@chakra-ui/react";
 import React from "react";
 import Page from "../Page/Page";
 
-export type GridTemplateProps = {
+export type FormPageProps = {
   corner?: React.ReactNode;
-  sideBar?: React.ReactNode;
   header?: React.ReactNode;
   children?: React.ReactNode;
 };
 
-const GridTemplate = ({
-  corner,
-  children,
-  header,
-  sideBar,
-}: GridTemplateProps): JSX.Element => {
+const FormPage = ({ corner, children, header }: FormPageProps): JSX.Element => {
   return (
     <Page hideFooter>
       <Grid
@@ -29,13 +23,14 @@ const GridTemplate = ({
         <GridItem borderBottomWidth={1} padding={5}>
           {header}
         </GridItem>
-        <GridItem borderRightWidth={1} padding={5}>
-          {sideBar}
+        <GridItem colSpan={2} padding={50}>
+          <Container maxW="xl" centerContent borderWidth={1} padding={50}>
+            {children}
+          </Container>
         </GridItem>
-        <GridItem padding={5}>{children}</GridItem>
       </Grid>
     </Page>
   );
 };
 
-export default GridTemplate;
+export default FormPage;

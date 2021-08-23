@@ -1,12 +1,11 @@
 import type { NextPage } from "next";
 import React from "react";
-import { SignIn } from "../molecules";
-import { AnonNavigation } from "../organisms";
+import { AnonHeader, SignIn } from "../molecules";
 import { Page } from "../templates";
 
 const SignInPage: NextPage = () => {
   return (
-    <Page header={<AnonNavigation />}>
+    <Page header={<AnonHeader />}>
       <SignIn />
     </Page>
   );

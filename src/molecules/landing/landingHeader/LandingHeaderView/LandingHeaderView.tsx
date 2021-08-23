@@ -7,7 +7,7 @@ const LandingHeaderView = (): JSX.Element => {
   const text = useText();
 
   return (
-    <HStack>
+    <HStack spacing={5}>
       <Link href={paths.home}>
         <Heading size="md">{text("appName")}</Heading>
       </Link>

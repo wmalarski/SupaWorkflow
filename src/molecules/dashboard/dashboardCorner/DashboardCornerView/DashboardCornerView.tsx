@@ -7,7 +7,7 @@ const DashboardCornerView = (): JSX.Element => {
   const text = useText();
 
   return (
-    <Center>
+    <Center h="100%">
       <Link href={paths.home}>
         <Heading size="md">{text("appName")}</Heading>
       </Link>

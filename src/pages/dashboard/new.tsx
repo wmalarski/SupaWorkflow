@@ -1,11 +1,7 @@
 import React from "react";
-import {
-  CreateOrganization,
-  DashboardCorner,
-  DashboardSideBar,
-} from "../../molecules";
+import { CreateOrganization, DashboardCorner } from "../../molecules";
 import { UserNavigation } from "../../organisms";
-import { GridPage } from "../../templates";
+import { FormPage } from "../../templates";
 import {
   ProfileContextProvider,
   profileProtectedRoute,
@@ -17,13 +13,9 @@ const NewOrganizationPage = ({
 }: ProfileProtectedRouteProps): JSX.Element => {
   return (
     <ProfileContextProvider profile={profile}>
-      <GridPage
-        corner={<DashboardCorner />}
-        header={<UserNavigation />}
-        sideBar={<DashboardSideBar />}
-      >
+      <FormPage corner={<DashboardCorner />} header={<UserNavigation />}>
         <CreateOrganization />
-      </GridPage>
+      </FormPage>
     </ProfileContextProvider>
   );
 };

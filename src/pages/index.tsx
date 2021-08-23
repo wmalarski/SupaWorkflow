@@ -1,15 +1,27 @@
 import type { NextPage } from "next";
 import React from "react";
-import { LandingTop } from "../molecules";
-import { AnonNavigation, LandingNavigation } from "../organisms";
-import { Page } from "../templates";
+import {
+  AnonHeader,
+  LandingHeader,
+  LandingTop,
+  ProfileHeader,
+} from "../molecules";
+import { Header, Page } from "../templates";
 import { useUserContext } from "../utils";
 
 const Index: NextPage = () => {
   const { user } = useUserContext();
 
   return (
-    <Page header={user ? <LandingNavigation /> : <AnonNavigation />}>
+    <Page
+      header={
+        user ? (
+          <Header left={<LandingHeader />} right={<ProfileHeader />} />
+        ) : (
+          <AnonHeader />
+        )
+      }
+    >
       <LandingTop />
     </Page>
   );

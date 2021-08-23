@@ -7,7 +7,7 @@ const LandingTopView = (): JSX.Element => {
   const text = useText();
 
   return (
-    <Center h="100vh">
+    <Center h="70vh">
       <VStack>
         <Heading size="4xl">{text("appName")}</Heading>
         <Link href={paths.signUp}>{text("signUpHeader")}</Link>

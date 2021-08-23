@@ -12,34 +12,52 @@ const OrganizationSideBarView = ({
   const text = useText();
 
   return (
-    <VStack align="start">
-      <Heading size="md">{text("sideBarOrganization")}</Heading>
+    <VStack align="start" spacing={5}>
+      <Heading size="sm">{text("sideBarOrganization")}</Heading>
       <Link href={paths.organization(organizationId)}>
-        <Text fontSize="sm">{text("sideBarOrganizationDashboard")}</Text>
+        <Text pl={3} fontSize="sm">
+          {text("sideBarOrganizationDashboard")}
+        </Text>
       </Link>
+      <Link href={paths.templates(organizationId)}>
+        <Text pl={3} fontSize="sm">
+          {text("sideBarTemplates")}
+        </Text>
+      </Link>
+      <Link href={paths.workflows(organizationId)}>
+        <Text pl={3} fontSize="sm">
+          {text("sideBarWorkflows")}
+        </Text>
+      </Link>
+
+      <Heading size="sm" pt={4}>
+        {text("sideBarConfiguration")}
+      </Heading>
       <Link href={paths.members(organizationId)}>
-        <Text fontSize="sm">{text("sideBarMembers")}</Text>
+        <Text pl={3} fontSize="sm">
+          {text("sideBarMembers")}
+        </Text>
       </Link>
       <Link href={paths.teams(organizationId)}>
-        <Text fontSize="sm">{text("sideBarTeams")}</Text>
+        <Text pl={3} fontSize="sm">
+          {text("sideBarTeams")}
+        </Text>
       </Link>
       <OrganizationRoleGuard roles={["mod", "owner"]}>
         <Link href={paths.organizationSettings(organizationId)}>
-          <Text fontSize="sm">{text("sideBarSettings")}</Text>
+          <Text pl={3} fontSize="sm">
+            {text("sideBarSettings")}
+          </Text>
         </Link>
       </OrganizationRoleGuard>
-      <Link href={paths.templates(organizationId)}>
-        <Text fontSize="sm">{text("sideBarTemplates")}</Text>
-      </Link>
-      <Link href={paths.workflows(organizationId)}>
-        <Text fontSize="sm">{text("sideBarWorkflows")}</Text>
-      </Link>
 
-      <Heading size="md" pt={4}>
+      <Heading size="sm" pt={4}>
         {text("sideBarProfile")}
       </Heading>
       <Link href={paths.profile}>
-        <Text fontSize="sm">{text("sideBarProfileSettings")}</Text>
+        <Text pl={3} fontSize="sm">
+          {text("sideBarProfileSettings")}
+        </Text>
       </Link>
     </VStack>
   );

@@ -1,5 +1,6 @@
-import { Button } from "@chakra-ui/react";
+import { Button, HStack } from "@chakra-ui/react";
 import React from "react";
+import ThemeButton from "../../../../atoms/ThemeButton/ThemeButton";
 import { useText } from "../../../../utils";
 
 export type ProfileHeaderViewProps = {
@@ -12,9 +13,12 @@ const ProfileHeaderView = ({
   const text = useText();
 
   return (
-    <Button variant="link" onClick={onSignOutClicked}>
-      {text("signOutButton")}
-    </Button>
+    <HStack spacing={3}>
+      <ThemeButton />
+      <Button variant="link" onClick={onSignOutClicked}>
+        {text("signOutButton")}
+      </Button>
+    </HStack>
   );
 };
 

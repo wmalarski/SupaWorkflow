@@ -26,6 +26,7 @@ const translation = {
   sideBarOrganizationList: "Organizations Dashboard",
   sideBarOrganizationDashboard: "Dashboard",
   sideBarOrganizations: "Organizations",
+  sideBarConfiguration: "Configuration",
   sideBarMembers: "Members",
   sideBarSettings: "Settings",
   sideBarNewOrganization: "New Organization",
