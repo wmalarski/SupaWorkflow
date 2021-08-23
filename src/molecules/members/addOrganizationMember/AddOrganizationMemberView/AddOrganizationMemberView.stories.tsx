@@ -3,7 +3,7 @@ import React from "react";
 import AddOrganizationMemberView from "./AddOrganizationMemberView";
 
 export default {
-  title: "Molecules/Organizations/AddOrganizationMemberView",
+  title: "Molecules/Members/AddOrganizationMemberView",
   component: AddOrganizationMemberView,
   argTypes: { onSubmit: { type: "action" } },
 } as ComponentMeta<typeof AddOrganizationMemberView>;

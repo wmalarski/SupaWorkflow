@@ -1,49 +1,46 @@
 import { Heading, Link, Text, VStack } from "@chakra-ui/react";
 import React from "react";
-import { Template } from "../../../../services";
-import {
-  OrganizationRoleGuard,
-  paths,
-  useOrganizationContext,
-  useText,
-} from "../../../../utils";
+import { OrganizationRoleGuard, paths, useText } from "../../../../utils";
 
 export type OrganizationSideBarViewProps = {
-  templates?: Template[] | null;
+  organizationId: number;
 };
 
 const OrganizationSideBarView = ({
-  templates,
+  organizationId,
 }: OrganizationSideBarViewProps): JSX.Element => {
-  const { organization } = useOrganizationContext();
-
   const text = useText();
 
   return (
-    <VStack>
+    <VStack align="start">
       <Heading size="md">{text("sideBarOrganization")}</Heading>
-      <Link href={paths.members(organization.id)}>
-        {text("sideBarMembers")}
+      <Link href={paths.organization(organizationId)}>
+        <Text fontSize="sm">{text("sideBarOrganizationDashboard")}</Text>
       </Link>
-      <Link href={paths.teams(organization.id)}>{text("sideBarTeams")}</Link>
+      <Link href={paths.members(organizationId)}>
+        <Text fontSize="sm">{text("sideBarMembers")}</Text>
+      </Link>
+      <Link href={paths.teams(organizationId)}>
+        <Text fontSize="sm">{text("sideBarTeams")}</Text>
+      </Link>
       <OrganizationRoleGuard roles={["mod", "owner"]}>
-        <Link href={paths.organizationSettings(organization.id)}>
-          {text("sideBarSettings")}
+        <Link href={paths.organizationSettings(organizationId)}>
+          <Text fontSize="sm">{text("sideBarSettings")}</Text>
         </Link>
       </OrganizationRoleGuard>
-
-      <Heading size="md">{text("sideBarTemplates")}</Heading>
-      <Link href={paths.newTemplate(organization.id)}>
-        {text("sideBarNewTemplate")}
+      <Link href={paths.templates(organizationId)}>
+        <Text fontSize="sm">{text("sideBarTemplates")}</Text>
       </Link>
-      {templates?.map((template) => (
-        <Link
-          key={template.id}
-          href={paths.template(organization.id, template.id)}
-        >
-          <Text fontSize="sm">{template.name}</Text>
-        </Link>
-      ))}
+      <Link href={paths.workflows(organizationId)}>
+        <Text fontSize="sm">{text("sideBarWorkflows")}</Text>
+      </Link>
+
+      <Heading size="md" pt={4}>
+        {text("sideBarProfile")}
+      </Heading>
+      <Link href={paths.profile}>
+        <Text fontSize="sm">{text("sideBarProfileSettings")}</Text>
+      </Link>
     </VStack>
   );
 };

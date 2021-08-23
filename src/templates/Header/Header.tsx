@@ -1,3 +1,4 @@
+import { HStack } from "@chakra-ui/react";
 import React from "react";
 
 export type HeaderProps = {
@@ -7,10 +8,10 @@ export type HeaderProps = {
 
 const Header = ({ left, right }: HeaderProps): JSX.Element => {
   return (
-    <div>
-      {left}
-      {right}
-    </div>
+    <HStack justifyContent="space-between">
+      <div>{left}</div>
+      <div>{right}</div>
+    </HStack>
   );
 };
 

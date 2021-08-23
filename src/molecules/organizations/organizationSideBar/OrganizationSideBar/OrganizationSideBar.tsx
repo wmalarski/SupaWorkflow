@@ -1,5 +1,4 @@
 import React from "react";
-import { useSelectTemplates } from "../../../../services";
 import { useOrganizationContext } from "../../../../utils";
 import OrganizationSideBarView from "../OrganizationSideBarView/OrganizationSideBarView";
 
@@ -14,11 +13,7 @@ const OrganizationSideBar = ({
 }: OrganizationSideBarProps): JSX.Element => {
   const { organization } = useOrganizationContext();
 
-  const { data: templates } = useSelectTemplates({
-    organization_id: organization.id,
-  });
-
-  return <View templates={templates} />;
+  return <View organizationId={organization.id} />;
 };
 
 export default React.memo(OrganizationSideBar);

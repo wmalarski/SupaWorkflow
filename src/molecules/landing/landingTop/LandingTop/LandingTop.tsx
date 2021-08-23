@@ -10,7 +10,7 @@ export type LandingTopProps = {
 const LandingTop = ({
   View = LandingTopView,
 }: LandingTopProps): JSX.Element => {
-  return <View data="hello" />;
+  return <View />;
 };
 
 export default React.memo(LandingTop);

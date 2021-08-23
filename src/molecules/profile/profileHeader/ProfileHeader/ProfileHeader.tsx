@@ -1,4 +1,6 @@
+import { useRouter } from "next/router";
 import React from "react";
+import { useSignOut } from "../../../../services";
 import ProfileHeaderView from "../ProfileHeaderView/ProfileHeaderView";
 
 type ViewProps = React.ComponentProps<typeof ProfileHeaderView>;
@@ -10,7 +12,13 @@ export type ProfileHeaderProps = {
 const ProfileHeader = ({
   View = ProfileHeaderView,
 }: ProfileHeaderProps): JSX.Element => {
-  return <View data="" />;
+  const router = useRouter();
+
+  const { mutate: signOut } = useSignOut({
+    onSettled: () => router.push("/"),
+  });
+
+  return <View onSignOutClicked={signOut} />;
 };
 
 export default React.memo(ProfileHeader);

@@ -1,15 +1,18 @@
+import { Center, Heading, VStack } from "@chakra-ui/react";
 import React from "react";
+import { Link } from "../../../../atoms";
+import { paths, useText } from "../../../../utils";
 
-export type LandingTopViewProps = {
-  data: string;
-};
+const LandingTopView = (): JSX.Element => {
+  const text = useText();
 
-const LandingTopView = ({ data }: LandingTopViewProps): JSX.Element => {
   return (
-    <div>
-      {`LandingTopView: `}
-      {data}
-    </div>
+    <Center h="100vh">
+      <VStack>
+        <Heading size="4xl">{text("appName")}</Heading>
+        <Link href={paths.signUp}>{text("signUpHeader")}</Link>
+      </VStack>
+    </Center>
   );
 };
 

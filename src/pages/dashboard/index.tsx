@@ -1,8 +1,8 @@
 import React from "react";
 import {
   DashboardCorner,
+  DashboardOrganizations,
   DashboardSideBar,
-  OrganizationsList,
 } from "../../molecules";
 import { UserNavigation } from "../../organisms";
 import { GridPage } from "../../templates";
@@ -22,7 +22,7 @@ const OrganizationsPage = ({
         header={<UserNavigation />}
         sideBar={<DashboardSideBar />}
       >
-        <OrganizationsList />
+        <DashboardOrganizations />
       </GridPage>
     </ProfileContextProvider>
   );

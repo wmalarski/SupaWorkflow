@@ -10,7 +10,7 @@ import { OrganizationContextProvider } from "../../../../utils";
 import OrganizationMembersView from "./OrganizationMembersView";
 
 export default {
-  title: "Molecules/Organizations/OrganizationMembersView",
+  title: "Molecules/Members/OrganizationMembersView",
   component: OrganizationMembersView,
 } as ComponentMeta<typeof OrganizationMembersView>;
 

@@ -1,3 +1,4 @@
+import { Heading, HStack } from "@chakra-ui/react";
 import React from "react";
 import { Link } from "../../../../atoms";
 import { paths, useText } from "../../../../utils";
@@ -6,10 +7,12 @@ const LandingHeaderView = (): JSX.Element => {
   const text = useText();
 
   return (
-    <>
-      <Link href={paths.home}>{text("appName")}</Link>
+    <HStack>
+      <Link href={paths.home}>
+        <Heading size="md">{text("appName")}</Heading>
+      </Link>
       <Link href={paths.organizations}>{text("navigationOrganizations")}</Link>
-    </>
+    </HStack>
   );
 };
 

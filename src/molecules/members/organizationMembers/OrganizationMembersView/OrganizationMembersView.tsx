@@ -40,7 +40,7 @@ const OrganizationMembersView = ({
       <Table variant="simple">
         <Thead>
           <Tr>
-            <Th isNumeric>{text("organizationMemberHeaderIndex")}</Th>
+            <Th>{text("organizationMemberHeaderIndex")}</Th>
             <Th>{text("organizationMemberHeaderName")}</Th>
             <Th>{text("organizationMemberHeaderRole")}</Th>
             <OrganizationRoleGuard roles={["mod", "owner"]}>

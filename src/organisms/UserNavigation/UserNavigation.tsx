@@ -1,5 +1,5 @@
 import React from "react";
-import { ProfileHeader, SignOut } from "../../molecules";
+import { ProfileHeader } from "../../molecules";
 import DashboardHeader from "../../molecules/dashboard/dashboardHeader/DashboardHeader/DashboardHeader";
 import { Header } from "../../templates";
 
@@ -8,17 +8,7 @@ export type UserNavigationProps = {
 };
 
 const UserNavigation = (): JSX.Element => {
-  return (
-    <Header
-      left={<DashboardHeader />}
-      right={
-        <>
-          <ProfileHeader />
-          <SignOut />
-        </>
-      }
-    />
-  );
+  return <Header left={<DashboardHeader />} right={<ProfileHeader />} />;
 };
 
 export default UserNavigation;

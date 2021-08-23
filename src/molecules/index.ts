@@ -3,6 +3,7 @@ export { default as SignOut } from "./auth/signOut/SignOut/SignOut";
 export { default as SignUp } from "./auth/signUp/SignUp/SignUp";
 export { default as DashboardCorner } from "./dashboard/dashboardCorner/DashboardCorner/DashboardCorner";
 export { default as DashboardHeader } from "./dashboard/dashboardHeader/DashboardHeader/DashboardHeader";
+export { default as DashboardOrganizations } from "./dashboard/dashboardOrganizations/DashboardOrganizations/DashboardOrganizations";
 export { default as DashboardSideBar } from "./dashboard/dashboardSideBar/DashboardSideBar/DashboardSideBar";
 export { default as AnonHeader } from "./landing/anonHeader/AnonHeader/AnonHeader";
 export { default as LandingHeader } from "./landing/landingHeader/LandingHeader/LandingHeader";
@@ -13,7 +14,6 @@ export { default as CreateOrganization } from "./organizations/createOrganizatio
 export { default as OrganizationDashboard } from "./organizations/organizationDashboard/OrganizationDashboard/OrganizationDashboard";
 export { default as OrganizationSettings } from "./organizations/organizationSettings/OrganizationSettings/OrganizationSettings";
 export { default as OrganizationSideBar } from "./organizations/organizationSideBar/OrganizationSideBar/OrganizationSideBar";
-export { default as OrganizationsList } from "./organizations/organizationsList/OrganizationsList/OrganizationsList";
 export { default as ProfileHeader } from "./profile/profileHeader/ProfileHeader/ProfileHeader";
 export { default as NewOrganizationTeam } from "./teams/newOrganizationTeam/NewOrganizationTeam/NewOrganizationTeam";
 export { default as NewTeamMember } from "./teams/newTeamMember/NewTeamMember/NewTeamMember";

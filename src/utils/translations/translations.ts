@@ -23,11 +23,15 @@ const translation = {
 
   // SideBar
   sideBarOrganization: "Organization",
+  sideBarOrganizationList: "Organizations Dashboard",
+  sideBarOrganizationDashboard: "Dashboard",
   sideBarOrganizations: "Organizations",
   sideBarMembers: "Members",
   sideBarSettings: "Settings",
   sideBarNewOrganization: "New Organization",
+  sideBarAllOrganizations: "All Organizations",
   sideBarTemplates: "Templates",
+  sideBarWorkflows: "Workflows",
   sideBarNewTemplate: "New Template",
   sideBarProfile: "Profile",
   sideBarProfileSettings: "Settings",
@@ -48,6 +52,9 @@ const translation = {
   profileSettingsHeader: "Edit Profile",
   profileSettingsName: "Name",
   profileSettingsSave: "Save",
+
+  // Organization dashboard
+  organizationsDashboardHeader: "Organizations",
 
   // Add organization
   addOrganizationHeader: "Add new organization",
