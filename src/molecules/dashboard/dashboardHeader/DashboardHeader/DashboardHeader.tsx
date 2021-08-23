@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import React, { useMemo } from "react";
+import React from "react";
 import DashboardHeaderView from "../DashboardHeaderView/DashboardHeaderView";
 
 type ViewProps = React.ComponentProps<typeof DashboardHeaderView>;
@@ -13,16 +13,7 @@ const DashboardHeader = ({
 }: DashboardHeaderProps): JSX.Element => {
   const router = useRouter();
 
-  const routes = useMemo(
-    () =>
-      router.route.split("/").reduce<string[]>((prev, acc) => {
-        if (prev.length === 0) return [acc];
-        return [...prev, `${prev[prev.length - 1]}/${acc}`];
-      }, []),
-    [router.route]
-  );
-
-  return <View routes={routes} currentPath={router.asPath} />;
+  return <View route={router.route} path={router.asPath} />;
 };
 
 export default React.memo(DashboardHeader);

@@ -1,33 +1,32 @@
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from "@chakra-ui/react";
-import React from "react";
+import { Breadcrumb, BreadcrumbItem } from "@chakra-ui/react";
+import React, { useMemo } from "react";
+import { BreadcrumbLink } from "../../../../atoms";
 import { useText } from "../../../../utils";
-import mapRoute from "../../../../utils/routing/mapRoute";
+import { mapRouteToLinks } from "./DashboardHeaderView.utils";
 
 export type DashboardHeaderViewProps = {
-  routes: string[];
-  currentPath: string;
+  route: string;
+  path: string;
 };
 
 const DashboardHeaderView = ({
-  routes,
-  currentPath,
+  route,
+  path,
 }: DashboardHeaderViewProps): JSX.Element => {
   const text = useText();
 
-  const links = routes.map((route) =>
-    mapRoute({ path: currentPath, route, text })
+  const routes = useMemo(
+    () => mapRouteToLinks({ route, path, text }),
+    [route, path, text]
   );
 
   return (
     <Breadcrumb>
-      {links.map(
-        (link) =>
-          link && (
-            <BreadcrumbItem>
-              <BreadcrumbLink href={link.href}>{link.children}</BreadcrumbLink>
-            </BreadcrumbItem>
-          )
-      )}
+      {routes.map((link) => (
+        <BreadcrumbItem key={link.href}>
+          <BreadcrumbLink href={link.href}>{link.children}</BreadcrumbLink>
+        </BreadcrumbItem>
+      ))}
     </Breadcrumb>
   );
 };
