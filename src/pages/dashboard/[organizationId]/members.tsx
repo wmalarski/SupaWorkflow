@@ -1,31 +1,17 @@
 import React from "react";
 import { AddOrganizationMember, OrganizationMembers } from "../../../molecules";
 import { OrganizationLayout } from "../../../organisms";
-import {
-  OrganizationContextProvider,
-  organizationProtectedRoute,
-  OrganizationProtectedRouteProps,
-} from "../../../utils";
+import { RouteOrganizationContextProvider } from "../../../utils";
 
-const OrganizationMembersPage = ({
-  organization,
-  profile,
-  member,
-}: OrganizationProtectedRouteProps): JSX.Element => {
+const OrganizationMembersPage = (): JSX.Element => {
   return (
-    <OrganizationContextProvider
-      organization={organization}
-      member={member}
-      profile={profile}
-    >
+    <RouteOrganizationContextProvider>
       <OrganizationLayout>
         <AddOrganizationMember />
         <OrganizationMembers />
       </OrganizationLayout>
-    </OrganizationContextProvider>
+    </RouteOrganizationContextProvider>
   );
 };
-
-export const getServerSideProps = organizationProtectedRoute();
 
 export default OrganizationMembersPage;

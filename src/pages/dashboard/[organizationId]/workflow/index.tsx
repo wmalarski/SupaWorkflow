@@ -1,30 +1,14 @@
 import React from "react";
 import { WorkflowsList } from "../../../../molecules";
 import { OrganizationLayout } from "../../../../organisms";
-import {
-  OrganizationContextProvider,
-  organizationProtectedRoute,
-  OrganizationProtectedRouteProps,
-} from "../../../../utils";
+import { RouteOrganizationContextProvider } from "../../../../utils";
 
-const WorkflowsPage = ({
-  profile,
-  member,
-  organization,
-}: OrganizationProtectedRouteProps): JSX.Element => {
-  return (
-    <OrganizationContextProvider
-      organization={organization}
-      member={member}
-      profile={profile}
-    >
-      <OrganizationLayout>
-        <WorkflowsList />
-      </OrganizationLayout>
-    </OrganizationContextProvider>
-  );
-};
-
-export const getServerSideProps = organizationProtectedRoute();
+const WorkflowsPage = (): JSX.Element => (
+  <RouteOrganizationContextProvider>
+    <OrganizationLayout>
+      <WorkflowsList />
+    </OrganizationLayout>
+  </RouteOrganizationContextProvider>
+);
 
 export default WorkflowsPage;

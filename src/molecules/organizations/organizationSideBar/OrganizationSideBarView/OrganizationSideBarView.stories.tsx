@@ -4,9 +4,8 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import {
   defaultOrganization,
   defaultOrganizationMember,
-  defaultProfile,
 } from "../../../../services";
-import { OrganizationContextProvider } from "../../../../utils";
+import OrganizationContext from "../../../../utils/contexts/OrganizationContext";
 import OrganizationSideBarView from "./OrganizationSideBarView";
 
 export default {
@@ -16,14 +15,14 @@ export default {
 
 const Template: ComponentStory<typeof OrganizationSideBarView> = (args) => (
   <QueryClientProvider client={new QueryClient()}>
-    <OrganizationContextProvider
-      member={{ ...defaultOrganizationMember, role: "mod" }}
-      organization={defaultOrganization}
-      profile={defaultProfile}
-      enabled={false}
+    <OrganizationContext.Provider
+      value={{
+        member: { ...defaultOrganizationMember, role: "mod" },
+        organization: defaultOrganization,
+      }}
     >
       <OrganizationSideBarView {...args} />
-    </OrganizationContextProvider>
+    </OrganizationContext.Provider>
   </QueryClientProvider>
 );
 

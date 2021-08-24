@@ -6,28 +6,18 @@ import {
 } from "../../molecules";
 import { UserNavigation } from "../../organisms";
 import { GridPage } from "../../templates";
-import {
-  ProfileContextProvider,
-  profileProtectedRoute,
-  ProfileProtectedRouteProps,
-} from "../../utils";
+import { RouteProfileContextProvider } from "../../utils";
 
-const OrganizationsPage = ({
-  profile,
-}: ProfileProtectedRouteProps): JSX.Element => {
-  return (
-    <ProfileContextProvider profile={profile}>
-      <GridPage
-        corner={<DashboardCorner />}
-        header={<UserNavigation />}
-        sideBar={<DashboardSideBar />}
-      >
-        <DashboardOrganizations />
-      </GridPage>
-    </ProfileContextProvider>
-  );
-};
-
-export const getServerSideProps = profileProtectedRoute;
+const OrganizationsPage = (): JSX.Element => (
+  <RouteProfileContextProvider>
+    <GridPage
+      corner={<DashboardCorner />}
+      header={<UserNavigation />}
+      sideBar={<DashboardSideBar />}
+    >
+      <DashboardOrganizations />
+    </GridPage>
+  </RouteProfileContextProvider>
+);
 
 export default OrganizationsPage;

@@ -6,7 +6,7 @@ import {
   defaultOrganizationMember,
   defaultProfile,
 } from "../../../../services";
-import { OrganizationContextProvider } from "../../../../utils";
+import OrganizationContext from "../../../../utils/contexts/OrganizationContext";
 import OrganizationMembersView from "./OrganizationMembersView";
 
 export default {
@@ -16,14 +16,14 @@ export default {
 
 const Template: ComponentStory<typeof OrganizationMembersView> = (args) => (
   <QueryClientProvider client={new QueryClient()}>
-    <OrganizationContextProvider
-      member={defaultOrganizationMember}
-      organization={defaultOrganization}
-      profile={defaultProfile}
-      enabled={false}
+    <OrganizationContext.Provider
+      value={{
+        member: defaultOrganizationMember,
+        organization: defaultOrganization,
+      }}
     >
       <OrganizationMembersView {...args} />
-    </OrganizationContextProvider>
+    </OrganizationContext.Provider>
   </QueryClientProvider>
 );
 

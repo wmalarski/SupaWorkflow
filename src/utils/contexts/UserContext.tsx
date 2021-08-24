@@ -9,10 +9,12 @@ import {
 import { supabase, useUpdateAuth } from "../../services";
 
 export type UserContextValue = {
+  isInitialized: boolean;
   user: User | null;
 };
 
 const UserContext = createContext<UserContextValue>({
+  isInitialized: false,
   user: null,
 });
 
@@ -25,24 +27,28 @@ export type UserContextProviderProps = {
 export const UserContextProvider = ({
   children,
 }: UserContextProviderProps): JSX.Element => {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<UserContextValue>({
+    isInitialized: false,
+    user: null,
+  });
 
   const { mutate: updateAuth } = useUpdateAuth();
 
-  useEffect(() => setUser(supabase.auth.user()), []);
+  useEffect(
+    () => setUser({ isInitialized: true, user: supabase.auth.user() }),
+    []
+  );
 
   useEffect(() => {
     const { data } = supabase.auth.onAuthStateChange(async (event, session) => {
       updateAuth({ event, session });
 
-      setUser(session?.user ?? null);
+      setUser({ isInitialized: true, user: session?.user ?? null });
     });
     return () => data?.unsubscribe?.();
   }, [updateAuth]);
 
-  return (
-    <UserContext.Provider value={{ user }}>{children}</UserContext.Provider>
-  );
+  return <UserContext.Provider value={user}>{children}</UserContext.Provider>;
 };
 
 export default UserContext;

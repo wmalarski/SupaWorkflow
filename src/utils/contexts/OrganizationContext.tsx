@@ -1,90 +1,106 @@
-import { createContext, ReactNode, useContext, useMemo } from "react";
+import { useRouter } from "next/router";
+import React, { createContext, ReactNode, useContext, useEffect } from "react";
 import {
   defaultOrganization,
   defaultOrganizationMember,
   Organization,
   OrganizationMember,
   OrganizationRole,
-  Profile,
   useSelectOrganizationMember,
 } from "../../services";
+import { validateNumberParam } from "../routing/params";
 import ProfileContext from "./ProfileContext";
-
-export type OrganizationValue = {
-  organization: Organization;
-  member: OrganizationMember;
-};
+import { useUserContext } from "./UserContext";
 
 export type OrganizationContextValue = {
-  value: OrganizationValue;
-  isInitialized: boolean;
+  organization: Organization;
+  member: OrganizationMember;
 };
 
 const OrganizationContext = createContext<OrganizationContextValue>({
-  value: {
-    organization: defaultOrganization,
-    member: defaultOrganizationMember,
-  },
-  isInitialized: false,
+  organization: defaultOrganization,
+  member: defaultOrganizationMember,
 });
 
-export const useOrganizationContext = (): OrganizationValue => {
-  const context = useContext(OrganizationContext);
-  if (!context.isInitialized) throw "Organization Context not initialized";
-  return context.value;
-};
+export const useOrganizationContext = (): OrganizationContextValue =>
+  useContext(OrganizationContext);
 
 export type OrganizationContextProviderProps = {
-  organization: Organization;
-  member: OrganizationMember;
-  profile: Profile;
+  userId: string;
+  organizationId: number;
   children: ReactNode;
-  enabled?: boolean;
+  fallback?: ReactNode;
 };
 
 export const OrganizationContextProvider = ({
-  organization,
-  member,
-  profile,
+  userId,
+  organizationId,
   children,
-  enabled,
+  fallback,
 }: OrganizationContextProviderProps): JSX.Element => {
   const { data } = useSelectOrganizationMember(
-    { organizationId: organization.id, userId: profile.user_id },
-    { initialData: { member, profile, organization }, enabled }
+    { organizationId, userId: userId ?? "" },
+    { enabled: !!userId }
   );
 
-  const profileValue = useMemo(
-    () => ({ profile: data?.profile ?? profile, isInitialized: true }),
-    [data, profile]
-  );
-
-  const organizationValue = useMemo(
-    () => ({ value: data ?? { member, organization }, isInitialized: true }),
-    [data, member, organization]
-  );
-
-  return (
-    <ProfileContext.Provider value={profileValue}>
-      <OrganizationContext.Provider value={organizationValue}>
+  return data ? (
+    <ProfileContext.Provider value={data.profile}>
+      <OrganizationContext.Provider
+        value={{ member: data.member, organization: data.organization }}
+      >
         {children}
       </OrganizationContext.Provider>
     </ProfileContext.Provider>
+  ) : (
+    <>{fallback}</>
   );
 };
 
 export type OrganizationRoleGuardProps = {
   roles: OrganizationRole[];
   children: React.ReactNode;
+  fallback?: React.ReactNode;
 };
 
 export const OrganizationRoleGuard = ({
   children,
   roles,
+  fallback,
 }: OrganizationRoleGuardProps): JSX.Element | null => {
   const { member } = useOrganizationContext();
 
-  return roles.includes(member.role) ? <>{children}</> : null;
+  return <>{roles.includes(member.role) ? children : fallback}</>;
+};
+
+export type RouteOrganizationContextProviderProps = {
+  children: React.ReactNode;
+  fallback?: React.ReactNode;
+};
+
+export const RouteOrganizationContextProvider = ({
+  children,
+  fallback,
+}: RouteOrganizationContextProviderProps): JSX.Element | null => {
+  const router = useRouter();
+  const { user, isInitialized } = useUserContext();
+
+  const organizationId = validateNumberParam(router.query.organizationId);
+
+  useEffect(() => {
+    if (!isInitialized || !router.isReady || (!!organizationId && user)) return;
+    router.push("/404");
+  }, [isInitialized, organizationId, user, router]);
+
+  if (!organizationId || !user?.id) return <>{fallback}</>;
+
+  return (
+    <OrganizationContextProvider
+      organizationId={organizationId}
+      userId={user?.id}
+    >
+      {children}
+    </OrganizationContextProvider>
+  );
 };
 
 export default OrganizationContext;

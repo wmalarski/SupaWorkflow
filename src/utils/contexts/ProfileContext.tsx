@@ -1,45 +1,55 @@
-import { createContext, ReactNode, useContext, useMemo } from "react";
+import { useRouter } from "next/router";
+import { createContext, ReactNode, useContext, useEffect } from "react";
 import { defaultProfile, Profile, useSelectProfile } from "../../services";
+import { useUserContext } from "./UserContext";
 
-export type ProfileContextValue = {
-  profile: Profile;
-  isInitialized: boolean;
-};
+export type ProfileContextValue = Profile;
 
-const ProfileContext = createContext<ProfileContextValue>({
-  profile: defaultProfile,
-  isInitialized: false,
-});
+const ProfileContext = createContext<ProfileContextValue>(defaultProfile);
 
-export const useProfileContext = (): Profile => {
-  const value = useContext(ProfileContext);
-  if (!value.isInitialized) throw "Profile Context not initialized";
-  return value.profile;
-};
+export const useProfileContext = (): Profile => useContext(ProfileContext);
 
 export type ProfileContextProviderProps = {
-  profile: Profile;
+  userId: string;
   children: ReactNode;
-  enabled?: boolean;
+  fallback?: ReactNode;
 };
 
 export const ProfileContextProvider = ({
-  profile,
+  userId,
   children,
-  enabled,
+  fallback,
 }: ProfileContextProviderProps): JSX.Element => {
-  const { data } = useSelectProfile(
-    { userId: profile.user_id },
-    { initialData: profile, enabled }
-  );
+  const { data } = useSelectProfile({ userId });
 
-  const value = useMemo(
-    () => ({ profile: data ?? profile, isInitialized: true }),
-    [data, profile]
+  return data ? (
+    <ProfileContext.Provider value={data}>{children}</ProfileContext.Provider>
+  ) : (
+    <>{fallback}</>
   );
+};
+
+export type RouteProfileContextProviderProps = {
+  children: React.ReactNode;
+  fallback?: React.ReactNode;
+};
+
+export const RouteProfileContextProvider = ({
+  children,
+  fallback,
+}: RouteProfileContextProviderProps): JSX.Element | null => {
+  const router = useRouter();
+  const { user, isInitialized } = useUserContext();
+
+  useEffect(() => {
+    if (!isInitialized || !router.isReady || user) return;
+    router.push("/404");
+  }, [isInitialized, user, router]);
+
+  if (!user) return <>{fallback}</>;
 
   return (
-    <ProfileContext.Provider value={value}>{children}</ProfileContext.Provider>
+    <ProfileContextProvider userId={user.id}>{children}</ProfileContextProvider>
   );
 };
 

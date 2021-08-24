@@ -1,30 +1,14 @@
 import React from "react";
 import { CreateTemplate } from "../../../../molecules";
 import { OrganizationLayout } from "../../../../organisms";
-import {
-  OrganizationContextProvider,
-  organizationProtectedRoute,
-  OrganizationProtectedRouteProps,
-} from "../../../../utils";
+import { RouteOrganizationContextProvider } from "../../../../utils";
 
-const OrganizationNewTemplate = ({
-  organization,
-  profile,
-  member,
-}: OrganizationProtectedRouteProps): JSX.Element => {
-  return (
-    <OrganizationContextProvider
-      organization={organization}
-      member={member}
-      profile={profile}
-    >
-      <OrganizationLayout>
-        <CreateTemplate />
-      </OrganizationLayout>
-    </OrganizationContextProvider>
-  );
-};
-
-export const getServerSideProps = organizationProtectedRoute();
+const OrganizationNewTemplate = (): JSX.Element => (
+  <RouteOrganizationContextProvider>
+    <OrganizationLayout>
+      <CreateTemplate />
+    </OrganizationLayout>
+  </RouteOrganizationContextProvider>
+);
 
 export default OrganizationNewTemplate;

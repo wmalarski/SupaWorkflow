@@ -4,7 +4,7 @@ export * from "./contexts/UserContext";
 export * from "./forms/validators";
 export { default as mapRoute } from "./routing/mapRoute";
 export type { MapRouteArgs, MapRouteReturn } from "./routing/mapRoute";
+export * from "./routing/params";
 export { default as paths } from "./routing/paths";
-export * from "./routing/protectedRoute";
 export { default as useText } from "./translations/useText";
 export type { UseTextFnc } from "./translations/useText";
