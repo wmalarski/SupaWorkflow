@@ -101,6 +101,13 @@ const translation = {
   updateMessage: "Update",
   editMessage: "Edit",
 
+  // Add organization
+  addTeamHeader: "Add new team",
+  addTeamName: "Name",
+  addTeamDescription: "Description",
+  addTeamColor: "Color",
+  addTeamSubmit: "Save",
+
   // Field Errors
   fieldIsRequired: "Field is required",
   errorMinLength: (min: number): string => `Min ${min}`,

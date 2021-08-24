@@ -18,6 +18,8 @@ export * from "./data/organizationMember/selectOrganizationMember";
 export * from "./data/organizationMember/selectOrganizationMembers";
 export * from "./data/organizationMember/updateOrganizationMember";
 export * from "./data/profile/selectProfile";
+export * from "./data/team/insertTeam";
+export * from "./data/team/selectTeams";
 export * from "./data/template/insertTemplate";
 export * from "./data/template/selectTemplate";
 export * from "./data/template/selectTemplates";

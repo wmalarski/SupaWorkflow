@@ -6,9 +6,7 @@ import SignInView from "./SignInView";
 export default {
   title: "Molecules/Auth/SignInView",
   component: SignInView,
-  argTypes: {
-    onSubmit: { action: "onSubmit" },
-  },
+  argTypes: { onSubmit: { action: "onSubmit" } },
 } as ComponentMeta<typeof SignInView>;
 
 const Template: ComponentStory<typeof SignInView> = (args) => (

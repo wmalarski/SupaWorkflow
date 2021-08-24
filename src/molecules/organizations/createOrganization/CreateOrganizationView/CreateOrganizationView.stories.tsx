@@ -5,6 +5,7 @@ import CreateOrganizationView from "./CreateOrganizationView";
 export default {
   title: "Molecules/Organizations/CreateOrganizationView",
   component: CreateOrganizationView,
+  argTypes: { onSubmit: { action: "onSubmit" } },
 } as ComponentMeta<typeof CreateOrganizationView>;
 
 const Template: ComponentStory<typeof CreateOrganizationView> = (args) => (
