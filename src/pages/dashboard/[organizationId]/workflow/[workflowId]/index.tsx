@@ -3,32 +3,28 @@ import { WorkflowEditor } from "../../../../../molecules";
 import { OrganizationLayout } from "../../../../../organisms";
 import {
   OrganizationContextProvider,
-  WorkflowContextProvider,
-  workflowProtectedRoute,
-  WorkflowProtectedRouteProps,
+  organizationProtectedRoute,
+  OrganizationProtectedRouteProps,
 } from "../../../../../utils";
 
 const WorkflowPage = ({
-  workflow,
   organization,
   profile,
   member,
-}: WorkflowProtectedRouteProps): JSX.Element => {
+}: OrganizationProtectedRouteProps): JSX.Element => {
   return (
     <OrganizationContextProvider
       organization={organization}
       member={member}
       profile={profile}
     >
-      <WorkflowContextProvider workflow={workflow}>
-        <OrganizationLayout>
-          <WorkflowEditor />
-        </OrganizationLayout>
-      </WorkflowContextProvider>
+      <OrganizationLayout>
+        <WorkflowEditor />
+      </OrganizationLayout>
     </OrganizationContextProvider>
   );
 };
 
-export const getServerSideProps = workflowProtectedRoute();
+export const getServerSideProps = organizationProtectedRoute();
 
 export default WorkflowPage;

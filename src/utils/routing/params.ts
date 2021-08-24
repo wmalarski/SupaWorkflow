@@ -9,3 +9,11 @@ export const validateParam = (
   const result = param.match(regex);
   return result ? param : null;
 };
+
+export const validateNumberParam = (
+  param?: string | string[]
+): number | null => {
+  const result = validateParam(param, /\d+/);
+
+  return result ? Number(result) : null;
+};
