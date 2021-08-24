@@ -1,8 +1,6 @@
 import React from "react";
-import { Debug } from "../../../../atoms";
 import { WorkflowsList } from "../../../../molecules";
-import { UserNavigation } from "../../../../organisms";
-import { Page } from "../../../../templates";
+import { OrganizationLayout } from "../../../../organisms";
 import {
   OrganizationContextProvider,
   organizationProtectedRoute,
@@ -20,10 +18,9 @@ const WorkflowsPage = ({
       member={member}
       profile={profile}
     >
-      <Page header={<UserNavigation />}>
-        <Debug value={profile} />
+      <OrganizationLayout>
         <WorkflowsList />
-      </Page>
+      </OrganizationLayout>
     </OrganizationContextProvider>
   );
 };

@@ -1,7 +1,6 @@
 import React from "react";
 import { CreateWorkflow } from "../../../../../molecules";
-import { UserNavigation } from "../../../../../organisms";
-import { Page } from "../../../../../templates";
+import { OrganizationLayout } from "../../../../../organisms";
 import {
   OrganizationContextProvider,
   TemplateContextProvider,
@@ -21,9 +20,9 @@ const OrganizationTemplatePage = ({
     profile={profile}
   >
     <TemplateContextProvider template={template}>
-      <Page header={<UserNavigation />}>
+      <OrganizationLayout>
         <CreateWorkflow />
-      </Page>
+      </OrganizationLayout>
     </TemplateContextProvider>
   </OrganizationContextProvider>
 );

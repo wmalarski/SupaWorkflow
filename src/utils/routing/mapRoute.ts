@@ -20,17 +20,17 @@ const mapRoute = ({
   const nodes = path.split("/");
 
   switch (route) {
-    case "/dashboard/[organizationId]/team/[teamId]":
+    case "/dashboard/[organizationId]/teams/[teamId]":
       return {
         href: paths.team(Number(nodes[2]), Number(nodes[4])),
         children: text("navigationTeam"),
       };
-    case "/dashboard/[organizationId]/team":
+    case "/dashboard/[organizationId]/teams":
       return {
         href: paths.teams(Number(nodes[2])),
         children: text("navigationTeams"),
       };
-    case "/dashboard/[organizationId]/team/new":
+    case "/dashboard/[organizationId]/teams/new":
       return {
         href: paths.newTeam(Number(nodes[2])),
         children: text("navigationNewTeam"),

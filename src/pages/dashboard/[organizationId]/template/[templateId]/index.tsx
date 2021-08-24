@@ -1,7 +1,6 @@
 import dynamic from "next/dynamic";
 import React from "react";
-import { UserNavigation } from "../../../../../organisms";
-import { Page } from "../../../../../templates";
+import { OrganizationLayout } from "../../../../../organisms";
 import {
   OrganizationContextProvider,
   TemplateContextProvider,
@@ -26,9 +25,9 @@ const TemplateIdPage = ({
     profile={profile}
   >
     <TemplateContextProvider template={template}>
-      <Page header={<UserNavigation />}>
-        <TemplateWorkspace templateId={template.id} />
-      </Page>
+      <OrganizationLayout>
+        <TemplateWorkspace />
+      </OrganizationLayout>
     </TemplateContextProvider>
   </OrganizationContextProvider>
 );

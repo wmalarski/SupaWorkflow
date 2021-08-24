@@ -1,12 +1,6 @@
 import React from "react";
-import {
-  DashboardCorner,
-  NewTeamMember,
-  OrganizationSideBar,
-  OrganizationTeam,
-} from "../../../../molecules";
-import { UserNavigation } from "../../../../organisms";
-import { GridPage } from "../../../../templates";
+import { NewTeamMember, OrganizationTeam } from "../../../../molecules";
+import { OrganizationLayout } from "../../../../organisms";
 import {
   OrganizationContextProvider,
   organizationProtectedRoute,
@@ -24,14 +18,10 @@ const OrganizationTeamPage = ({
       member={member}
       profile={profile}
     >
-      <GridPage
-        corner={<DashboardCorner />}
-        header={<UserNavigation />}
-        sideBar={<OrganizationSideBar />}
-      >
+      <OrganizationLayout>
         <NewTeamMember />
         <OrganizationTeam />
-      </GridPage>
+      </OrganizationLayout>
     </OrganizationContextProvider>
   );
 };

@@ -1,4 +1,4 @@
-import { Grid, GridItem } from "@chakra-ui/react";
+import { Grid, GridItem, VStack } from "@chakra-ui/react";
 import React from "react";
 import Page from "../Page/Page";
 
@@ -32,7 +32,9 @@ const GridTemplate = ({
         <GridItem borderRightWidth={1} padding={5}>
           {sideBar}
         </GridItem>
-        <GridItem padding={5}>{children}</GridItem>
+        <GridItem padding={5}>
+          <VStack spacing={10}>{children}</VStack>
+        </GridItem>
       </Grid>
     </Page>
   );
