@@ -15,6 +15,7 @@ export { default as OrganizationDashboard } from "./organizations/organizationDa
 export { default as OrganizationSettings } from "./organizations/organizationSettings/OrganizationSettings/OrganizationSettings";
 export { default as OrganizationSideBar } from "./organizations/organizationSideBar/OrganizationSideBar/OrganizationSideBar";
 export { default as ProfileHeader } from "./profile/profileHeader/ProfileHeader/ProfileHeader";
+export { default as ProfileSettings } from "./profile/profileSettings/ProfileSettings/ProfileSettings";
 export { default as NewOrganizationTeam } from "./teams/newOrganizationTeam/NewOrganizationTeam/NewOrganizationTeam";
 export { default as NewTeamMember } from "./teams/newTeamMember/NewTeamMember/NewTeamMember";
 export { default as OrganizationTeam } from "./teams/organizationTeam/OrganizationTeam/OrganizationTeam";

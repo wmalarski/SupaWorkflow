@@ -4,11 +4,11 @@ import {
   DashboardCorner,
   DashboardOrganizations,
   DashboardSideBar,
+  ProfileSettings,
 } from "../../molecules";
-import ProfileSettings from "../../molecules/profile/profileSettings/ProfileSettings/ProfileSettings";
 import { UserNavigation } from "../../organisms";
 import { FormPage, GridPage } from "../../templates";
-import { DashboardTab } from "../../utils/routing/types";
+import { DashboardTab } from "../../utils";
 
 export type DashboardSwitchProps = {
   tab: DashboardTab | null;

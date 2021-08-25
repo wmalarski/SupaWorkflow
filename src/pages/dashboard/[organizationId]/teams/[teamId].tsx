@@ -18,10 +18,10 @@ import {
 import {
   OrganizationContextProvider,
   TeamContextProvider,
+  TeamTab,
   validateNumberParam,
   validateParam,
 } from "../../../../utils";
-import { TeamTab } from "../../../../utils/routing/types";
 
 export type TeamPageProps = {
   team: Team;

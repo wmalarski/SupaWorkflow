@@ -1,7 +1,7 @@
 import dynamic from "next/dynamic";
 import React from "react";
 import { CreateWorkflow } from "../../molecules";
-import { TemplateTab } from "../../utils/routing/types";
+import { TemplateTab } from "../../utils";
 
 const TemplateWorkspace = dynamic(
   () => import("../TemplateWorkspace/TemplateWorkspace"),

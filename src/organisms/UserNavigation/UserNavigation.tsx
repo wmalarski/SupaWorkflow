@@ -1,6 +1,5 @@
 import React from "react";
-import { ProfileHeader } from "../../molecules";
-import DashboardHeader from "../../molecules/dashboard/dashboardHeader/DashboardHeader/DashboardHeader";
+import { DashboardHeader, ProfileHeader } from "../../molecules";
 import { Header } from "../../templates";
 
 export type UserNavigationProps = {

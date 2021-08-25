@@ -7,8 +7,11 @@ import {
   selectProfileKey,
   supabase,
 } from "../../services";
-import { ProfileContextProvider, validateParam } from "../../utils";
-import { DashboardTab } from "../../utils/routing/types";
+import {
+  DashboardTab,
+  ProfileContextProvider,
+  validateParam,
+} from "../../utils";
 
 export type DashboardPageProps = {
   tab: DashboardTab | null;

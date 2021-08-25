@@ -10,7 +10,7 @@ import {
   TemplatesList,
   WorkflowsList,
 } from "../../molecules";
-import { OrganizationTab } from "../../utils/routing/types";
+import { OrganizationTab } from "../../utils";
 
 export type OrganizationSwitchProps = {
   tab: OrganizationTab | null;

@@ -16,10 +16,10 @@ import {
 import {
   OrganizationContextProvider,
   TemplateContextProvider,
+  TemplateTab,
   validateNumberParam,
   validateParam,
 } from "../../../../utils";
-import { TemplateTab } from "../../../../utils/routing/types";
 
 export type TemplatePageProps = {
   tab: TemplateTab | null;

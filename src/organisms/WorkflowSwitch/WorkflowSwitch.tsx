@@ -1,6 +1,6 @@
 import React from "react";
 import { WorkflowEditor } from "../../molecules";
-import { WorkflowTab } from "../../utils/routing/types";
+import { WorkflowTab } from "../../utils";
 
 export type WorkflowSwitchProps = {
   tab: WorkflowTab | null;

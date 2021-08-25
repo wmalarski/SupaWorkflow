@@ -11,8 +11,11 @@ import {
   selectOrganizationMemberKey,
   supabase,
 } from "../../../services";
-import { OrganizationContextProvider, validateParam } from "../../../utils";
-import { OrganizationTab } from "../../../utils/routing/types";
+import {
+  OrganizationContextProvider,
+  OrganizationTab,
+  validateParam,
+} from "../../../utils";
 
 export type OrganizationPageProps = {
   profile: Profile;

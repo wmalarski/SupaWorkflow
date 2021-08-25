@@ -19,8 +19,8 @@ import {
   validateNumberParam,
   validateParam,
   WorkflowContextProvider,
+  WorkflowTab,
 } from "../../../../utils";
-import { WorkflowTab } from "../../../../utils/routing/types";
 
 export type WorkflowPageProps = {
   workflow: Workflow;
