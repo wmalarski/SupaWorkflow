@@ -30,10 +30,10 @@ const OrganizationPage = ({
 }: OrganizationPageProps): JSX.Element => {
   const router = useRouter();
 
-  const paramTab = validateParam(router.query?.tab);
+  const tabParam = validateParam(router.query?.tab);
   const tab =
-    paramTab && paramTab in OrganizationTab
-      ? OrganizationTab[paramTab as keyof typeof OrganizationTab]
+    tabParam && tabParam in OrganizationTab
+      ? OrganizationTab[tabParam as keyof typeof OrganizationTab]
       : null;
 
   return (

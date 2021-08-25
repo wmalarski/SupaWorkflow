@@ -38,10 +38,10 @@ const TeamPage = ({
 }: TeamPageProps): JSX.Element => {
   const router = useRouter();
 
-  const paramTab = validateParam(router.query?.tab);
+  const tabParam = validateParam(router.query?.tab);
   const tab =
-    paramTab && paramTab in TeamTab
-      ? TeamTab[paramTab as keyof typeof TeamTab]
+    tabParam && tabParam in TeamTab
+      ? TeamTab[tabParam as keyof typeof TeamTab]
       : null;
 
   return (
