@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import React from "react";
 import { useSignIn } from "../../../../services";
 import { paths } from "../../../../utils";
+import { DashboardTab } from "../../../../utils/routing/types";
 import SignInView, { SignInViewProps } from "../SignInView/SignInView";
 
 export type SignInProps = {
@@ -17,7 +18,7 @@ const SignIn = ({ View = SignInView }: SignInProps): JSX.Element => {
     isLoading,
     data: user,
   } = useSignIn({
-    onSuccess: () => router.push(paths.organizations),
+    onSuccess: () => router.push(paths.dashboard(DashboardTab.dashboard)),
   });
 
   return (

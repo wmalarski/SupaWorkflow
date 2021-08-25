@@ -3,6 +3,7 @@ import React from "react";
 import { Link } from "../../../../atoms";
 import { Template } from "../../../../services";
 import { paths, useText } from "../../../../utils";
+import { OrganizationTab, TemplateTab } from "../../../../utils/routing/types";
 
 export type TemplatesListViewProps = {
   organizationId: number;
@@ -19,13 +20,15 @@ const TemplatesListView = ({
   return (
     <div>
       {`TemplatesListView: `}
-      <Link href={paths.newTemplate(organizationId)}>
+      <Link
+        href={paths.organization(organizationId, OrganizationTab.newTemplate)}
+      >
         {text("sideBarNewTemplate")}
       </Link>
       {templates?.map((template) => (
         <Link
           key={template.id}
-          href={paths.template(organizationId, template.id)}
+          href={paths.template(organizationId, template.id, TemplateTab.edit)}
         >
           <Text fontSize="sm">{template.name}</Text>
         </Link>

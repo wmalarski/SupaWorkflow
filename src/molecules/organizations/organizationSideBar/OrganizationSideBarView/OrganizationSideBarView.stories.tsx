@@ -17,8 +17,11 @@ const Template: ComponentStory<typeof OrganizationSideBarView> = (args) => (
   <QueryClientProvider client={new QueryClient()}>
     <OrganizationContext.Provider
       value={{
-        member: { ...defaultOrganizationMember, role: "mod" },
-        organization: defaultOrganization,
+        isInitialized: true,
+        value: {
+          member: { ...defaultOrganizationMember, role: "mod" },
+          organization: defaultOrganization,
+        },
       }}
     >
       <OrganizationSideBarView {...args} />

@@ -5,6 +5,7 @@ import {
   useUpdateOrganization,
 } from "../../../../services";
 import { paths, useOrganizationContext } from "../../../../utils";
+import { DashboardTab } from "../../../../utils/routing/types";
 import OrganizationSettingsView from "../OrganizationSettingsView/OrganizationSettingsView";
 
 type ViewProps = React.ComponentProps<typeof OrganizationSettingsView>;
@@ -25,7 +26,7 @@ const OrganizationSettings = ({
     isLoading,
     error: deleteError,
   } = useDeleteOrganization({
-    onSuccess: () => router.push(paths.organizations),
+    onSuccess: () => router.push(paths.dashboard(DashboardTab.dashboard)),
   });
 
   const {

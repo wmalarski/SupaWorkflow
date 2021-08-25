@@ -1,55 +1,45 @@
-import { useRouter } from "next/router";
-import { createContext, ReactNode, useContext, useEffect } from "react";
+import { createContext, ReactNode, useContext, useMemo } from "react";
 import { defaultProfile, Profile, useSelectProfile } from "../../services";
-import { useUserContext } from "./UserContext";
 
-export type ProfileContextValue = Profile;
+export type ProfileContextValue = {
+  profile: Profile;
+  isInitialized: boolean;
+};
 
-const ProfileContext = createContext<ProfileContextValue>(defaultProfile);
+const ProfileContext = createContext<ProfileContextValue>({
+  profile: defaultProfile,
+  isInitialized: false,
+});
 
-export const useProfileContext = (): Profile => useContext(ProfileContext);
+export const useProfileContext = (): Profile => {
+  const value = useContext(ProfileContext);
+  if (!value.isInitialized) throw "Profile Context not initialized";
+  return value.profile;
+};
 
 export type ProfileContextProviderProps = {
-  userId: string;
+  profile: Profile;
   children: ReactNode;
-  fallback?: ReactNode;
+  enabled?: boolean;
 };
 
 export const ProfileContextProvider = ({
-  userId,
+  profile,
   children,
-  fallback,
+  enabled,
 }: ProfileContextProviderProps): JSX.Element => {
-  const { data } = useSelectProfile({ userId });
-
-  return data ? (
-    <ProfileContext.Provider value={data}>{children}</ProfileContext.Provider>
-  ) : (
-    <>{fallback}</>
+  const { data } = useSelectProfile(
+    { userId: profile.user_id },
+    { initialData: profile, enabled }
   );
-};
 
-export type RouteProfileContextProviderProps = {
-  children: React.ReactNode;
-  fallback?: React.ReactNode;
-};
-
-export const RouteProfileContextProvider = ({
-  children,
-  fallback,
-}: RouteProfileContextProviderProps): JSX.Element | null => {
-  const router = useRouter();
-  const { user, isInitialized } = useUserContext();
-
-  useEffect(() => {
-    if (!isInitialized || !router.isReady || user) return;
-    router.push("/404");
-  }, [isInitialized, user, router]);
-
-  if (!user) return <>{fallback}</>;
+  const value = useMemo(
+    () => ({ profile: data ?? profile, isInitialized: true }),
+    [data, profile]
+  );
 
   return (
-    <ProfileContextProvider userId={user.id}>{children}</ProfileContextProvider>
+    <ProfileContext.Provider value={value}>{children}</ProfileContext.Provider>
   );
 };
 

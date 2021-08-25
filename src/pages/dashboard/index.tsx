@@ -1,23 +1,48 @@
+import { GetServerSideProps } from "next";
 import React from "react";
+import DashboardSwitch from "../../organisms/DashboardSwitch/DashboardSwitch";
 import {
-  DashboardCorner,
-  DashboardOrganizations,
-  DashboardSideBar,
-} from "../../molecules";
-import { UserNavigation } from "../../organisms";
-import { GridPage } from "../../templates";
-import { RouteProfileContextProvider } from "../../utils";
+  Profile,
+  selectProfile,
+  selectProfileKey,
+  supabase,
+} from "../../services";
+import { ProfileContextProvider, validateParam } from "../../utils";
+import { DashboardTab } from "../../utils/routing/types";
 
-const OrganizationsPage = (): JSX.Element => (
-  <RouteProfileContextProvider>
-    <GridPage
-      corner={<DashboardCorner />}
-      header={<UserNavigation />}
-      sideBar={<DashboardSideBar />}
-    >
-      <DashboardOrganizations />
-    </GridPage>
-  </RouteProfileContextProvider>
+export type DashboardPageProps = {
+  tab: DashboardTab | null;
+  profile: Profile;
+};
+
+const DashboardPage = ({ tab, profile }: DashboardPageProps): JSX.Element => (
+  <ProfileContextProvider profile={profile}>
+    <DashboardSwitch tab={tab} />
+  </ProfileContextProvider>
 );
 
-export default OrganizationsPage;
+export const getServerSideProps: GetServerSideProps<DashboardPageProps> =
+  async ({ req, query }) => {
+    try {
+      const tab = validateParam(query?.tab);
+      const dashboardTab =
+        tab && tab in DashboardTab
+          ? DashboardTab[tab as keyof typeof DashboardTab]
+          : null;
+
+      const { user } = await supabase.auth.api.getUserByCookie(req);
+      if (!user) return { notFound: true };
+
+      const profile = await selectProfile({
+        queryKey: selectProfileKey({ userId: user.id }),
+      });
+
+      if (!profile) return { notFound: true };
+
+      return { props: { profile, tab: dashboardTab } };
+    } catch (exception) {
+      return { notFound: true };
+    }
+  };
+
+export default DashboardPage;

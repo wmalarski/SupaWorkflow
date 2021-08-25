@@ -1,34 +1,24 @@
+import {
+  DashboardTab,
+  OrganizationTab,
+  TeamTab,
+  TemplateTab,
+  WorkflowTab,
+} from "./types";
+
 const paths = {
-  team: (organizationId: number, teamId: number): string =>
-    `/dashboard/${organizationId}/teams/${teamId}`,
-  teams: (organizationId: number): string =>
-    `/dashboard/${organizationId}/teams`,
-  newTeam: (organizationId: number): string =>
-    `/dashboard/${organizationId}/teams/new`,
-  template: (organizationId: number, templateId: number): string =>
-    `/dashboard/${organizationId}/template/${templateId}`,
-  newWorkflow: (organizationId: number, templateId: number): string =>
-    `/dashboard/${organizationId}/template/${templateId}/new`,
-  templates: (organizationId: number): string =>
-    `/dashboard/${organizationId}/template`,
-  newTemplate: (organizationId: number): string =>
-    `/dashboard/${organizationId}/template/new`,
-  workflow: (organizationId: number, workflowId: number): string =>
-    `/dashboard/${organizationId}/workflow/${workflowId}`,
-  workflows: (organizationId: number): string =>
-    `/dashboard/${organizationId}/workflow`,
-  organization: (organizationId: number): string =>
-    `/dashboard/${organizationId}`,
-  members: (organizationId: number): string =>
-    `/dashboard/${organizationId}/members`,
-  organizationSettings: (organizationId: number): string =>
-    `/dashboard/${organizationId}/settings`,
-  organizations: "/dashboard",
-  newOrganization: "/dashboard/new",
-  profile: "/dashboard/profile",
   home: "/",
   signIn: "/signIn",
   signUp: "/signUp",
+  dashboard: (tab: DashboardTab) => `/dashboard?tab=${tab}`,
+  organization: (orgId: number, tab: OrganizationTab): string =>
+    `/dashboard/${orgId}?tab=${tab}`,
+  team: (orgId: number, teamId: number, tab: TeamTab): string =>
+    `/dashboard/${orgId}/teams/${teamId}?tab=${tab}`,
+  template: (orgId: number, templateId: number, tab: TemplateTab): string =>
+    `/dashboard/${orgId}/template/${templateId}?tab=${tab}`,
+  workflow: (orgId: number, workflowId: number, tab: WorkflowTab): string =>
+    `/dashboard/${orgId}/workflow/${workflowId}?tab=${tab}`,
 };
 
 export default paths;

@@ -1,4 +1,5 @@
 import React from "react";
+import { useTemplateContext } from "../../../../utils";
 import { useMessages } from "../../../../utils/rep";
 import { useRepMutations } from "../../../../utils/rep/RepContext";
 import TemplateEditorView from "../TemplateEditorView/TemplateEditorView";
@@ -7,21 +8,21 @@ type ViewProps = React.ComponentProps<typeof TemplateEditorView>;
 
 export type TemplateEditorProps = {
   View?: React.ComponentType<ViewProps>;
-  templateId: number;
 };
 
 const TemplateEditor = ({
   View = TemplateEditorView,
-  templateId,
 }: TemplateEditorProps): JSX.Element => {
-  const messages = useMessages({ templateId });
+  const template = useTemplateContext();
+
+  const messages = useMessages({ templateId: template.id });
 
   const { putMessage: putMessage, delMessage: deleteMessage } =
     useRepMutations();
 
   return (
     <View
-      templateId={templateId}
+      templateId={template.id}
       messages={messages}
       onDeleteClick={deleteMessage}
       onMessageChange={putMessage}

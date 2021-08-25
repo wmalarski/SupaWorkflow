@@ -1,106 +1,90 @@
-import { useRouter } from "next/router";
-import React, { createContext, ReactNode, useContext, useEffect } from "react";
+import { createContext, ReactNode, useContext, useMemo } from "react";
 import {
   defaultOrganization,
   defaultOrganizationMember,
   Organization,
   OrganizationMember,
   OrganizationRole,
+  Profile,
   useSelectOrganizationMember,
 } from "../../services";
-import { validateNumberParam } from "../routing/params";
 import ProfileContext from "./ProfileContext";
-import { useUserContext } from "./UserContext";
 
-export type OrganizationContextValue = {
+export type OrganizationValue = {
   organization: Organization;
   member: OrganizationMember;
 };
 
+export type OrganizationContextValue = {
+  value: OrganizationValue;
+  isInitialized: boolean;
+};
+
 const OrganizationContext = createContext<OrganizationContextValue>({
-  organization: defaultOrganization,
-  member: defaultOrganizationMember,
+  value: {
+    organization: defaultOrganization,
+    member: defaultOrganizationMember,
+  },
+  isInitialized: false,
 });
 
-export const useOrganizationContext = (): OrganizationContextValue =>
-  useContext(OrganizationContext);
+export const useOrganizationContext = (): OrganizationValue => {
+  const context = useContext(OrganizationContext);
+  if (!context.isInitialized) throw "Organization Context not initialized";
+  return context.value;
+};
 
 export type OrganizationContextProviderProps = {
-  userId: string;
-  organizationId: number;
+  organization: Organization;
+  member: OrganizationMember;
+  profile: Profile;
   children: ReactNode;
-  fallback?: ReactNode;
+  enabled?: boolean;
 };
 
 export const OrganizationContextProvider = ({
-  userId,
-  organizationId,
+  organization,
+  member,
+  profile,
   children,
-  fallback,
+  enabled,
 }: OrganizationContextProviderProps): JSX.Element => {
   const { data } = useSelectOrganizationMember(
-    { organizationId, userId: userId ?? "" },
-    { enabled: !!userId }
+    { organizationId: organization.id, userId: profile.user_id },
+    { initialData: { member, profile, organization }, enabled }
   );
 
-  return data ? (
-    <ProfileContext.Provider value={data.profile}>
-      <OrganizationContext.Provider
-        value={{ member: data.member, organization: data.organization }}
-      >
+  const profileValue = useMemo(
+    () => ({ profile: data?.profile ?? profile, isInitialized: true }),
+    [data, profile]
+  );
+
+  const organizationValue = useMemo(
+    () => ({ value: data ?? { member, organization }, isInitialized: true }),
+    [data, member, organization]
+  );
+
+  return (
+    <ProfileContext.Provider value={profileValue}>
+      <OrganizationContext.Provider value={organizationValue}>
         {children}
       </OrganizationContext.Provider>
     </ProfileContext.Provider>
-  ) : (
-    <>{fallback}</>
   );
 };
 
 export type OrganizationRoleGuardProps = {
   roles: OrganizationRole[];
   children: React.ReactNode;
-  fallback?: React.ReactNode;
 };
 
 export const OrganizationRoleGuard = ({
   children,
   roles,
-  fallback,
 }: OrganizationRoleGuardProps): JSX.Element | null => {
   const { member } = useOrganizationContext();
 
-  return <>{roles.includes(member.role) ? children : fallback}</>;
-};
-
-export type RouteOrganizationContextProviderProps = {
-  children: React.ReactNode;
-  fallback?: React.ReactNode;
-};
-
-export const RouteOrganizationContextProvider = ({
-  children,
-  fallback,
-}: RouteOrganizationContextProviderProps): JSX.Element | null => {
-  const router = useRouter();
-  const { user, isInitialized } = useUserContext();
-
-  const organizationId = validateNumberParam(router.query.organizationId);
-
-  useEffect(() => {
-    if (!isInitialized || !router.isReady || (!!organizationId && user)) return;
-    router.push("/404");
-  }, [isInitialized, organizationId, user, router]);
-
-  if (!organizationId || !user?.id) return <>{fallback}</>;
-
-  return (
-    <OrganizationContextProvider
-      organizationId={organizationId}
-      userId={user?.id}
-    >
-      {children}
-    </OrganizationContextProvider>
-  );
+  return roles.includes(member.role) ? <>{children}</> : null;
 };
 
 export default OrganizationContext;

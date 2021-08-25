@@ -13,7 +13,7 @@ const Link = (
     ...props
   }: Omit<ChakraLinkProps, "href"> & {
     href: string | UrlObject;
-    nextProps?: NextLinkProps;
+    nextProps?: Omit<NextLinkProps, "href">;
   },
   ref?: React.LegacyRef<HTMLAnchorElement>
 ): JSX.Element => (

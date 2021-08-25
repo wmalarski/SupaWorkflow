@@ -18,8 +18,11 @@ const Template: ComponentStory<typeof OrganizationMembersView> = (args) => (
   <QueryClientProvider client={new QueryClient()}>
     <OrganizationContext.Provider
       value={{
-        member: defaultOrganizationMember,
-        organization: defaultOrganization,
+        isInitialized: true,
+        value: {
+          member: defaultOrganizationMember,
+          organization: defaultOrganization,
+        },
       }}
     >
       <OrganizationMembersView {...args} />
