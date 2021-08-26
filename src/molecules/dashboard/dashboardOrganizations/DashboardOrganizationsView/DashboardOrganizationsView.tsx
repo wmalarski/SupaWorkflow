@@ -3,7 +3,6 @@ import React from "react";
 import { Link } from "../../../../atoms";
 import { Organization } from "../../../../services";
 import { paths, useText } from "../../../../utils";
-import { OrganizationTab } from "../../../../utils/routing/types";
 
 export type DashboardOrganizationsViewProps = {
   organizations?: Organization[] | null;
@@ -21,7 +20,7 @@ const DashboardOrganizationsView = ({
       {organizations?.map((organization) => (
         <Link
           key={organization.id}
-          href={paths.organization(organization.id, OrganizationTab.dashboard)}
+          href={paths.organization(organization.id, null)}
         >
           <Text fontSize="sm">{organization.name}</Text>
         </Link>

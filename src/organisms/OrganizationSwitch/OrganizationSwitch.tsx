@@ -20,8 +20,6 @@ const OrganizationSwitch = ({
   tab,
 }: OrganizationSwitchProps): JSX.Element | null => {
   switch (tab) {
-    case OrganizationTab.dashboard:
-      return <OrganizationDashboard />;
     case OrganizationTab.members:
       return (
         <>
@@ -42,7 +40,7 @@ const OrganizationSwitch = ({
     case OrganizationTab.teams:
       return <OrganizationTeams />;
     default:
-      return null;
+      return <OrganizationDashboard />;
   }
 };
 

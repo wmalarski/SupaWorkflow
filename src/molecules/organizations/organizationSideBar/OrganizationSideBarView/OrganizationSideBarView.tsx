@@ -18,7 +18,7 @@ const OrganizationSideBarView = ({
     <VStack align="start" spacing={5}>
       <Heading size="sm">{text("sideBarOrganization")}</Heading>
       <Link
-        href={paths.organization(organizationId, OrganizationTab.dashboard)}
+        href={paths.organization(organizationId, null)}
         nextProps={{ shallow: true }}
       >
         <Text pl={3} fontSize="sm">

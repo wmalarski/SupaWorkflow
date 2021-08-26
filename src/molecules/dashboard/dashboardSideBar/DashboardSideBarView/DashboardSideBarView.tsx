@@ -4,7 +4,7 @@ import React from "react";
 import { Link } from "../../../../atoms";
 import { Organization } from "../../../../services";
 import { paths, useText } from "../../../../utils";
-import { DashboardTab, OrganizationTab } from "../../../../utils/routing/types";
+import { DashboardTab } from "../../../../utils/routing/types";
 
 export type DashboardSideBarViewProps = {
   organizations?: Organization[] | null;
@@ -29,10 +29,7 @@ const DashboardSideBarView = ({
           <Text fontSize="sm">{text("sideBarNewOrganization")}</Text>
         </HStack>
       </Link>
-      <Link
-        href={paths.dashboard(DashboardTab.dashboard)}
-        nextProps={{ shallow: true }}
-      >
+      <Link href={paths.dashboard(null)} nextProps={{ shallow: true }}>
         <Text pl={3} fontSize="sm">
           {text("sideBarOrganizationList")}
         </Text>
@@ -44,7 +41,7 @@ const DashboardSideBarView = ({
       {organizations?.map((organization) => (
         <Link
           key={organization.id}
-          href={paths.organization(organization.id, OrganizationTab.dashboard)}
+          href={paths.organization(organization.id, null)}
         >
           <Text pl={3} fontSize="sm">
             {organization.name}

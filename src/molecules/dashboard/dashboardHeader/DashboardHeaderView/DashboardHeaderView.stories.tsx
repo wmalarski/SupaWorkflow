@@ -13,6 +13,6 @@ const Template: ComponentStory<typeof DashboardHeaderView> = (args) => (
 
 export const Playground = Template.bind({});
 Playground.args = {
-  path: "/dashboard/3/template/5/new",
+  query: {},
   route: "/dashboard/[organizationId]/template/[templateId]/new",
 };

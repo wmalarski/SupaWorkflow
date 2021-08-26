@@ -2,7 +2,6 @@ import { useRouter } from "next/router";
 import React from "react";
 import { useInsertOrganization } from "../../../../services";
 import { paths, useProfileContext } from "../../../../utils";
-import { OrganizationTab } from "../../../../utils/routing/types";
 import CreateOrganizationView from "../CreateOrganizationView/CreateOrganizationView";
 
 type ViewProps = React.ComponentProps<typeof CreateOrganizationView>;
@@ -25,9 +24,7 @@ const CreateOrganization = ({
     error,
   } = useInsertOrganization({
     onSuccess: (organization) =>
-      router.push(
-        paths.organization(organization.id, OrganizationTab.dashboard)
-      ),
+      router.push(paths.organization(organization.id, null)),
   });
 
   return (
