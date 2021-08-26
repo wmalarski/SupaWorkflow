@@ -1,5 +1,4 @@
 export enum DashboardTab {
-  dashboard = "dashboard",
   profile = "profile",
   new = "new",
 }
@@ -10,7 +9,6 @@ export enum OrganizationTab {
   templates = "templates",
   newTemplate = "newTemplate",
   workflows = "workflows",
-  dashboard = "dashboard",
   members = "members",
   settings = "settings",
 }
@@ -25,5 +23,5 @@ export enum TemplateTab {
 }
 
 export enum TeamTab {
-  dashboard = "dashboard",
+  detail = "detail",
 }

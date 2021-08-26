@@ -1,3 +1,5 @@
+import { useRouter } from "next/router";
+
 export const validateParam = (
   param?: string | string[],
   regex?: string | RegExp
@@ -16,4 +18,19 @@ export const validateNumberParam = (
   const result = validateParam(param, /\d+/);
 
   return result ? Number(result) : null;
+};
+
+export const useTabParam = <
+  T extends Record<string, string>,
+  K extends keyof T
+>(
+  tabs: T
+): T[K] | null => {
+  const router = useRouter();
+
+  const tabParam = validateParam(router.query?.tab);
+
+  if (!tabParam) return null;
+
+  return tabParam in tabs ? (tabs[tabParam] as T[K]) : null;
 };

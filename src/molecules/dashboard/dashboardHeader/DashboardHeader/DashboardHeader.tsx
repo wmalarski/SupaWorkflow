@@ -13,9 +13,7 @@ const DashboardHeader = ({
 }: DashboardHeaderProps): JSX.Element => {
   const router = useRouter();
 
-  console.log({ router });
-
-  return <View route={router.route} path={router.asPath} />;
+  return <View route={router.route} query={router.query} />;
 };
 
 export default React.memo(DashboardHeader);

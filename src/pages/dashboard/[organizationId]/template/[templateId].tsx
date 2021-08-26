@@ -1,5 +1,4 @@
 import { GetServerSideProps } from "next";
-import { useRouter } from "next/router";
 import React from "react";
 import { OrganizationLayout } from "../../../../organisms";
 import TemplateSwitch from "../../../../organisms/TemplateSwitch/TemplateSwitch";
@@ -18,8 +17,8 @@ import {
   OrganizationContextProvider,
   TemplateContextProvider,
   TemplateTab,
+  useTabParam,
   validateNumberParam,
-  validateParam,
 } from "../../../../utils";
 
 export type TemplatePageProps = {
@@ -35,13 +34,7 @@ const TemplatePage = ({
   organization,
   profile,
 }: TemplatePageProps): JSX.Element => {
-  const router = useRouter();
-
-  const tabParam = validateParam(router.query?.tab);
-  const tab =
-    tabParam && tabParam in TemplateTab
-      ? TemplateTab[tabParam as keyof typeof TemplateTab]
-      : null;
+  const tab = useTabParam(TemplateTab);
 
   return (
     <OrganizationContextProvider

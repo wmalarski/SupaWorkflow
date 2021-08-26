@@ -1,5 +1,4 @@
 import { GetServerSideProps } from "next";
-import { useRouter } from "next/router";
 import React from "react";
 import { OrganizationLayout } from "../../../../organisms";
 import WorkflowSwitch from "../../../../organisms/WorkflowSwitch/WorkflowSwitch";
@@ -16,8 +15,8 @@ import {
 } from "../../../../services";
 import {
   OrganizationContextProvider,
+  useTabParam,
   validateNumberParam,
-  validateParam,
   WorkflowContextProvider,
   WorkflowTab,
 } from "../../../../utils";
@@ -35,13 +34,7 @@ const WorkflowPage = ({
   workflow,
   organization,
 }: WorkflowPageProps): JSX.Element => {
-  const router = useRouter();
-
-  const tabParam = validateParam(router.query?.tab);
-  const tab =
-    tabParam && tabParam in WorkflowTab
-      ? WorkflowTab[tabParam as keyof typeof WorkflowTab]
-      : null;
+  const tab = useTabParam(WorkflowTab);
 
   return (
     <OrganizationContextProvider

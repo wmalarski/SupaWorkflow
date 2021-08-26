@@ -1,5 +1,4 @@
 import { GetServerSideProps } from "next";
-import { useRouter } from "next/router";
 import React from "react";
 import { OrganizationLayout, TeamSwitch } from "../../../../organisms";
 import {
@@ -18,9 +17,7 @@ import {
 import {
   OrganizationContextProvider,
   TeamContextProvider,
-  TeamTab,
   validateNumberParam,
-  validateParam,
 } from "../../../../utils";
 
 export type TeamPageProps = {
@@ -36,14 +33,6 @@ const TeamPage = ({
   organization,
   member,
 }: TeamPageProps): JSX.Element => {
-  const router = useRouter();
-
-  const tabParam = validateParam(router.query?.tab);
-  const tab =
-    tabParam && tabParam in TeamTab
-      ? TeamTab[tabParam as keyof typeof TeamTab]
-      : null;
-
   return (
     <OrganizationContextProvider
       member={member}
@@ -52,7 +41,7 @@ const TeamPage = ({
     >
       <TeamContextProvider team={team}>
         <OrganizationLayout>
-          <TeamSwitch tab={tab} />
+          <TeamSwitch />
         </OrganizationLayout>
       </TeamContextProvider>
     </OrganizationContextProvider>

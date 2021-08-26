@@ -1,9 +1,17 @@
+import { ParsedUrlQuery } from "querystring";
 import { UseTextFnc } from "../translations/useText";
+import { validateNumberParam, validateParam } from "./params";
 import paths from "./paths";
+import {
+  DashboardTab,
+  OrganizationTab,
+  TemplateTab,
+  WorkflowTab,
+} from "./types";
 
 export type MapRouteArgs = {
   route: string;
-  path: string;
+  query: ParsedUrlQuery;
   text: UseTextFnc;
 };
 
@@ -12,96 +20,169 @@ export type MapRouteReturn = {
   children: string;
 };
 
-const mapRoute = ({
-  path,
-  route,
-  text,
-}: MapRouteArgs): MapRouteReturn | null => {
-  const nodes = path.split("/");
+const mapText = {
+  home: (text: UseTextFnc): MapRouteReturn => ({
+    href: paths.home,
+    children: text("navigationHome"),
+  }),
+  dashboard: (tab: DashboardTab | null, text: UseTextFnc): MapRouteReturn => {
+    const href = paths.dashboard(tab);
+
+    switch (tab) {
+      case DashboardTab.new:
+        return { href, children: text("navigationNewOrganization") };
+      case DashboardTab.profile:
+        return { href, children: text("navigationProfile") };
+      default:
+        return { href, children: text("navigationDashboard") };
+    }
+  },
+  organization: (
+    orgId: number,
+    tab: OrganizationTab | null,
+    text: UseTextFnc
+  ): MapRouteReturn => {
+    const href = paths.organization(orgId, tab);
+
+    switch (tab) {
+      case OrganizationTab.members:
+        return { href, children: text("navigationMembers") };
+      case OrganizationTab.newTeam:
+        return { href, children: text("navigationNewTeam") };
+      case OrganizationTab.newTemplate:
+        return { href, children: text("navigationNewTemplate") };
+      case OrganizationTab.settings:
+        return { href, children: text("navigationSettings") };
+      case OrganizationTab.teams:
+        return { href, children: text("navigationTeams") };
+      case OrganizationTab.templates:
+        return { href, children: text("navigationTemplates") };
+      case OrganizationTab.workflows:
+        return { href, children: text("navigationWorkflows") };
+      default:
+        return { href, children: text("navigationDashboard") };
+    }
+  },
+  team: (orgId: number, teamId: number, text: UseTextFnc): MapRouteReturn => ({
+    href: paths.team(orgId, teamId, null),
+    children: text("navigationTeam"),
+  }),
+  template: (
+    orgId: number,
+    templateId: number,
+    tab: TemplateTab | null,
+    text: UseTextFnc
+  ): MapRouteReturn => {
+    const href = paths.template(orgId, templateId, tab);
+
+    switch (tab) {
+      case TemplateTab.new:
+        return { href, children: text("navigationNewWorkflow") };
+      case TemplateTab.edit:
+      default:
+        return { href, children: text("navigationTemplate") };
+    }
+  },
+  workflow: (
+    orgId: number,
+    workflowId: number,
+    tab: WorkflowTab | null,
+    text: UseTextFnc
+  ): MapRouteReturn => {
+    const href = paths.workflow(orgId, workflowId, tab);
+
+    switch (tab) {
+      case WorkflowTab.edit:
+      default:
+        return { href, children: text("navigationWorkflow") };
+    }
+  },
+};
+
+const mapRoute = (args: MapRouteArgs): MapRouteReturn[] => {
+  const { route, query, text } = args;
 
   switch (route) {
     case "":
-      return {
-        href: paths.home,
-        children: text("navigationHome"),
-      };
-    // case "/dashboard":
-    //   return {
-    //     href: paths.team(Number(nodes[2]), Number(nodes[4])),
-    //     children: text("navigationTeam"),
-    //   };
-    // case "/dashboard/[organizationId]/teams":
-    //   return {
-    //     href: paths.teams(Number(nodes[2])),
-    //     children: text("navigationTeams"),
-    //   };
-    // case "/dashboard/[organizationId]/teams/new":
-    //   return {
-    //     href: paths.newTeam(Number(nodes[2])),
-    //     children: text("navigationNewTeam"),
-    //   };
-    // case "/dashboard/[organizationId]/template/[templateId]":
-    //   return {
-    //     href: paths.template(Number(nodes[2]), Number(nodes[4])),
-    //     children: text("navigationTemplate"),
-    //   };
-    // case "/dashboard/[organizationId]/template/[templateId]/new":
-    //   return {
-    //     href: paths.newWorkflow(Number(nodes[2]), Number(nodes[4])),
-    //     children: text("navigationNewWorkflow"),
-    //   };
-    // case "/dashboard/[organizationId]/template":
-    //   return {
-    //     href: paths.templates(Number(nodes[2])),
-    //     children: text("navigationTemplates"),
-    //   };
-    // case "/dashboard/[organizationId]/template/new":
-    //   return {
-    //     href: paths.newTemplate(Number(nodes[2])),
-    //     children: text("navigationNewTemplate"),
-    //   };
-    // case "/dashboard/[organizationId]/workflow/[workflowId]":
-    //   return {
-    //     href: paths.workflow(Number(nodes[2]), Number(nodes[4])),
-    //     children: text("navigationWorkflow"),
-    //   };
-    // case "/dashboard/[organizationId]/workflow":
-    //   return {
-    //     href: paths.workflows(Number(nodes[2])),
-    //     children: text("navigationWorkflow"),
-    //   };
-    // case "/dashboard/[organizationId]":
-    //   return {
-    //     href: paths.organization(Number(nodes[2])),
-    //     children: text("navigationOrganization"),
-    //   };
-    // case "/dashboard/[organizationId]/members":
-    //   return {
-    //     href: paths.members(Number(nodes[2])),
-    //     children: text("navigationMembers"),
-    //   };
-    // case "/dashboard/[organizationId]/settings":
-    //   return {
-    //     href: paths.organizationSettings(Number(nodes[2])),
-    //     children: text("navigationSettings"),
-    //   };
-    // case "/dashboard":
-    //   return {
-    //     href: paths.organizations,
-    //     children: text("navigationDashboard"),
-    //   };
-    // case "/dashboard/new":
-    //   return {
-    //     href: paths.newOrganization,
-    //     children: text("navigationNewOrganization"),
-    //   };
-    // case "/dashboard/profile":
-    //   return {
-    //     href: paths.profile,
-    //     children: text("navigationProfile"),
-    //   };
+      return [mapText.home(text)];
+    case "/dashboard": {
+      return [
+        mapText.home(text),
+        mapText.dashboard(null, text),
+        ...(query.tab
+          ? [
+              mapText.dashboard(
+                validateParam(query.tab) as DashboardTab | null,
+                text
+              ),
+            ]
+          : []),
+      ];
+    }
+    case "/dashboard/[organizationId]": {
+      const orgId = validateNumberParam(query.organizationId);
+
+      if (!orgId) return [];
+
+      return [
+        mapText.home(text),
+        mapText.dashboard(null, text),
+        mapText.organization(
+          orgId,
+          validateParam(query.tab) as OrganizationTab | null,
+          text
+        ),
+      ];
+    }
+    case "/dashboard/[organizationId]/teams/[teamId]": {
+      const orgId = validateNumberParam(query.organizationId);
+      const teamId = validateNumberParam(query.teamId);
+
+      if (!orgId || !teamId) return [];
+
+      return [
+        mapText.home(text),
+        mapText.dashboard(null, text),
+        mapText.organization(orgId, null, text),
+        mapText.team(orgId, teamId, text),
+      ];
+    }
+    case "/dashboard/[organizationId]/template/[templateId]": {
+      const orgId = validateNumberParam(query.organizationId);
+      const templateId = validateNumberParam(query.templateId);
+      if (!orgId || !templateId) return [];
+
+      return [
+        mapText.home(text),
+        mapText.dashboard(null, text),
+        mapText.organization(orgId, null, text),
+        mapText.template(
+          orgId,
+          templateId,
+          validateParam(query.tab) as TemplateTab | null,
+          text
+        ),
+      ];
+    }
+    case "/dashboard/[organizationId]/workflow/[workflowId]": {
+      const orgId = validateNumberParam(query.organizationId);
+      const workflowId = validateNumberParam(query.workflowId);
+      if (!orgId || !workflowId) return [];
+
+      return [
+        mapText.home(text),
+        mapText.dashboard(null, text),
+        mapText.organization(orgId, null, text),
+        mapText.workflow(
+          orgId,
+          workflowId,
+          validateParam(query.tab) as WorkflowTab | null,
+          text
+        ),
+      ];
+    }
     default:
-      return null;
+      return [];
   }
 };
 

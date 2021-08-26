@@ -1,5 +1,4 @@
 import { GetServerSideProps } from "next";
-import { useRouter } from "next/router";
 import React from "react";
 import DashboardSwitch from "../../organisms/DashboardSwitch/DashboardSwitch";
 import {
@@ -8,24 +7,14 @@ import {
   selectProfileKey,
   supabase,
 } from "../../services";
-import {
-  DashboardTab,
-  ProfileContextProvider,
-  validateParam,
-} from "../../utils";
+import { DashboardTab, ProfileContextProvider, useTabParam } from "../../utils";
 
 export type DashboardPageProps = {
   profile: Profile;
 };
 
 const DashboardPage = ({ profile }: DashboardPageProps): JSX.Element => {
-  const router = useRouter();
-
-  const tabParam = validateParam(router.query?.tab);
-  const tab =
-    tabParam && tabParam in DashboardTab
-      ? DashboardTab[tabParam as keyof typeof DashboardTab]
-      : null;
+  const tab = useTabParam(DashboardTab);
 
   return (
     <ProfileContextProvider profile={profile}>

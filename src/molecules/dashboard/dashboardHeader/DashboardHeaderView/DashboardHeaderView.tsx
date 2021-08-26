@@ -1,24 +1,21 @@
 import { Breadcrumb, BreadcrumbItem } from "@chakra-ui/react";
+import { ParsedUrlQuery } from "querystring";
 import React, { useMemo } from "react";
 import { BreadcrumbLink } from "../../../../atoms";
-import { useText } from "../../../../utils";
-import { mapRouteToLinks } from "./DashboardHeaderView.utils";
+import { mapRoute, useText } from "../../../../utils";
 
 export type DashboardHeaderViewProps = {
   route: string;
-  path: string;
+  query: ParsedUrlQuery;
 };
 
 const DashboardHeaderView = ({
   route,
-  path,
+  query,
 }: DashboardHeaderViewProps): JSX.Element => {
   const text = useText();
 
-  const routes = useMemo(
-    () => mapRouteToLinks({ route, path, text }),
-    [route, path, text]
-  );
+  const routes = useMemo(() => mapRoute({ route, query, text }), [route, text]);
 
   return (
     <Breadcrumb>

@@ -16,16 +16,6 @@ export type DashboardSwitchProps = {
 
 const DashboardSwitch = ({ tab }: DashboardSwitchProps): JSX.Element | null => {
   switch (tab) {
-    case DashboardTab.dashboard:
-      return (
-        <GridPage
-          corner={<DashboardCorner />}
-          header={<UserNavigation />}
-          sideBar={<DashboardSideBar />}
-        >
-          <DashboardOrganizations />
-        </GridPage>
-      );
     case DashboardTab.new:
       return (
         <FormPage corner={<DashboardCorner />} header={<UserNavigation />}>
@@ -43,7 +33,15 @@ const DashboardSwitch = ({ tab }: DashboardSwitchProps): JSX.Element | null => {
         </GridPage>
       );
     default:
-      return null;
+      return (
+        <GridPage
+          corner={<DashboardCorner />}
+          header={<UserNavigation />}
+          sideBar={<DashboardSideBar />}
+        >
+          <DashboardOrganizations />
+        </GridPage>
+      );
   }
 };
 
