@@ -1,9 +1,9 @@
 import React from "react";
 import {
   DashboardCorner,
-  OrganizationSideBar,
   ProfileHeader,
   WorkflowHeader,
+  WorkflowSideBar,
 } from "../../molecules";
 import { FormPage, GridPage, Header } from "../../templates";
 
@@ -27,7 +27,7 @@ const WorkspaceLayout = ({
     <GridPage
       corner={<DashboardCorner />}
       header={<Header left={<WorkflowHeader />} right={<ProfileHeader />} />}
-      sideBar={<OrganizationSideBar />}
+      sideBar={<WorkflowSideBar />}
     >
       {children}
     </GridPage>

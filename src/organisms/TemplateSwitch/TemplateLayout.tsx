@@ -1,9 +1,9 @@
 import React from "react";
 import {
   DashboardCorner,
-  OrganizationSideBar,
   ProfileHeader,
   TemplateHeader,
+  TemplateSideBar,
 } from "../../molecules";
 import { FormPage, GridPage, Header } from "../../templates";
 
@@ -27,7 +27,7 @@ const TemplateLayout = ({
     <GridPage
       corner={<DashboardCorner />}
       header={<Header left={<TemplateHeader />} right={<ProfileHeader />} />}
-      sideBar={<OrganizationSideBar />}
+      sideBar={<TemplateSideBar />}
     >
       {children}
     </GridPage>

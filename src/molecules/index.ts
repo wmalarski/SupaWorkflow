@@ -22,10 +22,13 @@ export { default as NewTeamMember } from "./teams/newTeamMember/NewTeamMember/Ne
 export { default as OrganizationTeam } from "./teams/organizationTeam/OrganizationTeam/OrganizationTeam";
 export { default as OrganizationTeams } from "./teams/organizationTeams/OrganizationTeams/OrganizationTeams";
 export { default as TeamHeader } from "./teams/teamHeader/TeamHeader/TeamHeader";
+export { default as TeamSideBar } from "./teams/teamSideBar/TeamSideBar/TeamSideBar";
 export { default as CreateTemplate } from "./templates/createTemplate/CreateTemplate/CreateTemplate";
 export { default as TemplateHeader } from "./templates/templateHeader/TemplateHeader/TemplateHeader";
+export { default as TemplateSideBar } from "./templates/templateSideBar/TemplateSideBar/TemplateSideBar";
 export { default as TemplatesList } from "./templates/templatesList/TemplatesList/TemplatesList";
 export { default as CreateWorkflow } from "./workflows/createWorkflow/CreateWorkflow/CreateWorkflow";
 export { default as WorkflowEditor } from "./workflows/workflowEditor/WorkflowEditor/WorkflowEditor";
 export { default as WorkflowHeader } from "./workflows/workflowHeader/WorkflowHeader/WorkflowHeader";
+export { default as WorkflowSideBar } from "./workflows/workflowSideBar/WorkflowSideBar/WorkflowSideBar";
 export { default as WorkflowsList } from "./workflows/workflowsList/WorkflowsList/WorkflowsList";

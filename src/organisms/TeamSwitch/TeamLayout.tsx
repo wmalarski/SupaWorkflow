@@ -1,9 +1,9 @@
 import React from "react";
 import {
   DashboardCorner,
-  OrganizationSideBar,
   ProfileHeader,
   TeamHeader,
+  TeamSideBar,
 } from "../../molecules";
 import { FormPage, GridPage, Header } from "../../templates";
 
@@ -24,7 +24,7 @@ const TeamLayout = ({ isForm, children }: TeamLayoutProps): JSX.Element =>
     <GridPage
       corner={<DashboardCorner />}
       header={<Header left={<TeamHeader />} right={<ProfileHeader />} />}
-      sideBar={<OrganizationSideBar />}
+      sideBar={<TeamSideBar />}
     >
       {children}
     </GridPage>
