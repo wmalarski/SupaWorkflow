@@ -1,18 +1,21 @@
 import { Grid, GridItem, VStack } from "@chakra-ui/react";
 import React from "react";
+import Header from "../Header/Header";
 import Page from "../Page/Page";
 
 export type GridTemplateProps = {
   corner?: React.ReactNode;
   sideBar?: React.ReactNode;
-  header?: React.ReactNode;
+  headerLeft?: React.ReactNode;
+  headerRight?: React.ReactNode;
   children?: React.ReactNode;
 };
 
 const GridTemplate = ({
   corner,
   children,
-  header,
+  headerLeft,
+  headerRight,
   sideBar,
 }: GridTemplateProps): JSX.Element => {
   return (
@@ -27,7 +30,7 @@ const GridTemplate = ({
           {corner}
         </GridItem>
         <GridItem borderBottomWidth={1} padding={5}>
-          {header}
+          <Header left={headerLeft} right={headerRight} />
         </GridItem>
         <GridItem borderRightWidth={1} padding={5}>
           {sideBar}

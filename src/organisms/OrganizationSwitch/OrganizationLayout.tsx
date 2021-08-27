@@ -5,7 +5,7 @@ import {
   OrganizationSideBar,
   ProfileHeader,
 } from "../../molecules";
-import { FormPage, GridPage, Header } from "../../templates";
+import { FormPage, GridPage } from "../../templates";
 
 export type OrganizationLayoutProps = {
   isForm?: boolean;
@@ -19,18 +19,16 @@ const OrganizationLayout = ({
   isForm ? (
     <FormPage
       corner={<DashboardCorner />}
-      header={
-        <Header left={<OrganizationHeader />} right={<ProfileHeader />} />
-      }
+      headerLeft={<OrganizationHeader />}
+      headerRight={<ProfileHeader />}
     >
       {children}
     </FormPage>
   ) : (
     <GridPage
       corner={<DashboardCorner />}
-      header={
-        <Header left={<OrganizationHeader />} right={<ProfileHeader />} />
-      }
+      headerLeft={<OrganizationHeader />}
+      headerRight={<ProfileHeader />}
       sideBar={<OrganizationSideBar />}
     >
       {children}

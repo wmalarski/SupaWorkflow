@@ -5,7 +5,7 @@ import {
   WorkflowHeader,
   WorkflowSideBar,
 } from "../../molecules";
-import { FormPage, GridPage, Header } from "../../templates";
+import { FormPage, GridPage } from "../../templates";
 
 export type WorkspaceLayoutProps = {
   isForm?: boolean;
@@ -15,23 +15,24 @@ export type WorkspaceLayoutProps = {
 const WorkspaceLayout = ({
   isForm,
   children,
-}: WorkspaceLayoutProps): JSX.Element => {
-  return isForm ? (
+}: WorkspaceLayoutProps): JSX.Element =>
+  isForm ? (
     <FormPage
       corner={<DashboardCorner />}
-      header={<Header left={<WorkflowHeader />} right={<ProfileHeader />} />}
+      headerLeft={<WorkflowHeader />}
+      headerRight={<ProfileHeader />}
     >
       {children}
     </FormPage>
   ) : (
     <GridPage
       corner={<DashboardCorner />}
-      header={<Header left={<WorkflowHeader />} right={<ProfileHeader />} />}
+      headerLeft={<WorkflowHeader />}
+      headerRight={<ProfileHeader />}
       sideBar={<WorkflowSideBar />}
     >
       {children}
     </GridPage>
   );
-};
 
 export default WorkspaceLayout;

@@ -1,5 +1,5 @@
 import React from "react";
-import TemplateSwitch from "../../../../organisms/TemplateSwitch/TemplateSwitch";
+import { TemplateSwitch } from "../../../../organisms";
 import {
   getTemplateProps,
   GetTemplateProps,

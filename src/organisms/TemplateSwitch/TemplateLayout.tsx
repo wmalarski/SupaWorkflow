@@ -5,7 +5,7 @@ import {
   TemplateHeader,
   TemplateSideBar,
 } from "../../molecules";
-import { FormPage, GridPage, Header } from "../../templates";
+import { FormPage, GridPage } from "../../templates";
 
 export type TemplateLayoutProps = {
   isForm?: boolean;
@@ -19,14 +19,16 @@ const TemplateLayout = ({
   isForm ? (
     <FormPage
       corner={<DashboardCorner />}
-      header={<Header left={<TemplateHeader />} right={<ProfileHeader />} />}
+      headerLeft={<TemplateHeader />}
+      headerRight={<ProfileHeader />}
     >
       {children}
     </FormPage>
   ) : (
     <GridPage
       corner={<DashboardCorner />}
-      header={<Header left={<TemplateHeader />} right={<ProfileHeader />} />}
+      headerLeft={<TemplateHeader />}
+      headerRight={<ProfileHeader />}
       sideBar={<TemplateSideBar />}
     >
       {children}

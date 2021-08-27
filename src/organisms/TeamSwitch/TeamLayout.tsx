@@ -5,7 +5,7 @@ import {
   TeamHeader,
   TeamSideBar,
 } from "../../molecules";
-import { FormPage, GridPage, Header } from "../../templates";
+import { FormPage, GridPage } from "../../templates";
 
 export type TeamLayoutProps = {
   isForm?: boolean;
@@ -16,14 +16,16 @@ const TeamLayout = ({ isForm, children }: TeamLayoutProps): JSX.Element =>
   isForm ? (
     <FormPage
       corner={<DashboardCorner />}
-      header={<Header left={<TeamHeader />} right={<ProfileHeader />} />}
+      headerLeft={<TeamHeader />}
+      headerRight={<ProfileHeader />}
     >
       {children}
     </FormPage>
   ) : (
     <GridPage
       corner={<DashboardCorner />}
-      header={<Header left={<TeamHeader />} right={<ProfileHeader />} />}
+      headerLeft={<TeamHeader />}
+      headerRight={<ProfileHeader />}
       sideBar={<TeamSideBar />}
     >
       {children}

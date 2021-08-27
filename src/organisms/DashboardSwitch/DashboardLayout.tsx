@@ -5,7 +5,7 @@ import {
   DashboardSideBar,
   ProfileHeader,
 } from "../../molecules";
-import { FormPage, GridPage, Header } from "../../templates";
+import { FormPage, GridPage } from "../../templates";
 
 export type DashboardLayoutProps = {
   isForm?: boolean;
@@ -19,14 +19,16 @@ const DashboardLayout = ({
   isForm ? (
     <FormPage
       corner={<DashboardCorner />}
-      header={<Header left={<DashboardHeader />} right={<ProfileHeader />} />}
+      headerLeft={<DashboardHeader />}
+      headerRight={<ProfileHeader />}
     >
       {children}
     </FormPage>
   ) : (
     <GridPage
       corner={<DashboardCorner />}
-      header={<Header left={<DashboardHeader />} right={<ProfileHeader />} />}
+      headerLeft={<DashboardHeader />}
+      headerRight={<ProfileHeader />}
       sideBar={<DashboardSideBar />}
     >
       {children}

@@ -1,5 +1,5 @@
 import React from "react";
-import WorkflowSwitch from "../../../../organisms/WorkflowSwitch/WorkflowSwitch";
+import { WorkflowSwitch } from "../../../../organisms";
 import {
   GetWorkflowProps,
   getWorkflowProps,
