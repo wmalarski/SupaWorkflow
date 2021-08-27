@@ -6,6 +6,11 @@ import DashboardHeaderView from "./DashboardHeaderView";
 export default {
   title: "Molecules/Dashboard/DashboardHeaderView",
   component: DashboardHeaderView,
+  argTypes: {
+    tab: {
+      control: { type: "select", options: { ...DashboardTab, None: null } },
+    },
+  },
 } as ComponentMeta<typeof DashboardHeaderView>;
 
 const Template: ComponentStory<typeof DashboardHeaderView> = (args) => (

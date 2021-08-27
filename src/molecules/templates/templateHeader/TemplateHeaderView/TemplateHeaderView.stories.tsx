@@ -6,6 +6,11 @@ import TemplateHeaderView from "./TemplateHeaderView";
 export default {
   title: "Molecules/Templates/TemplateHeaderView",
   component: TemplateHeaderView,
+  argTypes: {
+    tab: {
+      control: { type: "select", options: { ...TemplateTab, None: null } },
+    },
+  },
 } as ComponentMeta<typeof TemplateHeaderView>;
 
 const Template: ComponentStory<typeof TemplateHeaderView> = (args) => (

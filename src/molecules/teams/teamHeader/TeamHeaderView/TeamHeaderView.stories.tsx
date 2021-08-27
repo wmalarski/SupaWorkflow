@@ -3,7 +3,7 @@ import React from "react";
 import TeamHeaderView from "./TeamHeaderView";
 
 export default {
-  title: "Molecules/TeamHeaderView",
+  title: "Molecules/Teams/TeamHeaderView",
   component: TeamHeaderView,
 } as ComponentMeta<typeof TeamHeaderView>;
 

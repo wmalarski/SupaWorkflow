@@ -18,6 +18,11 @@ const OrganizationHeaderView = ({
   return (
     <Breadcrumb>
       <BreadcrumbItem>
+        <BreadcrumbLink href={paths.home}>
+          {text("navigationHome")}
+        </BreadcrumbLink>
+      </BreadcrumbItem>
+      <BreadcrumbItem>
         <BreadcrumbLink href={paths.dashboard()}>
           {text("navigationDashboard")}
         </BreadcrumbLink>
@@ -27,7 +32,7 @@ const OrganizationHeaderView = ({
           href={paths.organization(organizationId)}
           nextProps={{ shallow: true }}
         >
-          {text("navigationOrganizations")}
+          {text("navigationOrganization")}
         </BreadcrumbLink>
       </BreadcrumbItem>
       {tab && (

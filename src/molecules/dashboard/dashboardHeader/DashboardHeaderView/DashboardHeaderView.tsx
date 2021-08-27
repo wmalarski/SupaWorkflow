@@ -16,6 +16,11 @@ const DashboardHeaderView = ({
   return (
     <Breadcrumb>
       <BreadcrumbItem>
+        <BreadcrumbLink href={paths.home}>
+          {text("navigationHome")}
+        </BreadcrumbLink>
+      </BreadcrumbItem>
+      <BreadcrumbItem>
         <BreadcrumbLink href={paths.dashboard()} nextProps={{ shallow: true }}>
           {text("navigationDashboard")}
         </BreadcrumbLink>

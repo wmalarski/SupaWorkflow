@@ -17,13 +17,18 @@ const TeamHeaderView = ({
   return (
     <Breadcrumb>
       <BreadcrumbItem>
+        <BreadcrumbLink href={paths.home}>
+          {text("navigationHome")}
+        </BreadcrumbLink>
+      </BreadcrumbItem>
+      <BreadcrumbItem>
         <BreadcrumbLink href={paths.dashboard()}>
           {text("navigationDashboard")}
         </BreadcrumbLink>
       </BreadcrumbItem>
       <BreadcrumbItem>
         <BreadcrumbLink href={paths.organization(organizationId)}>
-          {text("navigationOrganizations")}
+          {text("navigationOrganization")}
         </BreadcrumbLink>
       </BreadcrumbItem>
       <BreadcrumbItem>

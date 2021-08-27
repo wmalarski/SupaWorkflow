@@ -6,6 +6,11 @@ import WorkflowHeaderView from "./WorkflowHeaderView";
 export default {
   title: "Molecules/Workflows/WorkflowHeaderView",
   component: WorkflowHeaderView,
+  argTypes: {
+    tab: {
+      control: { type: "select", options: { ...WorkflowTab, None: null } },
+    },
+  },
 } as ComponentMeta<typeof WorkflowHeaderView>;
 
 const Template: ComponentStory<typeof WorkflowHeaderView> = (args) => (

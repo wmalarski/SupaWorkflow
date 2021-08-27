@@ -6,6 +6,11 @@ import OrganizationHeaderView from "./OrganizationHeaderView";
 export default {
   title: "Molecules/Organizations/OrganizationHeaderView",
   component: OrganizationHeaderView,
+  argTypes: {
+    tab: {
+      control: { type: "select", options: { ...OrganizationTab, None: null } },
+    },
+  },
 } as ComponentMeta<typeof OrganizationHeaderView>;
 
 const Template: ComponentStory<typeof OrganizationHeaderView> = (args) => (
