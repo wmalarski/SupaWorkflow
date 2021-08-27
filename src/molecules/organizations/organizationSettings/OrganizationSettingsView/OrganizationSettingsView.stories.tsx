@@ -15,4 +15,8 @@ const Template: ComponentStory<typeof OrganizationSettingsView> = (args) => (
 export const Playground = Template.bind({});
 Playground.args = {
   organization: defaultOrganization,
+  isLoading: false,
+  isSuccess: false,
+  onDeleteSubmit: () => void 0,
+  onUpdateSubmit: () => void 0,
 };

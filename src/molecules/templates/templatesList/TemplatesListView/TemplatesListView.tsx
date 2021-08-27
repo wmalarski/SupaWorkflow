@@ -19,7 +19,6 @@ const TemplatesListView = ({
 
   return (
     <div>
-      {`TemplatesListView: `}
       <Link
         href={paths.organization(organizationId, OrganizationTab.newTemplate)}
       >

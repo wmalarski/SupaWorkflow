@@ -5,19 +5,19 @@ import { MutationArgs } from "../../../../utils/rep";
 import MessageForm from "../MessageForm/MessageForm";
 import MessageListItem from "../MessageListItem/MessageListItem";
 
-export type TemplateEditorProps = {
+export type TemplateEditorViewProps = {
   templateId: number;
   messages: Message[];
   onMessageChange: (args: MutationArgs["putMessage"]) => void;
   onDeleteClick: (args: MutationArgs["delMessage"]) => void;
 };
 
-const TemplateEditor = ({
+const TemplateEditorView = ({
   templateId,
   messages,
   onMessageChange,
   onDeleteClick,
-}: TemplateEditorProps): JSX.Element => (
+}: TemplateEditorViewProps): JSX.Element => (
   <>
     <MessageForm templateId={templateId} onCreateClick={onMessageChange} />
     <VStack divider={<StackDivider borderColor="gray.200" />}>
@@ -33,4 +33,4 @@ const TemplateEditor = ({
   </>
 );
 
-export default TemplateEditor;
+export default TemplateEditorView;
