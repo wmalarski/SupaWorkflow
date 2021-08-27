@@ -7,21 +7,17 @@ import {
   selectProfileKey,
   supabase,
 } from "../../services";
-import { DashboardTab, ProfileContextProvider, useTabParam } from "../../utils";
+import { ProfileContextProvider } from "../../utils";
 
 export type DashboardPageProps = {
   profile: Profile;
 };
 
-const DashboardPage = ({ profile }: DashboardPageProps): JSX.Element => {
-  const tab = useTabParam(DashboardTab);
-
-  return (
-    <ProfileContextProvider profile={profile}>
-      <DashboardSwitch tab={tab} />
-    </ProfileContextProvider>
-  );
-};
+const DashboardPage = ({ profile }: DashboardPageProps): JSX.Element => (
+  <ProfileContextProvider profile={profile}>
+    <DashboardSwitch />
+  </ProfileContextProvider>
+);
 
 export const getServerSideProps: GetServerSideProps<DashboardPageProps> =
   async ({ req }) => {

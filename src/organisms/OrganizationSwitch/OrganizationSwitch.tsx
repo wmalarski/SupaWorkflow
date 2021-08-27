@@ -10,37 +10,62 @@ import {
   TemplatesList,
   WorkflowsList,
 } from "../../molecules";
-import { OrganizationTab } from "../../utils";
+import { OrganizationTab, useTabParam } from "../../utils";
+import OrganizationLayout from "./OrganizationLayout";
 
-export type OrganizationSwitchProps = {
-  tab: OrganizationTab | null;
-};
+const OrganizationSwitch = (): JSX.Element | null => {
+  const tab = useTabParam(OrganizationTab);
 
-const OrganizationSwitch = ({
-  tab,
-}: OrganizationSwitchProps): JSX.Element | null => {
   switch (tab) {
     case OrganizationTab.members:
       return (
-        <>
+        <OrganizationLayout>
           <AddOrganizationMember />
           <OrganizationMembers />
-        </>
+        </OrganizationLayout>
       );
     case OrganizationTab.settings:
-      return <OrganizationSettings />;
+      return (
+        <OrganizationLayout>
+          <OrganizationSettings />
+        </OrganizationLayout>
+      );
     case OrganizationTab.workflows:
-      return <WorkflowsList />;
+      return (
+        <OrganizationLayout>
+          <WorkflowsList />
+        </OrganizationLayout>
+      );
     case OrganizationTab.newTemplate:
-      return <CreateTemplate />;
+      return (
+        <OrganizationLayout isForm>
+          <CreateTemplate />
+        </OrganizationLayout>
+      );
     case OrganizationTab.templates:
-      return <TemplatesList />;
+      return (
+        <OrganizationLayout>
+          <TemplatesList />
+        </OrganizationLayout>
+      );
     case OrganizationTab.newTeam:
-      return <NewOrganizationTeam />;
+      return (
+        <OrganizationLayout isForm>
+          <NewOrganizationTeam />
+        </OrganizationLayout>
+      );
     case OrganizationTab.teams:
-      return <OrganizationTeams />;
+      return (
+        <OrganizationLayout>
+          <OrganizationTeams />
+        </OrganizationLayout>
+      );
     default:
-      return <OrganizationDashboard />;
+      return (
+        <OrganizationLayout>
+          <OrganizationDashboard />
+        </OrganizationLayout>
+      );
   }
 };
 

@@ -1,6 +1,5 @@
 import { GetServerSideProps } from "next";
 import React from "react";
-import { OrganizationLayout } from "../../../../organisms";
 import WorkflowSwitch from "../../../../organisms/WorkflowSwitch/WorkflowSwitch";
 import {
   Organization,
@@ -15,10 +14,8 @@ import {
 } from "../../../../services";
 import {
   OrganizationContextProvider,
-  useTabParam,
   validateNumberParam,
   WorkflowContextProvider,
-  WorkflowTab,
 } from "../../../../utils";
 
 export type WorkflowPageProps = {
@@ -33,25 +30,19 @@ const WorkflowPage = ({
   profile,
   workflow,
   organization,
-}: WorkflowPageProps): JSX.Element => {
-  const tab = useTabParam(WorkflowTab);
+}: WorkflowPageProps): JSX.Element => (
+  <OrganizationContextProvider
+    member={member}
+    profile={profile}
+    organization={organization}
+  >
+    <WorkflowContextProvider workflow={workflow}>
+      <WorkflowSwitch />
+    </WorkflowContextProvider>
+  </OrganizationContextProvider>
+);
 
-  return (
-    <OrganizationContextProvider
-      member={member}
-      profile={profile}
-      organization={organization}
-    >
-      <WorkflowContextProvider workflow={workflow}>
-        <OrganizationLayout>
-          <WorkflowSwitch tab={tab} />
-        </OrganizationLayout>
-      </WorkflowContextProvider>
-    </OrganizationContextProvider>
-  );
-};
-
-export const workflowProtectedRoute: GetServerSideProps<WorkflowPageProps> =
+export const getServerSideProps: GetServerSideProps<WorkflowPageProps> =
   async ({ params, req }) => {
     try {
       const { user } = await supabase.auth.api.getUserByCookie(req);

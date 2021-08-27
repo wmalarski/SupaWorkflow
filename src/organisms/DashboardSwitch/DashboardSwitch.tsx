@@ -1,46 +1,33 @@
 import React from "react";
 import {
   CreateOrganization,
-  DashboardCorner,
   DashboardOrganizations,
-  DashboardSideBar,
   ProfileSettings,
 } from "../../molecules";
-import { UserNavigation } from "../../organisms";
-import { FormPage, GridPage } from "../../templates";
-import { DashboardTab } from "../../utils";
+import { DashboardTab, useTabParam } from "../../utils";
+import DashboardLayout from "./DashboardLayout";
 
-export type DashboardSwitchProps = {
-  tab: DashboardTab | null;
-};
+const DashboardSwitch = (): JSX.Element => {
+  const tab = useTabParam(DashboardTab);
 
-const DashboardSwitch = ({ tab }: DashboardSwitchProps): JSX.Element | null => {
   switch (tab) {
     case DashboardTab.new:
       return (
-        <FormPage corner={<DashboardCorner />} header={<UserNavigation />}>
+        <DashboardLayout isForm>
           <CreateOrganization />
-        </FormPage>
+        </DashboardLayout>
       );
     case DashboardTab.profile:
       return (
-        <GridPage
-          corner={<DashboardCorner />}
-          header={<UserNavigation />}
-          sideBar={<DashboardSideBar />}
-        >
+        <DashboardLayout>
           <ProfileSettings />
-        </GridPage>
+        </DashboardLayout>
       );
     default:
       return (
-        <GridPage
-          corner={<DashboardCorner />}
-          header={<UserNavigation />}
-          sideBar={<DashboardSideBar />}
-        >
+        <DashboardLayout>
           <DashboardOrganizations />
-        </GridPage>
+        </DashboardLayout>
       );
   }
 };

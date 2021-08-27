@@ -1,23 +1,29 @@
 import dynamic from "next/dynamic";
 import React from "react";
 import { CreateWorkflow } from "../../molecules";
-import { TemplateTab } from "../../utils";
+import { TemplateTab, useTabParam } from "../../utils";
+import TemplateLayout from "./TemplateLayout";
 
-const TemplateWorkspace = dynamic(
-  () => import("../TemplateWorkspace/TemplateWorkspace"),
-  { ssr: false }
-);
+const TemplateWorkspace = dynamic(() => import("./TemplateWorkspace"), {
+  ssr: false,
+});
 
-export type TemplateSwitchProps = {
-  tab: TemplateTab | null;
-};
+const TemplateSwitch = (): JSX.Element | null => {
+  const tab = useTabParam(TemplateTab);
 
-const TemplateSwitch = ({ tab }: TemplateSwitchProps): JSX.Element | null => {
   switch (tab) {
     case TemplateTab.edit:
-      return <TemplateWorkspace />;
+      return (
+        <TemplateLayout>
+          <TemplateWorkspace />
+        </TemplateLayout>
+      );
     case TemplateTab.new:
-      return <CreateWorkflow />;
+      return (
+        <TemplateLayout isForm>
+          <CreateWorkflow />
+        </TemplateLayout>
+      );
     default:
       return null;
   }

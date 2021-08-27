@@ -1,6 +1,6 @@
 import { GetServerSideProps } from "next";
 import React from "react";
-import { OrganizationLayout, TeamSwitch } from "../../../../organisms";
+import { TeamSwitch } from "../../../../organisms";
 import {
   Organization,
   OrganizationMember,
@@ -32,21 +32,17 @@ const TeamPage = ({
   profile,
   organization,
   member,
-}: TeamPageProps): JSX.Element => {
-  return (
-    <OrganizationContextProvider
-      member={member}
-      organization={organization}
-      profile={profile}
-    >
-      <TeamContextProvider team={team}>
-        <OrganizationLayout>
-          <TeamSwitch />
-        </OrganizationLayout>
-      </TeamContextProvider>
-    </OrganizationContextProvider>
-  );
-};
+}: TeamPageProps): JSX.Element => (
+  <OrganizationContextProvider
+    member={member}
+    organization={organization}
+    profile={profile}
+  >
+    <TeamContextProvider team={team}>
+      <TeamSwitch />
+    </TeamContextProvider>
+  </OrganizationContextProvider>
+);
 
 export const getServerSideProps: GetServerSideProps<TeamPageProps> = async ({
   params,

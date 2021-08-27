@@ -1,6 +1,5 @@
 import { GetServerSideProps } from "next";
 import React from "react";
-import { OrganizationLayout } from "../../../organisms";
 import OrganizationSwitch from "../../../organisms/OrganizationSwitch/OrganizationSwitch";
 import {
   Organization,
@@ -10,12 +9,7 @@ import {
   selectOrganizationMemberKey,
   supabase,
 } from "../../../services";
-import {
-  OrganizationContextProvider,
-  OrganizationTab,
-  useTabParam,
-  validateParam,
-} from "../../../utils";
+import { OrganizationContextProvider, validateParam } from "../../../utils";
 
 export type OrganizationPageProps = {
   profile: Profile;
@@ -27,21 +21,15 @@ const OrganizationPage = ({
   member,
   organization,
   profile,
-}: OrganizationPageProps): JSX.Element => {
-  const tab = useTabParam(OrganizationTab);
-
-  return (
-    <OrganizationContextProvider
-      member={member}
-      organization={organization}
-      profile={profile}
-    >
-      <OrganizationLayout>
-        <OrganizationSwitch tab={tab} />
-      </OrganizationLayout>
-    </OrganizationContextProvider>
-  );
-};
+}: OrganizationPageProps): JSX.Element => (
+  <OrganizationContextProvider
+    member={member}
+    organization={organization}
+    profile={profile}
+  >
+    <OrganizationSwitch />
+  </OrganizationContextProvider>
+);
 
 export const getServerSideProps: GetServerSideProps<OrganizationPageProps> =
   async ({ params, req }) => {

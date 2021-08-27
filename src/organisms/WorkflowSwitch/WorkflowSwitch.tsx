@@ -1,15 +1,18 @@
 import React from "react";
 import { WorkflowEditor } from "../../molecules";
-import { WorkflowTab } from "../../utils";
+import { useTabParam, WorkflowTab } from "../../utils";
+import WorkspaceLayout from "./WorkspaceLayout";
 
-export type WorkflowSwitchProps = {
-  tab: WorkflowTab | null;
-};
+const WorkflowSwitch = (): JSX.Element | null => {
+  const tab = useTabParam(WorkflowTab);
 
-const WorkflowSwitch = ({ tab }: WorkflowSwitchProps): JSX.Element | null => {
   switch (tab) {
     case WorkflowTab.edit:
-      return <WorkflowEditor />;
+      return (
+        <WorkspaceLayout>
+          <WorkflowEditor />
+        </WorkspaceLayout>
+      );
     default:
       return null;
   }

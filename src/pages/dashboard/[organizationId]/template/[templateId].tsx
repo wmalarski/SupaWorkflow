@@ -1,6 +1,5 @@
 import { GetServerSideProps } from "next";
 import React from "react";
-import { OrganizationLayout } from "../../../../organisms";
 import TemplateSwitch from "../../../../organisms/TemplateSwitch/TemplateSwitch";
 import {
   Organization,
@@ -16,8 +15,6 @@ import {
 import {
   OrganizationContextProvider,
   TemplateContextProvider,
-  TemplateTab,
-  useTabParam,
   validateNumberParam,
 } from "../../../../utils";
 
@@ -33,23 +30,17 @@ const TemplatePage = ({
   member,
   organization,
   profile,
-}: TemplatePageProps): JSX.Element => {
-  const tab = useTabParam(TemplateTab);
-
-  return (
-    <OrganizationContextProvider
-      member={member}
-      organization={organization}
-      profile={profile}
-    >
-      <TemplateContextProvider template={template}>
-        <OrganizationLayout>
-          <TemplateSwitch tab={tab} />
-        </OrganizationLayout>
-      </TemplateContextProvider>
-    </OrganizationContextProvider>
-  );
-};
+}: TemplatePageProps): JSX.Element => (
+  <OrganizationContextProvider
+    member={member}
+    organization={organization}
+    profile={profile}
+  >
+    <TemplateContextProvider template={template}>
+      <TemplateSwitch />
+    </TemplateContextProvider>
+  </OrganizationContextProvider>
+);
 
 export const getServerSideProps: GetServerSideProps<TemplatePageProps> =
   async ({ params, req }) => {
