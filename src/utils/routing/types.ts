@@ -21,7 +21,3 @@ export enum TemplateTab {
   edit = "edit",
   new = "new",
 }
-
-export enum TeamTab {
-  detail = "detail",
-}

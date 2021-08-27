@@ -1,5 +1,6 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
+import { DashboardTab } from "../../../../utils";
 import DashboardHeaderView from "./DashboardHeaderView";
 
 export default {
@@ -13,6 +14,5 @@ const Template: ComponentStory<typeof DashboardHeaderView> = (args) => (
 
 export const Playground = Template.bind({});
 Playground.args = {
-  query: {},
-  route: "/dashboard/[organizationId]/template/[templateId]/new",
+  tab: DashboardTab.new,
 };

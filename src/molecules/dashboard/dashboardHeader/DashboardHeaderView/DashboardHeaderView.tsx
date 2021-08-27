@@ -1,29 +1,35 @@
 import { Breadcrumb, BreadcrumbItem } from "@chakra-ui/react";
-import { ParsedUrlQuery } from "querystring";
-import React, { useMemo } from "react";
+import React from "react";
 import { BreadcrumbLink } from "../../../../atoms";
-import { mapRoute, useText } from "../../../../utils";
+import { DashboardTab, paths, useText } from "../../../../utils";
+import { getTabText } from "./DashboardHeaderView.utils";
 
 export type DashboardHeaderViewProps = {
-  route: string;
-  query: ParsedUrlQuery;
+  tab: DashboardTab | null;
 };
 
 const DashboardHeaderView = ({
-  route,
-  query,
+  tab,
 }: DashboardHeaderViewProps): JSX.Element => {
   const text = useText();
 
-  const routes = useMemo(() => mapRoute({ route, query, text }), [route, text]);
-
   return (
     <Breadcrumb>
-      {routes.map((link) => (
-        <BreadcrumbItem key={link.href}>
-          <BreadcrumbLink href={link.href}>{link.children}</BreadcrumbLink>
+      <BreadcrumbItem>
+        <BreadcrumbLink href={paths.dashboard()} nextProps={{ shallow: true }}>
+          {text("navigationDashboard")}
+        </BreadcrumbLink>
+      </BreadcrumbItem>
+      {tab && (
+        <BreadcrumbItem>
+          <BreadcrumbLink
+            href={paths.dashboard(tab)}
+            nextProps={{ shallow: true }}
+          >
+            {getTabText(tab, text)}
+          </BreadcrumbLink>
         </BreadcrumbItem>
-      ))}
+      )}
     </Breadcrumb>
   );
 };

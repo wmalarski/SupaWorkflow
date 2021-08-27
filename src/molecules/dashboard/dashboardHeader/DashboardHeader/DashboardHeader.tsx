@@ -1,5 +1,5 @@
-import { useRouter } from "next/router";
 import React from "react";
+import { DashboardTab, useTabParam } from "../../../../utils";
 import DashboardHeaderView from "../DashboardHeaderView/DashboardHeaderView";
 
 type ViewProps = React.ComponentProps<typeof DashboardHeaderView>;
@@ -11,9 +11,9 @@ export type DashboardHeaderProps = {
 const DashboardHeader = ({
   View = DashboardHeaderView,
 }: DashboardHeaderProps): JSX.Element => {
-  const router = useRouter();
+  const tab = useTabParam(DashboardTab);
 
-  return <View route={router.route} query={router.query} />;
+  return <View tab={tab} />;
 };
 
 export default React.memo(DashboardHeader);

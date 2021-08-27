@@ -5,8 +5,6 @@ export * from "./contexts/TemplateContext";
 export * from "./contexts/UserContext";
 export * from "./contexts/WorkflowContext";
 export * from "./forms/validators";
-export { default as mapRoute } from "./routing/mapRoute";
-export type { MapRouteArgs, MapRouteReturn } from "./routing/mapRoute";
 export * from "./routing/params";
 export { default as paths } from "./routing/paths";
 export * from "./routing/types";

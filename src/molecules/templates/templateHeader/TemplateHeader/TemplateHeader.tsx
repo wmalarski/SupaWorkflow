@@ -1,0 +1,29 @@
+import React from "react";
+import {
+  TemplateTab,
+  useOrganizationContext,
+  useTabParam,
+  useTemplateContext,
+} from "../../../../utils";
+import TemplateHeaderView from "../TemplateHeaderView/TemplateHeaderView";
+
+type ViewProps = React.ComponentProps<typeof TemplateHeaderView>;
+
+export type TemplateHeaderProps = {
+  View?: React.ComponentType<ViewProps>;
+};
+
+const TemplateHeader = ({
+  View = TemplateHeaderView,
+}: TemplateHeaderProps): JSX.Element => {
+  const tab = useTabParam(TemplateTab);
+
+  const template = useTemplateContext();
+  const { organization } = useOrganizationContext();
+
+  return (
+    <View tab={tab} templateId={template.id} organizationId={organization.id} />
+  );
+};
+
+export default React.memo(TemplateHeader);
