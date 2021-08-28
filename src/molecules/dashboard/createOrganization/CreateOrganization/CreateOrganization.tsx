@@ -24,7 +24,7 @@ const CreateOrganization = ({
     error,
   } = useInsertOrganization({
     onSuccess: (organization) =>
-      router.push(paths.organization(organization.id, null)),
+      router.push(paths.organization(organization.id)),
   });
 
   return (

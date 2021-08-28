@@ -20,6 +20,7 @@ export const organizationHandlers = [
 
       if (!author)
         return res(
+          ctx.status(400),
           ctx.json<PostgrestError>({
             code: "0",
             details: "Wrong author",
