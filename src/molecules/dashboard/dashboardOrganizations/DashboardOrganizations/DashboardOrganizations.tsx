@@ -13,8 +13,6 @@ const DashboardOrganizations = ({
 }: DashboardOrganizationsProps): JSX.Element => {
   const { data: organizations, isLoading } = useSelectOrganizations();
 
-  console.log({ organizations });
-
   return <View organizations={organizations} isLoading={isLoading} />;
 };
 

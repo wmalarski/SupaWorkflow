@@ -4,16 +4,19 @@ import {
   Organization,
   Profile,
 } from "../services";
-import { mockDb } from "./mockDb";
+import { dbIndexCounter, mockDb } from "./mockDb";
 
-export const addProfile = (profile?: Partial<Omit<Profile, "id">>): Profile =>
+export const addProfileScenario = (
+  profile?: Partial<Omit<Profile, "id">>
+): Profile =>
   mockDb.profile.create({
+    id: dbIndexCounter(),
     avatar: profile?.avatar ?? null,
     name: profile?.name ?? defaultProfile.name,
     user_id: profile?.user_id ?? defaultProfile.user_id,
   });
 
-export const addOrganizations = (
+export const addOrganizationsScenario = (
   authorId: number,
   count?: number
 ): Organization[] =>
@@ -21,6 +24,7 @@ export const addOrganizations = (
     .fill(defaultOrganization)
     .map((organization: Organization, index) =>
       mockDb.organization.create({
+        id: dbIndexCounter(),
         author_id: authorId,
         avatar: defaultOrganization.avatar,
         description: `${organization.description}-${index}`,

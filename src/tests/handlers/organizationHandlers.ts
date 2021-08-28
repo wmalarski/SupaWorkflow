@@ -8,7 +8,7 @@ import {
   TABLES,
   UpdateOrganizationArgs,
 } from "../../services";
-import { mockDb } from "../mockDb";
+import { dbIndexCounter, mockDb } from "../mockDb";
 
 export const organizationHandlers = [
   rest.post<InsertOrganizationArgs, Organization | PostgrestError>(
@@ -29,6 +29,7 @@ export const organizationHandlers = [
         );
 
       const organization = mockDb.organization.create({
+        id: dbIndexCounter(),
         author_id: author.id,
         avatar: body.avatar,
         description: body.description,

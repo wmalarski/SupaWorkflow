@@ -1,5 +1,14 @@
 import { factory, primaryKey } from "@mswjs/data";
 
+export const dbIndexCounter = (() => {
+  let index = 1;
+  return () => {
+    const result = index;
+    index += 1;
+    return result;
+  };
+})();
+
 export const mockDb = factory({
   profile: {
     id: primaryKey(Number),

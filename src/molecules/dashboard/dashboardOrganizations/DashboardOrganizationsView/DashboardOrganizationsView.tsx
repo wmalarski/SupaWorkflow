@@ -1,8 +1,8 @@
-import { Heading, Text, VStack } from "@chakra-ui/react";
+import { Heading, SimpleGrid, VStack } from "@chakra-ui/react";
 import React from "react";
-import { Link } from "../../../../atoms";
 import { Organization } from "../../../../services";
-import { paths, useText } from "../../../../utils";
+import { useText } from "../../../../utils";
+import OrganizationBox from "../OrganizationBox/OrganizationBox";
 
 export type DashboardOrganizationsViewProps = {
   organizations?: Organization[] | null;
@@ -17,14 +17,11 @@ const DashboardOrganizationsView = ({
   return (
     <VStack>
       <Heading>{text("organizationsDashboardHeader")}</Heading>
-      {organizations?.map((organization) => (
-        <Link
-          key={organization.id}
-          href={paths.organization(organization.id, null)}
-        >
-          <Text fontSize="sm">{organization.name}</Text>
-        </Link>
-      ))}
+      <SimpleGrid columns={3} spacing={10}>
+        {organizations?.map((organization) => (
+          <OrganizationBox key={organization.id} organization={organization} />
+        ))}
+      </SimpleGrid>
     </VStack>
   );
 };

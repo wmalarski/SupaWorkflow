@@ -177,29 +177,3 @@ where
 
 end;
 $$;
-
--- -- Profile organization view
--- create or replace view members as
---   SELECT
---     profile.id as profile_id,
---     profile.name as profile_name,
---     profile.user_id as profile_user_id,
---     profile.avater as profile_avatar,
---     team_member.id as team_member_id,
---     team_member.role as team_member_role,
---     team.id as team_id,
---     team.name as team_name,
---     team.description as team_description,
---     team.color as team_color,
---     team.avatar as team_avatar,
---     organization.id as organization_id,
---     organization.author_id as organization_author_id,
---     organization.name as organization_name,
---     organization.description as organization_description,
---     organization.hash as organization_hash,
---     organization.avatar as organization_avatar
---   FROM 
---     profile
---     inner join team_member on profile.id = team_member.profile_id 
---     inner join team on team_member.team_id = team.id
---     inner join organization on organization.id = team.organization_id;
