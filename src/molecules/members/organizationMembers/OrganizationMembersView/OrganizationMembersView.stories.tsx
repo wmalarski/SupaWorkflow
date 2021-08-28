@@ -1,12 +1,10 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
-import { QueryClient, QueryClientProvider } from "react-query";
 import {
-  defaultOrganization,
   defaultOrganizationMember,
   defaultProfile,
 } from "../../../../services";
-import OrganizationContext from "../../../../utils/contexts/OrganizationContext";
+import { ContextsMock } from "../../../../tests/wrappers";
 import OrganizationMembersView from "./OrganizationMembersView";
 
 export default {
@@ -15,19 +13,9 @@ export default {
 } as ComponentMeta<typeof OrganizationMembersView>;
 
 const Template: ComponentStory<typeof OrganizationMembersView> = (args) => (
-  <QueryClientProvider client={new QueryClient()}>
-    <OrganizationContext.Provider
-      value={{
-        isInitialized: true,
-        value: {
-          member: defaultOrganizationMember,
-          organization: defaultOrganization,
-        },
-      }}
-    >
-      <OrganizationMembersView {...args} />
-    </OrganizationContext.Provider>
-  </QueryClientProvider>
+  <ContextsMock>
+    <OrganizationMembersView {...args} />
+  </ContextsMock>
 );
 
 export const Playground = Template.bind({});

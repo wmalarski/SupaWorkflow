@@ -4,6 +4,7 @@ import "@testing-library/jest-dom/extend-expect";
 jest.mock("next/router", () => {
   const push = jest.fn();
   const replace = jest.fn();
+  const queryMock = jest.fn();
 
   return {
     // spread out all "Router" exports
@@ -21,7 +22,9 @@ jest.mock("next/router", () => {
     useRouter: () => ({
       push,
       replace,
+      query: queryMock(),
     }),
+    queryMock,
   };
 });
 

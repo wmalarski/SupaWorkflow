@@ -1,11 +1,6 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
-import { QueryClient, QueryClientProvider } from "react-query";
-import {
-  defaultOrganization,
-  defaultOrganizationMember,
-} from "../../../../services";
-import OrganizationContext from "../../../../utils/contexts/OrganizationContext";
+import { ContextsMock } from "../../../../tests/wrappers";
 import OrganizationSideBarView from "./OrganizationSideBarView";
 
 export default {
@@ -14,19 +9,9 @@ export default {
 } as ComponentMeta<typeof OrganizationSideBarView>;
 
 const Template: ComponentStory<typeof OrganizationSideBarView> = (args) => (
-  <QueryClientProvider client={new QueryClient()}>
-    <OrganizationContext.Provider
-      value={{
-        isInitialized: true,
-        value: {
-          member: { ...defaultOrganizationMember, role: "mod" },
-          organization: defaultOrganization,
-        },
-      }}
-    >
-      <OrganizationSideBarView {...args} />
-    </OrganizationContext.Provider>
-  </QueryClientProvider>
+  <ContextsMock>
+    <OrganizationSideBarView {...args} />
+  </ContextsMock>
 );
 
 export const Playground = Template.bind({});

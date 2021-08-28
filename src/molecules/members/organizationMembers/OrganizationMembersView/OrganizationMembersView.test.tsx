@@ -6,6 +6,7 @@ import {
   defaultOrganizationMember,
   defaultProfile,
 } from "../../../../services";
+import { ContextsMock } from "../../../../tests/wrappers";
 import OrganizationMembersView from "./OrganizationMembersView";
 
 type ComponentProps = Parameters<typeof OrganizationMembersView>[0];
@@ -29,7 +30,11 @@ function renderComponent(props: Partial<ComponentProps> = {}) {
     onPageChange: () => void 0,
     onUpdateClick: () => void 0,
   };
-  return render(<OrganizationMembersView {...defaultProps} {...props} />);
+  return render(
+    <ContextsMock>
+      <OrganizationMembersView {...defaultProps} {...props} />
+    </ContextsMock>
+  );
 }
 
 describe("<OrganizationMembersView />", () => {
