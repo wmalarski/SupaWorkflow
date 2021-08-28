@@ -4,7 +4,7 @@ import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import React from "react";
 import { addProfileScenario } from "../../../../tests/mockScenarios";
-import { ContextsMock } from "../../../../tests/wrappers";
+import { ContextsMock, ContextsMockProps } from "../../../../tests/wrappers";
 import { CreateOrganizationViewProps } from "../CreateOrganizationView/CreateOrganizationView";
 import CreateOrganization from "./CreateOrganization";
 
@@ -33,12 +33,18 @@ const View = ({
   </>
 );
 
-const renderComponent = (props: Partial<ComponentProps> = {}) => {
+const renderComponent = ({
+  props,
+  contexts,
+}: {
+  props?: Partial<ComponentProps>;
+  contexts?: Partial<ContextsMockProps>;
+} = {}) => {
   const defaultProps: ComponentProps = {
     View,
   };
   return render(
-    <ContextsMock>
+    <ContextsMock {...contexts}>
       <CreateOrganization {...defaultProps} {...props} />
     </ContextsMock>
   );
@@ -48,9 +54,9 @@ describe("<CreateOrganization />", () => {
   it("should render and success", async () => {
     expect.hasAssertions();
 
-    addProfileScenario();
+    const profile = addProfileScenario();
 
-    renderComponent();
+    renderComponent({ contexts: { profile } });
 
     userEvent.click(await screen.findByText("Click"));
 
@@ -78,7 +84,7 @@ describe("<CreateOrganization />", () => {
   it("should render default", async () => {
     expect.hasAssertions();
 
-    renderComponent({ View: undefined });
+    renderComponent({ props: { View: undefined } });
 
     expect(true).toBeTruthy();
   });

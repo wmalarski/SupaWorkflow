@@ -20,6 +20,8 @@ export const inviteOrganizationMember = async ({
   organizationId,
   role,
 }: InviteOrganizationMemberArgs): Promise<void> => {
+  await supabase.auth.signIn({ email });
+
   const { error } = await supabase
     .rpc("invite_to_organization", {
       organization_id: organizationId,

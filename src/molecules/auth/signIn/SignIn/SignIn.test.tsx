@@ -5,7 +5,7 @@ import userEvent from "@testing-library/user-event";
 import React from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { defaultUser } from "../../../../services";
-import { mockAuthStorage } from "../../../../tests/handlers/authHandlers";
+import { addProfileScenario } from "../../../../tests/mockScenarios";
 import { SignInViewProps } from "../SignInView/SignInView";
 import SignIn from "./SignIn";
 
@@ -53,7 +53,7 @@ describe("<SignIn />", () => {
   it("should login", async () => {
     expect.hasAssertions();
 
-    mockAuthStorage.set([defaultUser]);
+    addProfileScenario();
 
     renderComponent();
 

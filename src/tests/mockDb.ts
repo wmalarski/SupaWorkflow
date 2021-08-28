@@ -10,6 +10,10 @@ export const dbIndexCounter = (() => {
 })();
 
 export const mockDb = factory({
+  user: {
+    id: primaryKey(String),
+    email: String,
+  },
   profile: {
     id: primaryKey(Number),
     name: String,
@@ -23,5 +27,11 @@ export const mockDb = factory({
     description: String,
     hash: (): string => "hash",
     avatar: (): string | null => null,
+  },
+  organizationMembers: {
+    id: primaryKey(Number),
+    profile_id: Number,
+    organization_id: Number,
+    role: String,
   },
 });

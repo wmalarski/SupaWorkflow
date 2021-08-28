@@ -5,7 +5,7 @@ import userEvent from "@testing-library/user-event";
 import React from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { defaultUser } from "../../../../services";
-import { mockAuthStorage } from "../../../../tests/handlers/authHandlers";
+import { mockDb } from "../../../../tests/mockDb";
 import { SignUpViewProps } from "../SignUpView/SignUpView";
 import SignUp from "./SignUp";
 
@@ -63,6 +63,6 @@ describe("<SignUp />", () => {
     );
 
     expect(await screen.findByText(defaultUserEmail)).toBeInTheDocument();
-    expect(mockAuthStorage.get()).toHaveLength(1);
+    expect(mockDb.profile.getAll()).toHaveLength(1);
   });
 });

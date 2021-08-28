@@ -13,6 +13,8 @@ export * from "./data/organization/deleteOrganization";
 export * from "./data/organization/insertOrganization";
 export * from "./data/organization/selectOrganizations";
 export * from "./data/organization/updateOrganization";
+export * from "./data/organizationMember/deleteOrganizationMember";
+export * from "./data/organizationMember/inviteOrganizationMember";
 export * from "./data/organizationMember/selectOrganizationMember";
 export * from "./data/organizationMember/selectOrganizationMembers";
 export * from "./data/organizationMember/updateOrganizationMember";

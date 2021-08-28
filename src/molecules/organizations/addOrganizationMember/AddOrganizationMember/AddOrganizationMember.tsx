@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { OrganizationRole, useSignIn } from "../../../../services";
+import React from "react";
 import { useInviteOrganizationMember } from "../../../../services/data/organizationMember/inviteOrganizationMember";
 import { useOrganizationContext } from "../../../../utils";
 import AddOrganizationMemberView from "../AddOrganizationMemberView/AddOrganizationMemberView";
@@ -15,36 +14,22 @@ const AddOrganizationMember = ({
 }: AddOrganizationMemberProps): JSX.Element => {
   const { organization } = useOrganizationContext();
 
-  const [role, setRole] = useState<OrganizationRole | null>(null);
-
   const {
     mutate: inviteMember,
-    error: inviteError,
-    isLoading: isInviteLoading,
+    error,
+    isLoading,
   } = useInviteOrganizationMember();
-
-  const {
-    mutate: signIn,
-    error: signInError,
-    isLoading: isSignInLoading,
-  } = useSignIn({
-    onSuccess: (_, variables) => {
-      if (!variables.email || !role) return;
-      inviteMember({
-        email: variables.email,
-        organizationId: organization.id,
-        role,
-      });
-    },
-  });
 
   return (
     <View
-      error={signInError ?? inviteError}
-      isLoading={isSignInLoading || isInviteLoading}
+      error={error}
+      isLoading={isLoading}
       onSubmit={(data) => {
-        setRole(data.role);
-        signIn({ email: data.email });
+        inviteMember({
+          email: data.email,
+          organizationId: organization.id,
+          role: data.role,
+        });
       }}
     />
   );

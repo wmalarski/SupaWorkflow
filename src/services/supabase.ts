@@ -7,8 +7,8 @@ export const supabase = createClient(
 );
 
 export const AUTH_ENDPOINT = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/auth/v1`;
-
 export const SUPABASE_ENDPOINT = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/rest/v1`;
+export const RPC_ENDPOINT = `${SUPABASE_ENDPOINT}/rpc`;
 
 export enum SupabaseErrorCode {
   UniquenessViolation = "23505",

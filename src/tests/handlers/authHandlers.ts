@@ -1,21 +1,17 @@
-import { Session, User, UserCredentials } from "@supabase/supabase-js";
+import { Session, UserCredentials } from "@supabase/supabase-js";
 import { rest } from "msw";
 import { AUTH_ENDPOINT, defaultUser, ResponseError } from "../../services";
-
-export const mockAuthStorage = {
-  get: (): User[] => JSON.parse(sessionStorage.getItem("users") ?? "[]"),
-  set: (users: User[]): void =>
-    sessionStorage.setItem("users", JSON.stringify(users)),
-};
+import { dbIndexCounter, mockDb } from "../mockDb";
 
 export const authHandlers = [
   rest.post<string, Session | ResponseError>(
     `${AUTH_ENDPOINT}/token`,
     ({ body }, res, ctx) => {
       const credentials: UserCredentials = JSON.parse(body);
-      const users = mockAuthStorage.get();
 
-      const user = users.find((elem) => elem.email === credentials.email);
+      const user = mockDb.user.findFirst({
+        where: { email: { equals: credentials.email } },
+      });
 
       if (!user)
         return res(
@@ -31,7 +27,7 @@ export const authHandlers = [
         token_type: "bearer",
         expires_in: 3600,
         refresh_token: "kHMih_-mwYUn08FTYMhx2g",
-        user,
+        user: { ...defaultUser, ...user },
       };
 
       return res(ctx.json<Session>(result));
@@ -47,7 +43,18 @@ export const authHandlers = [
         ...credentials,
       };
 
-      mockAuthStorage.set([...mockAuthStorage.get(), user]);
+      const userId = String(dbIndexCounter());
+      mockDb.user.create({
+        email: credentials.email,
+        id: userId,
+      });
+
+      mockDb.profile.create({
+        avatar: null,
+        id: dbIndexCounter(),
+        name: credentials.email,
+        user_id: userId,
+      });
 
       const result = {
         access_token: "eyJ.eyJ.CY80",
@@ -58,6 +65,27 @@ export const authHandlers = [
       };
 
       return res(ctx.json<Session>(result));
+    }
+  ),
+  rest.post<string, {} | ResponseError>(
+    `${AUTH_ENDPOINT}/magiclink`,
+    ({ body }, res, ctx) => {
+      const credentials: UserCredentials = JSON.parse(body);
+
+      const userId = String(dbIndexCounter());
+      mockDb.user.create({
+        email: credentials.email,
+        id: userId,
+      });
+
+      mockDb.profile.create({
+        avatar: null,
+        id: dbIndexCounter(),
+        name: credentials.email,
+        user_id: userId,
+      });
+
+      return res(ctx.json({}));
     }
   ),
 ];
