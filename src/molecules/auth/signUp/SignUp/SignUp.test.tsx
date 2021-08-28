@@ -4,7 +4,8 @@ import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import React from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
-import { defaultUser, mockAuthStorage } from "../../../../services";
+import { defaultUser } from "../../../../services";
+import { mockAuthStorage } from "../../../../tests/handlers/authHandlers";
 import { SignUpViewProps } from "../SignUpView/SignUpView";
 import SignUp from "./SignUp";
 
@@ -42,6 +43,14 @@ const renderComponent = (props: Partial<ComponentProps> = {}) => {
 };
 
 describe("<SignUp />", () => {
+  it("should render default", async () => {
+    expect.hasAssertions();
+
+    renderComponent({ View: undefined });
+
+    expect(true).toBeTruthy();
+  });
+
   it("should render", async () => {
     expect.hasAssertions();
 

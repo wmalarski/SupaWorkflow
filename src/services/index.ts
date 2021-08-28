@@ -1,4 +1,3 @@
-export * from "./auth/authHandlers";
 export * from "./auth/signIn";
 export * from "./auth/signOut";
 export * from "./auth/signUp";

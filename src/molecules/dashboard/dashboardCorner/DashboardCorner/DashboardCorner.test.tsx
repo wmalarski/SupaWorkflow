@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom";
 import "@testing-library/jest-dom/extend-expect";
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import React from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import DashboardCorner from "./DashboardCorner";
@@ -21,11 +21,19 @@ const renderComponent = (props: Partial<ComponentProps> = {}) => {
 };
 
 describe("<DashboardCorner />", () => {
-  it("should render", async () => {
+  it("should render default", async () => {
+    expect.hasAssertions();
+
+    renderComponent({ View: undefined });
+
+    expect(true).toBeTruthy();
+  });
+
+  it("should render default", async () => {
     expect.hasAssertions();
 
     renderComponent();
 
-    expect(true).toBeTruthy();
+    expect(await screen.findByText("Click")).toBeInTheDocument();
   });
 });

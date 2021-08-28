@@ -23,6 +23,14 @@ const renderComponent = (props: Partial<ComponentProps> = {}) => {
 };
 
 describe("<DashboardHeader />", () => {
+  it("should render default", async () => {
+    expect.hasAssertions();
+
+    renderComponent({ View: undefined });
+
+    expect(true).toBeTruthy();
+  });
+
   it("should render null for invalid tab", async () => {
     expect.hasAssertions();
 

@@ -9,7 +9,5 @@ export const getTabText = (
       return text("navigationNewOrganization");
     case DashboardTab.profile:
       return text("navigationProfile");
-    default:
-      return null;
   }
 };

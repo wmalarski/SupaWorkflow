@@ -22,4 +22,12 @@ describe("<DashboardHeaderView />", () => {
 
     expect(true).toBeTruthy();
   });
+
+  it("should render profile", async () => {
+    expect.hasAssertions();
+
+    renderComponent({ tab: DashboardTab.profile });
+
+    expect(true).toBeTruthy();
+  });
 });

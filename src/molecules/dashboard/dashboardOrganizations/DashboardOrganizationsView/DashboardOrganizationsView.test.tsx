@@ -29,4 +29,12 @@ describe("<DashboardOrganizationsView />", () => {
 
     expect(true).toBeTruthy();
   });
+
+  it("should render without organizations", async () => {
+    expect.hasAssertions();
+
+    renderComponent({ organizations: null });
+
+    expect(true).toBeTruthy();
+  });
 });

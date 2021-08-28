@@ -36,6 +36,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.15.0",
+    "@mswjs/data": "^0.5.1",
     "@next/bundle-analyzer": "^11.1.0",
     "@storybook/addon-actions": "^6.3.7",
     "@storybook/addon-essentials": "^6.3.7",

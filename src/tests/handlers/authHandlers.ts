@@ -1,8 +1,6 @@
 import { Session, User, UserCredentials } from "@supabase/supabase-js";
 import { rest } from "msw";
-import { AUTH_ENDPOINT } from "../supabase";
-import { ResponseError } from "../types";
-import { defaultUser } from "../utils/defaults";
+import { AUTH_ENDPOINT, defaultUser, ResponseError } from "../../services";
 
 export const mockAuthStorage = {
   get: (): User[] => JSON.parse(sessionStorage.getItem("users") ?? "[]"),

@@ -25,6 +25,14 @@ const renderComponent = (props: Partial<ComponentProps> = {}) => {
 };
 
 describe("<SignOut />", () => {
+  it("should render default", async () => {
+    expect.hasAssertions();
+
+    renderComponent({ View: undefined });
+
+    expect(true).toBeTruthy();
+  });
+
   it("should render", async () => {
     expect.hasAssertions();
 

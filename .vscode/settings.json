@@ -9,6 +9,7 @@
     "Postgrest",
     "Upsert",
     "chakra",
+    "mswjs",
     "mutators",
     "replicache",
     "supabase",
