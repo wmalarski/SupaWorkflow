@@ -1,6 +1,7 @@
 import { PostgrestError } from "@supabase/supabase-js";
 import {
   QueryFunctionContext,
+  QueryKey,
   useQuery,
   UseQueryOptions,
   UseQueryResult,
@@ -10,17 +11,27 @@ import fromSupabase from "../../utils/fromSupabase";
 
 export type SelectTemplatesArgs = Partial<
   Pick<Template, "name" | "organization_id">
->;
+> & {
+  from: number;
+  to: number;
+};
 
 export type SelectTemplatesKey = ["Templates", SelectTemplatesArgs];
+
+export type SelectTemplatesResult = {
+  entries: Template[];
+  count: number;
+};
+
+export const selectAllTemplatesKey = (): QueryKey => ["Templates"];
 
 export const selectTemplatesKey = (
   args: SelectTemplatesArgs
 ): SelectTemplatesKey => ["Templates", args];
 
 export const selectTemplates = async ({
-  queryKey: [, { name, organization_id }],
-}: QueryFunctionContext<SelectTemplatesKey>): Promise<Template[]> => {
+  queryKey: [, { name, organization_id, from, to }],
+}: QueryFunctionContext<SelectTemplatesKey>): Promise<SelectTemplatesResult> => {
   const builder = fromSupabase("template").select("*");
 
   const nameBuilder = name ? builder.textSearch("name", name) : builder;
@@ -28,20 +39,20 @@ export const selectTemplates = async ({
     ? nameBuilder.eq("organization_id", organization_id)
     : builder;
 
-  const { data, error } = await orgBuilder;
+  const { data, error, count } = await orgBuilder.range(from, to);
 
   if (error) throw error;
 
-  return data ?? [];
+  return { entries: data ?? [], count: count ?? 0 };
 };
 
 export const useSelectTemplates = (
   args: SelectTemplatesArgs,
   options?: UseQueryOptions<
-    Template[],
+    SelectTemplatesResult,
     PostgrestError,
-    Template[],
+    SelectTemplatesResult,
     SelectTemplatesKey
   >
-): UseQueryResult<Template[] | null, PostgrestError> =>
+): UseQueryResult<SelectTemplatesResult, PostgrestError> =>
   useQuery(selectTemplatesKey(args), selectTemplates, options);

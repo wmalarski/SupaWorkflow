@@ -7,7 +7,7 @@ import {
 } from "react-query";
 import { Template } from "../../types";
 import fromSupabase from "../../utils/fromSupabase";
-import { selectTemplatesKey } from "./selectTemplates";
+import { selectAllTemplatesKey } from "./selectTemplates";
 
 export type InsertTemplateArgs = Omit<Template, "id">;
 
@@ -28,9 +28,7 @@ export const useInsertTemplate = (
   return useMutation(insertTemplate, {
     ...options,
     onSuccess: (template, ...args) => {
-      queryClient.invalidateQueries(
-        selectTemplatesKey({ organization_id: template.organization_id })
-      );
+      queryClient.invalidateQueries(selectAllTemplatesKey());
       options?.onSuccess?.(template, ...args);
     },
   });

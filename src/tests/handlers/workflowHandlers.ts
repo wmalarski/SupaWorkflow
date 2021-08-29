@@ -20,12 +20,13 @@ export const workflowHandlers = [
         take: limit,
       });
 
+      const count = mockDb.workflow.count({
+        where: { organization_id: { equals: organizationId } },
+      });
+
       return res(
         ctx.json(workflows),
-        ctx.set(
-          "content-range",
-          `${offset}-${limit + offset}/${mockDb.workflow.count()}`
-        )
+        ctx.set("content-range", `${offset}-${limit + offset}/${count}`)
       );
     }
   ),

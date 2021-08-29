@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelectTemplates } from "../../../../services";
 import { useOrganizationContext } from "../../../../utils";
 import TemplatesListView from "../TemplatesListView/TemplatesListView";
 
 type ViewProps = React.ComponentProps<typeof TemplatesListView>;
+
+const PAGE_SIZE = 10;
 
 export type TemplatesListProps = {
   View?: React.ComponentType<ViewProps>;
@@ -14,15 +16,23 @@ const TemplatesList = ({
 }: TemplatesListProps): JSX.Element => {
   const { organization } = useOrganizationContext();
 
+  const [page, setPage] = useState(0);
+
   const { data: templates, isLoading } = useSelectTemplates({
     organization_id: organization.id,
+    from: page * PAGE_SIZE,
+    to: (page + 1) * PAGE_SIZE,
   });
 
   return (
     <View
       organizationId={organization.id}
-      templates={templates}
+      templates={templates?.entries}
+      count={templates?.count}
       isLoading={isLoading}
+      onPageChange={setPage}
+      page={page}
+      pageSize={PAGE_SIZE}
     />
   );
 };
