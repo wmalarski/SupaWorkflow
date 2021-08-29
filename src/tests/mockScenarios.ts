@@ -3,8 +3,10 @@ import {
   defaultOrganization,
   defaultProfile,
   defaultUser,
+  defaultWorkflow,
   Organization,
   Profile,
+  Workflow,
 } from "../services";
 import { dbIndexCounter, mockDb } from "./mockDb";
 
@@ -38,7 +40,7 @@ export const addOrganizationsScenario = (
   authorId: number,
   count?: number
 ): Organization[] =>
-  Array(count)
+  Array(count ?? 5)
     .fill(defaultOrganization)
     .map((organization: Organization, index) =>
       mockDb.organization.create({
@@ -48,5 +50,20 @@ export const addOrganizationsScenario = (
         description: `${organization.description}-${index}`,
         hash: `${organization.hash}-${index}`,
         name: `${organization.name}-${index}`,
+      })
+    );
+
+export const addWorkflowsScenario = (count?: number): Workflow[] =>
+  Array(count ?? 30)
+    .fill(defaultWorkflow)
+    .map((workflow: Workflow, index) =>
+      mockDb.workflow.create({
+        id: dbIndexCounter(),
+        avatar: workflow.avatar,
+        description: workflow.description,
+        name: `${workflow.name}-${index}`,
+        organization_id: workflow.organization_id,
+        template_data: workflow.template_data,
+        template_id: workflow.template_id,
       })
     );

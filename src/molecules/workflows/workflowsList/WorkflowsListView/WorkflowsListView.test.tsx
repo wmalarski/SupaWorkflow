@@ -7,9 +7,7 @@ import WorkflowsListView from "./WorkflowsListView";
 type ComponentProps = Parameters<typeof WorkflowsListView>[0];
 
 function renderComponent(props: Partial<ComponentProps> = {}) {
-  const defaultProps: ComponentProps = {
-    data: "Hello",
-  };
+  const defaultProps: ComponentProps = {};
   return render(<WorkflowsListView {...defaultProps} {...props} />);
 }
 

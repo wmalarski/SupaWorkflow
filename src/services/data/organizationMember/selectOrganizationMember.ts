@@ -5,13 +5,13 @@ import {
   UseQueryOptions,
   UseQueryResult,
 } from "react-query";
-import { supabase, TABLES } from "../../supabase";
 import {
   Organization,
   OrganizationMember,
   OrganizationRole,
   Profile,
 } from "../../types";
+import fromSupabase from "../../utils/fromSupabase";
 
 export type SelectOrganizationMemberArgs = {
   roles?: OrganizationRole[];
@@ -42,23 +42,12 @@ export type SelectOrganizationMemberResult = {
 export const selectOrganizationMember = async ({
   queryKey: [, { roles, userId, organizationId }],
 }: QueryFunctionContext<SelectOrganizationMemberKey>): Promise<SelectOrganizationMemberResult | null> => {
-  const builder = supabase
-    .from<QueryResult>(TABLES.organizationMember)
-    .select(
-      `
-      *,
-      profile: profile_id ( 
-        *
-      ),
-      organization: organization_id (
-        *
-      )
-      `
-    )
-    .match({ "profile.user_id": userId })
+  const builder = fromSupabase("members")
+    .select("*")
+    .eq("profile_user_id", userId)
     .eq("organization_id", organizationId);
 
-  const rolesBuilder = roles ? builder.in("role", roles) : builder;
+  const rolesBuilder = roles ? builder.in("member_role", roles) : builder;
 
   const { data, error } = await rolesBuilder.limit(1);
 
@@ -66,9 +55,29 @@ export const selectOrganizationMember = async ({
 
   const result = data?.[0];
   if (!result) return null;
-  const { organization, profile, ...member } = result;
 
-  return { member, organization, profile };
+  return {
+    member: {
+      id: result.member_id,
+      organization_id: result.organization_id,
+      profile_id: result.profile_id,
+      role: result.member_role,
+    },
+    organization: {
+      id: result.organization_id,
+      name: result.organization_name,
+      avatar: result.organization_avatar,
+      hash: result.organization_hash,
+      author_id: result.organization_author_id,
+      description: result.organization_description,
+    },
+    profile: {
+      avatar: result.profile_avatar,
+      id: result.profile_id,
+      name: result.profile_name,
+      user_id: result.profile_user_id,
+    },
+  };
 };
 
 export const useSelectOrganizationMember = (

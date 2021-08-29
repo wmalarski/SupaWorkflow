@@ -23,6 +23,21 @@ export type OrganizationMember = {
   role: OrganizationRole;
 };
 
+export type Member = {
+  profile_id: number;
+  profile_name: string;
+  profile_user_id: string;
+  profile_avatar: string | null;
+  member_id: number;
+  member_role: OrganizationRole;
+  organization_id: number;
+  organization_author_id: number;
+  organization_name: string;
+  organization_description: string;
+  organization_hash: string;
+  organization_avatar: string | null;
+};
+
 export type Team = {
   id: number;
   organization_id: number;
@@ -80,6 +95,7 @@ export type Client = {
 
 export type TableMapping = {
   profile: Profile;
+  members: Member;
   organization: Organization;
   organizationMember: OrganizationMember;
   team: Team;

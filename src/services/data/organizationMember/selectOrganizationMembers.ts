@@ -42,7 +42,7 @@ export const selectOrganizationMembers = async ({
 }: QueryFunctionContext<SelectOrganizationMembersKey>): Promise<SelectOrganizationMembersResult> => {
   const { data, error, count } = await supabase
     .from<SelectOrganizationMembersRow>(TABLES.organizationMember)
-    .select("*, profile: profile_id ( * )", { count: "exact" })
+    .select("*, profile: profile!profile_id ( * )", { count: "exact" })
     .eq("organization_id", organizationId)
     .range(from, to);
 

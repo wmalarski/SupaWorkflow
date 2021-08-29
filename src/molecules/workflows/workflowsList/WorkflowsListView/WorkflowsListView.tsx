@@ -1,15 +1,21 @@
 import React from "react";
+import { Workflow } from "../../../../services";
 
 export type WorkflowsListViewProps = {
-  data: string;
+  workflows?: Workflow[];
+  count?: number;
 };
 
-const WorkflowsListView = ({ data }: WorkflowsListViewProps): JSX.Element => {
+const WorkflowsListView = ({
+  workflows,
+  count,
+}: WorkflowsListViewProps): JSX.Element => {
   return (
-    <div>
-      {`WorkflowsListView: `}
-      {data}
-    </div>
+    <>
+      {workflows?.map((workflow) => (
+        <p key={workflow.id}>{workflow.name}</p>
+      ))}
+    </>
   );
 };
 
