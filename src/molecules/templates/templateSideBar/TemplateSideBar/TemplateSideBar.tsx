@@ -1,4 +1,5 @@
 import React from "react";
+import { useOrganizationContext, useTemplateContext } from "../../../../utils";
 import TemplateSideBarView from "../TemplateSideBarView/TemplateSideBarView";
 
 type ViewProps = React.ComponentProps<typeof TemplateSideBarView>;
@@ -10,7 +11,10 @@ export type TemplateSideBarProps = {
 const TemplateSideBar = ({
   View = TemplateSideBarView,
 }: TemplateSideBarProps): JSX.Element => {
-  return <View data="hello" />;
+  const { organization } = useOrganizationContext();
+  const template = useTemplateContext();
+
+  return <View organizationId={organization.id} templateId={template.id} />;
 };
 
 export default React.memo(TemplateSideBar);

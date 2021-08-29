@@ -2,7 +2,6 @@ import { useRouter } from "next/router";
 import React from "react";
 import { useInsertTemplate } from "../../../../services";
 import { paths, useOrganizationContext } from "../../../../utils";
-import { TemplateTab } from "../../../../utils/routing/types";
 import CreateTemplateView from "../CreateTemplateView/CreateTemplateView";
 
 type ViewProps = React.ComponentProps<typeof CreateTemplateView>;
@@ -25,9 +24,7 @@ const CreateTemplate = ({
     error,
   } = useInsertTemplate({
     onSuccess: (template) =>
-      router.push(
-        paths.template(organization.id, template.id, TemplateTab.edit)
-      ),
+      router.push(paths.template(organization.id, template.id)),
   });
 
   return (
@@ -38,7 +35,7 @@ const CreateTemplate = ({
       onSubmit={(data) =>
         insertTemplate({
           avatar: null,
-          description: data.description ?? "",
+          description: data.description,
           name: data.name,
           organization_id: organization.id,
         })

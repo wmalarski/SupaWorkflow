@@ -8,7 +8,8 @@ type ComponentProps = Parameters<typeof TemplateSideBarView>[0];
 
 function renderComponent(props: Partial<ComponentProps> = {}) {
   const defaultProps: ComponentProps = {
-    data: "Hello",
+    organizationId: 1,
+    templateId: 1,
   };
   return render(<TemplateSideBarView {...defaultProps} {...props} />);
 }

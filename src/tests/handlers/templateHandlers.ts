@@ -1,6 +1,12 @@
+import { PostgrestError } from "@supabase/supabase-js";
 import { DefaultRequestBody, rest } from "msw";
-import { SUPABASE_ENDPOINT, TABLES, Template } from "../../services";
-import { mockDb } from "../mockDb";
+import {
+  InsertTemplateArgs,
+  SUPABASE_ENDPOINT,
+  TABLES,
+  Template,
+} from "../../services";
+import { dbIndexCounter, mockDb } from "../mockDb";
 
 export const templateHandlers = [
   rest.get<DefaultRequestBody, Template[]>(
@@ -26,6 +32,17 @@ export const templateHandlers = [
         ctx.json(templates),
         ctx.set("content-range", `${offset}-${limit + offset}/${count}`)
       );
+    }
+  ),
+  rest.post<InsertTemplateArgs, Template | PostgrestError>(
+    `${SUPABASE_ENDPOINT}/${TABLES.template}`,
+    ({ body }, res, ctx) => {
+      const template = mockDb.template.create({
+        ...body,
+        id: dbIndexCounter(),
+      });
+
+      return res(ctx.json<Template>(template));
     }
   ),
 ];

@@ -12,4 +12,7 @@ const Template: ComponentStory<typeof TemplateSideBarView> = (args) => (
 );
 
 export const Playground = Template.bind({});
-Playground.args = {};
+Playground.args = {
+  organizationId: 1,
+  templateId: 1,
+};
