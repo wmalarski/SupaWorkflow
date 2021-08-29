@@ -8,7 +8,8 @@ type ComponentProps = Parameters<typeof WorkflowSideBarView>[0];
 
 function renderComponent(props: Partial<ComponentProps> = {}) {
   const defaultProps: ComponentProps = {
-    data: "Hello",
+    organizationId: 1,
+    workflowId: 1,
   };
   return render(<WorkflowSideBarView {...defaultProps} {...props} />);
 }

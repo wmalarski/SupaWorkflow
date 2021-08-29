@@ -2,8 +2,12 @@ import { AddIcon } from "@chakra-ui/icons";
 import { Heading, HStack, Text, VStack } from "@chakra-ui/react";
 import React from "react";
 import { Link } from "../../../../atoms";
-import { OrganizationRoleGuard, paths, useText } from "../../../../utils";
-import { OrganizationTab } from "../../../../utils/routing/types";
+import {
+  OrganizationRoleGuard,
+  OrganizationTab,
+  paths,
+  useText,
+} from "../../../../utils";
 
 export type OrganizationSideBarViewProps = {
   organizationId: number;
@@ -18,7 +22,7 @@ const OrganizationSideBarView = ({
     <VStack align="start" spacing={5}>
       <Heading size="sm">{text("sideBarOrganization")}</Heading>
       <Link
-        href={paths.organization(organizationId, null)}
+        href={paths.organization(organizationId)}
         nextProps={{ shallow: true }}
       >
         <Text pl={3} fontSize="sm">

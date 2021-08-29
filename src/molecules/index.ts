@@ -1,7 +1,6 @@
 export { default as SignIn } from "./auth/signIn/SignIn/SignIn";
 export { default as SignOut } from "./auth/signOut/SignOut/SignOut";
 export { default as SignUp } from "./auth/signUp/SignUp/SignUp";
-export { default as CreateOrganization } from "./dashboard/createOrganization/CreateOrganization/CreateOrganization";
 export { default as DashboardCorner } from "./dashboard/dashboardCorner/DashboardCorner/DashboardCorner";
 export { default as DashboardHeader } from "./dashboard/dashboardHeader/DashboardHeader/DashboardHeader";
 export { default as DashboardOrganizations } from "./dashboard/dashboardOrganizations/DashboardOrganizations/DashboardOrganizations";
@@ -10,6 +9,7 @@ export { default as AnonHeader } from "./landing/anonHeader/AnonHeader/AnonHeade
 export { default as LandingHeader } from "./landing/landingHeader/LandingHeader/LandingHeader";
 export { default as LandingTop } from "./landing/landingTop/LandingTop/LandingTop";
 export { default as AddOrganizationMember } from "./organizations/addOrganizationMember/AddOrganizationMember/AddOrganizationMember";
+export { default as CreateOrganization } from "./organizations/createOrganization/CreateOrganization/CreateOrganization";
 export { default as OrganizationDashboard } from "./organizations/organizationDashboard/OrganizationDashboard/OrganizationDashboard";
 export { default as OrganizationHeader } from "./organizations/organizationHeader/OrganizationHeader/OrganizationHeader";
 export { default as OrganizationMembers } from "./organizations/organizationMembers/OrganizationMembers/OrganizationMembers";

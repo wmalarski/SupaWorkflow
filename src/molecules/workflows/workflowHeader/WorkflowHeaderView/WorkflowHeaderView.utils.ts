@@ -7,7 +7,5 @@ export const getTabText = (
   switch (tab) {
     case WorkflowTab.edit:
       return text("navigationEditWorkflow");
-    default:
-      return null;
   }
 };

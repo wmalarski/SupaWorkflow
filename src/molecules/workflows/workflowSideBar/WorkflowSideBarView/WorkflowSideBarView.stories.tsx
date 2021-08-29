@@ -12,4 +12,7 @@ const Template: ComponentStory<typeof WorkflowSideBarView> = (args) => (
 );
 
 export const Playground = Template.bind({});
-Playground.args = {};
+Playground.args = {
+  organizationId: 1,
+  workflowId: 1,
+};

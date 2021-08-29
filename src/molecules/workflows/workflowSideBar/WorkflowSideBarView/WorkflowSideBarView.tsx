@@ -1,17 +1,41 @@
+import { Heading, Text, VStack } from "@chakra-ui/react";
 import React from "react";
+import { Link } from "../../../../atoms";
+import { paths, useText, WorkflowTab } from "../../../../utils";
 
 export type WorkflowSideBarViewProps = {
-  data: string;
+  organizationId: number;
+  workflowId: number;
 };
 
 const WorkflowSideBarView = ({
-  data,
+  organizationId,
+  workflowId,
 }: WorkflowSideBarViewProps): JSX.Element => {
+  const text = useText();
+
   return (
-    <div>
-      {`WorkflowSideBarView: `}
-      {data}
-    </div>
+    <VStack align="start" spacing={5}>
+      <Heading size="sm">{text("sideBarWorkflow")}</Heading>
+
+      <Link
+        href={paths.workflow(organizationId, workflowId)}
+        nextProps={{ shallow: true }}
+      >
+        <Text pl={3} fontSize="sm">
+          {text("sideBarWorkflowDetails")}
+        </Text>
+      </Link>
+
+      <Link
+        href={paths.workflow(organizationId, workflowId, WorkflowTab.edit)}
+        nextProps={{ shallow: true }}
+      >
+        <Text pl={3} fontSize="sm">
+          {text("sideBarWorkflowEdit")}
+        </Text>
+      </Link>
+    </VStack>
   );
 };
 
