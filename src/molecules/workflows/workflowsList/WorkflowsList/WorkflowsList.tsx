@@ -24,7 +24,16 @@ const WorkflowsList = ({
     to: (page + 1) * PAGE_SIZE,
   });
 
-  return <View workflows={data?.entries} count={data?.count} />;
+  return (
+    <View
+      workflows={data?.entries}
+      count={data?.count}
+      onPageChange={setPage}
+      page={page}
+      pageSize={PAGE_SIZE}
+      isLoading={isLoading}
+    />
+  );
 };
 
 export default React.memo(WorkflowsList);

@@ -10,17 +10,15 @@ export type OrganizationBoxProps = {
 
 const OrganizationBox = ({
   organization,
-}: OrganizationBoxProps): JSX.Element => {
-  return (
-    <LinkBox as="article" maxW="sm" p="5" borderWidth="1px" rounded="md">
-      <Heading size="md" my="2">
-        <LinkOverlay href={paths.organization(organization.id)}>
-          {organization.name}
-        </LinkOverlay>
-      </Heading>
-      <Text>{organization.description}</Text>
-    </LinkBox>
-  );
-};
+}: OrganizationBoxProps): JSX.Element => (
+  <LinkBox as="article" maxW="sm" p="5" borderWidth="1px" rounded="md">
+    <Heading size="md" my="2">
+      <LinkOverlay href={paths.organization(organization.id)}>
+        {organization.name}
+      </LinkOverlay>
+    </Heading>
+    <Text>{organization.description}</Text>
+  </LinkBox>
+);
 
 export default OrganizationBox;
