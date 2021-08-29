@@ -5,12 +5,12 @@ import userEvent from "@testing-library/user-event";
 import React from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { paths } from "../../../../utils";
-import { SignOutViewProps } from "../SignOutView/SignOutView";
-import SignOut from "./SignOut";
+import { ProfileHeaderViewProps } from "../ProfileHeaderView/ProfileHeaderView";
+import ProfileHeader from "./ProfileHeader";
 
-type ComponentProps = React.ComponentProps<typeof SignOut>;
+type ComponentProps = React.ComponentProps<typeof ProfileHeader>;
 
-const View = ({ onSignOutClicked }: SignOutViewProps) => (
+const View = ({ onSignOutClicked }: ProfileHeaderViewProps) => (
   <button onClick={onSignOutClicked}>Click</button>
 );
 
@@ -20,20 +20,12 @@ const renderComponent = (props: Partial<ComponentProps> = {}) => {
   };
   return render(
     <QueryClientProvider client={new QueryClient()}>
-      <SignOut {...defaultProps} {...props} />
+      <ProfileHeader {...defaultProps} {...props} />
     </QueryClientProvider>
   );
 };
 
-describe("<SignOut />", () => {
-  it("should render default", async () => {
-    expect.hasAssertions();
-
-    renderComponent({ View: undefined });
-
-    expect(true).toBeTruthy();
-  });
-
+describe("<ProfileHeader />", () => {
   it("should render", async () => {
     expect.hasAssertions();
 
@@ -46,5 +38,13 @@ describe("<SignOut />", () => {
     await waitFor(async () => expect(push).toHaveBeenCalledTimes(1));
 
     expect(push).toHaveBeenCalledWith(paths.home);
+  });
+
+  it("should render default", async () => {
+    expect.hasAssertions();
+
+    renderComponent({ View: undefined });
+
+    expect(true).toBeTruthy();
   });
 });

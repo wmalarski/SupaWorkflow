@@ -44,4 +44,12 @@ describe("<WorkflowHeader />", () => {
 
     expect(await screen.findByText(WorkflowTab.edit)).toBeInTheDocument();
   });
+
+  it("should render default", async () => {
+    expect.hasAssertions();
+
+    renderComponent({ View: undefined });
+
+    expect(true).toBeTruthy();
+  });
 });

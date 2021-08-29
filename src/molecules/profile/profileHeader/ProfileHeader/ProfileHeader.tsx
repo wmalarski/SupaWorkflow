@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import React from "react";
 import { useSignOut } from "../../../../services";
+import { paths } from "../../../../utils";
 import ProfileHeaderView from "../ProfileHeaderView/ProfileHeaderView";
 
 type ViewProps = React.ComponentProps<typeof ProfileHeaderView>;
@@ -15,7 +16,7 @@ const ProfileHeader = ({
   const router = useRouter();
 
   const { mutate: signOut } = useSignOut({
-    onSettled: () => router.push("/"),
+    onSettled: () => router.push(paths.home),
   });
 
   return <View onSignOutClicked={signOut} />;

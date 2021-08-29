@@ -1,12 +1,10 @@
 import React from "react";
 
-export type NewTeamMemberViewViewProps = {
+export type NewTeamMemberViewProps = {
   data: string;
 };
 
-const NewTeamMemberViewView = ({
-  data,
-}: NewTeamMemberViewViewProps): JSX.Element => {
+const NewTeamMemberView = ({ data }: NewTeamMemberViewProps): JSX.Element => {
   return (
     <div>
       {`NewTeamMemberViewView: `}
@@ -15,4 +13,4 @@ const NewTeamMemberViewView = ({
   );
 };
 
-export default NewTeamMemberViewView;
+export default NewTeamMemberView;

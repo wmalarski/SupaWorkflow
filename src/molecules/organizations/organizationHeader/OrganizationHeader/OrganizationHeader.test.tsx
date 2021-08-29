@@ -48,4 +48,12 @@ describe("<OrganizationHeader />", () => {
       await screen.findByText(OrganizationTab.members)
     ).toBeInTheDocument();
   });
+
+  it("should render default", async () => {
+    expect.hasAssertions();
+
+    renderComponent({ View: undefined });
+
+    expect(true).toBeTruthy();
+  });
 });

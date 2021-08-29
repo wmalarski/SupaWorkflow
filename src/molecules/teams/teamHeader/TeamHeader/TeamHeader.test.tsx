@@ -40,4 +40,12 @@ describe("<TeamHeader />", () => {
       await screen.findByText(`Organization:${defaultOrganization.id}`)
     ).toBeInTheDocument();
   });
+
+  it("should render default", async () => {
+    expect.hasAssertions();
+
+    renderComponent({ View: undefined });
+
+    expect(true).toBeTruthy();
+  });
 });

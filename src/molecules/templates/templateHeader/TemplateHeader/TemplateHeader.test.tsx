@@ -44,4 +44,12 @@ describe("<TemplateHeader />", () => {
 
     expect(await screen.findByText(TemplateTab.edit)).toBeInTheDocument();
   });
+
+  it("should render correct tab for correct tab", async () => {
+    expect.hasAssertions();
+
+    renderComponent({ View: undefined });
+
+    expect(true).toBeTruthy();
+  });
 });
