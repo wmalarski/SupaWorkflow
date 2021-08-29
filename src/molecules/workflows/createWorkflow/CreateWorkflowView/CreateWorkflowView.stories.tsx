@@ -12,4 +12,6 @@ const Template: ComponentStory<typeof CreateWorkflowView> = (args) => (
 );
 
 export const Playground = Template.bind({});
-Playground.args = {};
+Playground.args = {
+  onSubmit: () => void 0,
+};

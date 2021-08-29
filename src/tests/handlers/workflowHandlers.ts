@@ -1,6 +1,8 @@
+import { PostgrestError } from "@supabase/supabase-js";
 import { DefaultRequestBody, rest } from "msw";
 import { SUPABASE_ENDPOINT, TABLES, Workflow } from "../../services";
-import { mockDb } from "../mockDb";
+import { InsertWorkflowArgs } from "../../services/data/workflow/insertWorkflow";
+import { dbIndexCounter, mockDb } from "../mockDb";
 
 export const workflowHandlers = [
   rest.get<DefaultRequestBody, Workflow[]>(
@@ -25,6 +27,17 @@ export const workflowHandlers = [
           `${offset}-${limit + offset}/${mockDb.workflow.count()}`
         )
       );
+    }
+  ),
+  rest.post<InsertWorkflowArgs, Workflow | PostgrestError>(
+    `${SUPABASE_ENDPOINT}/${TABLES.workflow}`,
+    ({ body }, res, ctx) => {
+      const workflow = mockDb.workflow.create({
+        ...body,
+        id: dbIndexCounter(),
+      });
+
+      return res(ctx.json<Workflow>(workflow));
     }
   ),
 ];

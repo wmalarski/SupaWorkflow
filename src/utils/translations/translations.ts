@@ -109,12 +109,18 @@ const translation = {
   updateMessage: "Update",
   editMessage: "Edit",
 
-  // Add organization
+  // Add team
   addTeamHeader: "Add new team",
   addTeamName: "Name",
   addTeamDescription: "Description",
   addTeamColor: "Color",
   addTeamSubmit: "Save",
+
+  // Add workflow
+  addWorkflowHeader: "Add new workflow",
+  addWorkflowName: "Name",
+  addWorkflowDescription: "Description",
+  addWorkflowSubmit: "Save",
 
   // Field Errors
   fieldIsRequired: "Field is required",

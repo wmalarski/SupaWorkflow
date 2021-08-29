@@ -1,4 +1,11 @@
+import { useRouter } from "next/router";
 import React from "react";
+import { useInsertWorkflow } from "../../../../services/data/workflow/insertWorkflow";
+import {
+  paths,
+  useOrganizationContext,
+  useTemplateContext,
+} from "../../../../utils";
 import CreateWorkflowView from "../CreateWorkflowView/CreateWorkflowView";
 
 type ViewProps = React.ComponentProps<typeof CreateWorkflowView>;
@@ -10,7 +17,38 @@ export type CreateWorkflowProps = {
 const CreateWorkflow = ({
   View = CreateWorkflowView,
 }: CreateWorkflowProps): JSX.Element => {
-  return <View data="hello" />;
+  const router = useRouter();
+
+  const { organization } = useOrganizationContext();
+  const template = useTemplateContext();
+
+  const {
+    mutate: insertWorkflow,
+    data,
+    isLoading,
+    error,
+  } = useInsertWorkflow({
+    onSuccess: (workflow) =>
+      router.push(paths.workflow(organization.id, workflow.id)),
+  });
+
+  return (
+    <View
+      error={error}
+      workflow={data}
+      isLoading={isLoading}
+      onSubmit={(data) =>
+        insertWorkflow({
+          avatar: null,
+          description: data.description,
+          name: data.name,
+          organization_id: organization.id,
+          template_data: [],
+          template_id: template.id,
+        })
+      }
+    />
+  );
 };
 
 export default React.memo(CreateWorkflow);

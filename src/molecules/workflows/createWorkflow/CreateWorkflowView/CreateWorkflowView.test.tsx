@@ -8,7 +8,7 @@ type ComponentProps = Parameters<typeof CreateWorkflowView>[0];
 
 function renderComponent(props: Partial<ComponentProps> = {}) {
   const defaultProps: ComponentProps = {
-    data: "Hello",
+    onSubmit: () => void 0,
   };
   return render(<CreateWorkflowView {...defaultProps} {...props} />);
 }
