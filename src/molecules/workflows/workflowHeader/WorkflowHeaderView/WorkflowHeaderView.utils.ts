@@ -6,6 +6,6 @@ export const getTabText = (
 ): string | null => {
   switch (tab) {
     case WorkflowTab.edit:
-      return text("navigationEditWorkflow");
+      return text("navigationWorkflowEdit");
   }
 };

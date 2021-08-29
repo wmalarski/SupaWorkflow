@@ -16,14 +16,14 @@ const WorkflowSideBarView = ({
 
   return (
     <VStack align="start" spacing={5}>
-      <Heading size="sm">{text("sideBarWorkflow")}</Heading>
+      <Heading size="sm">{text("navigationWorkflow")}</Heading>
 
       <Link
         href={paths.workflow(organizationId, workflowId)}
         nextProps={{ shallow: true }}
       >
         <Text pl={3} fontSize="sm">
-          {text("sideBarWorkflowDetails")}
+          {text("navigationWorkflowDetails")}
         </Text>
       </Link>
 
@@ -32,7 +32,7 @@ const WorkflowSideBarView = ({
         nextProps={{ shallow: true }}
       >
         <Text pl={3} fontSize="sm">
-          {text("sideBarWorkflowEdit")}
+          {text("navigationWorkflowEdit")}
         </Text>
       </Link>
     </VStack>

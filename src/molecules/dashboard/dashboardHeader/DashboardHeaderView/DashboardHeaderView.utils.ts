@@ -6,7 +6,7 @@ export const getTabText = (
 ): string | null => {
   switch (tab) {
     case DashboardTab.new:
-      return text("navigationNewOrganization");
+      return text("navigationOrganizationNew");
     case DashboardTab.profile:
       return text("navigationProfile");
   }

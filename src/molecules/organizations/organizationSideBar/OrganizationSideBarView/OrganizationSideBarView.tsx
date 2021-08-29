@@ -20,13 +20,13 @@ const OrganizationSideBarView = ({
 
   return (
     <VStack align="start" spacing={5}>
-      <Heading size="sm">{text("sideBarOrganization")}</Heading>
+      <Heading size="sm">{text("navigationOrganization")}</Heading>
       <Link
         href={paths.organization(organizationId)}
         nextProps={{ shallow: true }}
       >
         <Text pl={3} fontSize="sm">
-          {text("sideBarOrganizationDashboard")}
+          {text("navigationOrganizationDashboard")}
         </Text>
       </Link>
 
@@ -35,7 +35,7 @@ const OrganizationSideBarView = ({
         nextProps={{ shallow: true }}
       >
         <Text pl={3} fontSize="sm">
-          {text("sideBarWorkflows")}
+          {text("navigationWorkflows")}
         </Text>
       </Link>
 
@@ -44,7 +44,7 @@ const OrganizationSideBarView = ({
         nextProps={{ shallow: true }}
       >
         <Text pl={3} fontSize="sm">
-          {text("sideBarMembers")}
+          {text("navigationMembers")}
         </Text>
       </Link>
       <OrganizationRoleGuard roles={["mod", "owner"]}>
@@ -53,13 +53,13 @@ const OrganizationSideBarView = ({
           nextProps={{ shallow: true }}
         >
           <Text pl={3} fontSize="sm">
-            {text("sideBarSettings")}
+            {text("navigationSettings")}
           </Text>
         </Link>
       </OrganizationRoleGuard>
 
       <Heading size="sm" pt={4}>
-        {text("sideBarTemplates")}
+        {text("navigationTemplates")}
       </Heading>
       <Link
         href={paths.organization(organizationId, OrganizationTab.newTemplate)}
@@ -67,7 +67,7 @@ const OrganizationSideBarView = ({
       >
         <HStack pl={3}>
           <AddIcon />
-          <Text fontSize="sm">{text("sideBarNewTemplate")}</Text>
+          <Text fontSize="sm">{text("navigationTemplateNew")}</Text>
         </HStack>
       </Link>
       <Link
@@ -75,12 +75,12 @@ const OrganizationSideBarView = ({
         nextProps={{ shallow: true }}
       >
         <Text pl={3} fontSize="sm">
-          {text("sideBarAllTemplates")}
+          {text("navigationTemplatesAll")}
         </Text>
       </Link>
 
       <Heading size="sm" pt={4}>
-        {text("sideBarTeams")}
+        {text("navigationTeams")}
       </Heading>
       <Link
         href={paths.organization(organizationId, OrganizationTab.newTeam)}
@@ -88,7 +88,7 @@ const OrganizationSideBarView = ({
       >
         <HStack pl={3}>
           <AddIcon />
-          <Text fontSize="sm">{text("sideBarAddTeam")}</Text>
+          <Text fontSize="sm">{text("navigationTeamNew")}</Text>
         </HStack>
       </Link>
       <Link
@@ -96,7 +96,7 @@ const OrganizationSideBarView = ({
         nextProps={{ shallow: true }}
       >
         <Text pl={3} fontSize="sm">
-          {text("sideBarAllTeams")}
+          {text("navigationTeamsAll")}
         </Text>
       </Link>
     </VStack>

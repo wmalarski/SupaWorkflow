@@ -31,7 +31,7 @@ const TemplatesListView = ({
       <Link
         href={paths.organization(organizationId, OrganizationTab.newTemplate)}
       >
-        {text("sideBarNewTemplate")}
+        {text("navigationTemplateNew")}
       </Link>
       {templates?.map((template) => (
         <Link

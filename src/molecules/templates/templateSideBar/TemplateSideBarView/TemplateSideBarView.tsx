@@ -17,14 +17,14 @@ const TemplateSideBarView = ({
 
   return (
     <VStack align="start" spacing={5}>
-      <Heading size="sm">{text("sideBarTemplate")}</Heading>
+      <Heading size="sm">{text("navigationTemplate")}</Heading>
 
       <Link
         href={paths.template(organizationId, templateId)}
         nextProps={{ shallow: true }}
       >
         <Text pl={3} fontSize="sm">
-          {text("sideBarTemplateDetails")}
+          {text("navigationTemplateDetails")}
         </Text>
       </Link>
 
@@ -33,7 +33,7 @@ const TemplateSideBarView = ({
         nextProps={{ shallow: true }}
       >
         <Text pl={3} fontSize="sm">
-          {text("sideBarTemplateEdit")}
+          {text("navigationTemplateEdit")}
         </Text>
       </Link>
 
@@ -43,7 +43,7 @@ const TemplateSideBarView = ({
       >
         <HStack pl={3}>
           <AddIcon />
-          <Text fontSize="sm">{text("sideBarNewWorkflow")}</Text>
+          <Text fontSize="sm">{text("navigationNewWorkflow")}</Text>
         </HStack>
       </Link>
     </VStack>

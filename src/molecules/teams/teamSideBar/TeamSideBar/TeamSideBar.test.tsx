@@ -2,7 +2,7 @@ import "@testing-library/jest-dom";
 import "@testing-library/jest-dom/extend-expect";
 import { render } from "@testing-library/react";
 import React from "react";
-import { QueryClient, QueryClientProvider } from "react-query";
+import { ContextsMock } from "../../../../tests/wrappers";
 import { TeamSideBarViewProps } from "../TeamSideBarView/TeamSideBarView";
 import TeamSideBar from "./TeamSideBar";
 
@@ -15,9 +15,9 @@ const renderComponent = (props: Partial<ComponentProps> = {}) => {
     View,
   };
   return render(
-    <QueryClientProvider client={new QueryClient()}>
+    <ContextsMock>
       <TeamSideBar {...defaultProps} {...props} />
-    </QueryClientProvider>
+    </ContextsMock>
   );
 };
 

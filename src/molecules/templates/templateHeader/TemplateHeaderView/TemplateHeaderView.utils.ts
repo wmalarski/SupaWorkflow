@@ -8,7 +8,7 @@ export const getTabText = (
     case TemplateTab.new:
       return text("navigationNewWorkflow");
     case TemplateTab.edit:
-      return text("navigationEditTemplate");
+      return text("navigationTemplateEdit");
     default:
       return null;
   }

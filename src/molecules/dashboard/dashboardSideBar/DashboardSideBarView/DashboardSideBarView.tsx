@@ -18,7 +18,7 @@ const DashboardSideBarView = ({
 
   return (
     <VStack align="start" spacing={5}>
-      <Heading size="sm">{text("sideBarOrganizations")}</Heading>
+      <Heading size="sm">{text("navigationOrganizations")}</Heading>
       <Link
         pl={3}
         href={paths.dashboard(DashboardTab.new)}
@@ -26,17 +26,17 @@ const DashboardSideBarView = ({
       >
         <HStack>
           <AddIcon />
-          <Text fontSize="sm">{text("sideBarNewOrganization")}</Text>
+          <Text fontSize="sm">{text("navigationOrganizationNew")}</Text>
         </HStack>
       </Link>
       <Link href={paths.dashboard(null)} nextProps={{ shallow: true }}>
         <Text pl={3} fontSize="sm">
-          {text("sideBarOrganizationList")}
+          {text("navigationOrganizations")}
         </Text>
       </Link>
 
       <Heading size="sm" pt={5}>
-        {text("sideBarAllOrganizations")}
+        {text("navigationOrganizationsAll")}
       </Heading>
       {organizations?.map((organization) => (
         <Link
@@ -50,14 +50,14 @@ const DashboardSideBarView = ({
       ))}
 
       <Heading size="sm" pt={5}>
-        {text("sideBarProfile")}
+        {text("navigationProfile")}
       </Heading>
       <Link
         href={paths.dashboard(DashboardTab.profile)}
         nextProps={{ shallow: true }}
       >
         <Text pl={3} fontSize="sm">
-          {text("sideBarProfileSettings")}
+          {text("navigationProfileSettings")}
         </Text>
       </Link>
     </VStack>
