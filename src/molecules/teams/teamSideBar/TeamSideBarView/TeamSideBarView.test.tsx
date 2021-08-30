@@ -8,7 +8,8 @@ type ComponentProps = Parameters<typeof TeamSideBarView>[0];
 
 function renderComponent(props: Partial<ComponentProps> = {}) {
   const defaultProps: ComponentProps = {
-    data: "Hello",
+    organizationId: 1,
+    teamId: 1,
   };
   return render(<TeamSideBarView {...defaultProps} {...props} />);
 }

@@ -1,17 +1,52 @@
+import { Text, VStack } from "@chakra-ui/react";
 import React from "react";
+import { Link, Pagination } from "../../../../atoms";
+import { Team } from "../../../../services";
+import { paths, useText } from "../../../../utils";
+import { OrganizationTab } from "../../../../utils/routing/types";
 
 export type OrganizationTeamsViewProps = {
-  data: string;
+  page: number;
+  pageSize: number;
+  organizationId: number;
+  teams?: Team[] | null;
+  count?: number | null;
+  isLoading: boolean;
+  onPageChange: (page: number) => void;
 };
 
 const OrganizationTeamsView = ({
-  data,
+  isLoading,
+  onPageChange,
+  organizationId,
+  page,
+  pageSize,
+  count,
+  teams,
 }: OrganizationTeamsViewProps): JSX.Element => {
+  const text = useText();
+
   return (
-    <div>
-      {`OrganizationTeamsView: `}
-      {data}
-    </div>
+    <VStack>
+      <Link href={paths.organization(organizationId, OrganizationTab.newTeam)}>
+        {text("navigationTeamNew")}
+      </Link>
+      {teams?.map((team) => (
+        <Link key={team.id} href={paths.team(team.organization_id, team.id)}>
+          <Text fontSize="sm">{team.name}</Text>
+        </Link>
+      ))}
+      <Pagination
+        page={page}
+        onPageChange={onPageChange}
+        maxPage={Math.floor((count ?? 0) / pageSize)}
+        isLoading={isLoading}
+        left={text("previousPage")}
+        right={text("nextPage")}
+      >
+        {page + 1}
+      </Pagination>
+    </VStack>
   );
 };
 

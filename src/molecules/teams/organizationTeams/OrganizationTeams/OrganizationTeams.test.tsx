@@ -1,23 +1,30 @@
 import "@testing-library/jest-dom";
 import "@testing-library/jest-dom/extend-expect";
-import { render } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import React from "react";
-import { QueryClient, QueryClientProvider } from "react-query";
+import { addTeamsScenario } from "../../../../tests/mockScenarios";
+import { ContextsMock } from "../../../../tests/wrappers";
 import { OrganizationTeamsViewProps } from "../OrganizationTeamsView/OrganizationTeamsView";
 import OrganizationTeams from "./OrganizationTeams";
 
 type ComponentProps = React.ComponentProps<typeof OrganizationTeams>;
 
-const View = ({}: OrganizationTeamsViewProps) => <button>Click</button>;
+const View = ({ teams }: OrganizationTeamsViewProps) => (
+  <>
+    {teams?.map((team) => (
+      <p key={team.id}>{team.name}</p>
+    ))}
+  </>
+);
 
 const renderComponent = (props: Partial<ComponentProps> = {}) => {
   const defaultProps: ComponentProps = {
     View,
   };
   return render(
-    <QueryClientProvider client={new QueryClient()}>
+    <ContextsMock>
       <OrganizationTeams {...defaultProps} {...props} />
-    </QueryClientProvider>
+    </ContextsMock>
   );
 };
 
@@ -25,16 +32,28 @@ describe("<OrganizationTeams />", () => {
   it("should render", async () => {
     expect.hasAssertions();
 
+    addTeamsScenario();
+
     renderComponent();
 
-    expect(true).toBeTruthy();
+    await waitFor(async () =>
+      expect(await screen.findByText("Team Name-0")).toBeInTheDocument()
+    );
+
+    expect(await screen.findByText("Team Name-0")).toBeInTheDocument();
   });
 
   it("should render default", async () => {
     expect.hasAssertions();
 
+    addTeamsScenario();
+
     renderComponent({ View: undefined });
 
-    expect(true).toBeTruthy();
+    await waitFor(async () =>
+      expect(await screen.findByText("Team Name-0")).toBeInTheDocument()
+    );
+
+    expect(await screen.findByText("Team Name-0")).toBeInTheDocument();
   });
 });

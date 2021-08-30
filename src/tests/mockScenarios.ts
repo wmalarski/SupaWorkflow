@@ -2,11 +2,13 @@ import { User } from "@supabase/supabase-js";
 import {
   defaultOrganization,
   defaultProfile,
+  defaultTeam,
   defaultTemplate,
   defaultUser,
   defaultWorkflow,
   Organization,
   Profile,
+  Team,
   Template,
   Workflow,
 } from "../services";
@@ -80,5 +82,16 @@ export const addTemplatesScenario = (count?: number): Template[] =>
         description: template.description,
         name: `${template.name}-${index}`,
         organization_id: template.organization_id,
+      })
+    );
+
+export const addTeamsScenario = (count?: number): Team[] =>
+  Array(count ?? 30)
+    .fill(defaultTeam)
+    .map((team: Team, index) =>
+      mockDb.team.create({
+        ...team,
+        id: dbIndexCounter(),
+        name: `${team.name}-${index}`,
       })
     );
