@@ -108,6 +108,10 @@ const translation = {
   addTeamColor: "Color",
   addTeamSubmit: "Save",
 
+  // Add team member
+  addTeamMemberLabel: "Member",
+  addTeamMemberButton: "Add",
+
   // Add workflow
   addWorkflowHeader: "Add new workflow",
   addWorkflowName: "Name",

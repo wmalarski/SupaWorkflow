@@ -10,7 +10,7 @@ function renderComponent(props: Partial<ComponentProps> = {}) {
   const defaultProps: ComponentProps = {
     onSearch: () => void 0,
     onSubmit: () => void 0,
-    profiles: [],
+    members: [],
   };
   return render(<NewTeamMemberView {...defaultProps} {...props} />);
 }

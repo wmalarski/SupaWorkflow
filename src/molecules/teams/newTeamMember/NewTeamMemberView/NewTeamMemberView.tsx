@@ -1,6 +1,8 @@
-import { Input, Select, VStack } from "@chakra-ui/react";
-import React from "react";
-import { Profile, TeamRole } from "../../../../services";
+import { Button, VStack } from "@chakra-ui/react";
+import React, { useState } from "react";
+import { Autocomplete } from "../../../../atoms";
+import { SelectOrganizationMembersRow, TeamRole } from "../../../../services";
+import { useText } from "../../../../utils";
 
 export type NewTeamMemberViewData = {
   profileId: number;
@@ -8,24 +10,44 @@ export type NewTeamMemberViewData = {
 };
 
 export type NewTeamMemberViewProps = {
-  profiles?: Profile[] | null;
-  onSearch: (name: string) => void;
+  members?: SelectOrganizationMembersRow[] | null;
+  onSearch: (name?: string) => void;
   onSubmit: (data: NewTeamMemberViewData) => void;
 };
 
 const NewTeamMemberView = ({
-  profiles,
+  members,
   onSubmit,
   onSearch,
 }: NewTeamMemberViewProps): JSX.Element => {
+  const text = useText();
+
+  const [selectedMember, setSelectedMember] =
+    useState<SelectOrganizationMembersRow | null>(null);
+
   return (
     <VStack>
-      <Input />
-      <Select>
-        <option value="option1">Option 1</option>
-        <option value="option2">Option 2</option>
-        <option value="option3">Option 3</option>
-      </Select>
+      <Autocomplete
+        label={text("addTeamMemberLabel")}
+        items={members ?? []}
+        itemToString={(member) => member?.profile.name ?? ""}
+        onInputValueChange={({ inputValue }) => onSearch(inputValue)}
+        onSelectedItemChange={({ selectedItem }) =>
+          setSelectedMember(selectedItem ?? null)
+        }
+      />
+      <Button
+        isDisabled={!selectedMember}
+        onClick={() =>
+          selectedMember &&
+          onSubmit({
+            profileId: selectedMember?.profile_id,
+            role: "user",
+          })
+        }
+      >
+        {text("addTeamMemberButton")}
+      </Button>
     </VStack>
   );
 };

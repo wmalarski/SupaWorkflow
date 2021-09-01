@@ -10,7 +10,7 @@ export type NewTeamMemberProps = {
 const NewTeamMember = ({
   View = NewTeamMemberView,
 }: NewTeamMemberProps): JSX.Element => {
-  return <View onSearch={() => void 0} onSubmit={() => void 0} profiles={[]} />;
+  return <View onSearch={() => void 0} onSubmit={() => void 0} members={[]} />;
 };
 
 export default React.memo(NewTeamMember);

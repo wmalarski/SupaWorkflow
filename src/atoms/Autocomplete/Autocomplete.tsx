@@ -15,7 +15,8 @@ export type AutocompleteProps<TData> = {
   items: TData[];
   label: string;
   itemToString: (data: TData | null) => string;
-  onInputValueChange: (change: UseComboboxStateChange<TData>) => void;
+  onInputValueChange?: (changes: UseComboboxStateChange<TData>) => void;
+  onSelectedItemChange?: (changes: UseComboboxStateChange<TData>) => void;
 };
 
 function Autocomplete<TData>({
@@ -23,10 +24,10 @@ function Autocomplete<TData>({
   label,
   itemToString,
   onInputValueChange,
+  onSelectedItemChange,
 }: AutocompleteProps<TData>): React.ReactElement {
   const {
     isOpen,
-    selectedItem,
     getToggleButtonProps,
     getLabelProps,
     getMenuProps,
@@ -38,9 +39,8 @@ function Autocomplete<TData>({
     items,
     itemToString,
     onInputValueChange,
+    onSelectedItemChange,
   });
-
-  console.log({ selectedItem });
 
   return (
     <Stack>

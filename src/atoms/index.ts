@@ -1,3 +1,4 @@
+export { default as Autocomplete } from "./Autocomplete/Autocomplete";
 export { default as BreadcrumbLink } from "./BreadcrumbLink/BreadcrumbLink";
 export { default as Debug } from "./Debug/Debug";
 export { default as Link } from "./Link/Link";

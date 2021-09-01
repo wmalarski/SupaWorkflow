@@ -15,5 +15,5 @@ export const Playground = Template.bind({});
 Playground.args = {
   onSearch: () => void 0,
   onSubmit: () => void 0,
-  profiles: [],
+  members: [],
 };
