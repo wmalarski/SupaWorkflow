@@ -13,16 +13,16 @@ import { useForm } from "react-hook-form";
 import { Template } from "../../../../services";
 import { useText, useTextValidator } from "../../../../utils";
 
+export type CreateTemplateViewData = {
+  name: string;
+  description: string;
+};
+
 export type CreateTemplateViewProps = {
   isLoading: boolean;
   error?: PostgrestError | null;
   template?: Template | null;
   onSubmit: (data: CreateTemplateViewData) => void;
-};
-
-export type CreateTemplateViewData = {
-  name: string;
-  description: string;
 };
 
 const CreateTemplateView = ({

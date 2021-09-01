@@ -8,7 +8,9 @@ type ComponentProps = Parameters<typeof NewTeamMemberView>[0];
 
 function renderComponent(props: Partial<ComponentProps> = {}) {
   const defaultProps: ComponentProps = {
-    data: "hello",
+    onSearch: () => void 0,
+    onSubmit: () => void 0,
+    profiles: [],
   };
   return render(<NewTeamMemberView {...defaultProps} {...props} />);
 }
