@@ -1,17 +1,14 @@
 import { Table, Tbody, Th, Thead, Tr, VStack } from "@chakra-ui/react";
 import React from "react";
 import { Pagination } from "../../../../atoms";
-import {
-  OrganizationRole,
-  SelectOrganizationMembersResult,
-} from "../../../../services";
+import { OrganizationRole, SelectMembersResult } from "../../../../services";
 import { OrganizationRoleGuard, useText } from "../../../../utils";
 import OrganizationMemberRow from "../OrganizationMemberRow/OrganizationMemberRow";
 
 export type OrganizationMembersViewProps = {
   page: number;
   pageSize: number;
-  members?: SelectOrganizationMembersResult | null;
+  members?: SelectMembersResult | null;
   authorId: number;
   isLoading: boolean;
   isUpdateLoading: boolean;
@@ -51,13 +48,15 @@ const OrganizationMembersView = ({
         <Tbody>
           {members?.entries.map((member, index) => (
             <OrganizationMemberRow
-              key={member.id}
+              key={member.member_id}
               index={index}
               member={member}
               isAuthor={authorId === member.profile_id}
-              isLoading={loadingMemberId === member.id && isUpdateLoading}
-              onDeleteClick={() => onDeleteClick(member.id)}
-              onUpdateClick={(role) => onUpdateClick(member.id, role)}
+              isLoading={
+                loadingMemberId === member.member_id && isUpdateLoading
+              }
+              onDeleteClick={() => onDeleteClick(member.member_id)}
+              onUpdateClick={(role) => onUpdateClick(member.member_id, role)}
             />
           ))}
         </Tbody>

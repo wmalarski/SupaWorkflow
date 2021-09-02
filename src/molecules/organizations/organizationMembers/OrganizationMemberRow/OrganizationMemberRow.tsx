@@ -1,16 +1,13 @@
 import { Button, Select, Td, Tr } from "@chakra-ui/react";
 import React from "react";
-import {
-  OrganizationRole,
-  SelectOrganizationMembersRow,
-} from "../../../../services";
+import { Member, OrganizationRole } from "../../../../services";
 import { OrganizationRoleGuard, useText } from "../../../../utils";
 
 export type OrganizationMemberRowProps = {
   index: number;
   isAuthor: boolean;
   isLoading: boolean;
-  member: SelectOrganizationMembersRow;
+  member: Member;
   onDeleteClick: () => void;
   onUpdateClick: (role: OrganizationRole) => void;
 };
@@ -28,14 +25,14 @@ const OrganizationMemberRow = ({
   return (
     <Tr>
       <Td>{index + 1}</Td>
-      <Td>{member.profile.name}</Td>
+      <Td>{member.profile_name}</Td>
       <OrganizationRoleGuard roles={["guest", "user"]}>
-        <Td>{member.role}</Td>
+        <Td>{member.member_role}</Td>
       </OrganizationRoleGuard>
       <OrganizationRoleGuard roles={["mod", "owner"]}>
         <Td>
           <Select
-            value={member.role}
+            value={member.member_role}
             isDisabled={isAuthor}
             onChange={(event) =>
               onUpdateClick(event.target.value as OrganizationRole)

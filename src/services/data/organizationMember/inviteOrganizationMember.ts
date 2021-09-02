@@ -7,7 +7,7 @@ import {
 } from "react-query";
 import { supabase } from "../../supabase";
 import { OrganizationRole } from "../../types";
-import { selectAllOrganizationMembersKey } from "./selectOrganizationMembers";
+import { selectAllMembersKey } from "../members/selectMembers";
 
 export type InviteOrganizationMemberArgs = {
   organizationId: number;
@@ -47,7 +47,7 @@ export const useInviteOrganizationMember = (
   return useMutation(inviteOrganizationMember, {
     ...options,
     onSuccess: (item, variables, ...args) => {
-      queryClient.invalidateQueries(selectAllOrganizationMembersKey());
+      queryClient.invalidateQueries(selectAllMembersKey());
       options?.onSuccess?.(item, variables, ...args);
     },
   });

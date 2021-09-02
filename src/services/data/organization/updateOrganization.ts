@@ -8,7 +8,7 @@ import {
 import { useProfileContext } from "../../../utils";
 import { Organization } from "../../types";
 import fromSupabase from "../../utils/fromSupabase";
-import { selectOrganizationMemberKey } from "../organizationMember/selectOrganizationMember";
+import { selectMemberKey } from "../members/selectMember";
 
 export type UpdateOrganizationArgs = Pick<
   Organization,
@@ -44,7 +44,7 @@ export const useUpdateOrganization = (
     ...options,
     onSuccess: (item, ...args) => {
       queryClient.invalidateQueries(
-        selectOrganizationMemberKey({
+        selectMemberKey({
           organizationId: item.id,
           userId: profile.user_id,
         })

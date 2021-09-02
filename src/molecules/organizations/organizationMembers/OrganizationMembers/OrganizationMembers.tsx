@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import {
-  useSelectOrganizationMembers,
+  useSelectMembers,
   useUpdateOrganizationMember,
 } from "../../../../services";
 import { useDeleteOrganizationMember } from "../../../../services/data/organizationMember/deleteOrganizationMember";
@@ -22,7 +22,7 @@ const OrganizationMembers = ({
 
   const [page, setPage] = useState(0);
 
-  const { data: members, isLoading } = useSelectOrganizationMembers({
+  const { data: members, isLoading } = useSelectMembers({
     organizationId: organization.id,
     from: page * PAGE_SIZE,
     to: (page + 1) * PAGE_SIZE,

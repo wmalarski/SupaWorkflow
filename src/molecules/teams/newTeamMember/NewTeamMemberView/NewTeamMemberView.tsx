@@ -1,7 +1,8 @@
 import { Button, VStack } from "@chakra-ui/react";
+import { PostgrestError } from "@supabase/supabase-js";
 import React, { useState } from "react";
 import { Autocomplete } from "../../../../atoms";
-import { SelectOrganizationMembersRow, TeamRole } from "../../../../services";
+import { Member, TeamRole } from "../../../../services";
 import { useText } from "../../../../utils";
 
 export type NewTeamMemberViewData = {
@@ -10,7 +11,9 @@ export type NewTeamMemberViewData = {
 };
 
 export type NewTeamMemberViewProps = {
-  members?: SelectOrganizationMembersRow[] | null;
+  members?: Member[] | null;
+  isLoading?: boolean;
+  error?: PostgrestError | null;
   onSearch: (name?: string) => void;
   onSubmit: (data: NewTeamMemberViewData) => void;
 };
@@ -22,15 +25,14 @@ const NewTeamMemberView = ({
 }: NewTeamMemberViewProps): JSX.Element => {
   const text = useText();
 
-  const [selectedMember, setSelectedMember] =
-    useState<SelectOrganizationMembersRow | null>(null);
+  const [selectedMember, setSelectedMember] = useState<Member | null>(null);
 
   return (
     <VStack>
       <Autocomplete
         label={text("addTeamMemberLabel")}
         items={members ?? []}
-        itemToString={(member) => member?.profile.name ?? ""}
+        itemToString={(member) => member?.profile_name ?? ""}
         onInputValueChange={({ inputValue }) => onSearch(inputValue)}
         onSelectedItemChange={({ selectedItem }) =>
           setSelectedMember(selectedItem ?? null)

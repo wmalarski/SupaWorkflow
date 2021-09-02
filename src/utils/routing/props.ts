@@ -3,8 +3,8 @@ import {
   Organization,
   OrganizationMember,
   Profile,
-  selectOrganizationMember,
-  selectOrganizationMemberKey,
+  selectMember,
+  selectMemberKey,
   selectProfile,
   selectProfileKey,
   selectTeam,
@@ -59,8 +59,8 @@ export const getOrganizationProps: GetServerSideProps<GetOrganizationProps> =
 
       if (!orgId) return { notFound: true };
 
-      const result = await selectOrganizationMember({
-        queryKey: selectOrganizationMemberKey({
+      const result = await selectMember({
+        queryKey: selectMemberKey({
           organizationId: Number(orgId),
           userId: user.id,
         }),
@@ -98,8 +98,8 @@ export const getWorkflowProps: GetServerSideProps<GetWorkflowProps> = async ({
 
     const [workflow, result] = await Promise.all([
       selectWorkflow({ queryKey: selectWorkflowKey({ id: workflowId }) }),
-      selectOrganizationMember({
-        queryKey: selectOrganizationMemberKey({
+      selectMember({
+        queryKey: selectMemberKey({
           organizationId: orgId,
           userId: user.id,
         }),
@@ -138,8 +138,8 @@ export const getTemplateProps: GetServerSideProps<GetTemplateProps> = async ({
 
     const [template, result] = await Promise.all([
       selectTemplate({ queryKey: selectTemplateKey({ id: templateId }) }),
-      selectOrganizationMember({
-        queryKey: selectOrganizationMemberKey({
+      selectMember({
+        queryKey: selectMemberKey({
           organizationId: orgId,
           userId: user.id,
         }),
@@ -178,8 +178,8 @@ export const getTeamProps: GetServerSideProps<GetTeamProps> = async ({
 
     const [team, result] = await Promise.all([
       selectTeam({ queryKey: selectTeamKey({ id: teamId }) }),
-      selectOrganizationMember({
-        queryKey: selectOrganizationMemberKey({
+      selectMember({
+        queryKey: selectMemberKey({
           organizationId: orgId,
           userId: user.id,
         }),

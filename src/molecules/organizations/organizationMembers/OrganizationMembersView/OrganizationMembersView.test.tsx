@@ -2,10 +2,7 @@ import "@testing-library/jest-dom";
 import "@testing-library/jest-dom/extend-expect";
 import { render } from "@testing-library/react";
 import React from "react";
-import {
-  defaultOrganizationMember,
-  defaultProfile,
-} from "../../../../services";
+import { defaultMember } from "../../../../services";
 import { ContextsMock } from "../../../../tests/wrappers";
 import OrganizationMembersView from "./OrganizationMembersView";
 
@@ -21,9 +18,8 @@ function renderComponent(props: Partial<ComponentProps> = {}) {
     members: {
       count: 4,
       entries: new Array(10).fill(0).map((_, index) => ({
-        ...defaultOrganizationMember,
-        profile: defaultProfile,
-        id: index,
+        ...defaultMember,
+        member_id: index,
       })),
     },
     onDeleteClick: () => void 0,

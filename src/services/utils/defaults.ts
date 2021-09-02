@@ -1,5 +1,6 @@
 import { User } from "@supabase/supabase-js";
 import {
+  Member,
   Organization,
   OrganizationMember,
   Profile,
@@ -24,6 +25,21 @@ export const defaultProfile: Profile = {
   id: 1,
   name: "Profile Name",
   user_id: "qwertyuiop",
+};
+
+export const defaultMember: Member = {
+  member_id: 1,
+  member_role: "user",
+  organization_author_id: 1,
+  organization_avatar: null,
+  organization_description: "Organization Description",
+  organization_hash: "hash-hash",
+  organization_id: 1,
+  organization_name: "Organization Name",
+  profile_avatar: null,
+  profile_id: 1,
+  profile_name: "Profile Name",
+  profile_user_id: "qwertyuiop",
 };
 
 export const defaultOrganization: Organization = {

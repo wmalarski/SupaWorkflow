@@ -8,8 +8,8 @@ import {
 import { useProfileContext } from "../../../utils";
 import { OrganizationMember } from "../../types";
 import fromSupabase from "../../utils/fromSupabase";
-import { selectOrganizationMemberKey } from "./selectOrganizationMember";
-import { selectAllOrganizationMembersKey } from "./selectOrganizationMembers";
+import { selectMemberKey } from "../members/selectMember";
+import { selectAllMembersKey } from "../members/selectMembers";
 
 export type UpdateOrganizationMemberArgs = Pick<
   OrganizationMember,
@@ -48,9 +48,9 @@ export const useUpdateOrganizationMember = (
   return useMutation(updateOrganizationMember, {
     ...options,
     onSuccess: (item, ...args) => {
-      queryClient.invalidateQueries(selectAllOrganizationMembersKey());
+      queryClient.invalidateQueries(selectAllMembersKey());
       queryClient.invalidateQueries(
-        selectOrganizationMemberKey({
+        selectMemberKey({
           organizationId: item.organization_id,
           userId: profile.user_id,
         })

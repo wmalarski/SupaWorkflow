@@ -7,7 +7,7 @@ import {
 } from "react-query";
 import { OrganizationMember } from "../../types";
 import fromSupabase from "../../utils/fromSupabase";
-import { selectAllOrganizationMembersKey } from "./selectOrganizationMembers";
+import { selectAllMembersKey } from "../members/selectMembers";
 
 export type DeleteOrganizationMemberArgs = Pick<OrganizationMember, "id">;
 
@@ -34,7 +34,7 @@ export const useDeleteOrganizationMember = (
   return useMutation(deleteOrganizationMember, {
     ...options,
     onSuccess: (...args) => {
-      queryClient.invalidateQueries(selectAllOrganizationMembersKey());
+      queryClient.invalidateQueries(selectAllMembersKey());
       options?.onSuccess?.(...args);
     },
   });

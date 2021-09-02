@@ -6,7 +6,7 @@ import {
   OrganizationMember,
   OrganizationRole,
   Profile,
-  useSelectOrganizationMember,
+  useSelectMember,
 } from "../../services";
 import ProfileContext from "./ProfileContext";
 
@@ -49,7 +49,7 @@ export const OrganizationContextProvider = ({
   children,
   enabled,
 }: OrganizationContextProviderProps): JSX.Element => {
-  const { data } = useSelectOrganizationMember(
+  const { data } = useSelectMember(
     { organizationId: organization.id, userId: profile.user_id },
     { initialData: { member, profile, organization }, enabled }
   );
