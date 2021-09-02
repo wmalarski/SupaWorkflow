@@ -1,11 +1,13 @@
 import { User } from "@supabase/supabase-js";
 import {
+  defaultMember,
   defaultOrganization,
   defaultProfile,
   defaultTeam,
   defaultTemplate,
   defaultUser,
   defaultWorkflow,
+  Member,
   Organization,
   Profile,
   Team,
@@ -95,3 +97,20 @@ export const addTeamsScenario = (count?: number): Team[] =>
         name: `${team.name}-${index}`,
       })
     );
+
+export const addMembersScenario = (count?: number): Member[] => [
+  ...Array(count ?? 30)
+    .fill(defaultMember)
+    .map((member: Member, index) =>
+      mockDb.members.create({
+        ...member,
+        member_id: dbIndexCounter(),
+        profile_name: `${member.profile_name}-${index}`,
+      })
+    ),
+  mockDb.members.create({
+    ...defaultMember,
+    member_id: dbIndexCounter(),
+    profile_name: `weird flex`,
+  }),
+];
