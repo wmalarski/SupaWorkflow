@@ -12,6 +12,7 @@ function renderComponent(props: Partial<ComponentProps> = {}) {
     isLoading: false,
     organizationId: 1,
     onPageChange: () => void 0,
+    onDeleteTeam: () => void 0,
     page: 0,
     pageSize: 10,
     count: 20,

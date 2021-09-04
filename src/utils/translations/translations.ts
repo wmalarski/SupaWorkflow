@@ -83,6 +83,9 @@ const translation = {
   organizationMemberGuest: "Guest",
   deleteOrganizationMember: "Remove",
 
+  // Team List
+  teamsDelete: "Remove",
+
   // Add Organization member
   addOrganizationMemberHeader: "Add Member",
   addOrganizationMemberButton: "Invite",

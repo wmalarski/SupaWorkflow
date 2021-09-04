@@ -1,8 +1,8 @@
-import { Text, VStack } from "@chakra-ui/react";
+import { Button, Text, VStack } from "@chakra-ui/react";
 import React from "react";
 import { Link, Pagination } from "../../../../atoms";
 import { Team } from "../../../../services";
-import { paths, useText } from "../../../../utils";
+import { OrganizationRoleGuard, paths, useText } from "../../../../utils";
 import { OrganizationTab } from "../../../../utils/routing/types";
 
 export type OrganizationTeamsViewProps = {
@@ -13,16 +13,18 @@ export type OrganizationTeamsViewProps = {
   count?: number | null;
   isLoading: boolean;
   onPageChange: (page: number) => void;
+  onDeleteTeam: (teamId: number) => void;
 };
 
 const OrganizationTeamsView = ({
   isLoading,
-  onPageChange,
   organizationId,
   page,
   pageSize,
   count,
   teams,
+  onPageChange,
+  onDeleteTeam,
 }: OrganizationTeamsViewProps): JSX.Element => {
   const text = useText();
 
@@ -32,9 +34,16 @@ const OrganizationTeamsView = ({
         {text("navigationTeamNew")}
       </Link>
       {teams?.map((team) => (
-        <Link key={team.id} href={paths.team(team.organization_id, team.id)}>
-          <Text fontSize="sm">{team.name}</Text>
-        </Link>
+        <React.Fragment key={team.id}>
+          <Link href={paths.team(team.organization_id, team.id)}>
+            <Text fontSize="sm">{team.name}</Text>
+          </Link>
+          <OrganizationRoleGuard roles={["mod", "owner"]}>
+            <Button onClick={() => onDeleteTeam(team.id)}>
+              {text("teamsDelete")}
+            </Button>
+          </OrganizationRoleGuard>
+        </React.Fragment>
       ))}
       <Pagination
         page={page}

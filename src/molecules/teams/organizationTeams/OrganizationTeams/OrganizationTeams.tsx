@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useSelectTeams } from "../../../../services";
+import { useDeleteTeam, useSelectTeams } from "../../../../services";
 import { useOrganizationContext } from "../../../../utils";
 import OrganizationTeamsView from "../OrganizationTeamsView/OrganizationTeamsView";
 
@@ -24,6 +24,8 @@ const OrganizationTeams = ({
     to: (page + 1) * PAGE_SIZE,
   });
 
+  const { mutate: deleteTeam } = useDeleteTeam();
+
   return (
     <View
       organizationId={organization.id}
@@ -33,6 +35,7 @@ const OrganizationTeams = ({
       onPageChange={setPage}
       page={page}
       pageSize={PAGE_SIZE}
+      onDeleteTeam={(id) => deleteTeam({ id })}
     />
   );
 };

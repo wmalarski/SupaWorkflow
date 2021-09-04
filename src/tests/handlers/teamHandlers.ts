@@ -1,6 +1,7 @@
 import { PostgrestError } from "@supabase/supabase-js";
 import { DefaultRequestBody, rest } from "msw";
 import {
+  DeleteTeamArgs,
   InsertTeamArgs,
   SUPABASE_ENDPOINT,
   TABLES,
@@ -34,6 +35,18 @@ export const teamHandlers = [
       const team = mockDb.team.create({ ...body, id: dbIndexCounter() });
 
       return res(ctx.json<Team>(team));
+    }
+  ),
+  rest.delete<DeleteTeamArgs, {} | PostgrestError>(
+    `${SUPABASE_ENDPOINT}/${TABLES.team}`,
+    ({ url }, res, ctx) => {
+      const query = url.searchParams.get("id")?.split(".")[1];
+      if (!query) return res(ctx.json({}));
+      const id = Number(query);
+
+      mockDb.team.delete({ where: { id: { equals: id } } });
+
+      return res(ctx.json({}));
     }
   ),
 ];
