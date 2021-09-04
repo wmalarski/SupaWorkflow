@@ -1,7 +1,12 @@
 import { PostgrestError } from "@supabase/supabase-js";
 import { DefaultRequestBody, rest } from "msw";
-import { SUPABASE_ENDPOINT, TABLES, TeamMember } from "../../services";
-import { InsertTeamMemberArgs } from "../../services/data/teamMember/insertTeamMember";
+import {
+  DeleteTeamMemberArgs,
+  InsertTeamMemberArgs,
+  SUPABASE_ENDPOINT,
+  TABLES,
+  TeamMember,
+} from "../../services";
 import { dbIndexCounter, mockDb } from "../mockDb";
 
 export const teamMemberHandlers = [
@@ -35,6 +40,20 @@ export const teamMemberHandlers = [
       });
 
       return res(ctx.json<TeamMember>(teamMember));
+    }
+  ),
+  rest.delete<DeleteTeamMemberArgs, {} | PostgrestError>(
+    `${SUPABASE_ENDPOINT}/${TABLES.teamMember}`,
+    ({ url }, res, ctx) => {
+      const query = url.searchParams.get("id")?.split(".")[1];
+      if (!query) return res(ctx.json({}));
+      const id = Number(query);
+
+      mockDb.teamMember.delete({
+        where: { id: { equals: id } },
+      });
+
+      return res(ctx.json({}));
     }
   ),
 ];

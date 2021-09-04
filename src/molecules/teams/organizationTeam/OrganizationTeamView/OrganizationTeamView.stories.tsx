@@ -1,5 +1,6 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
+import { defaultTeamMember } from "../../../../services";
 import OrganizationTeamView from "./OrganizationTeamView";
 
 export default {
@@ -12,4 +13,14 @@ const Template: ComponentStory<typeof OrganizationTeamView> = (args) => (
 );
 
 export const Playground = Template.bind({});
-Playground.args = {};
+Playground.args = {
+  onDeleteClick: () => void 0,
+  onPageChange: () => void 0,
+  page: 0,
+  pageSize: 10,
+  count: 30,
+  isLoading: false,
+  teamMembers: Array(5)
+    .fill(defaultTeamMember)
+    .map((team, index) => ({ ...team, id: index })),
+};
