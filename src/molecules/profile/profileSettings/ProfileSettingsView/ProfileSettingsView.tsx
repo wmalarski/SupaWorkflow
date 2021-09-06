@@ -20,6 +20,7 @@ export type ProfileSettingsViewData = {
 export type ProfileSettingsViewProps = {
   isLoading: boolean;
   profile: Profile;
+  newProfile?: Profile;
   error?: PostgrestError | null;
   onSubmit: (data: ProfileSettingsViewData) => void;
 };
@@ -39,7 +40,7 @@ const ProfileSettingsView = ({
   });
 
   const {
-    formState: { errors, isValid, isDirty },
+    formState: { errors, isDirty },
     register,
     handleSubmit,
   } = useForm<ProfileSettingsViewData>({
@@ -59,11 +60,7 @@ const ProfileSettingsView = ({
 
         <FormErrorMessage>{error?.message}</FormErrorMessage>
 
-        <Button
-          isDisabled={!isValid || !isDirty}
-          isLoading={isLoading}
-          type="submit"
-        >
+        <Button isDisabled={!isDirty} isLoading={isLoading} type="submit">
           {text("profileSettingsSave")}
         </Button>
       </VStack>

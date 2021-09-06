@@ -14,12 +14,18 @@ const ProfileSettings = ({
 }: ProfileSettingsProps): JSX.Element => {
   const profile = useProfileContext();
 
-  const { mutate: updateProfile, isLoading, error } = useUpdateProfile();
+  const {
+    mutate: updateProfile,
+    data: newProfile,
+    isLoading,
+    error,
+  } = useUpdateProfile();
 
   return (
     <View
       isLoading={isLoading}
       profile={profile}
+      newProfile={newProfile}
       error={error}
       onSubmit={(data) =>
         updateProfile({

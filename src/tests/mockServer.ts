@@ -3,6 +3,7 @@ import { authHandlers } from "./handlers/authHandlers";
 import { memberHandlers } from "./handlers/membersHandlers";
 import { organizationHandlers } from "./handlers/organizationHandlers";
 import { organizationMemberHandlers } from "./handlers/organizationMemberHandlers";
+import { profileHandlers } from "./handlers/profileHandlers";
 import { rpcHandlers } from "./handlers/rpcHandlers";
 import { teamHandlers } from "./handlers/teamHandlers";
 import { teamMemberHandlers } from "./handlers/teamMemberHandlers";
@@ -18,7 +19,8 @@ const server = setupServer(
   ...templateHandlers,
   ...teamHandlers,
   ...teamMemberHandlers,
-  ...memberHandlers
+  ...memberHandlers,
+  ...profileHandlers
 );
 
 export default server;
