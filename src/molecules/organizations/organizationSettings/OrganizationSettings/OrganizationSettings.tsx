@@ -33,6 +33,7 @@ const OrganizationSettings = ({
     isLoading: isUpdateLoading,
     isSuccess,
     error: updateError,
+    data: updatedOrganization,
   } = useUpdateOrganization();
 
   return (
@@ -40,6 +41,7 @@ const OrganizationSettings = ({
       error={deleteError ?? updateError}
       isSuccess={isSuccess}
       organization={organization}
+      updatedOrganization={updatedOrganization}
       isLoading={isUpdateLoading || isLoading}
       onUpdateSubmit={(data) =>
         updateOrganization({

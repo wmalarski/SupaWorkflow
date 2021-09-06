@@ -16,7 +16,7 @@ const ProfileSettings = ({
 
   const {
     mutate: updateProfile,
-    data: newProfile,
+    data: updatedProfile,
     isLoading,
     error,
   } = useUpdateProfile();
@@ -25,7 +25,7 @@ const ProfileSettings = ({
     <View
       isLoading={isLoading}
       profile={profile}
-      newProfile={newProfile}
+      updatedProfile={updatedProfile}
       error={error}
       onSubmit={(data) =>
         updateProfile({

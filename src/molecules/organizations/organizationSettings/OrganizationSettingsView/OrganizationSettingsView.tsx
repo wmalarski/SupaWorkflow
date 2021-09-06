@@ -18,6 +18,7 @@ export type OrganizationSettingsViewProps = {
   isLoading: boolean;
   isSuccess: boolean;
   organization: Organization;
+  updatedOrganization?: Organization;
   error?: PostgrestError | null;
   onUpdateSubmit: (data: OrganizationSettingsViewData) => void;
   onDeleteSubmit: () => void;
@@ -52,7 +53,7 @@ const OrganizationSettingsView = ({
   }, [isSuccess, text, toast]);
 
   const {
-    formState: { errors, isDirty, isValid },
+    formState: { errors, isDirty },
     register,
     handleSubmit,
   } = useForm<OrganizationSettingsViewData>({
@@ -82,11 +83,7 @@ const OrganizationSettingsView = ({
 
           <FormErrorMessage>{error?.message}</FormErrorMessage>
 
-          <Button
-            isDisabled={!isValid || !isDirty}
-            isLoading={isLoading}
-            type="submit"
-          >
+          <Button isDisabled={!isDirty} isLoading={isLoading} type="submit">
             {text("updateOrganizationSubmit")}
           </Button>
         </VStack>

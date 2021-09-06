@@ -11,7 +11,7 @@ import ProfileSettings from "./ProfileSettings";
 
 type ComponentProps = React.ComponentProps<typeof ProfileSettings>;
 
-const View = ({ onSubmit, newProfile }: ProfileSettingsViewProps) => (
+const View = ({ onSubmit, updatedProfile }: ProfileSettingsViewProps) => (
   <>
     <button
       onClick={() =>
@@ -22,7 +22,7 @@ const View = ({ onSubmit, newProfile }: ProfileSettingsViewProps) => (
     >
       Click
     </button>
-    <p>{newProfile?.name}</p>
+    <p>{updatedProfile?.name}</p>
   </>
 );
 

@@ -20,7 +20,7 @@ export type ProfileSettingsViewData = {
 export type ProfileSettingsViewProps = {
   isLoading: boolean;
   profile: Profile;
-  newProfile?: Profile;
+  updatedProfile?: Profile;
   error?: PostgrestError | null;
   onSubmit: (data: ProfileSettingsViewData) => void;
 };
