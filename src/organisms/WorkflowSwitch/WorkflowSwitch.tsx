@@ -1,7 +1,7 @@
 import React from "react";
 import { WorkflowEditor } from "../../molecules";
 import { useTabParam, WorkflowTab } from "../../utils";
-import WorkspaceLayout from "./WorkspaceLayout";
+import WorkflowLayout from "./WorkflowLayout";
 
 const WorkflowSwitch = (): JSX.Element | null => {
   const tab = useTabParam(WorkflowTab);
@@ -9,9 +9,9 @@ const WorkflowSwitch = (): JSX.Element | null => {
   switch (tab) {
     case WorkflowTab.edit:
       return (
-        <WorkspaceLayout>
+        <WorkflowLayout>
           <WorkflowEditor />
-        </WorkspaceLayout>
+        </WorkflowLayout>
       );
     default:
       return null;

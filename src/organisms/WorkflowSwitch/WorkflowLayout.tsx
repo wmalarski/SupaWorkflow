@@ -7,15 +7,15 @@ import {
 } from "../../molecules";
 import { FormPage, GridPage } from "../../templates";
 
-export type WorkspaceLayoutProps = {
+export type WorkflowLayoutProps = {
   isForm?: boolean;
   children: React.ReactNode;
 };
 
-const WorkspaceLayout = ({
+const WorkflowLayout = ({
   isForm,
   children,
-}: WorkspaceLayoutProps): JSX.Element =>
+}: WorkflowLayoutProps): JSX.Element =>
   isForm ? (
     <FormPage
       corner={<DashboardCorner />}
@@ -35,4 +35,4 @@ const WorkspaceLayout = ({
     </GridPage>
   );
 
-export default WorkspaceLayout;
+export default WorkflowLayout;
