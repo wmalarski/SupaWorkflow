@@ -19,7 +19,5 @@ export const getTabText = (
       return text("navigationTemplates");
     case OrganizationTab.workflows:
       return text("navigationWorkflows");
-    default:
-      return null;
   }
 };

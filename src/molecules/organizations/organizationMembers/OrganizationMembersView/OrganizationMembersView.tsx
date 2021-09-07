@@ -11,6 +11,7 @@ export type OrganizationMembersViewProps = {
   members?: SelectMembersResult | null;
   authorId: number;
   isLoading: boolean;
+  isDeleteSuccess: boolean;
   isUpdateLoading: boolean;
   loadingMemberId?: number;
   onPageChange: (page: number) => void;

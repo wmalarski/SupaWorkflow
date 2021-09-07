@@ -6,15 +6,14 @@ import { queryClient } from "../services";
 import theme from "../styles/theme";
 import { UserContextProvider } from "../utils";
 
-const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
-  return (
-    <ChakraProvider theme={theme}>
-      <QueryClientProvider client={queryClient}>
-        <UserContextProvider>
-          <Component {...pageProps} />
-        </UserContextProvider>
-      </QueryClientProvider>
-    </ChakraProvider>
-  );
-};
+const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => (
+  <ChakraProvider theme={theme}>
+    <QueryClientProvider client={queryClient}>
+      <UserContextProvider>
+        <Component {...pageProps} />
+      </UserContextProvider>
+    </QueryClientProvider>
+  </ChakraProvider>
+);
+
 export default MyApp;

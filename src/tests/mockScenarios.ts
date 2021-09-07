@@ -98,7 +98,10 @@ export const addTeamsScenario = (count?: number): Team[] =>
       })
     );
 
-export const addMembersScenario = (count?: number): Member[] => [
+export const addMembersScenario = ({
+  count,
+  organizationId,
+}: { count?: number; organizationId?: number } = {}): Member[] => [
   ...Array(count ?? 30)
     .fill(defaultMember)
     .map((member: Member, index) =>
@@ -106,6 +109,7 @@ export const addMembersScenario = (count?: number): Member[] => [
         ...member,
         member_id: dbIndexCounter(),
         profile_name: `${member.profile_name}-${index}`,
+        organization_id: organizationId,
       })
     ),
   mockDb.members.create({

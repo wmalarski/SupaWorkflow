@@ -3,8 +3,12 @@ import "@testing-library/jest-dom/extend-expect";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import React from "react";
+import { defaultOrganization, Organization } from "../../../../services";
 import { mockDb } from "../../../../tests/mockDb";
-import { addMembersScenario } from "../../../../tests/mockScenarios";
+import {
+  addMembersScenario,
+  addOrganizationScenario,
+} from "../../../../tests/mockScenarios";
 import { ContextsMock } from "../../../../tests/wrappers";
 import { NewTeamMemberViewProps } from "../NewTeamMemberView/NewTeamMemberView";
 import NewTeamMember from "./NewTeamMember";
@@ -30,12 +34,15 @@ const View = ({ members, onSearch, onSubmit }: NewTeamMemberViewProps) => (
   </>
 );
 
-const renderComponent = (props: Partial<ComponentProps> = {}) => {
+const renderComponent = (
+  props: Partial<ComponentProps> = {},
+  organization: Organization = defaultOrganization
+) => {
   const defaultProps: ComponentProps = {
     View,
   };
   return render(
-    <ContextsMock>
+    <ContextsMock organization={organization}>
       <NewTeamMember {...defaultProps} {...props} />
     </ContextsMock>
   );
@@ -45,9 +52,10 @@ describe("<NewTeamMember />", () => {
   it("should render", async () => {
     expect.hasAssertions();
 
-    addMembersScenario();
+    const organization = addOrganizationScenario();
+    addMembersScenario({ organizationId: organization.id });
 
-    renderComponent();
+    renderComponent({}, organization);
 
     await waitFor(async () =>
       expect(await screen.findByText("Profile Name-0")).toBeInTheDocument()
@@ -59,9 +67,10 @@ describe("<NewTeamMember />", () => {
   it("should render search", async () => {
     expect.hasAssertions();
 
-    addMembersScenario();
+    const organization = addOrganizationScenario();
+    addMembersScenario({ organizationId: organization.id });
 
-    renderComponent();
+    renderComponent({}, organization);
 
     await waitFor(async () =>
       expect(await screen.findByText("Profile Name-0")).toBeInTheDocument()

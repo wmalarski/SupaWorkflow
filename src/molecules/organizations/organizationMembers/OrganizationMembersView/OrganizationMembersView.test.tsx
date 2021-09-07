@@ -15,6 +15,7 @@ function renderComponent(props: Partial<ComponentProps> = {}) {
     authorId: 1,
     isLoading: false,
     isUpdateLoading: false,
+    isDeleteSuccess: false,
     members: {
       count: 4,
       entries: new Array(10).fill(0).map((_, index) => ({

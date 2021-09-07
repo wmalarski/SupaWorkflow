@@ -31,11 +31,14 @@ const OrganizationMembers = ({
   const {
     mutate: updateOrganizationMember,
     isLoading: isUpdateLoading,
-    variables,
+    variables: updateVariables,
   } = useUpdateOrganizationMember();
 
-  const { mutate: deleteOrganizationMember, isLoading: isDeleteLoading } =
-    useDeleteOrganizationMember();
+  const {
+    mutate: deleteOrganizationMember,
+    isLoading: isDeleteLoading,
+    isSuccess: isDeleteSuccess,
+  } = useDeleteOrganizationMember();
 
   return (
     <View
@@ -44,9 +47,10 @@ const OrganizationMembers = ({
       onPageChange={setPage}
       members={members}
       isLoading={isLoading}
+      isDeleteSuccess={isDeleteSuccess}
       isUpdateLoading={isUpdateLoading || isDeleteLoading}
       authorId={organization.author_id}
-      loadingMemberId={variables?.id}
+      loadingMemberId={updateVariables?.id}
       onDeleteClick={(id) => deleteOrganizationMember({ id })}
       onUpdateClick={(id, role) => updateOrganizationMember({ id, role })}
     />

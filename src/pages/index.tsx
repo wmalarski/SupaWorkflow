@@ -9,22 +9,18 @@ import {
 import { Header, Page } from "../templates";
 import { useUserContext } from "../utils";
 
-const Index: NextPage = () => {
-  const { user } = useUserContext();
+const IndexPage: NextPage = () => (
+  <Page
+    header={
+      useUserContext() ? (
+        <Header left={<LandingHeader />} right={<ProfileHeader />} />
+      ) : (
+        <AnonHeader />
+      )
+    }
+  >
+    <LandingTop />
+  </Page>
+);
 
-  return (
-    <Page
-      header={
-        user ? (
-          <Header left={<LandingHeader />} right={<ProfileHeader />} />
-        ) : (
-          <AnonHeader />
-        )
-      }
-    >
-      <LandingTop />
-    </Page>
-  );
-};
-
-export default Index;
+export default IndexPage;
