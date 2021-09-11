@@ -74,7 +74,7 @@ export const mockDb = factory({
     id: primaryKey(String),
     template_id: Number,
     workflow_id: (): number | null => null,
-    data: (): MessageNode => ({ kind: "test", name: "Name" }),
+    data: (): MessageNode => ({ kind: "node", position: { x: 0, y: 0 } }),
     updated_at: String,
     deleted: Boolean,
   },

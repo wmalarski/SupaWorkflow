@@ -24,8 +24,8 @@ const TemplateEditor = ({
     <View
       templateId={template.id}
       messages={messages}
-      onDeleteClick={deleteMessage}
-      onMessageChange={putMessage}
+      onDelete={deleteMessage}
+      onChange={putMessage}
     />
   );
 };

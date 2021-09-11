@@ -64,16 +64,29 @@ export type Template = {
   avatar: string | null;
 };
 
-export type MessageNode = {
-  kind: "test";
-  name: string;
+export type MessageNodePosition = {
+  x: number;
+  y: number;
 };
+
+export type MessageNode = {
+  kind: "node";
+  position: MessageNodePosition;
+};
+
+export type MessageEdge = {
+  kind: "edge";
+  source: string;
+  target: string;
+};
+
+export type MessageElement = MessageNode | MessageEdge;
 
 export type Message = {
   id: string;
   template_id: number;
   workflow_id: number | null;
-  data: MessageNode;
+  data: MessageElement;
   updated_at: string;
   deleted: boolean;
 };

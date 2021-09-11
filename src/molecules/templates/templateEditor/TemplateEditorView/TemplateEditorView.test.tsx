@@ -9,8 +9,8 @@ type ComponentProps = Parameters<typeof TemplateEditorView>[0];
 function renderComponent(props: Partial<ComponentProps> = {}) {
   const defaultProps: ComponentProps = {
     messages: [],
-    onDeleteClick: () => void 0,
-    onMessageChange: () => void 0,
+    onDelete: () => void 0,
+    onChange: () => void 0,
     templateId: 1,
   };
   return render(<TemplateEditorView {...defaultProps} {...props} />);
