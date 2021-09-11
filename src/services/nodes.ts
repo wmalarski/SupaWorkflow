@@ -24,7 +24,13 @@ export type MessageNodeFormTemplateData = MessageNode & {
   fields: string[];
 };
 
+export type MessageNodeDecisionTemplateData = MessageNode & {
+  datatype: "decisionTemplate";
+  routes: string[];
+};
+
 export type MessageElement =
   | MessageNodeChecklistTemplateData
   | MessageNodeFormTemplateData
+  | MessageNodeDecisionTemplateData
   | MessageEdge;

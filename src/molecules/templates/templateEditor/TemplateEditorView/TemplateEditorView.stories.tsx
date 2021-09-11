@@ -39,8 +39,8 @@ const initialMessages: Message[] = [
     data: {
       kind: "node",
       position: { x: 250, y: 250 },
-      datatype: "checklistTemplate",
-      tasks: ["task1"],
+      datatype: "decisionTemplate",
+      routes: ["route1", "route2"],
     },
   },
   // animated edge
