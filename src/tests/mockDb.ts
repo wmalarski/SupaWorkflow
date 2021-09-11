@@ -1,5 +1,11 @@
 import { factory, primaryKey } from "@mswjs/data";
-import { Message, MessageNode, OrganizationRole, TeamRole } from "../services";
+import {
+  defaultMessage,
+  Message,
+  OrganizationRole,
+  TeamRole,
+} from "../services";
+import { MessageElement } from "../services/nodes";
 
 export const dbIndexCounter = (() => {
   let index = 1;
@@ -74,7 +80,7 @@ export const mockDb = factory({
     id: primaryKey(String),
     template_id: Number,
     workflow_id: (): number | null => null,
-    data: (): MessageNode => ({ kind: "node", position: { x: 0, y: 0 } }),
+    data: (): MessageElement => defaultMessage.data,
     updated_at: String,
     deleted: Boolean,
   },

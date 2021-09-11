@@ -1,13 +1,12 @@
-import React, { useMemo } from "react";
+import React, { useCallback, useMemo } from "react";
 import ReactFlow, { Elements } from "react-flow-renderer";
-import { useCallback } from "react-redux/node_modules/@types/react";
 import { Message } from "../../../../services";
 import { MutationArgs } from "../../../../utils/rep";
 import TemplateNode from "../TemplateNode/TemplateNode";
-import { TemplateNodeData } from "../types";
 import {
   elementsToMessages,
   messagesToElements,
+  TemplateNodeData,
 } from "./TemplateEditorView.utils";
 
 export type TemplateEditorViewProps = {
@@ -37,7 +36,7 @@ const TemplateEditorView = ({
   );
 
   return (
-    <div style={{ height: 300 }}>
+    <div style={{ height: 600, width: 1200 }}>
       <ReactFlow
         elements={elements}
         onElementsRemove={handleElementsRemove}

@@ -3,7 +3,11 @@ import { Elements, FlowElement } from "react-flow-renderer";
 import { Message } from "../../../../services";
 import { MutationArgs } from "../../../../utils/rep";
 import { TemplateNodeProps } from "../TemplateNode/TemplateNode";
-import { TemplateNodeData } from "../types";
+
+export type TemplateNodeData = {
+  message: Message;
+  label?: React.ReactNode;
+};
 
 export const elementToMessage = (
   element: FlowElement<TemplateNodeData>

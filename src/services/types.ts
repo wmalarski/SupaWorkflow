@@ -1,3 +1,5 @@
+import { MessageElement } from "./nodes";
+
 export type Profile = {
   id: number;
   name: string;
@@ -63,24 +65,6 @@ export type Template = {
   description: string;
   avatar: string | null;
 };
-
-export type MessageNodePosition = {
-  x: number;
-  y: number;
-};
-
-export type MessageNode = {
-  kind: "node";
-  position: MessageNodePosition;
-};
-
-export type MessageEdge = {
-  kind: "edge";
-  source: string;
-  target: string;
-};
-
-export type MessageElement = MessageNode | MessageEdge;
 
 export type Message = {
   id: string;

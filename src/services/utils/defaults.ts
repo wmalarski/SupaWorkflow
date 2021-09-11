@@ -1,4 +1,5 @@
 import { User } from "@supabase/supabase-js";
+import { Message } from "..";
 import {
   Member,
   Organization,
@@ -90,4 +91,18 @@ export const defaultOrganizationMember: OrganizationMember = {
   organization_id: 1,
   profile_id: 1,
   role: "user",
+};
+
+export const defaultMessage: Message = {
+  data: {
+    kind: "node",
+    datatype: "checklistTemplate",
+    position: { x: 0, y: 0 },
+    tasks: ["task1", "task2"],
+  },
+  deleted: false,
+  id: "1",
+  template_id: 1,
+  updated_at: "",
+  workflow_id: 1,
 };

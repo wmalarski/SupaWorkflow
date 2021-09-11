@@ -1,6 +1,5 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import React from "react";
-import { useEffect, useState } from "react-redux/node_modules/@types/react";
+import React, { useEffect, useState } from "react";
 import { Message } from "../../../../services";
 import TemplateEditorView from "./TemplateEditorView";
 
@@ -18,6 +17,8 @@ const initialMessages: Message[] = [
     data: {
       kind: "node",
       position: { x: 50, y: 125 },
+      datatype: "formTemplate",
+      fields: ["field1", "field2"],
     },
   },
   // default node
@@ -27,6 +28,8 @@ const initialMessages: Message[] = [
     data: {
       kind: "node",
       position: { x: 100, y: 125 },
+      datatype: "formTemplate",
+      fields: ["field1", "field2"],
     },
   },
   {
@@ -36,6 +39,8 @@ const initialMessages: Message[] = [
     data: {
       kind: "node",
       position: { x: 250, y: 250 },
+      datatype: "checklistTemplate",
+      tasks: ["task1"],
     },
   },
   // animated edge
