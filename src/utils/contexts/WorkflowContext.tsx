@@ -27,7 +27,7 @@ export const WorkflowContextProvider = ({
   workflow,
   children,
   enabled,
-}: WorkflowContextProviderProps): JSX.Element => {
+}: WorkflowContextProviderProps): React.ReactElement => {
   const { data } = useSelectWorkflow(
     { id: workflow.id },
     { initialData: workflow, enabled }

@@ -12,7 +12,7 @@ export type CreateTemplateProps = {
 
 const CreateTemplate = ({
   View = CreateTemplateView,
-}: CreateTemplateProps): JSX.Element => {
+}: CreateTemplateProps): React.ReactElement => {
   const router = useRouter();
 
   const { organization } = useOrganizationContext();

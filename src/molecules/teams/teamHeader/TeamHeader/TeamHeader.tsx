@@ -10,7 +10,7 @@ export type TeamHeaderProps = {
 
 const TeamHeader = ({
   View = TeamHeaderView,
-}: TeamHeaderProps): JSX.Element => {
+}: TeamHeaderProps): React.ReactElement => {
   const { organization } = useOrganizationContext();
   const team = useTeamContext();
 

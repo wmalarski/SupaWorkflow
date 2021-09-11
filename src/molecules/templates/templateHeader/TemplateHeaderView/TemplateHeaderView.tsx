@@ -19,7 +19,7 @@ const TemplateHeaderView = ({
   organizationId,
   tab,
   templateId,
-}: TemplateHeaderViewProps): JSX.Element => {
+}: TemplateHeaderViewProps): React.ReactElement => {
   const text = useText();
 
   return (

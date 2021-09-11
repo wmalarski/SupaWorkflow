@@ -30,7 +30,7 @@ const ProfileSettingsView = ({
   error,
   profile,
   onSubmit,
-}: ProfileSettingsViewProps): JSX.Element => {
+}: ProfileSettingsViewProps): React.ReactElement => {
   const text = useText();
 
   const nameValidator = useTextValidator({

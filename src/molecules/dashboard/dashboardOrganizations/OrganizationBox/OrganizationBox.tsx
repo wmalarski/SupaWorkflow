@@ -10,7 +10,7 @@ export type OrganizationBoxProps = {
 
 const OrganizationBox = ({
   organization,
-}: OrganizationBoxProps): JSX.Element => (
+}: OrganizationBoxProps): React.ReactElement => (
   <LinkBox as="article" maxW="sm" p="5" borderWidth="1px" rounded="md">
     <Heading size="md" my="2">
       <LinkOverlay href={paths.organization(organization.id)}>

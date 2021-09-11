@@ -11,7 +11,7 @@ export type AddOrganizationMemberProps = {
 
 const AddOrganizationMember = ({
   View = AddOrganizationMemberView,
-}: AddOrganizationMemberProps): JSX.Element => {
+}: AddOrganizationMemberProps): React.ReactElement => {
   const { organization } = useOrganizationContext();
 
   const {

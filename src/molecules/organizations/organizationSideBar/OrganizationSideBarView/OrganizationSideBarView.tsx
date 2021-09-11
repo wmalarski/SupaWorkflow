@@ -15,7 +15,7 @@ export type OrganizationSideBarViewProps = {
 
 const OrganizationSideBarView = ({
   organizationId,
-}: OrganizationSideBarViewProps): JSX.Element => {
+}: OrganizationSideBarViewProps): React.ReactElement => {
   const text = useText();
 
   return (

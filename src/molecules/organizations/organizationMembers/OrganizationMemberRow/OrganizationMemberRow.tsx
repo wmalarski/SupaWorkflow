@@ -19,7 +19,7 @@ const OrganizationMemberRow = ({
   member,
   onDeleteClick,
   onUpdateClick,
-}: OrganizationMemberRowProps): JSX.Element => {
+}: OrganizationMemberRowProps): React.ReactElement => {
   const text = useText();
 
   return (

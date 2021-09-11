@@ -10,7 +10,7 @@ export type DashboardHeaderViewProps = {
 
 const DashboardHeaderView = ({
   tab,
-}: DashboardHeaderViewProps): JSX.Element => {
+}: DashboardHeaderViewProps): React.ReactElement => {
   const text = useText();
 
   return (

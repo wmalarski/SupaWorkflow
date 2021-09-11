@@ -11,7 +11,7 @@ export type TeamHeaderViewProps = {
 const TeamHeaderView = ({
   teamId,
   organizationId,
-}: TeamHeaderViewProps): JSX.Element => {
+}: TeamHeaderViewProps): React.ReactElement => {
   const text = useText();
 
   return (

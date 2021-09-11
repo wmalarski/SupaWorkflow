@@ -9,7 +9,7 @@ export type LandingTopProps = {
 
 const LandingTop = ({
   View = LandingTopView,
-}: LandingTopProps): JSX.Element => {
+}: LandingTopProps): React.ReactElement => {
   return <View />;
 };
 

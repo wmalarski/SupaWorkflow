@@ -23,7 +23,7 @@ const OrganizationTeamView = ({
   isLoading,
   onDeleteClick,
   onPageChange,
-}: OrganizationTeamViewProps): JSX.Element => {
+}: OrganizationTeamViewProps): React.ReactElement => {
   const text = useText();
 
   return (

@@ -12,7 +12,7 @@ const TeamPage = ({
   profile,
   organization,
   member,
-}: GetTeamProps): JSX.Element => (
+}: GetTeamProps): React.ReactElement => (
   <OrganizationContextProvider
     member={member}
     organization={organization}

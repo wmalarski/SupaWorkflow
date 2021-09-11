@@ -25,7 +25,7 @@ const OrganizationTeamsView = ({
   teams,
   onPageChange,
   onDeleteTeam,
-}: OrganizationTeamsViewProps): JSX.Element => {
+}: OrganizationTeamsViewProps): React.ReactElement => {
   const text = useText();
 
   return (

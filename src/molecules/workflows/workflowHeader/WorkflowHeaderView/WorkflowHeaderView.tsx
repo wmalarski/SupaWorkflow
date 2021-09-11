@@ -19,7 +19,7 @@ const WorkflowHeaderView = ({
   organizationId,
   tab,
   workflowId,
-}: WorkflowHeaderViewProps): JSX.Element => {
+}: WorkflowHeaderViewProps): React.ReactElement => {
   const text = useText();
 
   return (

@@ -10,7 +10,7 @@ export type DashboardHeaderProps = {
 
 const DashboardHeader = ({
   View = DashboardHeaderView,
-}: DashboardHeaderProps): JSX.Element => {
+}: DashboardHeaderProps): React.ReactElement => {
   const tab = useTabParam(DashboardTab);
 
   return <View tab={tab} />;

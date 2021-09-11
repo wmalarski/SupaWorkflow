@@ -20,7 +20,7 @@ const Pagination = ({
   page,
   isLoading,
   onPageChange,
-}: PaginationProps): JSX.Element => (
+}: PaginationProps): React.ReactElement => (
   <HStack>
     <Button
       isDisabled={page === 0}

@@ -4,7 +4,7 @@ import React from "react";
 import theme from "../styles/theme";
 
 export default class Document extends NextDocument {
-  render(): JSX.Element {
+  render(): React.ReactElement {
     return (
       <Html lang="en">
         <Head />

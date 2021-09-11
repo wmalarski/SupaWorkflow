@@ -29,7 +29,7 @@ const CreateWorkflowView = ({
   error,
   isLoading,
   onSubmit,
-}: CreateWorkflowViewProps): JSX.Element => {
+}: CreateWorkflowViewProps): React.ReactElement => {
   const text = useText();
 
   const nameValidator = useTextValidator({

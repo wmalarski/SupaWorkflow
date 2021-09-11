@@ -15,7 +15,7 @@ export type TemplateHeaderProps = {
 
 const TemplateHeader = ({
   View = TemplateHeaderView,
-}: TemplateHeaderProps): JSX.Element => {
+}: TemplateHeaderProps): React.ReactElement => {
   const tab = useTabParam(TemplateTab);
 
   const template = useTemplateContext();

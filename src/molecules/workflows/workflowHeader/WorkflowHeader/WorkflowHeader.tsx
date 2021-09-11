@@ -15,7 +15,7 @@ export type WorkflowHeaderProps = {
 
 const WorkflowHeader = ({
   View = WorkflowHeaderView,
-}: WorkflowHeaderProps): JSX.Element => {
+}: WorkflowHeaderProps): React.ReactElement => {
   const tab = useTabParam(WorkflowTab);
 
   const workflow = useWorkflowContext();

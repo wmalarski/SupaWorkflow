@@ -9,7 +9,7 @@ export type WorkflowEditorProps = {
 
 const WorkflowEditor = ({
   View = WorkflowEditorView,
-}: WorkflowEditorProps): JSX.Element => {
+}: WorkflowEditorProps): React.ReactElement => {
   return <View data="hello" />;
 };
 

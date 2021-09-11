@@ -29,7 +29,7 @@ const CreateTemplateView = ({
   isLoading,
   error,
   onSubmit,
-}: CreateTemplateViewProps): JSX.Element => {
+}: CreateTemplateViewProps): React.ReactElement => {
   const text = useText();
 
   const nameValidator = useTextValidator({

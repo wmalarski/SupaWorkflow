@@ -15,7 +15,7 @@ export type WorkflowLayoutProps = {
 const WorkflowLayout = ({
   isForm,
   children,
-}: WorkflowLayoutProps): JSX.Element =>
+}: WorkflowLayoutProps): React.ReactElement =>
   isForm ? (
     <FormPage
       corner={<DashboardCorner />}

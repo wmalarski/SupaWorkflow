@@ -11,7 +11,7 @@ export type DashboardOrganizationsViewProps = {
 
 const DashboardOrganizationsView = ({
   organizations,
-}: DashboardOrganizationsViewProps): JSX.Element => {
+}: DashboardOrganizationsViewProps): React.ReactElement => {
   const text = useText();
 
   return (

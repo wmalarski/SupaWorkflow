@@ -22,7 +22,7 @@ const NewTeamMemberView = ({
   members,
   onSubmit,
   onSearch,
-}: NewTeamMemberViewProps): JSX.Element => {
+}: NewTeamMemberViewProps): React.ReactElement => {
   const text = useText();
 
   const [selectedMember, setSelectedMember] = useState<Member | null>(null);

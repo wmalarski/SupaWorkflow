@@ -7,7 +7,7 @@ export type TemplateNodeProps = {
   onChange: (message: MutationArgs["putMessage"]) => void;
 };
 
-const TemplateNode = ({ message }: TemplateNodeProps): JSX.Element => {
+const TemplateNode = ({ message }: TemplateNodeProps): React.ReactElement => {
   return <div>{`TemplateNode: ${JSON.stringify(message, null, 2)}`}</div>;
 };
 

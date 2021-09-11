@@ -21,7 +21,7 @@ const WorkflowsListView = ({
   pageSize,
   isLoading,
   onPageChange,
-}: WorkflowsListViewProps): JSX.Element => {
+}: WorkflowsListViewProps): React.ReactElement => {
   const text = useText();
 
   return (

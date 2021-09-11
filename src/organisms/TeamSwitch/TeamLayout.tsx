@@ -12,7 +12,10 @@ export type TeamLayoutProps = {
   children: React.ReactNode;
 };
 
-const TeamLayout = ({ isForm, children }: TeamLayoutProps): JSX.Element =>
+const TeamLayout = ({
+  isForm,
+  children,
+}: TeamLayoutProps): React.ReactElement =>
   isForm ? (
     <FormPage
       corner={<DashboardCorner />}

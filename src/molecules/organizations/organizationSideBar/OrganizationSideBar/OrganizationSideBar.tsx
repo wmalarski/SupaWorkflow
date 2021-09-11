@@ -10,7 +10,7 @@ export type OrganizationSideBarProps = {
 
 const OrganizationSideBar = ({
   View = OrganizationSideBarView,
-}: OrganizationSideBarProps): JSX.Element => {
+}: OrganizationSideBarProps): React.ReactElement => {
   const { organization } = useOrganizationContext();
 
   return <View organizationId={organization.id} />;

@@ -15,7 +15,7 @@ export type TemplateLayoutProps = {
 const TemplateLayout = ({
   isForm,
   children,
-}: TemplateLayoutProps): JSX.Element =>
+}: TemplateLayoutProps): React.ReactElement =>
   isForm ? (
     <FormPage
       corner={<DashboardCorner />}

@@ -29,7 +29,7 @@ const AddOrganizationMemberView = ({
   error,
   isLoading,
   onSubmit,
-}: AddOrganizationMemberViewProps): JSX.Element => {
+}: AddOrganizationMemberViewProps): React.ReactElement => {
   const text = useText();
 
   const {

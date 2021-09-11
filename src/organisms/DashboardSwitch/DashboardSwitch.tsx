@@ -7,7 +7,7 @@ import {
 import { DashboardTab, useTabParam } from "../../utils";
 import DashboardLayout from "./DashboardLayout";
 
-const DashboardSwitch = (): JSX.Element => {
+const DashboardSwitch = (): React.ReactElement => {
   const tab = useTabParam(DashboardTab);
 
   switch (tab) {

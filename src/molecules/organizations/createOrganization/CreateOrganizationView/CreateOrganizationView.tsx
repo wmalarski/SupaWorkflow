@@ -29,7 +29,7 @@ const CreateOrganizationView = ({
   isLoading,
   error,
   onSubmit,
-}: CreateOrganizationViewProps): JSX.Element => {
+}: CreateOrganizationViewProps): React.ReactElement => {
   const text = useText();
 
   const nameValidator = useTextValidator({

@@ -8,7 +8,7 @@ export type SignUpProps = {
   View?: React.ComponentType<SignUpViewProps>;
 };
 
-const SignUp = ({ View = SignUpView }: SignUpProps): JSX.Element => {
+const SignUp = ({ View = SignUpView }: SignUpProps): React.ReactElement => {
   const router = useRouter();
 
   const {

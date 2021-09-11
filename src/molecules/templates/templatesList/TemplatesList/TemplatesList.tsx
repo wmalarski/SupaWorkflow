@@ -13,7 +13,7 @@ export type TemplatesListProps = {
 
 const TemplatesList = ({
   View = TemplatesListView,
-}: TemplatesListProps): JSX.Element => {
+}: TemplatesListProps): React.ReactElement => {
   const { organization } = useOrganizationContext();
 
   const [page, setPage] = useState(0);

@@ -14,7 +14,7 @@ const PAGE_SIZE = 10;
 
 const OrganizationTeam = ({
   View = OrganizationTeamView,
-}: OrganizationTeamProps): JSX.Element => {
+}: OrganizationTeamProps): React.ReactElement => {
   const team = useTeamContext();
 
   const [page, setPage] = useState(0);

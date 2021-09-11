@@ -4,7 +4,9 @@ export type WorkflowEditorViewProps = {
   data: string;
 };
 
-const WorkflowEditorView = ({ data }: WorkflowEditorViewProps): JSX.Element => {
+const WorkflowEditorView = ({
+  data,
+}: WorkflowEditorViewProps): React.ReactElement => {
   return (
     <div>
       {`WorkflowEditorView: `}

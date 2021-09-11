@@ -10,7 +10,7 @@ const OrganizationPage = ({
   member,
   organization,
   profile,
-}: GetOrganizationProps): JSX.Element => (
+}: GetOrganizationProps): React.ReactElement => (
   <OrganizationContextProvider
     member={member}
     organization={organization}

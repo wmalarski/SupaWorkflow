@@ -10,7 +10,7 @@ export type TeamSideBarProps = {
 
 const TeamSideBar = ({
   View = TeamSideBarView,
-}: TeamSideBarProps): JSX.Element => {
+}: TeamSideBarProps): React.ReactElement => {
   const { organization } = useOrganizationContext();
   const team = useTeamContext();
 

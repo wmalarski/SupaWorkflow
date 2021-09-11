@@ -48,7 +48,7 @@ export const OrganizationContextProvider = ({
   profile,
   children,
   enabled,
-}: OrganizationContextProviderProps): JSX.Element => {
+}: OrganizationContextProviderProps): React.ReactElement => {
   const { data } = useSelectMember(
     { organizationId: organization.id, userId: profile.user_id },
     { initialData: { member, profile, organization }, enabled }
@@ -81,7 +81,7 @@ export type OrganizationRoleGuardProps = {
 export const OrganizationRoleGuard = ({
   children,
   roles,
-}: OrganizationRoleGuardProps): JSX.Element | null => {
+}: OrganizationRoleGuardProps): React.ReactElement | null => {
   const { member } = useOrganizationContext();
 
   return roles.includes(member.role) ? <>{children}</> : null;

@@ -15,7 +15,7 @@ const FormPage = ({
   children,
   headerLeft,
   headerRight,
-}: FormPageProps): JSX.Element => {
+}: FormPageProps): React.ReactElement => {
   return (
     <Page hideFooter>
       <Grid

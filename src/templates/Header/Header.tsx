@@ -6,7 +6,7 @@ export type HeaderProps = {
   right?: React.ReactNode;
 };
 
-const Header = ({ left, right }: HeaderProps): JSX.Element => {
+const Header = ({ left, right }: HeaderProps): React.ReactElement => {
   return (
     <HStack justifyContent="space-between">
       <div>{left}</div>

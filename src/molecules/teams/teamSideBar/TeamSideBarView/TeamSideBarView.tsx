@@ -12,7 +12,7 @@ export type TeamSideBarViewProps = {
 const TeamSideBarView = ({
   organizationId,
   teamId,
-}: TeamSideBarViewProps): JSX.Element => {
+}: TeamSideBarViewProps): React.ReactElement => {
   const text = useText();
 
   return (

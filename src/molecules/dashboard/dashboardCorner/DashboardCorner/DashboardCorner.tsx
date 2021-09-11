@@ -9,7 +9,7 @@ export type DashboardCornerProps = {
 
 const DashboardCorner = ({
   View = DashboardCornerView,
-}: DashboardCornerProps): JSX.Element => {
+}: DashboardCornerProps): React.ReactElement => {
   return <View />;
 };
 

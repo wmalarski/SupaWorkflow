@@ -26,7 +26,7 @@ export type UserContextProviderProps = {
 
 export const UserContextProvider = ({
   children,
-}: UserContextProviderProps): JSX.Element => {
+}: UserContextProviderProps): React.ReactElement => {
   const [user, setUser] = useState<UserContextValue>({
     isInitialized: false,
     user: null,

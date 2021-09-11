@@ -11,7 +11,7 @@ export type WorkflowSideBarViewProps = {
 const WorkflowSideBarView = ({
   organizationId,
   workflowId,
-}: WorkflowSideBarViewProps): JSX.Element => {
+}: WorkflowSideBarViewProps): React.ReactElement => {
   const text = useText();
 
   return (

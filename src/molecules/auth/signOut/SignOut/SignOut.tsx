@@ -8,7 +8,7 @@ export type SignOutProps = {
   View?: React.ComponentType<SignOutViewProps>;
 };
 
-const SignOut = ({ View = SignOutView }: SignOutProps): JSX.Element => {
+const SignOut = ({ View = SignOutView }: SignOutProps): React.ReactElement => {
   const router = useRouter();
 
   const { mutate: signOut } = useSignOut({

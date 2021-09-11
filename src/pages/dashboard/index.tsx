@@ -11,7 +11,7 @@ export type DashboardPageProps = {
   profile: Profile;
 };
 
-const DashboardPage = ({ profile }: GetProfileProps): JSX.Element => (
+const DashboardPage = ({ profile }: GetProfileProps): React.ReactElement => (
   <ProfileContextProvider profile={profile}>
     <DashboardSwitch />
   </ProfileContextProvider>

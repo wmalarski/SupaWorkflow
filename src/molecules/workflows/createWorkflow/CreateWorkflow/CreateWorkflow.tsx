@@ -16,7 +16,7 @@ export type CreateWorkflowProps = {
 
 const CreateWorkflow = ({
   View = CreateWorkflowView,
-}: CreateWorkflowProps): JSX.Element => {
+}: CreateWorkflowProps): React.ReactElement => {
   const router = useRouter();
 
   const { organization } = useOrganizationContext();

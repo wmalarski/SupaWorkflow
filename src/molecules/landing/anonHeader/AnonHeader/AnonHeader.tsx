@@ -9,7 +9,7 @@ export type AnonHeaderProps = {
 
 const AnonHeader = ({
   View = AnonHeaderView,
-}: AnonHeaderProps): JSX.Element => {
+}: AnonHeaderProps): React.ReactElement => {
   return <View />;
 };
 

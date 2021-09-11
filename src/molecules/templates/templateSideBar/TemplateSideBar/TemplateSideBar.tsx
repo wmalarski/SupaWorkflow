@@ -10,7 +10,7 @@ export type TemplateSideBarProps = {
 
 const TemplateSideBar = ({
   View = TemplateSideBarView,
-}: TemplateSideBarProps): JSX.Element => {
+}: TemplateSideBarProps): React.ReactElement => {
   const { organization } = useOrganizationContext();
   const template = useTemplateContext();
 

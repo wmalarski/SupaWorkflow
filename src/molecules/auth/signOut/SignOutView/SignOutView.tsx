@@ -6,7 +6,9 @@ export type SignOutViewProps = {
   onSignOutClicked: () => void;
 };
 
-const SignOutView = ({ onSignOutClicked }: SignOutViewProps): JSX.Element => {
+const SignOutView = ({
+  onSignOutClicked,
+}: SignOutViewProps): React.ReactElement => {
   const text = useText();
 
   return <Button onClick={onSignOutClicked}>{text("signOutButton")}</Button>;

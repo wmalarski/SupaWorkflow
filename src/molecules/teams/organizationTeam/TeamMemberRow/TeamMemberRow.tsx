@@ -15,7 +15,7 @@ const TeamMemberRow = ({
   onDeleteClick,
   isLoading,
   teamMember,
-}: TeamMemberRowProps): JSX.Element => {
+}: TeamMemberRowProps): React.ReactElement => {
   const text = useText();
 
   return (

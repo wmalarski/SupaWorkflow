@@ -20,7 +20,7 @@ const TemplateEditorView = ({
   messages,
   onChange,
   onDelete,
-}: TemplateEditorViewProps): JSX.Element => {
+}: TemplateEditorViewProps): React.ReactElement => {
   const elements = useMemo<Elements<TemplateNodeData>>(
     () => messagesToElements({ messages, onChange, renderer: TemplateNode }),
     [messages, onChange]

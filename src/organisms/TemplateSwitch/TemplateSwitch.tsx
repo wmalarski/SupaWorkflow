@@ -8,7 +8,7 @@ const TemplateWorkspace = dynamic(() => import("./TemplateWorkspace"), {
   ssr: false,
 });
 
-const TemplateSwitch = (): JSX.Element | null => {
+const TemplateSwitch = (): React.ReactElement | null => {
   const tab = useTabParam(TemplateTab);
 
   switch (tab) {

@@ -14,7 +14,7 @@ export type OrganizationHeaderProps = {
 
 const OrganizationHeader = ({
   View = OrganizationHeaderView,
-}: OrganizationHeaderProps): JSX.Element => {
+}: OrganizationHeaderProps): React.ReactElement => {
   const tab = useTabParam(OrganizationTab);
 
   const { organization } = useOrganizationContext();

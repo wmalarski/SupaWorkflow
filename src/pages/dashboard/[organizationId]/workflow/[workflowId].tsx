@@ -12,7 +12,7 @@ const WorkflowPage = ({
   profile,
   workflow,
   organization,
-}: GetWorkflowProps): JSX.Element => (
+}: GetWorkflowProps): React.ReactElement => (
   <OrganizationContextProvider
     member={member}
     profile={profile}

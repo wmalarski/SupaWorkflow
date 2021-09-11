@@ -13,7 +13,7 @@ import {
 import { OrganizationTab, useTabParam } from "../../utils";
 import OrganizationLayout from "./OrganizationLayout";
 
-const OrganizationSwitch = (): JSX.Element | null => {
+const OrganizationSwitch = (): React.ReactElement | null => {
   const tab = useTabParam(OrganizationTab);
 
   switch (tab) {

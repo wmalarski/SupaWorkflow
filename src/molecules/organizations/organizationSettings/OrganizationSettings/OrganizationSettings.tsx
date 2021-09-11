@@ -15,7 +15,7 @@ export type OrganizationSettingsProps = {
 
 const OrganizationSettings = ({
   View = OrganizationSettingsView,
-}: OrganizationSettingsProps): JSX.Element => {
+}: OrganizationSettingsProps): React.ReactElement => {
   const router = useRouter();
 
   const { organization } = useOrganizationContext();

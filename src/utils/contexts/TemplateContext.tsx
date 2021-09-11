@@ -27,7 +27,7 @@ export const TemplateContextProvider = ({
   template,
   children,
   enabled,
-}: TemplateContextProviderProps): JSX.Element => {
+}: TemplateContextProviderProps): React.ReactElement => {
   const { data } = useSelectTemplate(
     { id: template.id },
     { initialData: template, enabled }

@@ -4,7 +4,7 @@ import { Link } from "../../../../atoms";
 import ThemeButton from "../../../../atoms/ThemeButton/ThemeButton";
 import { paths, useText } from "../../../../utils";
 
-const AnonHeaderView = (): JSX.Element => {
+const AnonHeaderView = (): React.ReactElement => {
   const text = useText();
 
   return (

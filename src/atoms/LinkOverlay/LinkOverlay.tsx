@@ -16,7 +16,7 @@ const LinkOverlay = (
     nextProps?: Omit<NextLinkProps, "href">;
   },
   ref?: React.LegacyRef<HTMLAnchorElement>
-): JSX.Element => (
+): React.ReactElement => (
   <NextLink href={href} passHref {...nextProps}>
     <ChakraLink {...props} ref={ref} />
   </NextLink>

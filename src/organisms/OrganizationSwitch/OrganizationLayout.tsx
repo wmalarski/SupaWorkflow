@@ -15,7 +15,7 @@ export type OrganizationLayoutProps = {
 const OrganizationLayout = ({
   isForm,
   children,
-}: OrganizationLayoutProps): JSX.Element =>
+}: OrganizationLayoutProps): React.ReactElement =>
   isForm ? (
     <FormPage
       corner={<DashboardCorner />}

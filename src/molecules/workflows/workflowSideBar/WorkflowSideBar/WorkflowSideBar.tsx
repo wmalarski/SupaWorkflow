@@ -10,7 +10,7 @@ export type WorkflowSideBarProps = {
 
 const WorkflowSideBar = ({
   View = WorkflowSideBarView,
-}: WorkflowSideBarProps): JSX.Element => {
+}: WorkflowSideBarProps): React.ReactElement => {
   const { organization } = useOrganizationContext();
   const workflow = useWorkflowContext();
 

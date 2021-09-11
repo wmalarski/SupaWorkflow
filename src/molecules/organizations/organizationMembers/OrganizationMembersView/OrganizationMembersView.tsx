@@ -30,7 +30,7 @@ const OrganizationMembersView = ({
   onPageChange,
   onDeleteClick,
   onUpdateClick,
-}: OrganizationMembersViewProps): JSX.Element => {
+}: OrganizationMembersViewProps): React.ReactElement => {
   const text = useText();
 
   return (

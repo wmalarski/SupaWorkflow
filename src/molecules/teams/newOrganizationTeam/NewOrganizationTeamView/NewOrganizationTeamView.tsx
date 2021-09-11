@@ -30,7 +30,7 @@ const NewOrganizationTeamView = ({
   isLoading,
   error,
   onSubmit,
-}: NewOrganizationTeamViewProps): JSX.Element => {
+}: NewOrganizationTeamViewProps): React.ReactElement => {
   const text = useText();
 
   const nameValidator = useTextValidator({

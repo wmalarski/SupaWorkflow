@@ -12,7 +12,7 @@ export type CreateOrganizationProps = {
 
 const CreateOrganization = ({
   View = CreateOrganizationView,
-}: CreateOrganizationProps): JSX.Element => {
+}: CreateOrganizationProps): React.ReactElement => {
   const router = useRouter();
 
   const profile = useProfileContext();

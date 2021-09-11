@@ -12,7 +12,7 @@ export type TemplateSideBarViewProps = {
 const TemplateSideBarView = ({
   organizationId,
   templateId,
-}: TemplateSideBarViewProps): JSX.Element => {
+}: TemplateSideBarViewProps): React.ReactElement => {
   const text = useText();
 
   return (

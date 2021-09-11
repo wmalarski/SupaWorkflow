@@ -8,7 +8,9 @@ export type WorkflowListItemProps = {
   workflow: Workflow;
 };
 
-const WorkflowListItem = ({ workflow }: WorkflowListItemProps): JSX.Element => (
+const WorkflowListItem = ({
+  workflow,
+}: WorkflowListItemProps): React.ReactElement => (
   <LinkBox as="article" maxW="sm" p="5" borderWidth="1px" rounded="md">
     <Heading size="md" my="2">
       <LinkOverlay href={paths.workflow(workflow.organization_id, workflow.id)}>

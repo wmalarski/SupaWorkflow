@@ -12,7 +12,7 @@ export type OrganizationHeaderViewProps = {
 const OrganizationHeaderView = ({
   organizationId,
   tab,
-}: OrganizationHeaderViewProps): JSX.Element => {
+}: OrganizationHeaderViewProps): React.ReactElement => {
   const text = useText();
 
   return (

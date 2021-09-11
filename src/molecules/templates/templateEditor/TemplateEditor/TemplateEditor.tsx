@@ -12,7 +12,7 @@ export type TemplateEditorProps = {
 
 const TemplateEditor = ({
   View = TemplateEditorView,
-}: TemplateEditorProps): JSX.Element => {
+}: TemplateEditorProps): React.ReactElement => {
   const template = useTemplateContext();
 
   const messages = useMessages({ templateId: template.id });

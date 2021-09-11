@@ -28,7 +28,7 @@ export const TeamContextProvider = ({
   team,
   children,
   enabled,
-}: TeamContextProviderProps): JSX.Element => {
+}: TeamContextProviderProps): React.ReactElement => {
   const { data } = useSelectTeam(
     { id: team.id },
     { initialData: team, enabled }

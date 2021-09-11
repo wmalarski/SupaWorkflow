@@ -12,7 +12,7 @@ export type ProfileHeaderProps = {
 
 const ProfileHeader = ({
   View = ProfileHeaderView,
-}: ProfileHeaderProps): JSX.Element => {
+}: ProfileHeaderProps): React.ReactElement => {
   const router = useRouter();
 
   const { mutate: signOut } = useSignOut({

@@ -3,7 +3,7 @@ import React from "react";
 import { Link } from "../../../../atoms";
 import { paths, useText } from "../../../../utils";
 
-const LandingHeaderView = (): JSX.Element => {
+const LandingHeaderView = (): React.ReactElement => {
   const text = useText();
 
   return (

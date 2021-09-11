@@ -13,7 +13,7 @@ export type OrganizationTeamsProps = {
 
 const OrganizationTeams = ({
   View = OrganizationTeamsView,
-}: OrganizationTeamsProps): JSX.Element => {
+}: OrganizationTeamsProps): React.ReactElement => {
   const { organization } = useOrganizationContext();
 
   const [page, setPage] = useState(0);

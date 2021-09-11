@@ -9,7 +9,7 @@ export type ProfileHeaderViewProps = {
 
 const ProfileHeaderView = ({
   onSignOutClicked,
-}: ProfileHeaderViewProps): JSX.Element => {
+}: ProfileHeaderViewProps): React.ReactElement => {
   const text = useText();
 
   return (

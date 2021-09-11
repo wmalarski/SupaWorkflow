@@ -31,7 +31,7 @@ export type RepContextProviderProps = {
 
 export const RepContextProvider = ({
   children,
-}: RepContextProviderProps): JSX.Element | null => {
+}: RepContextProviderProps): React.ReactElement | null => {
   const [clientId, setClientId] = useState<string>();
 
   useEffect(() => {

@@ -17,7 +17,7 @@ const GridTemplate = ({
   headerLeft,
   headerRight,
   sideBar,
-}: GridTemplateProps): JSX.Element => {
+}: GridTemplateProps): React.ReactElement => {
   return (
     <Page hideFooter>
       <Grid

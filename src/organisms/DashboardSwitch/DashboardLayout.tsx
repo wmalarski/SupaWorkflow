@@ -15,7 +15,7 @@ export type DashboardLayoutProps = {
 const DashboardLayout = ({
   isForm,
   children,
-}: DashboardLayoutProps): JSX.Element | null =>
+}: DashboardLayoutProps): React.ReactElement | null =>
   isForm ? (
     <FormPage
       corner={<DashboardCorner />}

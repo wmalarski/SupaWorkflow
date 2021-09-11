@@ -2,7 +2,7 @@ import React from "react";
 import { NewTeamMember, OrganizationTeam } from "../../molecules";
 import TeamLayout from "./TeamLayout";
 
-const TeamSwitch = (): JSX.Element | null => (
+const TeamSwitch = (): React.ReactElement | null => (
   <TeamLayout>
     <NewTeamMember />
     <OrganizationTeam />

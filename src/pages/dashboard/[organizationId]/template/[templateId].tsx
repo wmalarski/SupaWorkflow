@@ -12,7 +12,7 @@ const TemplatePage = ({
   member,
   organization,
   profile,
-}: GetTemplateProps): JSX.Element => (
+}: GetTemplateProps): React.ReactElement => (
   <OrganizationContextProvider
     member={member}
     organization={organization}

@@ -14,7 +14,7 @@ const SEARCH_SIZE = 5;
 
 const NewTeamMember = ({
   View = NewTeamMemberView,
-}: NewTeamMemberProps): JSX.Element => {
+}: NewTeamMemberProps): React.ReactElement => {
   const { organization } = useOrganizationContext();
   const team = useTeamContext();
 

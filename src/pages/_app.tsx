@@ -6,7 +6,7 @@ import { queryClient } from "../services";
 import theme from "../styles/theme";
 import { UserContextProvider } from "../utils";
 
-const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => (
+const MyApp = ({ Component, pageProps }: AppProps): React.ReactElement => (
   <ChakraProvider theme={theme}>
     <QueryClientProvider client={queryClient}>
       <UserContextProvider>

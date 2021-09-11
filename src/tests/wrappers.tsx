@@ -38,7 +38,7 @@ export const ContextsMock = ({
   team = defaultTeam,
   workflow = defaultWorkflow,
   profile = defaultProfile,
-}: ContextsMockProps): JSX.Element => (
+}: ContextsMockProps): React.ReactElement => (
   <QueryClientProvider client={new QueryClient()}>
     <OrganizationContext.Provider
       value={{

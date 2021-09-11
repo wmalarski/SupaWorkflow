@@ -14,7 +14,7 @@ const Page = ({
   header,
   hideFooter,
   appTitle = "SupaWorkflow",
-}: PropsWithChildren<PageProps>): JSX.Element => (
+}: PropsWithChildren<PageProps>): React.ReactElement => (
   <div>
     <Head>
       <title>{appTitle}</title>

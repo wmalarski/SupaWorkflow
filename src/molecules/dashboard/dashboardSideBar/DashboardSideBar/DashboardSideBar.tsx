@@ -10,7 +10,7 @@ export type DashboardSideBarProps = {
 
 const DashboardSideBar = ({
   View = DashboardSideBarView,
-}: DashboardSideBarProps): JSX.Element => {
+}: DashboardSideBarProps): React.ReactElement => {
   const { data: organizations, isLoading } = useSelectOrganizations();
 
   return <View organizations={organizations} isLoading={isLoading} />;

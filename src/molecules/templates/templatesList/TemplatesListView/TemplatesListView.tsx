@@ -23,7 +23,7 @@ const TemplatesListView = ({
   pageSize,
   isLoading,
   onPageChange,
-}: TemplatesListViewProps): JSX.Element => {
+}: TemplatesListViewProps): React.ReactElement => {
   const text = useText();
 
   return (

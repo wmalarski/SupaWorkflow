@@ -11,7 +11,7 @@ export type ProfileSettingsProps = {
 
 const ProfileSettings = ({
   View = ProfileSettingsView,
-}: ProfileSettingsProps): JSX.Element => {
+}: ProfileSettingsProps): React.ReactElement => {
   const profile = useProfileContext();
 
   const {

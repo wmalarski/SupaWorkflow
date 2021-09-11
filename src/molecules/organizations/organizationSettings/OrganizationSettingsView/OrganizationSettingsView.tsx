@@ -36,7 +36,7 @@ const OrganizationSettingsView = ({
   error,
   onUpdateSubmit,
   onDeleteSubmit,
-}: OrganizationSettingsViewProps): JSX.Element => {
+}: OrganizationSettingsViewProps): React.ReactElement => {
   const text = useText();
 
   const toast = useToast();

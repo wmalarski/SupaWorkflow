@@ -3,7 +3,7 @@ import { WorkflowEditor } from "../../molecules";
 import { useTabParam, WorkflowTab } from "../../utils";
 import WorkflowLayout from "./WorkflowLayout";
 
-const WorkflowSwitch = (): JSX.Element | null => {
+const WorkflowSwitch = (): React.ReactElement | null => {
   const tab = useTabParam(WorkflowTab);
 
   switch (tab) {

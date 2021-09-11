@@ -32,7 +32,7 @@ const SignInView = ({
   isLoading,
   error,
   onSubmit,
-}: SignInViewProps): JSX.Element => {
+}: SignInViewProps): React.ReactElement => {
   const text = useText();
 
   const {

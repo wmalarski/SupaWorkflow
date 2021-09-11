@@ -11,7 +11,7 @@ export type NewOrganizationTeamProps = {
 
 const NewOrganizationTeam = ({
   View = NewOrganizationTeamView,
-}: NewOrganizationTeamProps): JSX.Element => {
+}: NewOrganizationTeamProps): React.ReactElement => {
   const { organization } = useOrganizationContext();
 
   const { mutate: insertTeam, isLoading, error, data } = useInsertTeam();

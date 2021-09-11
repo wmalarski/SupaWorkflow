@@ -39,7 +39,7 @@ const SignUpView = ({
   isLoading,
   error,
   onSubmit,
-}: SignUpViewProps): JSX.Element => {
+}: SignUpViewProps): React.ReactElement => {
   const text = useText();
 
   const emailValidator = useEmailValidator();

@@ -27,7 +27,7 @@ export const ProfileContextProvider = ({
   profile,
   children,
   enabled,
-}: ProfileContextProviderProps): JSX.Element => {
+}: ProfileContextProviderProps): React.ReactElement => {
   const { data } = useSelectProfile(
     { userId: profile.user_id },
     { initialData: profile, enabled }

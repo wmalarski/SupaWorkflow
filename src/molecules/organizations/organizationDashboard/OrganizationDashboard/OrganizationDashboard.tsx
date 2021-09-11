@@ -9,7 +9,7 @@ export type OrganizationDashboardProps = {
 
 const OrganizationDashboard = ({
   View = OrganizationDashboardView,
-}: OrganizationDashboardProps): JSX.Element => {
+}: OrganizationDashboardProps): React.ReactElement => {
   return <View data="hello" />;
 };
 

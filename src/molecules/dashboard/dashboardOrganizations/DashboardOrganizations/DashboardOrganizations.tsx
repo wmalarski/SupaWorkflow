@@ -10,7 +10,7 @@ export type DashboardOrganizationsProps = {
 
 const DashboardOrganizations = ({
   View = DashboardOrganizationsView,
-}: DashboardOrganizationsProps): JSX.Element => {
+}: DashboardOrganizationsProps): React.ReactElement => {
   const { data: organizations, isLoading } = useSelectOrganizations();
 
   return <View organizations={organizations} isLoading={isLoading} />;

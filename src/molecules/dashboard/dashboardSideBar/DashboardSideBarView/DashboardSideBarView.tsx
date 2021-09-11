@@ -13,7 +13,7 @@ export type DashboardSideBarViewProps = {
 
 const DashboardSideBarView = ({
   organizations,
-}: DashboardSideBarViewProps): JSX.Element => {
+}: DashboardSideBarViewProps): React.ReactElement => {
   const text = useText();
 
   return (
