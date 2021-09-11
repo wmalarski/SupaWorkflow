@@ -9,7 +9,7 @@ const paths = {
   home: "/",
   signIn: "/signIn",
   signUp: "/signUp",
-  dashboard: (tab?: DashboardTab | null) =>
+  dashboard: (tab?: DashboardTab | null): string =>
     `/dashboard${tab ? `?tab=${tab}` : ""}`,
   organization: (orgId: number, tab?: OrganizationTab | null): string =>
     `/dashboard/${orgId}${tab ? `?tab=${tab}` : ""}`,

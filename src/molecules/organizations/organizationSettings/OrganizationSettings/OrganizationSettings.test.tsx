@@ -63,7 +63,7 @@ describe("<OrganizationSettings />", () => {
     expect(await screen.findByText("New Name")).toBeInTheDocument();
   });
 
-  it("should render", async () => {
+  it("should change route after delete", async () => {
     expect.hasAssertions();
 
     const organization = addOrganizationScenario();
@@ -76,7 +76,7 @@ describe("<OrganizationSettings />", () => {
 
     await waitFor(async () => expect(push).toHaveBeenCalledTimes(1));
 
-    expect(push).toHaveBeenCalled();
+    expect(push).toHaveBeenCalledTimes(1);
   });
 
   it("should render default", async () => {

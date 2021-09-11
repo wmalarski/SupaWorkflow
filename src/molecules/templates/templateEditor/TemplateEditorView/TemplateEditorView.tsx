@@ -33,7 +33,7 @@ const TemplateEditorView = ({
         ({ data, id, template_id, workflow_id }) =>
           onDelete({ data, id, template_id, workflow_id })
       ),
-    []
+    [onDelete]
   );
 
   return (

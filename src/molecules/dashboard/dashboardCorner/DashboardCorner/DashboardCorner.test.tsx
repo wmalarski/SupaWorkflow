@@ -29,7 +29,7 @@ describe("<DashboardCorner />", () => {
     expect(true).toBeTruthy();
   });
 
-  it("should render default", async () => {
+  it("should render", async () => {
     expect.hasAssertions();
 
     renderComponent();

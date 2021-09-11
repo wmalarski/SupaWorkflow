@@ -8,7 +8,9 @@ import OrganizationDashboard from "./OrganizationDashboard";
 
 type ComponentProps = React.ComponentProps<typeof OrganizationDashboard>;
 
-const View = ({}: OrganizationDashboardViewProps) => <button>Click</button>;
+const View = ({ data }: OrganizationDashboardViewProps) => (
+  <button>{JSON.stringify(data, null, 2)}</button>
+);
 
 const renderComponent = (props: Partial<ComponentProps> = {}) => {
   const defaultProps: ComponentProps = {

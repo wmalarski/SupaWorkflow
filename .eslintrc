@@ -30,6 +30,7 @@
     "react",
     "@typescript-eslint",
     "react-hooks",
+    "@next/eslint-plugin-next",
     "prettier"
   ],
   "rules": {

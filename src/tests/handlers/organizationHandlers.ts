@@ -61,7 +61,7 @@ export const organizationHandlers = [
       return res(ctx.json<Organization>(organization));
     }
   ),
-  rest.delete<DeleteOrganizationArgs, {} | PostgrestError>(
+  rest.delete<DeleteOrganizationArgs, Record<string, never> | PostgrestError>(
     `${SUPABASE_ENDPOINT}/${TABLES.organization}`,
     ({ url }, res, ctx) => {
       const query = url.searchParams.get("id")?.split(".")[1];

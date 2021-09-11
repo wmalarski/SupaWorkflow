@@ -1,6 +1,6 @@
 import {
   BreadcrumbLink as ChakraLink,
-  BreadcrumbLinkProps as ChakraLinkProps
+  BreadcrumbLinkProps as ChakraLinkProps,
 } from "@chakra-ui/react";
 import NextLink, { LinkProps as NextLinkProps } from "next/link";
 import React from "react";

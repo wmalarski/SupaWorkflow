@@ -29,7 +29,6 @@ export type NewOrganizationTeamViewProps = {
 const NewOrganizationTeamView = ({
   isLoading,
   error,
-  team,
   onSubmit,
 }: NewOrganizationTeamViewProps): JSX.Element => {
   const text = useText();

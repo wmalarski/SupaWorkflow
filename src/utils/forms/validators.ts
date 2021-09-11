@@ -60,7 +60,7 @@ export const useTextValidator = ({
           ? { value: maxLength, message: text("errorMaxLength")(maxLength) }
           : undefined,
     }),
-    [text]
+    [maxLength, minLength, required, text]
   );
 };
 

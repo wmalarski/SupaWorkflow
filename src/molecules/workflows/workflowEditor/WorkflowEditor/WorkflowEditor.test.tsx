@@ -8,7 +8,9 @@ import WorkflowEditor from "./WorkflowEditor";
 
 type ComponentProps = React.ComponentProps<typeof WorkflowEditor>;
 
-const View = ({}: WorkflowEditorViewProps) => <button>Click</button>;
+const View = (props: WorkflowEditorViewProps) => (
+  <button>{JSON.stringify(props, null, 2)}</button>
+);
 
 const renderComponent = (props: Partial<ComponentProps> = {}) => {
   const defaultProps: ComponentProps = {

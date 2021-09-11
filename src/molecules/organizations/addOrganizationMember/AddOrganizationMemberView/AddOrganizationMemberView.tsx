@@ -33,7 +33,7 @@ const AddOrganizationMemberView = ({
   const text = useText();
 
   const {
-    formState: { errors, isValid, isDirty },
+    formState: { errors, isDirty },
     register,
     handleSubmit,
   } = useForm<AddOrganizationMemberViewData>();

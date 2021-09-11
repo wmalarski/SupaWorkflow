@@ -42,7 +42,7 @@ export const teamMemberHandlers = [
       return res(ctx.json<TeamMember>(teamMember));
     }
   ),
-  rest.delete<DeleteTeamMemberArgs, {} | PostgrestError>(
+  rest.delete<DeleteTeamMemberArgs, Record<string, never> | PostgrestError>(
     `${SUPABASE_ENDPOINT}/${TABLES.teamMember}`,
     ({ url }, res, ctx) => {
       const query = url.searchParams.get("id")?.split(".")[1];

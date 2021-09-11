@@ -8,7 +8,9 @@ import TeamSideBar from "./TeamSideBar";
 
 type ComponentProps = React.ComponentProps<typeof TeamSideBar>;
 
-const View = ({}: TeamSideBarViewProps) => <button>Click</button>;
+const View = ({ organizationId, teamId }: TeamSideBarViewProps) => (
+  <button>{JSON.stringify({ organizationId, teamId }, null, 2)}</button>
+);
 
 const renderComponent = (props: Partial<ComponentProps> = {}) => {
   const defaultProps: ComponentProps = {
@@ -30,7 +32,7 @@ describe("<TeamSideBar />", () => {
     expect(true).toBeTruthy();
   });
 
-  it("should render", async () => {
+  it("should render default", async () => {
     expect.hasAssertions();
 
     renderComponent({ View: undefined });

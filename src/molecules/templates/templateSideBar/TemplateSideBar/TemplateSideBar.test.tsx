@@ -8,7 +8,9 @@ import TemplateSideBar from "./TemplateSideBar";
 
 type ComponentProps = React.ComponentProps<typeof TemplateSideBar>;
 
-const View = ({}: TemplateSideBarViewProps) => <button>Click</button>;
+const View = (props: TemplateSideBarViewProps) => (
+  <button>{JSON.stringify(props, null, 2)}</button>
+);
 
 const renderComponent = (props: Partial<ComponentProps> = {}) => {
   const defaultProps: ComponentProps = {

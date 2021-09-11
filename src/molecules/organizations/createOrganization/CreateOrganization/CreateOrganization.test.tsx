@@ -64,7 +64,7 @@ describe("<CreateOrganization />", () => {
 
     await waitFor(async () => expect(push).toHaveBeenCalledTimes(1));
 
-    expect(push).toHaveBeenCalled();
+    expect(push).toHaveBeenCalledTimes(1);
   });
 
   it("should render and fail - no profile", async () => {

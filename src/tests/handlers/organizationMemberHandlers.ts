@@ -37,7 +37,10 @@ export const organizationMemberHandlers = [
       );
     }
   ),
-  rest.delete<DeleteOrganizationMemberArgs, {} | PostgrestError>(
+  rest.delete<
+    DeleteOrganizationMemberArgs,
+    Record<string, never> | PostgrestError
+  >(
     `${SUPABASE_ENDPOINT}/${TABLES.organizationMember}`,
     ({ url }, res, ctx) => {
       const query = url.searchParams.get("id")?.split(".")[1];

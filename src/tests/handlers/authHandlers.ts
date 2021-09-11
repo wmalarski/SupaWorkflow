@@ -67,7 +67,7 @@ export const authHandlers = [
       return res(ctx.json<Session>(result));
     }
   ),
-  rest.post<string, {} | ResponseError>(
+  rest.post<string, Record<string, never> | ResponseError>(
     `${AUTH_ENDPOINT}/magiclink`,
     ({ body }, res, ctx) => {
       const credentials: UserCredentials = JSON.parse(body);

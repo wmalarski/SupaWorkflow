@@ -8,7 +8,9 @@ import WorkflowSideBar from "./WorkflowSideBar";
 
 type ComponentProps = React.ComponentProps<typeof WorkflowSideBar>;
 
-const View = ({}: WorkflowSideBarViewProps) => <button>Click</button>;
+const View = (props: WorkflowSideBarViewProps) => (
+  <button>{JSON.stringify(props, null, 2)}</button>
+);
 
 const renderComponent = (props: Partial<ComponentProps> = {}) => {
   const defaultProps: ComponentProps = {

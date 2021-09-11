@@ -55,7 +55,7 @@ describe("<CreateWorkflow />", () => {
 
     await waitFor(async () => expect(push).toHaveBeenCalledTimes(1));
 
-    expect(push).toHaveBeenCalled();
+    expect(push).toHaveBeenCalledTimes(1);
   });
 
   it("should render default", async () => {

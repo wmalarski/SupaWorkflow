@@ -39,7 +39,7 @@ const renderComponent = ({
     View,
   };
   return render(
-    <ContextsMock>
+    <ContextsMock {...contexts}>
       <AddOrganizationMember {...defaultProps} {...props} />
     </ContextsMock>
   );

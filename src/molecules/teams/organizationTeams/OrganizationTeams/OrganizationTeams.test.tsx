@@ -64,10 +64,10 @@ describe("<OrganizationTeams />", () => {
     userEvent.click(await screen.findByText("Delete Team Name-0"));
 
     await waitFor(async () =>
-      expect(mockDb.team.count()).toEqual(teams.length - 1)
+      expect(mockDb.team.count()).toStrictEqual(teams.length - 1)
     );
 
-    expect(mockDb.team.count()).toEqual(teams.length - 1);
+    expect(mockDb.team.count()).toStrictEqual(teams.length - 1);
   });
 
   it("should render default", async () => {
