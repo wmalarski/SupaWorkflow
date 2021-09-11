@@ -1,7 +1,7 @@
 import React from "react";
-import { Message } from "../../../services";
-import { MessageNodeFormTemplateData } from "../../../services/nodes";
-import { MutationArgs } from "../../../utils/rep";
+import { Message } from "../../../../services";
+import { MessageNodeFormTemplateData } from "../../../../services/nodes";
+import { MutationArgs } from "../../../../utils/rep";
 
 export type TemplateFormNodeProps = {
   message: Message;

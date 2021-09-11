@@ -1,9 +1,9 @@
 import React from "react";
 import { Message } from "../../../../services";
 import { MutationArgs } from "../../../../utils/rep";
-import TemplateFormNode from "../../TemplateFormNode/TemplateFormNode";
 import TemplateChecklistNode from "../TemplateChecklistNode/TemplateChecklistNode";
 import TemplateDecisionNode from "../TemplateDecisionNode/TemplateDecisionNode";
+import TemplateFormNode from "../TemplateFormNode/TemplateFormNode";
 
 export type TemplateNodeProps = {
   message: Message;
