@@ -1,6 +1,7 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React, { useEffect, useState } from "react";
 import { Message } from "../../../../services";
+import { MessageNodeType } from "../../../../services/nodes";
 import TemplateEditorView from "./TemplateEditorView";
 
 const baseMessage = {
@@ -17,7 +18,7 @@ const initialMessages: Message[] = [
     data: {
       kind: "node",
       position: { x: 50, y: 125 },
-      datatype: "formTemplate",
+      datatype: MessageNodeType.FormTemplate,
       fields: ["field1", "field2"],
     },
   },
@@ -28,7 +29,7 @@ const initialMessages: Message[] = [
     data: {
       kind: "node",
       position: { x: 100, y: 125 },
-      datatype: "formTemplate",
+      datatype: MessageNodeType.FormTemplate,
       fields: ["field1", "field2"],
     },
   },
@@ -39,7 +40,7 @@ const initialMessages: Message[] = [
     data: {
       kind: "node",
       position: { x: 250, y: 250 },
-      datatype: "decisionTemplate",
+      datatype: MessageNodeType.DecisionTemplate,
       routes: ["route1", "route2"],
     },
   },

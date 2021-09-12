@@ -1,26 +1,29 @@
 import React from "react";
 import { ListForm } from "../../../../atoms";
-import { Message } from "../../../../services";
-import { MessageNodeChecklistTemplateData } from "../../../../services/nodes";
+import { MessageNodeType } from "../../../../services/nodes";
 import { useText } from "../../../../utils";
-import { MutationArgs } from "../../../../utils/rep";
-
-export type TemplateChecklistNodeProps = {
-  message: Message;
-  data: MessageNodeChecklistTemplateData;
-  onChange: (message: MutationArgs["putMessage"]) => void;
-};
+import { TemplateNodeProps } from "../TemplateEditorView/TemplateEditorView.utils";
 
 const TemplateChecklistNode = ({
-  message,
   data,
-  onChange,
-}: TemplateChecklistNodeProps): React.ReactElement => {
+}: TemplateNodeProps): React.ReactElement | null => {
   const text = useText();
+
+  const { message, onChange } = data;
+
+  if (
+    message.data.kind !== "node" ||
+    message.data.datatype !== MessageNodeType.ChecklistTemplate
+  )
+    return null;
 
   const handleValid = (tasks: string[]) =>
     onChange({
-      data: { ...data, tasks },
+      data: {
+        ...message.data,
+        datatype: MessageNodeType.ChecklistTemplate,
+        tasks,
+      },
       id: message.id,
       template_id: message.template_id,
       workflow_id: message.workflow_id,
@@ -35,7 +38,7 @@ const TemplateChecklistNode = ({
         save: text("saveTemplateNode"),
         up: text("upTemplateNodeOption"),
       }}
-      entries={data.tasks}
+      entries={message.data.tasks}
       onChange={handleValid}
     />
   );

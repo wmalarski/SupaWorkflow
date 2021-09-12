@@ -14,18 +14,24 @@ export type MessageEdge = {
   target: string;
 };
 
+export enum MessageNodeType {
+  ChecklistTemplate = "ChecklistTemplate",
+  FormTemplate = "FormTemplate",
+  DecisionTemplate = "DecisionTemplate",
+}
+
 export type MessageNodeChecklistTemplateData = MessageNode & {
-  datatype: "checklistTemplate";
+  datatype: MessageNodeType.ChecklistTemplate;
   tasks: string[];
 };
 
 export type MessageNodeFormTemplateData = MessageNode & {
-  datatype: "formTemplate";
+  datatype: MessageNodeType.FormTemplate;
   fields: string[];
 };
 
 export type MessageNodeDecisionTemplateData = MessageNode & {
-  datatype: "decisionTemplate";
+  datatype: MessageNodeType.DecisionTemplate;
   routes: string[];
 };
 

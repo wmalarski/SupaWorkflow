@@ -1,26 +1,29 @@
 import React from "react";
 import { ListForm } from "../../../../atoms";
-import { Message } from "../../../../services";
-import { MessageNodeFormTemplateData } from "../../../../services/nodes";
+import { MessageNodeType } from "../../../../services/nodes";
 import { useText } from "../../../../utils";
-import { MutationArgs } from "../../../../utils/rep";
-
-export type TemplateFormNodeProps = {
-  message: Message;
-  data: MessageNodeFormTemplateData;
-  onChange: (message: MutationArgs["putMessage"]) => void;
-};
+import { TemplateNodeProps } from "../TemplateEditorView/TemplateEditorView.utils";
 
 const TemplateFormNode = ({
-  message,
   data,
-  onChange,
-}: TemplateFormNodeProps): JSX.Element => {
+}: TemplateNodeProps): React.ReactElement | null => {
   const text = useText();
+
+  const { message, onChange } = data;
+
+  if (
+    message.data.kind !== "node" ||
+    message.data.datatype !== MessageNodeType.FormTemplate
+  )
+    return null;
 
   const handleValid = (fields: string[]) =>
     onChange({
-      data: { ...data, fields },
+      data: {
+        ...message.data,
+        datatype: MessageNodeType.FormTemplate,
+        fields,
+      },
       id: message.id,
       template_id: message.template_id,
       workflow_id: message.workflow_id,
@@ -35,7 +38,7 @@ const TemplateFormNode = ({
         save: text("saveTemplateNode"),
         up: text("upTemplateNodeOption"),
       }}
-      entries={data.fields}
+      entries={message.data.fields}
       onChange={handleValid}
     />
   );

@@ -1,26 +1,29 @@
 import React from "react";
 import { ListForm } from "../../../../atoms";
-import { Message } from "../../../../services";
-import { MessageNodeDecisionTemplateData } from "../../../../services/nodes";
+import { MessageNodeType } from "../../../../services/nodes";
 import { useText } from "../../../../utils";
-import { MutationArgs } from "../../../../utils/rep";
-
-export type TemplateDecisionNodeProps = {
-  message: Message;
-  data: MessageNodeDecisionTemplateData;
-  onChange: (message: MutationArgs["putMessage"]) => void;
-};
+import { TemplateNodeProps } from "../TemplateEditorView/TemplateEditorView.utils";
 
 const TemplateDecisionNode = ({
-  message,
   data,
-  onChange,
-}: TemplateDecisionNodeProps): JSX.Element => {
+}: TemplateNodeProps): React.ReactElement | null => {
   const text = useText();
+
+  const { message, onChange } = data;
+
+  if (
+    message.data.kind !== "node" ||
+    message.data.datatype !== MessageNodeType.DecisionTemplate
+  )
+    return null;
 
   const handleValid = (routes: string[]) =>
     onChange({
-      data: { ...data, routes },
+      data: {
+        ...message.data,
+        datatype: MessageNodeType.DecisionTemplate,
+        routes,
+      },
       id: message.id,
       template_id: message.template_id,
       workflow_id: message.workflow_id,
@@ -35,7 +38,7 @@ const TemplateDecisionNode = ({
         save: text("saveTemplateNode"),
         up: text("upTemplateNodeOption"),
       }}
-      entries={data.routes}
+      entries={message.data.routes}
       onChange={handleValid}
     />
   );

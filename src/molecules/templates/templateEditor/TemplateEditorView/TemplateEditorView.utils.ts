@@ -1,12 +1,14 @@
-import React from "react";
 import { Elements, FlowElement, Position } from "react-flow-renderer";
 import { Message } from "../../../../services";
 import { MutationArgs } from "../../../../utils/rep";
-import { TemplateNodeProps } from "../TemplateNode/TemplateNode";
 
 export type TemplateNodeData = {
   message: Message;
-  label?: React.ReactNode;
+  onChange: (message: MutationArgs["putMessage"]) => void;
+};
+
+export type TemplateNodeProps = {
+  data: TemplateNodeData;
 };
 
 export const elementToMessage = (
@@ -24,13 +26,11 @@ export const elementsToMessages = (
 export type MessageToElementOptions = {
   message: Message;
   onChange: (message: MutationArgs["putMessage"]) => void;
-  renderer: React.ComponentType<TemplateNodeProps>;
 };
 
 export const messageToElement = ({
   message,
   onChange,
-  renderer,
 }: MessageToElementOptions): FlowElement<TemplateNodeData> => {
   const { id, data } = message;
 
@@ -40,7 +40,7 @@ export const messageToElement = ({
         id,
         source: data.source,
         target: data.target,
-        data: { message },
+        data: { message, onChange },
       };
     case "node":
       return {
@@ -48,11 +48,9 @@ export const messageToElement = ({
         position: data.position,
         sourcePosition: Position.Left,
         targetPosition: Position.Right,
+        type: data.datatype,
         style: { width: 300 },
-        data: {
-          message,
-          label: React.createElement(renderer, { onChange, message }),
-        },
+        data: { message, onChange },
       };
   }
 };
@@ -60,12 +58,10 @@ export const messageToElement = ({
 export type MessagesToElementsOptions = {
   messages: Message[];
   onChange: (message: MutationArgs["putMessage"]) => void;
-  renderer: React.ComponentType<TemplateNodeProps>;
 };
 
 export const messagesToElements = ({
   messages,
   onChange,
-  renderer,
 }: MessagesToElementsOptions): Elements<TemplateNodeData> =>
-  messages.map((message) => messageToElement({ message, onChange, renderer }));
+  messages.map((message) => messageToElement({ message, onChange }));
