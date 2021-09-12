@@ -50,7 +50,6 @@ const TemplateDecisionNode = ({
           add: text("addTemplateNodeOption"),
           delete: text("deleteTemplateNodeOption"),
           down: text("downTemplateNodeOption"),
-          save: text("saveTemplateNode"),
           up: text("upTemplateNodeOption"),
         }}
         entries={message.data.routes}

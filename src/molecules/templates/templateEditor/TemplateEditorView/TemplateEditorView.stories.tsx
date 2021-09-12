@@ -78,6 +78,7 @@ const Template: ComponentStory<typeof TemplateEditorView> = (args) => {
       onChange={(args) =>
         setMessages((current) => {
           const index = current.findIndex((message) => message.id === args.id);
+          console.log({ args, current });
           const next = [...current];
           next.splice(
             index,

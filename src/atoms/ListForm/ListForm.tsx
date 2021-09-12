@@ -1,10 +1,8 @@
-import { Button } from "@chakra-ui/button";
 import {
-  AddIcon,
-  CheckIcon,
   ChevronDownIcon,
   ChevronUpIcon,
   DeleteIcon,
+  SmallAddIcon,
 } from "@chakra-ui/icons";
 import { Input } from "@chakra-ui/input";
 import { HStack, VStack } from "@chakra-ui/layout";
@@ -27,7 +25,6 @@ export type ListFormProps = {
     up: string;
     down: string;
     delete: string;
-    save: string;
   };
   onChange: (entries: string[]) => void;
   AfterRenderer?: React.ComponentType<AfterRendererProps>;
@@ -41,8 +38,9 @@ const ListForm = ({
 }: ListFormProps): React.ReactElement => {
   const [count, setCount] = useState<number>(entries.length);
 
-  const { formState, register, handleSubmit, getValues, setValue } =
-    useForm<ListFormData>({ defaultValues: { entries } });
+  const { register, handleSubmit, getValues, setValue } = useForm<ListFormData>(
+    { defaultValues: { entries }, mode: "onChange" }
+  );
 
   const handleDelete = (index: number) => () => {
     const newEntries = [...getValues("entries")];
@@ -52,8 +50,10 @@ const ListForm = ({
     setCount(count - 1);
   };
 
-  const handleAdd = () => {
-    setValue(`entries.${count + 1}`, "");
+  const handleAdd = (index: number) => () => {
+    const newEntries = [...getValues("entries")];
+    newEntries.splice(index + 1, 0, "");
+    setValue("entries", newEntries);
     setCount(count + 1);
   };
 
@@ -72,7 +72,7 @@ const ListForm = ({
   };
 
   return (
-    <form onSubmit={handleSubmit(onChange)}>
+    <form onChange={handleSubmit(onChange)}>
       <VStack spacing={2}>
         {Array(count)
           .fill(null)
@@ -97,6 +97,13 @@ const ListForm = ({
                   <ChevronDownIcon />
                 </IconButton>
                 <IconButton
+                  aria-label={text.add}
+                  onClick={handleAdd(index)}
+                  size="xs"
+                >
+                  <SmallAddIcon />
+                </IconButton>
+                <IconButton
                   aria-label={text.delete}
                   onClick={handleDelete(index)}
                   disabled={count < 2}
@@ -108,19 +115,6 @@ const ListForm = ({
               {AfterRenderer && <AfterRenderer index={index} />}
             </HStack>
           ))}
-        <ButtonGroup isAttached>
-          <Button onClick={handleAdd} size="xs" leftIcon={<AddIcon />}>
-            {text.add}
-          </Button>
-          <Button
-            type="submit"
-            size="xs"
-            leftIcon={<CheckIcon />}
-            disabled={!formState.isDirty}
-          >
-            {text.save}
-          </Button>
-        </ButtonGroup>
       </VStack>
     </form>
   );
