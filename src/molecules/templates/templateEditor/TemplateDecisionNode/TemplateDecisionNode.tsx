@@ -2,25 +2,13 @@ import { Box, Heading } from "@chakra-ui/layout";
 import React from "react";
 import { Handle, Position } from "react-flow-renderer";
 import { ListForm } from "../../../../atoms";
-import { AfterRendererProps } from "../../../../atoms/ListForm/ListForm";
 import { MessageNodeType } from "../../../../services/nodes";
 import { useText } from "../../../../utils";
 import { TemplateNodeProps } from "../TemplateEditorView/TemplateEditorView.utils";
-
-const TemplateDecisionNodeHandle = ({
-  index,
-}: AfterRendererProps): React.ReactElement | null => (
-  <Handle
-    type="source"
-    position={Position.Right}
-    id={String(index)}
-    style={{ top: 50 + index * 32 }}
-  />
-);
+import TemplateDecisionNodeHandle from "./TemplateDecisionNodeHandle";
 
 const TemplateDecisionNode = ({
   data,
-  selected,
 }: TemplateNodeProps): React.ReactElement | null => {
   const text = useText();
 
@@ -48,7 +36,7 @@ const TemplateDecisionNode = ({
     <Box
       bg="white"
       border="solid"
-      borderWidth={selected ? 2 : 1}
+      borderWidth={1}
       borderColor="black"
       borderRadius={5}
       padding={2}

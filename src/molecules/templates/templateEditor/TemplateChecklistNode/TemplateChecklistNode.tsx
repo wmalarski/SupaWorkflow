@@ -8,7 +8,6 @@ import { TemplateNodeProps } from "../TemplateEditorView/TemplateEditorView.util
 
 const TemplateChecklistNode = ({
   data,
-  selected,
 }: TemplateNodeProps): React.ReactElement | null => {
   const text = useText();
 
@@ -36,7 +35,7 @@ const TemplateChecklistNode = ({
     <Box
       bg="white"
       border="solid"
-      borderWidth={selected ? 2 : 1}
+      borderWidth={1}
       borderColor="black"
       borderRadius={5}
       padding={2}

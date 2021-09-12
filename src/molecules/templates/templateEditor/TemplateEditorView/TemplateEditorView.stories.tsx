@@ -75,7 +75,18 @@ const Template: ComponentStory<typeof TemplateEditorView> = (args) => {
   return (
     <TemplateEditorView
       messages={messages}
-      onChange={() => void 0}
+      onChange={(args) =>
+        setMessages((current) => {
+          const index = current.findIndex((message) => message.id === args.id);
+          const next = [...current];
+          next.splice(
+            index,
+            index < 0 ? 0 : 1,
+            current[index] ?? { ...args, deleted: false, updated_at: "" }
+          );
+          return next;
+        })
+      }
       onDelete={() => void 0}
       templateId={args.templateId}
     />

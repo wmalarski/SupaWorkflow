@@ -1,5 +1,7 @@
+import { nanoid } from "nanoid";
 import { Elements, FlowElement } from "react-flow-renderer";
 import { Message } from "../../../../services";
+import { MessageNodeType } from "../../../../services/nodes";
 import { MutationArgs } from "../../../../utils/rep";
 
 export type TemplateNodeData = {
@@ -72,3 +74,52 @@ export const messagesToElements = ({
   onChange,
 }: MessagesToElementsOptions): Elements<TemplateNodeData> =>
   messages.map((message) => messageToElement({ message, onChange }));
+
+export type GetNewMessageOptions = {
+  datatype: MessageNodeType;
+  templateId: number;
+};
+
+export const getNewMessage = ({
+  datatype,
+  templateId,
+}: GetNewMessageOptions): MutationArgs["putMessage"] => {
+  const base = {
+    id: nanoid(),
+    workflow_id: null,
+    template_id: templateId,
+  };
+
+  switch (datatype) {
+    case MessageNodeType.ChecklistTemplate:
+      return {
+        ...base,
+        data: {
+          datatype: MessageNodeType.ChecklistTemplate,
+          kind: "node",
+          position: { x: 0, y: 0 },
+          tasks: [""],
+        },
+      };
+    case MessageNodeType.DecisionTemplate:
+      return {
+        ...base,
+        data: {
+          datatype: MessageNodeType.DecisionTemplate,
+          kind: "node",
+          position: { x: 0, y: 0 },
+          routes: [""],
+        },
+      };
+    case MessageNodeType.FormTemplate:
+      return {
+        ...base,
+        data: {
+          datatype: MessageNodeType.FormTemplate,
+          kind: "node",
+          position: { x: 0, y: 0 },
+          fields: [""],
+        },
+      };
+  }
+};

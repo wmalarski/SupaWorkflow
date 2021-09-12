@@ -1,5 +1,12 @@
+import { Button, ButtonGroup } from "@chakra-ui/button";
+import { CheckIcon, EditIcon, HamburgerIcon } from "@chakra-ui/icons";
 import React, { useCallback, useMemo } from "react";
-import ReactFlow, { Elements } from "react-flow-renderer";
+import ReactFlow, {
+  Background,
+  BackgroundVariant,
+  Controls,
+  Elements,
+} from "react-flow-renderer";
 import { Message } from "../../../../services";
 import { MessageNodeType } from "../../../../services/nodes";
 import { MutationArgs } from "../../../../utils/rep";
@@ -8,6 +15,7 @@ import TemplateDecisionNode from "../TemplateDecisionNode/TemplateDecisionNode";
 import TemplateFormNode from "../TemplateFormNode/TemplateFormNode";
 import {
   elementsToMessages,
+  getNewMessage,
   messagesToElements,
   TemplateNodeData,
 } from "./TemplateEditorView.utils";
@@ -26,6 +34,7 @@ const nodeTypes = {
 };
 
 const TemplateEditorView = ({
+  templateId,
   messages,
   onChange,
   onDelete,
@@ -44,15 +53,47 @@ const TemplateEditorView = ({
     [onDelete]
   );
 
+  const handleAddElement = useCallback(
+    (datatype: MessageNodeType) => () =>
+      onChange(getNewMessage({ datatype, templateId })),
+    [onChange, templateId]
+  );
+
   return (
     <div style={{ height: 600, width: 1200 }}>
+      <ButtonGroup isAttached>
+        <Button
+          onClick={handleAddElement(MessageNodeType.FormTemplate)}
+          size="xs"
+          leftIcon={<EditIcon />}
+        >
+          Form
+        </Button>
+        <Button
+          onClick={handleAddElement(MessageNodeType.DecisionTemplate)}
+          size="xs"
+          leftIcon={<HamburgerIcon />}
+        >
+          Decision
+        </Button>
+        <Button
+          onClick={handleAddElement(MessageNodeType.ChecklistTemplate)}
+          size="xs"
+          leftIcon={<CheckIcon />}
+        >
+          Checklist
+        </Button>
+      </ButtonGroup>
       <ReactFlow
         elements={elements}
         nodeTypes={nodeTypes}
         onElementsRemove={handleElementsRemove}
         snapToGrid
         deleteKeyCode={46} /* 'delete'-key */
-      />
+      >
+        <Background variant={BackgroundVariant.Dots} gap={12} size={0.5} />
+        <Controls />
+      </ReactFlow>
     </div>
   );
 };
