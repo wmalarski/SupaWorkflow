@@ -6,6 +6,7 @@ import ReactFlow, {
   Controls,
   Edge,
   Elements,
+  Node,
 } from "react-flow-renderer";
 import { Message } from "../../../../services";
 import { MessageNodeType } from "../../../../services/nodes";
@@ -63,6 +64,24 @@ const TemplateEditorView = ({
     [onChange, templateId]
   );
 
+  const handleNodeDragStop = useCallback(
+    (_event: React.MouseEvent, node: Node<TemplateNodeData>) => {
+      const updated = messages.find((message) => message.id === node.id);
+      if (!updated || updated.data.kind !== "node") return;
+      onChange({
+        id: updated.id,
+        template_id: updated.template_id,
+        workflow_id: updated.workflow_id,
+        data: {
+          ...updated.data,
+          kind: "node",
+          position: node.position,
+        },
+      });
+    },
+    [messages, onChange]
+  );
+
   return (
     <div style={{ height: 600, width: 1200 }}>
       <TemplateEditorBar onChange={onChange} templateId={templateId} />
@@ -70,6 +89,7 @@ const TemplateEditorView = ({
         elements={elements}
         nodeTypes={nodeTypes}
         onElementsRemove={handleElementsRemove}
+        onNodeDragStop={handleNodeDragStop}
         onConnect={handleConnect}
         snapToGrid
         deleteKeyCode={46} /* 'delete'-key */
