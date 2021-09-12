@@ -28,10 +28,15 @@ const TemplateFormNode = ({
 
   return (
     <ListForm
-      addText={text("addTemplateNodeOption")}
+      text={{
+        add: text("addTemplateNodeOption"),
+        delete: text("deleteTemplateNodeOption"),
+        down: text("downTemplateNodeOption"),
+        save: text("saveTemplateNode"),
+        up: text("upTemplateNodeOption"),
+      }}
       entries={data.fields}
       onChange={handleValid}
-      saveText={text("saveTemplateNode")}
     />
   );
 };

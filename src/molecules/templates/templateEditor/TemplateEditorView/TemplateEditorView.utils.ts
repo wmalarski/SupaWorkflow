@@ -1,5 +1,5 @@
 import React from "react";
-import { Elements, FlowElement } from "react-flow-renderer";
+import { Elements, FlowElement, Position } from "react-flow-renderer";
 import { Message } from "../../../../services";
 import { MutationArgs } from "../../../../utils/rep";
 import { TemplateNodeProps } from "../TemplateNode/TemplateNode";
@@ -46,6 +46,9 @@ export const messageToElement = ({
       return {
         id,
         position: data.position,
+        sourcePosition: Position.Left,
+        targetPosition: Position.Right,
+        style: { width: 300 },
         data: {
           message,
           label: React.createElement(renderer, { onChange, message }),

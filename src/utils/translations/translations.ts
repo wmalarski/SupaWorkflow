@@ -99,8 +99,10 @@ const translation = {
 
   // Template editor
   version: "Version",
-  deleteMessage: "Delete",
+  deleteTemplateNodeOption: "Delete",
   addTemplateNodeOption: "Add",
+  upTemplateNodeOption: "Add",
+  downTemplateNodeOption: "Add",
   saveTemplateNode: "Save",
   editMessage: "Edit",
 
