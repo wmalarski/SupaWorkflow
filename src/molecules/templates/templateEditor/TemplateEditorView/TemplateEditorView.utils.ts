@@ -3,24 +3,7 @@ import { Elements, FlowElement } from "react-flow-renderer";
 import { Message } from "../../../../services";
 import { MessageNodeType } from "../../../../services/nodes";
 import { MutationArgs } from "../../../../utils/rep";
-
-export type TemplateNodeData = {
-  message: Message;
-  onChange: (message: MutationArgs["putMessage"]) => void;
-};
-
-export type TemplateNodeProps = {
-  id: string;
-  isConnectable: boolean;
-  isDragging: boolean;
-  selected: boolean;
-  sourcePosition?: string;
-  targetPosition?: string;
-  type: "ChecklistTemplate";
-  xPos: number;
-  yPos: number;
-  data: TemplateNodeData;
-};
+import { TemplateNodeData } from "./TemplateEditorView.types";
 
 export const elementToMessage = (
   element: FlowElement<TemplateNodeData>

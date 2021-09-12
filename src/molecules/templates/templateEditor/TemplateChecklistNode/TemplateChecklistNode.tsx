@@ -4,7 +4,7 @@ import { Handle, Position } from "react-flow-renderer";
 import { ListForm } from "../../../../atoms";
 import { MessageNodeType } from "../../../../services/nodes";
 import { useText } from "../../../../utils";
-import { TemplateNodeProps } from "../TemplateEditorView/TemplateEditorView.utils";
+import { TemplateNodeProps } from "../TemplateEditorView/TemplateEditorView.types";
 
 const TemplateChecklistNode = ({
   data,

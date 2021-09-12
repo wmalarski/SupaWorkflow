@@ -13,11 +13,11 @@ import { MutationArgs } from "../../../../utils/rep";
 import TemplateChecklistNode from "../TemplateChecklistNode/TemplateChecklistNode";
 import TemplateDecisionNode from "../TemplateDecisionNode/TemplateDecisionNode";
 import TemplateFormNode from "../TemplateFormNode/TemplateFormNode";
+import { TemplateNodeData } from "./TemplateEditorView.types";
 import {
   elementsToMessages,
   getNewMessage,
   messagesToElements,
-  TemplateNodeData,
 } from "./TemplateEditorView.utils";
 
 export type TemplateEditorViewProps = {
