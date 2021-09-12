@@ -1,4 +1,5 @@
-import { Elements, FlowElement } from "react-flow-renderer";
+import { nanoid } from "nanoid";
+import { Connection, Edge, Elements, FlowElement } from "react-flow-renderer";
 import { Message } from "../../../../services";
 import { MutationArgs } from "../../../../utils/rep";
 
@@ -49,6 +50,8 @@ export const messageToElement = ({
         id,
         source: data.source,
         target: data.target,
+        sourceHandle: data.sourceHandle,
+        targetHandle: data.targetHandle,
         data: { message, onChange },
       };
     case "node":
@@ -72,3 +75,27 @@ export const messagesToElements = ({
   onChange,
 }: MessagesToElementsOptions): Elements<TemplateNodeData> =>
   messages.map((message) => messageToElement({ message, onChange }));
+
+export type GetNewEdgeMessageOptions = {
+  templateId: number;
+  connection: Connection | Edge<TemplateNodeData>;
+};
+
+export const getNewEdgeMessage = ({
+  connection,
+  templateId,
+}: GetNewEdgeMessageOptions): MutationArgs["putMessage"] | null =>
+  connection.source && connection.target
+    ? {
+        id: nanoid(),
+        template_id: templateId,
+        workflow_id: null,
+        data: {
+          kind: "edge",
+          source: connection.source,
+          target: connection.target,
+          sourceHandle: connection.sourceHandle,
+          targetHandle: connection.targetHandle,
+        },
+      }
+    : null;

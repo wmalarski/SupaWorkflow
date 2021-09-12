@@ -2,15 +2,15 @@ import { nanoid } from "nanoid";
 import { MessageNodeType } from "../../../../services/nodes";
 import { MutationArgs } from "../../../../utils/rep";
 
-export type GetNewMessageOptions = {
+export type GetNewNodeMessageOptions = {
   datatype: MessageNodeType;
   templateId: number;
 };
 
-export const getNewMessage = ({
+export const getNewNodeMessage = ({
   datatype,
   templateId,
-}: GetNewMessageOptions): MutationArgs["putMessage"] => {
+}: GetNewNodeMessageOptions): MutationArgs["putMessage"] => {
   const base = {
     id: nanoid(),
     workflow_id: null,

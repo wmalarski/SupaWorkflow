@@ -4,7 +4,7 @@ import React, { useCallback } from "react";
 import { MessageNodeType } from "../../../../services/nodes";
 import { useText } from "../../../../utils";
 import { MutationArgs } from "../../../../utils/rep";
-import { getNewMessage } from "./TemplateEditorBar.utils";
+import { getNewNodeMessage } from "./TemplateEditorBar.utils";
 
 export type TemplateEditorBarProps = {
   templateId: number;
@@ -19,7 +19,7 @@ const TemplateEditorBar = ({
 
   const handleAddElement = useCallback(
     (datatype: MessageNodeType) => () =>
-      onChange(getNewMessage({ datatype, templateId })),
+      onChange(getNewNodeMessage({ datatype, templateId })),
     [onChange, templateId]
   );
 

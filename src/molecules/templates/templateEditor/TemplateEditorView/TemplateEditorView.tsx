@@ -2,7 +2,9 @@ import React, { useCallback, useMemo } from "react";
 import ReactFlow, {
   Background,
   BackgroundVariant,
+  Connection,
   Controls,
+  Edge,
   Elements,
 } from "react-flow-renderer";
 import { Message } from "../../../../services";
@@ -14,6 +16,7 @@ import TemplateEditorBar from "../TemplateEditorBar/TemplateEditorBar";
 import TemplateFormNode from "../TemplateFormNode/TemplateFormNode";
 import {
   elementsToMessages,
+  getNewEdgeMessage,
   messagesToElements,
   TemplateNodeData,
 } from "./TemplateEditorView.utils";
@@ -51,6 +54,15 @@ const TemplateEditorView = ({
     [onDelete]
   );
 
+  const handleConnect = useCallback(
+    (connection: Connection | Edge<TemplateNodeData>) => {
+      const edge = getNewEdgeMessage({ connection, templateId });
+      if (!edge) return;
+      onChange(edge);
+    },
+    [onChange, templateId]
+  );
+
   return (
     <div style={{ height: 600, width: 1200 }}>
       <TemplateEditorBar onChange={onChange} templateId={templateId} />
@@ -58,6 +70,7 @@ const TemplateEditorView = ({
         elements={elements}
         nodeTypes={nodeTypes}
         onElementsRemove={handleElementsRemove}
+        onConnect={handleConnect}
         snapToGrid
         deleteKeyCode={46} /* 'delete'-key */
       >

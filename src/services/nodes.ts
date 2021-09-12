@@ -12,6 +12,8 @@ export type MessageEdge = {
   kind: "edge";
   source: string;
   target: string;
+  sourceHandle?: string | null;
+  targetHandle?: string | null;
 };
 
 export enum MessageNodeType {

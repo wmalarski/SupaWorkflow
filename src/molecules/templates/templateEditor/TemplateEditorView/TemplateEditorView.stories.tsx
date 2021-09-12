@@ -88,7 +88,11 @@ const Template: ComponentStory<typeof TemplateEditorView> = (args) => {
           return next;
         })
       }
-      onDelete={() => void 0}
+      onDelete={(args) =>
+        setMessages((current) =>
+          current.filter((message) => message.id !== args.id)
+        )
+      }
       templateId={args.templateId}
     />
   );
