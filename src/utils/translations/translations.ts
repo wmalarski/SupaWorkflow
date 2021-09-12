@@ -99,6 +99,9 @@ const translation = {
 
   // Template editor
   version: "Version",
+  checklistTemplateNode: "Check List",
+  formTemplateNode: "Form",
+  decisionTemplateNode: "Decision",
   deleteTemplateNodeOption: "Delete",
   addTemplateNodeOption: "Add",
   upTemplateNodeOption: "Add",

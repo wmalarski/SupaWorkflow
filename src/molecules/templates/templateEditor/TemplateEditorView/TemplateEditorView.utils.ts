@@ -1,4 +1,4 @@
-import { Elements, FlowElement, Position } from "react-flow-renderer";
+import { Elements, FlowElement } from "react-flow-renderer";
 import { Message } from "../../../../services";
 import { MutationArgs } from "../../../../utils/rep";
 
@@ -8,6 +8,15 @@ export type TemplateNodeData = {
 };
 
 export type TemplateNodeProps = {
+  id: string;
+  isConnectable: boolean;
+  isDragging: boolean;
+  selected: boolean;
+  sourcePosition?: string;
+  targetPosition?: string;
+  type: "ChecklistTemplate";
+  xPos: number;
+  yPos: number;
   data: TemplateNodeData;
 };
 
@@ -46,8 +55,6 @@ export const messageToElement = ({
       return {
         id,
         position: data.position,
-        sourcePosition: Position.Left,
-        targetPosition: Position.Right,
         type: data.datatype,
         style: { width: 300 },
         data: { message, onChange },

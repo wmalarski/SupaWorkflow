@@ -18,8 +18,8 @@ const initialMessages: Message[] = [
     data: {
       kind: "node",
       position: { x: 50, y: 125 },
-      datatype: MessageNodeType.FormTemplate,
-      fields: ["field1", "field2"],
+      datatype: MessageNodeType.ChecklistTemplate,
+      tasks: ["check1", "check2"],
     },
   },
   // default node

@@ -16,6 +16,10 @@ export type ListFormData = {
   entries: string[];
 };
 
+export type AfterRendererProps = {
+  index: number;
+};
+
 export type ListFormProps = {
   entries: string[];
   text: {
@@ -26,12 +30,14 @@ export type ListFormProps = {
     save: string;
   };
   onChange: (entries: string[]) => void;
+  AfterRenderer?: React.ComponentType<AfterRendererProps>;
 };
 
 const ListForm = ({
   entries,
   text,
   onChange,
+  AfterRenderer,
 }: ListFormProps): React.ReactElement => {
   const [count, setCount] = useState<number>(entries.length);
 
@@ -99,6 +105,7 @@ const ListForm = ({
                   <DeleteIcon />
                 </IconButton>
               </ButtonGroup>
+              {AfterRenderer && <AfterRenderer index={index} />}
             </HStack>
           ))}
         <ButtonGroup isAttached>

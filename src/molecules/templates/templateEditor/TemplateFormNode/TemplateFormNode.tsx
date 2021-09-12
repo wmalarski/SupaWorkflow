@@ -1,4 +1,6 @@
+import { Box, Heading } from "@chakra-ui/react";
 import React from "react";
+import { Handle, Position } from "react-flow-renderer";
 import { ListForm } from "../../../../atoms";
 import { MessageNodeType } from "../../../../services/nodes";
 import { useText } from "../../../../utils";
@@ -6,6 +8,7 @@ import { TemplateNodeProps } from "../TemplateEditorView/TemplateEditorView.util
 
 const TemplateFormNode = ({
   data,
+  selected,
 }: TemplateNodeProps): React.ReactElement | null => {
   const text = useText();
 
@@ -30,17 +33,31 @@ const TemplateFormNode = ({
     });
 
   return (
-    <ListForm
-      text={{
-        add: text("addTemplateNodeOption"),
-        delete: text("deleteTemplateNodeOption"),
-        down: text("downTemplateNodeOption"),
-        save: text("saveTemplateNode"),
-        up: text("upTemplateNodeOption"),
-      }}
-      entries={message.data.fields}
-      onChange={handleValid}
-    />
+    <Box
+      bg="white"
+      border="solid"
+      borderWidth={selected ? 2 : 1}
+      borderColor="black"
+      borderRadius={5}
+      padding={2}
+    >
+      <Handle type="target" position={Position.Left} />
+      <Heading size="sm" p={2}>
+        {text("formTemplateNode")}
+      </Heading>
+      <ListForm
+        text={{
+          add: text("addTemplateNodeOption"),
+          delete: text("deleteTemplateNodeOption"),
+          down: text("downTemplateNodeOption"),
+          save: text("saveTemplateNode"),
+          up: text("upTemplateNodeOption"),
+        }}
+        entries={message.data.fields}
+        onChange={handleValid}
+      />
+      <Handle type="source" position={Position.Right} />
+    </Box>
   );
 };
 
