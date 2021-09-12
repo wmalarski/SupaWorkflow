@@ -100,8 +100,8 @@ const translation = {
   // Template editor
   version: "Version",
   deleteMessage: "Delete",
-  addMessage: "Add",
-  updateMessage: "Update",
+  addTemplateNodeOption: "Add",
+  saveTemplateNode: "Save",
   editMessage: "Edit",
 
   // Add team
