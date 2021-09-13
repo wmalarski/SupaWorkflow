@@ -1,6 +1,6 @@
 import { Box, Heading, StackDivider, VStack } from "@chakra-ui/react";
 import React from "react";
-import { Handle, Position } from "react-flow-renderer";
+import { Position } from "react-flow-renderer";
 import {
   MessageNodeChecklistTemplateData,
   MessageNodeType,
@@ -8,6 +8,7 @@ import {
 import { useText } from "../../../../utils";
 import { TemplateNodeProps } from "../../templateEditor/TemplateEditorView/TemplateEditorView.utils";
 import TemplateDetailsForm from "../../templateForms/TemplateDetailsForm/TemplateDetailsForm";
+import TemplateHandle from "../../templateForms/TemplateHandle/TemplateHandle";
 import TemplateListForm from "../../templateForms/TemplateListForm/TemplateListForm";
 import TemplateTargetForm from "../../templateForms/TemplateTargetForm/TemplateTargetForm";
 import TemplateTeamsForm from "../../templateForms/TemplateTeamsForm/TemplateTeamsForm";
@@ -42,7 +43,7 @@ const TemplateChecklistNode = ({
       borderRadius={5}
       padding={2}
     >
-      <Handle type="target" position={Position.Left} />
+      <TemplateHandle type="target" position={Position.Left} />
       <VStack divider={<StackDivider borderColor="gray.200" />}>
         <Heading size="sm" p={2}>
           {text("checklistTemplateNode")}
@@ -67,7 +68,7 @@ const TemplateChecklistNode = ({
           onChange={(isTargetAll: boolean) => handleChange({ isTargetAll })}
         />
       </VStack>
-      <Handle type="source" position={Position.Right} />
+      <TemplateHandle type="source" position={Position.Right} />
     </Box>
   );
 };
