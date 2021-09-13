@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
-import { defaultMessage } from "../../../../services";
+import { defaultMessage, defaultTeams } from "../../../../services";
 import { MessageNodeType } from "../../../../services/nodes";
 import TemplateFormNode from "./TemplateFormNode";
 
@@ -23,8 +23,11 @@ Playground.args = {
         kind: "node",
         position: { x: 0, y: 0 },
         fields: ["field1", "field2"],
+        isTargetAll: true,
+        teamIds: [1, 2],
       },
     },
+    teams: defaultTeams,
     onChange: () => void 0,
   },
 };

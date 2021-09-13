@@ -2,15 +2,15 @@ import { Box, Heading } from "@chakra-ui/layout";
 import { StackDivider, VStack } from "@chakra-ui/react";
 import React from "react";
 import { Handle, Position } from "react-flow-renderer";
-import { ListForm } from "../../../../atoms";
 import {
   MessageNodeDecisionTemplateData,
   MessageNodeType,
 } from "../../../../services/nodes";
 import { useText } from "../../../../utils";
-import { TemplateNodeProps } from "../TemplateEditorView/TemplateEditorView.utils";
-import TemplateNodeTeamsForm from "../TemplateNodeTeamsForm/TemplateNodeTeamsForm";
-import TemplateTargetForm from "../TemplateTargetForm/TemplateTargetForm";
+import { TemplateNodeProps } from "../../templateEditor/TemplateEditorView/TemplateEditorView.utils";
+import TemplateListForm from "../../templateForms/TemplateListForm/TemplateListForm";
+import TemplateTargetForm from "../../templateForms/TemplateTargetForm/TemplateTargetForm";
+import TemplateTeamsForm from "../../templateForms/TemplateTeamsForm/TemplateTeamsForm";
 import TemplateDecisionNodeHandle from "./TemplateDecisionNodeHandle";
 
 const TemplateDecisionNode = ({
@@ -48,7 +48,7 @@ const TemplateDecisionNode = ({
         <Heading size="sm" p={2}>
           {text("decisionTemplateNode")}
         </Heading>
-        <ListForm
+        <TemplateListForm
           text={{
             add: text("addTemplateNodeOption"),
             delete: text("deleteTemplateNodeOption"),
@@ -59,7 +59,7 @@ const TemplateDecisionNode = ({
           onChange={(routes) => handleChange({ routes })}
           AfterRenderer={TemplateDecisionNodeHandle}
         />
-        <TemplateNodeTeamsForm
+        <TemplateTeamsForm
           teams={teams}
           selected={messageData.teamIds}
           onChange={(teamIds) => handleChange({ teamIds })}

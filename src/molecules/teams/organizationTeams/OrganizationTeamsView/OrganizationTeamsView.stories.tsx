@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
-import { defaultTeam } from "../../../../services";
+import { defaultTeams } from "../../../../services";
 import OrganizationTeamsView from "./OrganizationTeamsView";
 
 export default {
@@ -21,11 +21,5 @@ Playground.args = {
   page: 0,
   pageSize: 10,
   count: 20,
-  teams: Array(5)
-    .fill(defaultTeam)
-    .map((team, index) => ({
-      ...team,
-      id: index,
-      name: `${team.name} ${index}`,
-    })),
+  teams: defaultTeams,
 };

@@ -17,14 +17,20 @@ export const getNewNodeMessage = ({
     template_id: templateId,
   };
 
+  const dataBase = {
+    position: { x: 0, y: 0 },
+    isTargetAll: false,
+    teamIds: [],
+  };
+
   switch (datatype) {
     case MessageNodeType.ChecklistTemplate:
       return {
         ...base,
         data: {
-          datatype: MessageNodeType.ChecklistTemplate,
+          ...dataBase,
           kind: "node",
-          position: { x: 0, y: 0 },
+          datatype: MessageNodeType.ChecklistTemplate,
           tasks: [""],
         },
       };
@@ -32,9 +38,9 @@ export const getNewNodeMessage = ({
       return {
         ...base,
         data: {
-          datatype: MessageNodeType.DecisionTemplate,
+          ...dataBase,
           kind: "node",
-          position: { x: 0, y: 0 },
+          datatype: MessageNodeType.DecisionTemplate,
           routes: [""],
         },
       };
@@ -42,9 +48,9 @@ export const getNewNodeMessage = ({
       return {
         ...base,
         data: {
-          datatype: MessageNodeType.FormTemplate,
+          ...dataBase,
           kind: "node",
-          position: { x: 0, y: 0 },
+          datatype: MessageNodeType.FormTemplate,
           fields: [""],
         },
       };

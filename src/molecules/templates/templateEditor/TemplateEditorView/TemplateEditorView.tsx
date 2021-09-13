@@ -11,10 +11,10 @@ import ReactFlow, {
 import { Message, Team } from "../../../../services";
 import { MessageNodeType } from "../../../../services/nodes";
 import { MutationArgs } from "../../../../utils/rep";
-import TemplateChecklistNode from "../TemplateChecklistNode/TemplateChecklistNode";
-import TemplateDecisionNode from "../TemplateDecisionNode/TemplateDecisionNode";
+import TemplateChecklistNode from "../../templateNodes/TemplateChecklistNode/TemplateChecklistNode";
+import TemplateDecisionNode from "../../templateNodes/TemplateDecisionNode/TemplateDecisionNode";
+import TemplateFormNode from "../../templateNodes/TemplateFormNode/TemplateFormNode";
 import TemplateEditorBar from "../TemplateEditorBar/TemplateEditorBar";
-import TemplateFormNode from "../TemplateFormNode/TemplateFormNode";
 import {
   elementsToMessages,
   getNewEdgeMessage,

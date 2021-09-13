@@ -1,6 +1,6 @@
 import React from "react";
 import { Handle, Position } from "react-flow-renderer";
-import { AfterRendererProps } from "../../../../atoms/ListForm/ListForm";
+import { AfterRendererProps } from "../../templateForms/TemplateListForm/TemplateListForm";
 
 const TemplateDecisionNodeHandle = ({
   index,

@@ -87,6 +87,14 @@ export const defaultTeam: Team = {
   organization_id: 1,
 };
 
+export const defaultTeams: Team[] = Array(5)
+  .fill(defaultTeam)
+  .map((team, index) => ({
+    ...team,
+    id: index,
+    name: `${team.name}-${index}`,
+  }));
+
 export const defaultOrganizationMember: OrganizationMember = {
   id: 1,
   organization_id: 1,
@@ -100,6 +108,8 @@ export const defaultMessage: Message = {
     datatype: MessageNodeType.ChecklistTemplate,
     position: { x: 0, y: 0 },
     tasks: ["task1", "task2"],
+    isTargetAll: true,
+    teamIds: [1, 2],
   },
   deleted: false,
   id: "1",

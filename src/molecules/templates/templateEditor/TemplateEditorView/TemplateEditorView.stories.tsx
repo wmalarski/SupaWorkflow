@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React, { useEffect, useState } from "react";
-import { defaultTeam, Message, Team } from "../../../../services";
+import { defaultTeams, Message } from "../../../../services";
 import { MessageNodeType } from "../../../../services/nodes";
 import TemplateEditorView from "./TemplateEditorView";
 
@@ -11,14 +11,6 @@ const baseMessage = {
   workflow_id: 1,
 };
 
-const teams: Team[] = Array(5)
-  .fill(defaultTeam)
-  .map((team, index) => ({
-    ...team,
-    id: index,
-    name: `${team.name}-${index}`,
-  }));
-
 const initialMessages: Message[] = [
   {
     ...baseMessage,
@@ -28,7 +20,7 @@ const initialMessages: Message[] = [
       position: { x: 50, y: 125 },
       datatype: MessageNodeType.ChecklistTemplate,
       tasks: ["check1", "check2"],
-      teamIds: [teams[0].id, teams[2].id],
+      teamIds: [defaultTeams[0].id, defaultTeams[2].id],
       isTargetAll: false,
     },
   },
@@ -41,7 +33,7 @@ const initialMessages: Message[] = [
       position: { x: 100, y: 125 },
       datatype: MessageNodeType.FormTemplate,
       fields: ["field1", "field2"],
-      teamIds: [teams[1].id, teams[2].id],
+      teamIds: [defaultTeams[1].id, defaultTeams[2].id],
       isTargetAll: true,
     },
   },
@@ -54,7 +46,7 @@ const initialMessages: Message[] = [
       position: { x: 250, y: 250 },
       datatype: MessageNodeType.DecisionTemplate,
       routes: ["route1", "route2"],
-      teamIds: [teams[2].id, teams[3].id, teams[4].id],
+      teamIds: [defaultTeams[2].id, defaultTeams[3].id, defaultTeams[4].id],
       isTargetAll: false,
     },
   },
@@ -89,7 +81,7 @@ const Template: ComponentStory<typeof TemplateEditorView> = (args) => {
   return (
     <TemplateEditorView
       messages={messages}
-      teams={teams}
+      teams={defaultTeams}
       onChange={(args) =>
         setMessages((current) => {
           const index = current.findIndex((message) => message.id === args.id);

@@ -1,30 +1,30 @@
 import { Box, Heading, StackDivider, VStack } from "@chakra-ui/react";
 import React from "react";
 import { Handle, Position } from "react-flow-renderer";
-import { ListForm } from "../../../../atoms";
 import {
-  MessageNodeChecklistTemplateData,
+  MessageNodeFormTemplateData,
   MessageNodeType,
 } from "../../../../services/nodes";
 import { useText } from "../../../../utils";
-import { TemplateNodeProps } from "../TemplateEditorView/TemplateEditorView.utils";
-import TemplateNodeTeamsForm from "../TemplateNodeTeamsForm/TemplateNodeTeamsForm";
-import TemplateTargetForm from "../TemplateTargetForm/TemplateTargetForm";
+import { TemplateNodeProps } from "../../templateEditor/TemplateEditorView/TemplateEditorView.utils";
+import TemplateListForm from "../../templateForms/TemplateListForm/TemplateListForm";
+import TemplateTargetForm from "../../templateForms/TemplateTargetForm/TemplateTargetForm";
+import TemplateTeamsForm from "../../templateForms/TemplateTeamsForm/TemplateTeamsForm";
 
-const TemplateChecklistNode = ({
+const TemplateFormNode = ({
   data: { teams, message, onChange },
 }: TemplateNodeProps): React.ReactElement | null => {
   const text = useText();
 
   if (
     message.data.kind !== "node" ||
-    message.data.datatype !== MessageNodeType.ChecklistTemplate
+    message.data.datatype !== MessageNodeType.FormTemplate
   )
     return null;
 
-  const messageData: MessageNodeChecklistTemplateData = message.data;
+  const messageData: MessageNodeFormTemplateData = message.data;
 
-  const handleChange = (newData: Partial<MessageNodeChecklistTemplateData>) =>
+  const handleChange = (newData: Partial<MessageNodeFormTemplateData>) =>
     onChange({
       data: { ...messageData, ...newData },
       id: message.id,
@@ -44,19 +44,19 @@ const TemplateChecklistNode = ({
       <Handle type="target" position={Position.Left} />
       <VStack divider={<StackDivider borderColor="gray.200" />}>
         <Heading size="sm" p={2}>
-          {text("checklistTemplateNode")}
+          {text("formTemplateNode")}
         </Heading>
-        <ListForm
+        <TemplateListForm
           text={{
             add: text("addTemplateNodeOption"),
             delete: text("deleteTemplateNodeOption"),
             down: text("downTemplateNodeOption"),
             up: text("upTemplateNodeOption"),
           }}
-          entries={message.data.tasks}
-          onChange={(tasks) => handleChange({ tasks })}
+          entries={messageData.fields}
+          onChange={(fields) => handleChange({ fields })}
         />
-        <TemplateNodeTeamsForm
+        <TemplateTeamsForm
           teams={teams}
           selected={messageData.teamIds}
           onChange={(teamIds) => handleChange({ teamIds })}
@@ -71,4 +71,4 @@ const TemplateChecklistNode = ({
   );
 };
 
-export default TemplateChecklistNode;
+export default TemplateFormNode;

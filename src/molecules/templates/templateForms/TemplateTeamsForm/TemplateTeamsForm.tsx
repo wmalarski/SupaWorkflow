@@ -3,17 +3,17 @@ import React from "react";
 import { Team } from "../../../../services";
 import { useText } from "../../../../utils";
 
-export type TemplateNodeTeamsFormProps = {
+export type TemplateTeamsFormProps = {
   teams: Team[];
   selected: number[];
   onChange: (selected: number[]) => void;
 };
 
-const TemplateNodeTeamsForm = ({
+const TemplateTeamsForm = ({
   teams,
   selected,
   onChange,
-}: TemplateNodeTeamsFormProps): React.ReactElement => {
+}: TemplateTeamsFormProps): React.ReactElement => {
   const text = useText();
 
   return (
@@ -38,4 +38,4 @@ const TemplateNodeTeamsForm = ({
   );
 };
 
-export default TemplateNodeTeamsForm;
+export default TemplateTeamsForm;
