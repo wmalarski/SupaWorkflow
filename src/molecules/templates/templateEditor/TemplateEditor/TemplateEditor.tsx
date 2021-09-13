@@ -1,5 +1,6 @@
 import React from "react";
-import { useTemplateContext } from "../../../../utils";
+import { useSelectTeams } from "../../../../services";
+import { useOrganizationContext, useTemplateContext } from "../../../../utils";
 import { useMessages } from "../../../../utils/rep";
 import { useRepMutations } from "../../../../utils/rep/RepContext";
 import TemplateEditorView from "../TemplateEditorView/TemplateEditorView";
@@ -13,6 +14,7 @@ export type TemplateEditorProps = {
 const TemplateEditor = ({
   View = TemplateEditorView,
 }: TemplateEditorProps): React.ReactElement => {
+  const { organization } = useOrganizationContext();
   const template = useTemplateContext();
 
   const messages = useMessages({ templateId: template.id });
@@ -20,8 +22,15 @@ const TemplateEditor = ({
   const { putMessage: putMessage, delMessage: deleteMessage } =
     useRepMutations();
 
+  const { data: teams } = useSelectTeams({
+    organizationId: organization.id,
+    from: 0,
+    to: 50,
+  });
+
   return (
     <View
+      teams={teams?.entries ?? []}
       templateId={template.id}
       messages={messages}
       onDelete={deleteMessage}

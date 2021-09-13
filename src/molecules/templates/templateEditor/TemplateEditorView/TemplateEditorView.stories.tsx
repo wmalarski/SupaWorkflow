@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React, { useEffect, useState } from "react";
-import { Message } from "../../../../services";
+import { defaultTeam, Message, Team } from "../../../../services";
 import { MessageNodeType } from "../../../../services/nodes";
 import TemplateEditorView from "./TemplateEditorView";
 
@@ -11,6 +11,14 @@ const baseMessage = {
   workflow_id: 1,
 };
 
+const teams: Team[] = Array(5)
+  .fill(defaultTeam)
+  .map((team, index) => ({
+    ...team,
+    id: index,
+    name: `${team.name}-${index}`,
+  }));
+
 const initialMessages: Message[] = [
   {
     ...baseMessage,
@@ -20,6 +28,7 @@ const initialMessages: Message[] = [
       position: { x: 50, y: 125 },
       datatype: MessageNodeType.ChecklistTemplate,
       tasks: ["check1", "check2"],
+      teamIds: [teams[0].id, teams[2].id],
     },
   },
   // default node
@@ -31,6 +40,7 @@ const initialMessages: Message[] = [
       position: { x: 100, y: 125 },
       datatype: MessageNodeType.FormTemplate,
       fields: ["field1", "field2"],
+      teamIds: [teams[1].id, teams[2].id],
     },
   },
   {
@@ -42,6 +52,7 @@ const initialMessages: Message[] = [
       position: { x: 250, y: 250 },
       datatype: MessageNodeType.DecisionTemplate,
       routes: ["route1", "route2"],
+      teamIds: [teams[2].id, teams[3].id, teams[4].id],
     },
   },
   // animated edge
@@ -75,16 +86,21 @@ const Template: ComponentStory<typeof TemplateEditorView> = (args) => {
   return (
     <TemplateEditorView
       messages={messages}
+      teams={teams}
       onChange={(args) =>
         setMessages((current) => {
           const index = current.findIndex((message) => message.id === args.id);
-          console.log({ args, current });
           const next = [...current];
           next.splice(
             index,
             index < 0 ? 0 : 1,
-            current[index] ?? { ...args, deleted: false, updated_at: "" }
+            { ...current[index], ...args } ?? {
+              ...args,
+              deleted: false,
+              updated_at: "",
+            }
           );
+          console.log({ args, current, next, index });
           return next;
         })
       }

@@ -6,6 +6,7 @@ export type MessageNodePosition = {
 export type MessageNode = {
   kind: "node";
   position: MessageNodePosition;
+  teamIds: number[];
 };
 
 export type MessageEdge = {

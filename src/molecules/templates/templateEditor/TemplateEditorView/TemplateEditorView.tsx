@@ -8,7 +8,7 @@ import ReactFlow, {
   Elements,
   Node,
 } from "react-flow-renderer";
-import { Message } from "../../../../services";
+import { Message, Team } from "../../../../services";
 import { MessageNodeType } from "../../../../services/nodes";
 import { MutationArgs } from "../../../../utils/rep";
 import TemplateChecklistNode from "../TemplateChecklistNode/TemplateChecklistNode";
@@ -24,6 +24,7 @@ import {
 
 export type TemplateEditorViewProps = {
   templateId: number;
+  teams: Team[];
   messages: Message[];
   onChange: (args: MutationArgs["putMessage"]) => void;
   onDelete: (args: MutationArgs["delMessage"]) => void;
@@ -37,13 +38,14 @@ const nodeTypes = {
 
 const TemplateEditorView = ({
   templateId,
+  teams,
   messages,
   onChange,
   onDelete,
 }: TemplateEditorViewProps): React.ReactElement => {
   const elements = useMemo<Elements<TemplateNodeData>>(
-    () => messagesToElements({ messages, onChange }),
-    [messages, onChange]
+    () => messagesToElements({ teams, messages, onChange }),
+    [messages, onChange, teams]
   );
 
   const handleElementsRemove = useCallback(

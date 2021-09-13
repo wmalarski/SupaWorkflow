@@ -2,16 +2,18 @@ import { Box, Heading } from "@chakra-ui/react";
 import React from "react";
 import { Handle, Position } from "react-flow-renderer";
 import { ListForm } from "../../../../atoms";
-import { MessageNodeType } from "../../../../services/nodes";
+import {
+  MessageNodeChecklistTemplateData,
+  MessageNodeType,
+} from "../../../../services/nodes";
 import { useText } from "../../../../utils";
 import { TemplateNodeProps } from "../TemplateEditorView/TemplateEditorView.utils";
+import TemplateNodeTeamsForm from "../TemplateNodeTeamsForm/TemplateNodeTeamsForm";
 
 const TemplateChecklistNode = ({
-  data,
+  data: { teams, message, onChange },
 }: TemplateNodeProps): React.ReactElement | null => {
   const text = useText();
-
-  const { message, onChange } = data;
 
   if (
     message.data.kind !== "node" ||
@@ -19,13 +21,19 @@ const TemplateChecklistNode = ({
   )
     return null;
 
+  const messageData: MessageNodeChecklistTemplateData = message.data;
+
   const handleValid = (tasks: string[]) =>
     onChange({
-      data: {
-        ...message.data,
-        datatype: MessageNodeType.ChecklistTemplate,
-        tasks,
-      },
+      data: { ...messageData, tasks },
+      id: message.id,
+      template_id: message.template_id,
+      workflow_id: message.workflow_id,
+    });
+
+  const handleTeamChange = (teamIds: number[]) =>
+    onChange({
+      data: { ...messageData, teamIds },
       id: message.id,
       template_id: message.template_id,
       workflow_id: message.workflow_id,
@@ -53,6 +61,11 @@ const TemplateChecklistNode = ({
         }}
         entries={message.data.tasks}
         onChange={handleValid}
+      />
+      <TemplateNodeTeamsForm
+        teams={teams}
+        selected={messageData.teamIds}
+        onChange={handleTeamChange}
       />
       <Handle type="source" position={Position.Right} />
     </Box>

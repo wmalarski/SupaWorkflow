@@ -23,5 +23,9 @@ Playground.args = {
   count: 20,
   teams: Array(5)
     .fill(defaultTeam)
-    .map((team, index) => ({ ...team, id: index })),
+    .map((team, index) => ({
+      ...team,
+      id: index,
+      name: `${team.name} ${index}`,
+    })),
 };

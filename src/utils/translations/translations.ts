@@ -102,6 +102,7 @@ const translation = {
   checklistTemplateNode: "Check List",
   formTemplateNode: "Form",
   decisionTemplateNode: "Decision",
+  teamsTemplateNode: "Teams",
   deleteTemplateNodeOption: "Delete",
   addTemplateNodeOption: "Add",
   upTemplateNodeOption: "Add",

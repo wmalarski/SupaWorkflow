@@ -2,17 +2,19 @@ import { Box, Heading } from "@chakra-ui/layout";
 import React from "react";
 import { Handle, Position } from "react-flow-renderer";
 import { ListForm } from "../../../../atoms";
-import { MessageNodeType } from "../../../../services/nodes";
+import {
+  MessageNodeDecisionTemplateData,
+  MessageNodeType,
+} from "../../../../services/nodes";
 import { useText } from "../../../../utils";
 import { TemplateNodeProps } from "../TemplateEditorView/TemplateEditorView.utils";
+import TemplateNodeTeamsForm from "../TemplateNodeTeamsForm/TemplateNodeTeamsForm";
 import TemplateDecisionNodeHandle from "./TemplateDecisionNodeHandle";
 
 const TemplateDecisionNode = ({
-  data,
+  data: { teams, message, onChange },
 }: TemplateNodeProps): React.ReactElement | null => {
   const text = useText();
-
-  const { message, onChange } = data;
 
   if (
     message.data.kind !== "node" ||
@@ -20,13 +22,19 @@ const TemplateDecisionNode = ({
   )
     return null;
 
+  const messageData: MessageNodeDecisionTemplateData = message.data;
+
   const handleValid = (routes: string[]) =>
     onChange({
-      data: {
-        ...message.data,
-        datatype: MessageNodeType.DecisionTemplate,
-        routes,
-      },
+      data: { ...messageData, routes },
+      id: message.id,
+      template_id: message.template_id,
+      workflow_id: message.workflow_id,
+    });
+
+  const handleTeamChange = (teamIds: number[]) =>
+    onChange({
+      data: { ...messageData, teamIds },
       id: message.id,
       template_id: message.template_id,
       workflow_id: message.workflow_id,
@@ -55,6 +63,11 @@ const TemplateDecisionNode = ({
         entries={message.data.routes}
         onChange={handleValid}
         AfterRenderer={TemplateDecisionNodeHandle}
+      />
+      <TemplateNodeTeamsForm
+        teams={teams}
+        selected={messageData.teamIds}
+        onChange={handleTeamChange}
       />
     </Box>
   );
