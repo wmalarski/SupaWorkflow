@@ -6,9 +6,10 @@ import {
 } from "@chakra-ui/icons";
 import { Input } from "@chakra-ui/input";
 import { HStack, VStack } from "@chakra-ui/layout";
-import { ButtonGroup, IconButton } from "@chakra-ui/react";
+import { ButtonGroup, Heading, IconButton } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useText } from "../../../../utils";
 
 export type ListFormData = {
   entries: string[];
@@ -19,23 +20,20 @@ export type AfterRendererProps = {
 };
 
 export type ListFormProps = {
+  heading?: React.ReactNode;
   entries: string[];
-  text: {
-    add: string;
-    up: string;
-    down: string;
-    delete: string;
-  };
   onChange: (entries: string[]) => void;
   AfterRenderer?: React.ComponentType<AfterRendererProps>;
 };
 
 const ListForm = ({
+  heading,
   entries,
-  text,
   onChange,
   AfterRenderer,
 }: ListFormProps): React.ReactElement => {
+  const text = useText();
+
   const [count, setCount] = useState<number>(entries.length);
 
   const { register, handleSubmit, getValues, setValue } = useForm<ListFormData>(
@@ -74,6 +72,7 @@ const ListForm = ({
   return (
     <form onChange={handleSubmit(onChange)}>
       <VStack spacing={2}>
+        <Heading size="xs">{heading}</Heading>
         {Array(count)
           .fill(null)
           .map((_, index) => (
@@ -81,7 +80,7 @@ const ListForm = ({
               <Input size="xs" {...register(`entries.${index}`)} />
               <ButtonGroup isAttached>
                 <IconButton
-                  aria-label={text.up}
+                  aria-label={text("upTemplateNodeOption")}
                   onClick={handleUp(index)}
                   disabled={index === 0}
                   size="xs"
@@ -89,7 +88,7 @@ const ListForm = ({
                   <ChevronUpIcon />
                 </IconButton>
                 <IconButton
-                  aria-label={text.down}
+                  aria-label={text("downTemplateNodeOption")}
                   onClick={handleDown(index)}
                   disabled={index === count - 1}
                   size="xs"
@@ -97,14 +96,14 @@ const ListForm = ({
                   <ChevronDownIcon />
                 </IconButton>
                 <IconButton
-                  aria-label={text.add}
+                  aria-label={text("addTemplateNodeOption")}
                   onClick={handleAdd(index)}
                   size="xs"
                 >
                   <SmallAddIcon />
                 </IconButton>
                 <IconButton
-                  aria-label={text.delete}
+                  aria-label={text("deleteTemplateNodeOption")}
                   onClick={handleDelete(index)}
                   disabled={count < 2}
                   size="xs"

@@ -17,23 +17,25 @@ const TemplateTeamsForm = ({
   const text = useText();
 
   return (
-    <VStack>
+    <VStack width="100%">
       <Heading size="xs">{text("teamsTemplateNode")}</Heading>
-      {teams.map((team) => (
-        <Checkbox
-          key={team.id}
-          isChecked={selected.includes(team.id)}
-          onChange={(event) =>
-            onChange(
-              event.target.checked
-                ? [...selected, team.id]
-                : selected.filter((e) => e !== team.id)
-            )
-          }
-        >
-          <Text fontSize="sm">{team.name}</Text>
-        </Checkbox>
-      ))}
+      <VStack maxHeight={100} overflowY="auto" width="100%">
+        {teams.map((team) => (
+          <Checkbox
+            key={team.id}
+            isChecked={selected.includes(team.id)}
+            onChange={(event) =>
+              onChange(
+                event.target.checked
+                  ? [...selected, team.id]
+                  : selected.filter((e) => e !== team.id)
+              )
+            }
+          >
+            <Text fontSize="sm">{team.name}</Text>
+          </Checkbox>
+        ))}
+      </VStack>
     </VStack>
   );
 };

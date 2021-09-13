@@ -21,6 +21,8 @@ export const getNewNodeMessage = ({
     position: { x: 0, y: 0 },
     isTargetAll: false,
     teamIds: [],
+    description: "",
+    title: "",
   };
 
   switch (datatype) {

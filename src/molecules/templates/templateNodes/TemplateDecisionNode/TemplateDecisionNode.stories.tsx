@@ -25,6 +25,8 @@ Playground.args = {
         routes: ["route1", "route2"],
         isTargetAll: false,
         teamIds: [1, 2],
+        description: "",
+        title: "",
       },
     },
     teams: defaultTeams,

@@ -110,6 +110,8 @@ export const defaultMessage: Message = {
     tasks: ["task1", "task2"],
     isTargetAll: true,
     teamIds: [1, 2],
+    description: "",
+    title: "",
   },
   deleted: false,
   id: "1",

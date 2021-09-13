@@ -25,6 +25,8 @@ Playground.args = {
         fields: ["field1", "field2"],
         isTargetAll: true,
         teamIds: [1, 2],
+        description: "",
+        title: "",
       },
     },
     teams: defaultTeams,

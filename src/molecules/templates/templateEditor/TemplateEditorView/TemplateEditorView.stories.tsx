@@ -22,6 +22,8 @@ const initialMessages: Message[] = [
       tasks: ["check1", "check2"],
       teamIds: [defaultTeams[0].id, defaultTeams[2].id],
       isTargetAll: false,
+      description: "ChecklistTemplate Title",
+      title: "ChecklistTemplate Title",
     },
   },
   // default node
@@ -35,6 +37,8 @@ const initialMessages: Message[] = [
       fields: ["field1", "field2"],
       teamIds: [defaultTeams[1].id, defaultTeams[2].id],
       isTargetAll: true,
+      description: "FormTemplate Title",
+      title: "FormTemplate Title",
     },
   },
   {
@@ -48,6 +52,8 @@ const initialMessages: Message[] = [
       routes: ["route1", "route2"],
       teamIds: [defaultTeams[2].id, defaultTeams[3].id, defaultTeams[4].id],
       isTargetAll: false,
+      description: "Decision Description",
+      title: "Decision Title",
     },
   },
   // animated edge

@@ -8,6 +8,7 @@ import {
 } from "../../../../services/nodes";
 import { useText } from "../../../../utils";
 import { TemplateNodeProps } from "../../templateEditor/TemplateEditorView/TemplateEditorView.utils";
+import TemplateDetailsForm from "../../templateForms/TemplateDetailsForm/TemplateDetailsForm";
 import TemplateListForm from "../../templateForms/TemplateListForm/TemplateListForm";
 import TemplateTargetForm from "../../templateForms/TemplateTargetForm/TemplateTargetForm";
 import TemplateTeamsForm from "../../templateForms/TemplateTeamsForm/TemplateTeamsForm";
@@ -48,13 +49,13 @@ const TemplateDecisionNode = ({
         <Heading size="sm" p={2}>
           {text("decisionTemplateNode")}
         </Heading>
+        <TemplateDetailsForm
+          description={messageData.description}
+          title={messageData.title}
+          onChange={(update) => handleChange(update)}
+        />
         <TemplateListForm
-          text={{
-            add: text("addTemplateNodeOption"),
-            delete: text("deleteTemplateNodeOption"),
-            down: text("downTemplateNodeOption"),
-            up: text("upTemplateNodeOption"),
-          }}
+          heading={text("decisionsTemplateNode")}
           entries={message.data.routes}
           onChange={(routes) => handleChange({ routes })}
           AfterRenderer={TemplateDecisionNodeHandle}

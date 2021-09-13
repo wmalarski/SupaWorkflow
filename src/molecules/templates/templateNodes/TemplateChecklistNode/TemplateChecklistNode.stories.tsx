@@ -25,6 +25,8 @@ Playground.args = {
         tasks: ["task1", "task2"],
         isTargetAll: false,
         teamIds: [1, 3],
+        description: "",
+        title: "",
       },
     },
     teams: defaultTeams,

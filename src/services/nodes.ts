@@ -8,6 +8,8 @@ export type MessageNode = {
   position: MessageNodePosition;
   teamIds: number[];
   isTargetAll: boolean;
+  title: string;
+  description: string;
 };
 
 export type MessageEdge = {
