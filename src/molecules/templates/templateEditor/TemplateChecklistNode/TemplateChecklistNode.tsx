@@ -1,4 +1,4 @@
-import { Box, Heading, VStack } from "@chakra-ui/react";
+import { Box, Heading, StackDivider, VStack } from "@chakra-ui/react";
 import React from "react";
 import { Handle, Position } from "react-flow-renderer";
 import { ListForm } from "../../../../atoms";
@@ -9,6 +9,7 @@ import {
 import { useText } from "../../../../utils";
 import { TemplateNodeProps } from "../TemplateEditorView/TemplateEditorView.utils";
 import TemplateNodeTeamsForm from "../TemplateNodeTeamsForm/TemplateNodeTeamsForm";
+import TemplateTargetForm from "../TemplateTargetForm/TemplateTargetForm";
 
 const TemplateChecklistNode = ({
   data: { teams, message, onChange },
@@ -23,17 +24,9 @@ const TemplateChecklistNode = ({
 
   const messageData: MessageNodeChecklistTemplateData = message.data;
 
-  const handleValid = (tasks: string[]) =>
+  const handleChange = (newData: Partial<MessageNodeChecklistTemplateData>) =>
     onChange({
-      data: { ...messageData, tasks },
-      id: message.id,
-      template_id: message.template_id,
-      workflow_id: message.workflow_id,
-    });
-
-  const handleTeamChange = (teamIds: number[]) =>
-    onChange({
-      data: { ...messageData, teamIds },
+      data: { ...messageData, ...newData },
       id: message.id,
       template_id: message.template_id,
       workflow_id: message.workflow_id,
@@ -49,10 +42,10 @@ const TemplateChecklistNode = ({
       padding={2}
     >
       <Handle type="target" position={Position.Left} />
-      <Heading size="sm" p={2}>
-        {text("checklistTemplateNode")}
-      </Heading>
-      <VStack>
+      <VStack divider={<StackDivider borderColor="gray.200" />}>
+        <Heading size="sm" p={2}>
+          {text("checklistTemplateNode")}
+        </Heading>
         <ListForm
           text={{
             add: text("addTemplateNodeOption"),
@@ -61,12 +54,16 @@ const TemplateChecklistNode = ({
             up: text("upTemplateNodeOption"),
           }}
           entries={message.data.tasks}
-          onChange={handleValid}
+          onChange={(tasks) => handleChange({ tasks })}
         />
         <TemplateNodeTeamsForm
           teams={teams}
           selected={messageData.teamIds}
-          onChange={handleTeamChange}
+          onChange={(teamIds) => handleChange({ teamIds })}
+        />
+        <TemplateTargetForm
+          isTargetAll={messageData.isTargetAll}
+          onChange={(isTargetAll: boolean) => handleChange({ isTargetAll })}
         />
       </VStack>
       <Handle type="source" position={Position.Right} />

@@ -7,6 +7,7 @@ export type MessageNode = {
   kind: "node";
   position: MessageNodePosition;
   teamIds: number[];
+  isTargetAll: boolean;
 };
 
 export type MessageEdge = {

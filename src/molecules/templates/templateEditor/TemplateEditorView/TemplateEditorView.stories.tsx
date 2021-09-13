@@ -29,6 +29,7 @@ const initialMessages: Message[] = [
       datatype: MessageNodeType.ChecklistTemplate,
       tasks: ["check1", "check2"],
       teamIds: [teams[0].id, teams[2].id],
+      isTargetAll: false,
     },
   },
   // default node
@@ -41,6 +42,7 @@ const initialMessages: Message[] = [
       datatype: MessageNodeType.FormTemplate,
       fields: ["field1", "field2"],
       teamIds: [teams[1].id, teams[2].id],
+      isTargetAll: true,
     },
   },
   {
@@ -53,6 +55,7 @@ const initialMessages: Message[] = [
       datatype: MessageNodeType.DecisionTemplate,
       routes: ["route1", "route2"],
       teamIds: [teams[2].id, teams[3].id, teams[4].id],
+      isTargetAll: false,
     },
   },
   // animated edge

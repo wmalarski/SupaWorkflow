@@ -103,6 +103,8 @@ const translation = {
   formTemplateNode: "Form",
   decisionTemplateNode: "Decision",
   teamsTemplateNode: "Teams",
+  targetTemplateNode: "Target",
+  targetAllTemplateNode: "Enabled when all?",
   deleteTemplateNodeOption: "Delete",
   addTemplateNodeOption: "Add",
   upTemplateNodeOption: "Add",
