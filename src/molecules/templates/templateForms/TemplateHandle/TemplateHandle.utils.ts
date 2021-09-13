@@ -30,3 +30,15 @@ export const isEdgeCycle = ({
   if (!connection.source || !connection.target) return false;
   return searchEdgeCycle(connection.source, [connection.target], edges);
 };
+
+export const isExistingConnection = ({
+  connection,
+  edges,
+}: FindEdgeCycleOptions): boolean =>
+  edges.some(
+    (edge) =>
+      edge.source === connection.source &&
+      edge.target === connection.target &&
+      edge.targetHandle === connection.targetHandle &&
+      edge.sourceHandle === connection.sourceHandle
+  );

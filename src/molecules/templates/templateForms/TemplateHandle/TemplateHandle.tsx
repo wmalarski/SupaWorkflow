@@ -1,6 +1,6 @@
 import React from "react";
 import { Handle, useStoreState } from "react-flow-renderer";
-import { isEdgeCycle } from "./TemplateHandle.utils";
+import { isEdgeCycle, isExistingConnection } from "./TemplateHandle.utils";
 
 const TemplateHandle = (
   props: React.ComponentProps<typeof Handle>
@@ -9,7 +9,10 @@ const TemplateHandle = (
 
   return (
     <Handle
-      isValidConnection={(connection) => !isEdgeCycle({ connection, edges })}
+      isValidConnection={(connection) =>
+        !isEdgeCycle({ connection, edges }) &&
+        !isExistingConnection({ connection, edges })
+      }
       {...props}
     />
   );

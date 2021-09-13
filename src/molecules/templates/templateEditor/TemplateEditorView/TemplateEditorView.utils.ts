@@ -1,6 +1,7 @@
 import { nanoid } from "nanoid";
 import { Connection, Edge, Elements, FlowElement } from "react-flow-renderer";
 import { Message, Team } from "../../../../services";
+import { MessageNodeType } from "../../../../services/nodes";
 import { MutationArgs } from "../../../../utils/rep";
 
 export type TemplateNodeData = {
@@ -37,26 +38,41 @@ export const elementsToMessages = (
 export type MessageToElementOptions = {
   teams: Team[];
   message: Message;
+  messages: Message[];
   onChange: (message: MutationArgs["putMessage"]) => void;
 };
 
 export const messageToElement = ({
   teams,
   message,
+  messages,
   onChange,
 }: MessageToElementOptions): FlowElement<TemplateNodeData> => {
   const { id, data } = message;
 
   switch (data.kind) {
-    case "edge":
+    case "edge": {
+      const routes = messages.flatMap((e) =>
+        data.sourceHandle &&
+        e.data.kind === "node" &&
+        e.id === data.source &&
+        e.data.datatype === MessageNodeType.DecisionTemplate
+          ? [e.data.routes]
+          : []
+      )[0];
+
+      const label = routes[Number(data.sourceHandle)];
+
       return {
         id,
+        label,
         source: data.source,
         target: data.target,
         sourceHandle: data.sourceHandle,
         targetHandle: data.targetHandle,
         data: { teams, message, onChange },
       };
+    }
     case "node":
       return {
         id,
@@ -79,7 +95,9 @@ export const messagesToElements = ({
   messages,
   onChange,
 }: MessagesToElementsOptions): Elements<TemplateNodeData> =>
-  messages.map((message) => messageToElement({ teams, message, onChange }));
+  messages.map((message) =>
+    messageToElement({ teams, message, messages, onChange })
+  );
 
 export type GetNewEdgeMessageOptions = {
   templateId: number;
