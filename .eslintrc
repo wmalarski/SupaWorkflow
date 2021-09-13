@@ -27,7 +27,6 @@
     "sourceType": "module"
   },
   "plugins": [
-    "react",
     "@typescript-eslint",
     "react-hooks",
     "@next/eslint-plugin-next",
@@ -35,9 +34,6 @@
   ],
   "rules": {
     "prettier/prettier": "error",
-    "import/prefer-default-export": "off",
-    "@typescript-eslint/explicit-function-return-type": "off",
-    "react/react-in-jsx-scope": "off",
     "jest/no-hooks": "off",
     "jest/no-disabled-tests": "off"
   },
