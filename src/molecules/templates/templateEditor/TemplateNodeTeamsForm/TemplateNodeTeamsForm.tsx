@@ -1,21 +1,7 @@
-import { SmallAddIcon } from "@chakra-ui/icons";
-import {
-  Heading,
-  HStack,
-  IconButton,
-  Menu,
-  MenuButton,
-  MenuItemOption,
-  MenuList,
-  MenuOptionGroup,
-  Tag,
-  TagLabel,
-  VStack,
-} from "@chakra-ui/react";
+import { Checkbox, Heading, Text, VStack } from "@chakra-ui/react";
 import React from "react";
 import { Team } from "../../../../services";
 import { useText } from "../../../../utils";
-import { joinTeamId } from "./TemplateNodeTeamsForm.utils";
 
 export type TemplateNodeTeamsFormProps = {
   teams: Team[];
@@ -32,41 +18,22 @@ const TemplateNodeTeamsForm = ({
 
   return (
     <VStack>
-      <HStack>
-        <Heading size="xs">{text("teamsTemplateNode")}</Heading>
-        <Menu closeOnSelect={false}>
-          <MenuButton as={IconButton} size="sm">
-            <SmallAddIcon />
-          </MenuButton>
-          <MenuList minWidth="240px">
-            <MenuOptionGroup
-              type="checkbox"
-              value={selected.map(String)}
-              onChange={(values) =>
-                Array.isArray(values) && onChange(values.map(Number))
-              }
-            >
-              {teams.map((team) => (
-                <MenuItemOption key={team.id} value={String(team.id)}>
-                  {team.name}
-                </MenuItemOption>
-              ))}
-            </MenuOptionGroup>
-          </MenuList>
-        </Menu>
-      </HStack>
-      <HStack>
-        {joinTeamId({ ids: selected, teams }).map((team) => (
-          <Tag
-            key={team.id}
-            borderRadius="full"
-            variant="solid"
-            bgColor={team.color}
-          >
-            <TagLabel>{team.name}</TagLabel>
-          </Tag>
-        ))}
-      </HStack>
+      <Heading size="xs">{text("teamsTemplateNode")}</Heading>
+      {teams.map((team) => (
+        <Checkbox
+          key={team.id}
+          isChecked={selected.includes(team.id)}
+          onChange={(event) =>
+            onChange(
+              event.target.checked
+                ? [...selected, team.id]
+                : selected.filter((e) => e !== team.id)
+            )
+          }
+        >
+          <Text fontSize="sm">{team.name}</Text>
+        </Checkbox>
+      ))}
     </VStack>
   );
 };

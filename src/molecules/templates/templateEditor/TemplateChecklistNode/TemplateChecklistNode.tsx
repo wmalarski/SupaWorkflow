@@ -1,4 +1,4 @@
-import { Box, Heading } from "@chakra-ui/react";
+import { Box, Heading, VStack } from "@chakra-ui/react";
 import React from "react";
 import { Handle, Position } from "react-flow-renderer";
 import { ListForm } from "../../../../atoms";
@@ -52,21 +52,23 @@ const TemplateChecklistNode = ({
       <Heading size="sm" p={2}>
         {text("checklistTemplateNode")}
       </Heading>
-      <ListForm
-        text={{
-          add: text("addTemplateNodeOption"),
-          delete: text("deleteTemplateNodeOption"),
-          down: text("downTemplateNodeOption"),
-          up: text("upTemplateNodeOption"),
-        }}
-        entries={message.data.tasks}
-        onChange={handleValid}
-      />
-      <TemplateNodeTeamsForm
-        teams={teams}
-        selected={messageData.teamIds}
-        onChange={handleTeamChange}
-      />
+      <VStack>
+        <ListForm
+          text={{
+            add: text("addTemplateNodeOption"),
+            delete: text("deleteTemplateNodeOption"),
+            down: text("downTemplateNodeOption"),
+            up: text("upTemplateNodeOption"),
+          }}
+          entries={message.data.tasks}
+          onChange={handleValid}
+        />
+        <TemplateNodeTeamsForm
+          teams={teams}
+          selected={messageData.teamIds}
+          onChange={handleTeamChange}
+        />
+      </VStack>
       <Handle type="source" position={Position.Right} />
     </Box>
   );

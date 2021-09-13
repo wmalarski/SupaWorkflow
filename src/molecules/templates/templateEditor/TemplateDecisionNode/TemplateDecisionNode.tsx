@@ -1,4 +1,5 @@
 import { Box, Heading } from "@chakra-ui/layout";
+import { VStack } from "@chakra-ui/react";
 import React from "react";
 import { Handle, Position } from "react-flow-renderer";
 import { ListForm } from "../../../../atoms";
@@ -53,22 +54,24 @@ const TemplateDecisionNode = ({
       <Heading size="sm" p={2}>
         {text("decisionTemplateNode")}
       </Heading>
-      <ListForm
-        text={{
-          add: text("addTemplateNodeOption"),
-          delete: text("deleteTemplateNodeOption"),
-          down: text("downTemplateNodeOption"),
-          up: text("upTemplateNodeOption"),
-        }}
-        entries={message.data.routes}
-        onChange={handleValid}
-        AfterRenderer={TemplateDecisionNodeHandle}
-      />
-      <TemplateNodeTeamsForm
-        teams={teams}
-        selected={messageData.teamIds}
-        onChange={handleTeamChange}
-      />
+      <VStack>
+        <ListForm
+          text={{
+            add: text("addTemplateNodeOption"),
+            delete: text("deleteTemplateNodeOption"),
+            down: text("downTemplateNodeOption"),
+            up: text("upTemplateNodeOption"),
+          }}
+          entries={message.data.routes}
+          onChange={handleValid}
+          AfterRenderer={TemplateDecisionNodeHandle}
+        />
+        <TemplateNodeTeamsForm
+          teams={teams}
+          selected={messageData.teamIds}
+          onChange={handleTeamChange}
+        />
+      </VStack>
     </Box>
   );
 };
