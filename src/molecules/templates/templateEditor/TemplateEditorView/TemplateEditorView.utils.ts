@@ -1,7 +1,7 @@
 import { nanoid } from "nanoid";
 import { Connection, Edge, Elements, FlowElement } from "react-flow-renderer";
 import { Message, Team } from "../../../../services";
-import { MessageNodeType } from "../../../../services/nodes";
+import { MessageKind, MessageNodeType } from "../../../../services/nodes";
 import { MutationArgs } from "../../../../utils/rep";
 
 export type TemplateNodeData = {
@@ -47,16 +47,16 @@ export const messageToElement = ({
   message,
   messages,
   onChange,
-}: MessageToElementOptions): FlowElement<TemplateNodeData> => {
+}: MessageToElementOptions): FlowElement<TemplateNodeData> | null => {
   const { id, data } = message;
 
   switch (data.kind) {
-    case "edge": {
+    case MessageKind.TemplateEdge: {
       const label = messages.flatMap((e) =>
         data.sourceHandle &&
-        e.data.kind === "node" &&
+        e.data.kind === MessageKind.TemplateNode &&
         e.id === data.source &&
-        e.data.datatype === MessageNodeType.DecisionTemplate
+        e.data.datatype === MessageNodeType.Decision
           ? [e.data.routes[Number(data.sourceHandle)]]
           : []
       )[0];
@@ -71,7 +71,7 @@ export const messageToElement = ({
         data: { teams, message, onChange },
       };
     }
-    case "node":
+    case MessageKind.TemplateNode:
       return {
         id,
         position: data.position,
@@ -79,6 +79,8 @@ export const messageToElement = ({
         style: { width: 300 },
         data: { teams, message, onChange },
       };
+    default:
+      return null;
   }
 };
 
@@ -93,9 +95,10 @@ export const messagesToElements = ({
   messages,
   onChange,
 }: MessagesToElementsOptions): Elements<TemplateNodeData> =>
-  messages.map((message) =>
-    messageToElement({ teams, message, messages, onChange })
-  );
+  messages.flatMap((message) => {
+    const element = messageToElement({ teams, message, messages, onChange });
+    return element ? [element] : [];
+  });
 
 export type GetNewEdgeMessageOptions = {
   templateId: number;
@@ -112,7 +115,7 @@ export const getNewEdgeMessage = ({
         template_id: templateId,
         workflow_id: null,
         data: {
-          kind: "edge",
+          kind: MessageKind.TemplateEdge,
           source: connection.source,
           target: connection.target,
           sourceHandle: connection.sourceHandle,

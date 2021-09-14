@@ -1,71 +1,80 @@
+export enum MessageKind {
+  TemplateNode = "TemplateNode",
+  WorkflowNode = "WorkflowNode",
+  TemplateEdge = "TemplateEdge",
+  WorkflowEdge = "WorkflowEdge",
+}
+
+export enum MessageNodeType {
+  Checklist = "Checklist",
+  Form = "Form",
+  Decision = "Decision",
+}
+
 export type MessageNodePosition = {
   x: number;
   y: number;
 };
 
-export type MessageNode = {
-  kind: "node";
+export type MessageTemplateNodeData = {
+  kind: MessageKind.TemplateNode;
   position: MessageNodePosition;
-};
-
-export type MessageTemplateNode = MessageNode & {
   teamIds: number[];
   isTargetAll: boolean;
   title: string;
   description: string;
 };
 
-export type MessageWorkflowNode = MessageNode;
+export type MessageWorkflowNodeData = {
+  kind: MessageKind.WorkflowNode;
+};
 
-export type MessageEdge = {
-  kind: "edge";
+export type MessageTemplateEdgeData = {
+  kind: MessageKind.TemplateEdge;
   source: string;
   target: string;
   sourceHandle?: string | null;
   targetHandle?: string | null;
 };
 
-export enum MessageNodeType {
-  ChecklistTemplate = "ChecklistTemplate",
-  FormTemplate = "FormTemplate",
-  DecisionTemplate = "DecisionTemplate",
-  ChecklistWorkflow = "ChecklistWorkflow",
-  FormWorkflow = "FormWorkflow",
-  DecisionWorkflow = "DecisionWorkflow",
-}
+export type MessageWorkflowEdgeData = {
+  kind: MessageKind.WorkflowEdge;
+  template: MessageTemplateEdgeData;
+};
 
-export type MessageNodeChecklistTemplateData = MessageTemplateNode & {
-  datatype: MessageNodeType.ChecklistTemplate;
+export type MessageChecklistTemplateNodeData = MessageTemplateNodeData & {
+  datatype: MessageNodeType.Checklist;
   tasks: string[];
 };
 
-export type MessageNodeFormTemplateData = MessageTemplateNode & {
-  datatype: MessageNodeType.FormTemplate;
+export type MessageFormTemplateNodeData = MessageTemplateNodeData & {
+  datatype: MessageNodeType.Form;
   fields: string[];
 };
 
-export type MessageNodeDecisionTemplateData = MessageTemplateNode & {
-  datatype: MessageNodeType.DecisionTemplate;
+export type MessageDecisionTemplateNodeData = MessageTemplateNodeData & {
+  datatype: MessageNodeType.Decision;
   routes: string[];
 };
 
-export type MessageNodeChecklistWorkflowData = MessageWorkflowNode & {
-  datatype: MessageNodeType.ChecklistWorkflow;
+export type MessageChecklistWorkflowNodeData = MessageWorkflowNodeData & {
+  template: MessageChecklistTemplateNodeData;
 };
 
-export type MessageNodeFormWorkflowData = MessageWorkflowNode & {
-  datatype: MessageNodeType.FormWorkflow;
+export type MessageFormWorkflowNodeData = MessageWorkflowNodeData & {
+  template: MessageFormTemplateNodeData;
 };
 
-export type MessageNodeDecisionWorkflowData = MessageWorkflowNode & {
-  datatype: MessageNodeType.DecisionWorkflow;
+export type MessageDecisionWorkflowNodeData = MessageWorkflowNodeData & {
+  template: MessageDecisionTemplateNodeData;
 };
 
 export type MessageElement =
-  | MessageNodeChecklistTemplateData
-  | MessageNodeFormTemplateData
-  | MessageNodeDecisionTemplateData
-  | MessageNodeChecklistWorkflowData
-  | MessageNodeFormWorkflowData
-  | MessageNodeDecisionWorkflowData
-  | MessageEdge;
+  | MessageChecklistTemplateNodeData
+  | MessageFormTemplateNodeData
+  | MessageDecisionTemplateNodeData
+  | MessageChecklistWorkflowNodeData
+  | MessageFormWorkflowNodeData
+  | MessageDecisionWorkflowNodeData
+  | MessageTemplateEdgeData
+  | MessageWorkflowEdgeData;

@@ -1,5 +1,6 @@
 import { Elements, FlowElement } from "react-flow-renderer";
 import { Message, Team } from "../../../../services";
+import { MessageKind } from "../../../../services/nodes";
 import { MutationArgs } from "../../../../utils/rep";
 
 export type WorkflowNodeData = {
@@ -31,27 +32,29 @@ export const messageToElement = ({
   teams,
   message,
   onChange,
-}: MessageToElementOptions): FlowElement<WorkflowNodeData> => {
+}: MessageToElementOptions): FlowElement<WorkflowNodeData> | null => {
   const { id, data } = message;
 
   switch (data.kind) {
-    case "edge":
+    case MessageKind.WorkflowEdge:
       return {
         id,
-        source: data.source,
-        target: data.target,
-        sourceHandle: data.sourceHandle,
-        targetHandle: data.targetHandle,
+        source: data.template.source,
+        target: data.template.target,
+        sourceHandle: data.template.sourceHandle,
+        targetHandle: data.template.targetHandle,
         data: { teams, message, onChange },
       };
-    case "node":
+    case MessageKind.WorkflowNode:
       return {
         id,
-        position: data.position,
-        type: data.datatype,
+        position: data.template.position,
+        type: data.template.datatype,
         style: { width: 300 },
         data: { teams, message, onChange },
       };
+    default:
+      return null;
   }
 };
 
@@ -66,4 +69,7 @@ export const messagesToElements = ({
   messages,
   onChange,
 }: MessagesToElementsOptions): Elements<WorkflowNodeData> =>
-  messages.map((message) => messageToElement({ teams, message, onChange }));
+  messages.flatMap((message) => {
+    const element = messageToElement({ teams, message, onChange });
+    return element ? [element] : [];
+  });

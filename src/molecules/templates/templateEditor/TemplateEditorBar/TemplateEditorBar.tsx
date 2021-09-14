@@ -28,21 +28,21 @@ const TemplateEditorBar = ({
   return (
     <ButtonGroup isAttached>
       <Button
-        onClick={handleAddElement(MessageNodeType.FormTemplate)}
+        onClick={handleAddElement(MessageNodeType.Form)}
         size="xs"
         leftIcon={<EditIcon />}
       >
         {text("formTemplateNode")}
       </Button>
       <Button
-        onClick={handleAddElement(MessageNodeType.DecisionTemplate)}
+        onClick={handleAddElement(MessageNodeType.Decision)}
         size="xs"
         leftIcon={<HamburgerIcon />}
       >
         {text("decisionTemplateNode")}
       </Button>
       <Button
-        onClick={handleAddElement(MessageNodeType.ChecklistTemplate)}
+        onClick={handleAddElement(MessageNodeType.Checklist)}
         size="xs"
         leftIcon={<CheckIcon />}
       >

@@ -21,14 +21,13 @@ export type WorkflowEditorViewProps = {
   workflowId: number;
   teams: Team[];
   messages: Message[];
-  templates: Message[];
   onChange: (args: MutationArgs["putMessage"]) => void;
 };
 
 const nodeTypes = {
-  [MessageNodeType.ChecklistWorkflow]: WorkflowChecklistNode,
-  [MessageNodeType.FormWorkflow]: WorkflowFormNode,
-  [MessageNodeType.DecisionWorkflow]: WorkflowDecisionNode,
+  [MessageNodeType.Checklist]: WorkflowChecklistNode,
+  [MessageNodeType.Form]: WorkflowFormNode,
+  [MessageNodeType.Decision]: WorkflowDecisionNode,
 };
 
 const WorkflowEditorView = ({

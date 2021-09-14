@@ -41,7 +41,6 @@ const WorkflowEditor = ({
       onChange={putMessage}
       teams={teams?.entries ?? []}
       templateId={template.id}
-      templates={workflow.template_data}
       workflowId={workflow.id}
     />
   );

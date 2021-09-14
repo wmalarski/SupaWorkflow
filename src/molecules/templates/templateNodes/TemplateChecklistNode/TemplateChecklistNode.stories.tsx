@@ -1,7 +1,7 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
 import { defaultMessage, defaultTeams } from "../../../../services";
-import { MessageNodeType } from "../../../../services/nodes";
+import { MessageKind, MessageNodeType } from "../../../../services/nodes";
 import TemplateChecklistNode from "./TemplateChecklistNode";
 
 export default {
@@ -19,8 +19,8 @@ Playground.args = {
     message: {
       ...defaultMessage,
       data: {
-        datatype: MessageNodeType.ChecklistTemplate,
-        kind: "node",
+        datatype: MessageNodeType.Checklist,
+        kind: MessageKind.TemplateNode,
         position: { x: 0, y: 0 },
         tasks: ["task1", "task2"],
         isTargetAll: false,

@@ -2,7 +2,8 @@ import { Box, Heading, StackDivider, VStack } from "@chakra-ui/react";
 import React from "react";
 import { Position } from "react-flow-renderer";
 import {
-  MessageNodeFormTemplateData,
+  MessageFormTemplateNodeData,
+  MessageKind,
   MessageNodeType,
 } from "../../../../services/nodes";
 import { useText } from "../../../../utils";
@@ -19,14 +20,14 @@ const TemplateFormNode = ({
   const text = useText();
 
   if (
-    message.data.kind !== "node" ||
-    message.data.datatype !== MessageNodeType.FormTemplate
+    message.data.kind !== MessageKind.TemplateNode ||
+    message.data.datatype !== MessageNodeType.Form
   )
     return null;
 
-  const messageData: MessageNodeFormTemplateData = message.data;
+  const messageData: MessageFormTemplateNodeData = message.data;
 
-  const handleChange = (newData: Partial<MessageNodeFormTemplateData>) =>
+  const handleChange = (newData: Partial<MessageFormTemplateNodeData>) =>
     onChange({
       data: { ...messageData, ...newData },
       id: message.id,

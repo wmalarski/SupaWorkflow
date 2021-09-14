@@ -1,7 +1,7 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
 import { defaultMessage, defaultTeams } from "../../../../services";
-import { MessageNodeType } from "../../../../services/nodes";
+import { MessageKind, MessageNodeType } from "../../../../services/nodes";
 import TemplateDecisionNode from "./TemplateDecisionNode";
 
 export default {
@@ -19,8 +19,8 @@ Playground.args = {
     message: {
       ...defaultMessage,
       data: {
-        datatype: MessageNodeType.DecisionTemplate,
-        kind: "node",
+        datatype: MessageNodeType.Decision,
+        kind: MessageKind.TemplateNode,
         position: { x: 0, y: 0 },
         routes: ["route1", "route2"],
         isTargetAll: false,

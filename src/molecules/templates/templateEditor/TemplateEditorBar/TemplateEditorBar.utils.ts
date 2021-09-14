@@ -1,10 +1,18 @@
 import { nanoid } from "nanoid";
-import { MessageNodeType } from "../../../../services/nodes";
+import { MessageKind, MessageNodeType } from "../../../../services/nodes";
 import { MutationArgs } from "../../../../utils/rep";
 
 export type GetNewNodeMessageOptions = {
   datatype: MessageNodeType;
   templateId: number;
+};
+
+const dataBase = {
+  position: { x: 0, y: 0 },
+  isTargetAll: false,
+  teamIds: [],
+  description: "",
+  title: "",
 };
 
 export const getNewNodeMessage = ({
@@ -17,42 +25,34 @@ export const getNewNodeMessage = ({
     template_id: templateId,
   };
 
-  const dataBase = {
-    position: { x: 0, y: 0 },
-    isTargetAll: false,
-    teamIds: [],
-    description: "",
-    title: "",
-  };
-
   switch (datatype) {
-    case MessageNodeType.ChecklistTemplate:
+    case MessageNodeType.Checklist:
       return {
         ...base,
         data: {
           ...dataBase,
-          kind: "node",
-          datatype: MessageNodeType.ChecklistTemplate,
+          kind: MessageKind.TemplateNode,
+          datatype: MessageNodeType.Checklist,
           tasks: [""],
         },
       };
-    case MessageNodeType.DecisionTemplate:
+    case MessageNodeType.Decision:
       return {
         ...base,
         data: {
           ...dataBase,
-          kind: "node",
-          datatype: MessageNodeType.DecisionTemplate,
+          kind: MessageKind.TemplateNode,
+          datatype: MessageNodeType.Decision,
           routes: [""],
         },
       };
-    case MessageNodeType.FormTemplate:
+    case MessageNodeType.Form:
       return {
         ...base,
         data: {
           ...dataBase,
-          kind: "node",
-          datatype: MessageNodeType.FormTemplate,
+          kind: MessageKind.TemplateNode,
+          datatype: MessageNodeType.Form,
           fields: [""],
         },
       };

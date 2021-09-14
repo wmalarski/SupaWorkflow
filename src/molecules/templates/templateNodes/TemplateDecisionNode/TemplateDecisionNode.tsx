@@ -3,7 +3,8 @@ import { StackDivider, VStack } from "@chakra-ui/react";
 import React from "react";
 import { Position } from "react-flow-renderer";
 import {
-  MessageNodeDecisionTemplateData,
+  MessageDecisionTemplateNodeData,
+  MessageKind,
   MessageNodeType,
 } from "../../../../services/nodes";
 import { useText } from "../../../../utils";
@@ -21,14 +22,14 @@ const TemplateDecisionNode = ({
   const text = useText();
 
   if (
-    message.data.kind !== "node" ||
-    message.data.datatype !== MessageNodeType.DecisionTemplate
+    message.data.kind !== MessageKind.TemplateNode ||
+    message.data.datatype !== MessageNodeType.Decision
   )
     return null;
 
-  const messageData: MessageNodeDecisionTemplateData = message.data;
+  const messageData: MessageDecisionTemplateNodeData = message.data;
 
-  const handleChange = (newData: Partial<MessageNodeDecisionTemplateData>) =>
+  const handleChange = (newData: Partial<MessageDecisionTemplateNodeData>) =>
     onChange({
       data: { ...messageData, ...newData },
       id: message.id,

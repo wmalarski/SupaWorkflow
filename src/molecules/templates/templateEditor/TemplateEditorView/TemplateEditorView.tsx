@@ -9,7 +9,7 @@ import ReactFlow, {
   Node,
 } from "react-flow-renderer";
 import { Message, Team } from "../../../../services";
-import { MessageNodeType } from "../../../../services/nodes";
+import { MessageKind, MessageNodeType } from "../../../../services/nodes";
 import { MutationArgs } from "../../../../utils/rep";
 import TemplateChecklistNode from "../../templateNodes/TemplateChecklistNode/TemplateChecklistNode";
 import TemplateDecisionNode from "../../templateNodes/TemplateDecisionNode/TemplateDecisionNode";
@@ -31,9 +31,9 @@ export type TemplateEditorViewProps = {
 };
 
 const nodeTypes = {
-  [MessageNodeType.ChecklistTemplate]: TemplateChecklistNode,
-  [MessageNodeType.FormTemplate]: TemplateFormNode,
-  [MessageNodeType.DecisionTemplate]: TemplateDecisionNode,
+  [MessageNodeType.Checklist]: TemplateChecklistNode,
+  [MessageNodeType.Form]: TemplateFormNode,
+  [MessageNodeType.Decision]: TemplateDecisionNode,
 };
 
 const TemplateEditorView = ({
@@ -69,14 +69,14 @@ const TemplateEditorView = ({
   const handleNodeDragStop = useCallback(
     (_event: React.MouseEvent, node: Node<TemplateNodeData>) => {
       const updated = messages.find((message) => message.id === node.id);
-      if (!updated || updated.data.kind !== "node") return;
+      if (!updated || updated.data.kind !== MessageKind.TemplateNode) return;
       onChange({
         id: updated.id,
         template_id: updated.template_id,
         workflow_id: updated.workflow_id,
         data: {
           ...updated.data,
-          kind: "node",
+          kind: MessageKind.TemplateNode,
           position: node.position,
         },
       });

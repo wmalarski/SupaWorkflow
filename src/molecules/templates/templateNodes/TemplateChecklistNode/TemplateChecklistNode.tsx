@@ -2,7 +2,8 @@ import { Box, Heading, StackDivider, VStack } from "@chakra-ui/react";
 import React from "react";
 import { Position } from "react-flow-renderer";
 import {
-  MessageNodeChecklistTemplateData,
+  MessageChecklistTemplateNodeData,
+  MessageKind,
   MessageNodeType,
 } from "../../../../services/nodes";
 import { useText } from "../../../../utils";
@@ -19,14 +20,14 @@ const TemplateChecklistNode = ({
   const text = useText();
 
   if (
-    message.data.kind !== "node" ||
-    message.data.datatype !== MessageNodeType.ChecklistTemplate
+    message.data.kind !== MessageKind.TemplateNode ||
+    message.data.datatype !== MessageNodeType.Checklist
   )
     return null;
 
-  const messageData: MessageNodeChecklistTemplateData = message.data;
+  const messageData: MessageChecklistTemplateNodeData = message.data;
 
-  const handleChange = (newData: Partial<MessageNodeChecklistTemplateData>) =>
+  const handleChange = (newData: Partial<MessageChecklistTemplateNodeData>) =>
     onChange({
       data: { ...messageData, ...newData },
       id: message.id,

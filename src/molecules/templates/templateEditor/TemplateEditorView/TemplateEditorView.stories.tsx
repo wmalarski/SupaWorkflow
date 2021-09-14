@@ -1,7 +1,7 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React, { useEffect, useState } from "react";
 import { defaultTeams, Message } from "../../../../services";
-import { MessageNodeType } from "../../../../services/nodes";
+import { MessageKind, MessageNodeType } from "../../../../services/nodes";
 import TemplateEditorView from "./TemplateEditorView";
 
 const baseMessage = {
@@ -16,9 +16,9 @@ const initialMessages: Message[] = [
     ...baseMessage,
     id: "1",
     data: {
-      kind: "node",
+      kind: MessageKind.TemplateNode,
       position: { x: 50, y: 125 },
-      datatype: MessageNodeType.ChecklistTemplate,
+      datatype: MessageNodeType.Checklist,
       tasks: ["check1", "check2"],
       teamIds: [defaultTeams[0].id, defaultTeams[2].id],
       isTargetAll: false,
@@ -30,9 +30,9 @@ const initialMessages: Message[] = [
     ...baseMessage,
     id: "2",
     data: {
-      kind: "node",
+      kind: MessageKind.TemplateNode,
       position: { x: 100, y: 125 },
-      datatype: MessageNodeType.FormTemplate,
+      datatype: MessageNodeType.Form,
       fields: ["field1", "field2"],
       teamIds: [defaultTeams[1].id, defaultTeams[2].id],
       isTargetAll: true,
@@ -44,9 +44,9 @@ const initialMessages: Message[] = [
     ...baseMessage,
     id: "3",
     data: {
-      kind: "node",
+      kind: MessageKind.TemplateNode,
       position: { x: 250, y: 250 },
-      datatype: MessageNodeType.DecisionTemplate,
+      datatype: MessageNodeType.Decision,
       routes: ["route1", "route2"],
       teamIds: [defaultTeams[2].id, defaultTeams[3].id, defaultTeams[4].id],
       isTargetAll: false,
@@ -57,12 +57,12 @@ const initialMessages: Message[] = [
   {
     ...baseMessage,
     id: "e1-2",
-    data: { kind: "edge", source: "1", target: "2" },
+    data: { kind: MessageKind.TemplateEdge, source: "1", target: "2" },
   },
   {
     ...baseMessage,
     id: "e2-3",
-    data: { kind: "edge", source: "2", target: "3" },
+    data: { kind: MessageKind.TemplateEdge, source: "2", target: "3" },
   },
 ];
 

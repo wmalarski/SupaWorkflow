@@ -1,16 +1,16 @@
 import React from "react";
-import { MessageNodeType } from "../../../../services/nodes";
+import { MessageKind, MessageNodeType } from "../../../../services/nodes";
 import { useText } from "../../../../utils";
 import { WorkflowNodeProps } from "../../workflowEditor/WorkflowEditorView/WorkflowEditorView.utils";
 
 const WorkflowFormNode = ({
-  data: { teams, message, onChange },
+  data: { message },
 }: WorkflowNodeProps): React.ReactElement | null => {
   const text = useText();
 
   if (
-    message.data.kind !== "node" ||
-    message.data.datatype !== MessageNodeType.FormWorkflow
+    message.data.kind !== MessageKind.WorkflowNode ||
+    message.data.template.datatype !== MessageNodeType.Form
   )
     return null;
 
