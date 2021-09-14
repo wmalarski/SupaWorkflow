@@ -26,7 +26,6 @@ const initialMessages: Message[] = [
       title: "ChecklistTemplate Title",
     },
   },
-  // default node
   {
     ...baseMessage,
     id: "2",
@@ -44,7 +43,6 @@ const initialMessages: Message[] = [
   {
     ...baseMessage,
     id: "3",
-    // type: "output", // output node
     data: {
       kind: "node",
       position: { x: 250, y: 250 },
@@ -56,7 +54,6 @@ const initialMessages: Message[] = [
       title: "Decision Title",
     },
   },
-  // animated edge
   {
     ...baseMessage,
     id: "e1-2",
@@ -79,15 +76,15 @@ export default {
   component: TemplateEditorView,
 } as ComponentMeta<React.ComponentType<StoryArguments>>;
 
-const Template: ComponentStory<typeof TemplateEditorView> = (args) => {
+const Template: ComponentStory<typeof TemplateEditorView> = (props) => {
   const [messages, setMessages] = useState<Message[]>([]);
 
-  useEffect(() => setMessages(args.messages), [args.messages]);
+  useEffect(() => setMessages(props.messages), [props.messages]);
 
   return (
     <TemplateEditorView
+      {...props}
       messages={messages}
-      teams={defaultTeams}
       onChange={(args) =>
         setMessages((current) => {
           const index = current.findIndex((message) => message.id === args.id);
@@ -110,7 +107,6 @@ const Template: ComponentStory<typeof TemplateEditorView> = (args) => {
           current.filter((message) => message.id !== args.id)
         )
       }
-      templateId={args.templateId}
     />
   );
 };
@@ -119,4 +115,5 @@ export const Playground = Template.bind({});
 Playground.args = {
   messages: initialMessages,
   templateId: 1,
+  teams: defaultTeams,
 };

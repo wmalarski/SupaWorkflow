@@ -10,7 +10,7 @@ export type GetNewNodeMessageOptions = {
 export const getNewNodeMessage = ({
   datatype,
   templateId,
-}: GetNewNodeMessageOptions): MutationArgs["putMessage"] => {
+}: GetNewNodeMessageOptions): MutationArgs["putMessage"] | null => {
   const base = {
     id: nanoid(),
     workflow_id: null,
@@ -56,5 +56,7 @@ export const getNewNodeMessage = ({
           fields: [""],
         },
       };
+    default:
+      return null;
   }
 };

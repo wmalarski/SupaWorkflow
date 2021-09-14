@@ -6,11 +6,16 @@ export type MessageNodePosition = {
 export type MessageNode = {
   kind: "node";
   position: MessageNodePosition;
+};
+
+export type MessageTemplateNode = MessageNode & {
   teamIds: number[];
   isTargetAll: boolean;
   title: string;
   description: string;
 };
+
+export type MessageWorkflowNode = MessageNode;
 
 export type MessageEdge = {
   kind: "edge";
@@ -24,25 +29,43 @@ export enum MessageNodeType {
   ChecklistTemplate = "ChecklistTemplate",
   FormTemplate = "FormTemplate",
   DecisionTemplate = "DecisionTemplate",
+  ChecklistWorkflow = "ChecklistWorkflow",
+  FormWorkflow = "FormWorkflow",
+  DecisionWorkflow = "DecisionWorkflow",
 }
 
-export type MessageNodeChecklistTemplateData = MessageNode & {
+export type MessageNodeChecklistTemplateData = MessageTemplateNode & {
   datatype: MessageNodeType.ChecklistTemplate;
   tasks: string[];
 };
 
-export type MessageNodeFormTemplateData = MessageNode & {
+export type MessageNodeFormTemplateData = MessageTemplateNode & {
   datatype: MessageNodeType.FormTemplate;
   fields: string[];
 };
 
-export type MessageNodeDecisionTemplateData = MessageNode & {
+export type MessageNodeDecisionTemplateData = MessageTemplateNode & {
   datatype: MessageNodeType.DecisionTemplate;
   routes: string[];
+};
+
+export type MessageNodeChecklistWorkflowData = MessageWorkflowNode & {
+  datatype: MessageNodeType.ChecklistWorkflow;
+};
+
+export type MessageNodeFormWorkflowData = MessageWorkflowNode & {
+  datatype: MessageNodeType.FormWorkflow;
+};
+
+export type MessageNodeDecisionWorkflowData = MessageWorkflowNode & {
+  datatype: MessageNodeType.DecisionWorkflow;
 };
 
 export type MessageElement =
   | MessageNodeChecklistTemplateData
   | MessageNodeFormTemplateData
   | MessageNodeDecisionTemplateData
+  | MessageNodeChecklistWorkflowData
+  | MessageNodeFormWorkflowData
+  | MessageNodeDecisionWorkflowData
   | MessageEdge;

@@ -17,7 +17,7 @@ export type TemplateNodeProps = {
   selected: boolean;
   sourcePosition?: string;
   targetPosition?: string;
-  type: "ChecklistTemplate";
+  type: string;
   xPos: number;
   yPos: number;
   data: TemplateNodeData;

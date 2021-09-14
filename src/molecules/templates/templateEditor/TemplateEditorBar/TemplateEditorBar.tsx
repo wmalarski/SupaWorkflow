@@ -18,8 +18,10 @@ const TemplateEditorBar = ({
   const text = useText();
 
   const handleAddElement = useCallback(
-    (datatype: MessageNodeType) => () =>
-      onChange(getNewNodeMessage({ datatype, templateId })),
+    (datatype: MessageNodeType) => () => {
+      const node = getNewNodeMessage({ datatype, templateId });
+      node && onChange(node);
+    },
     [onChange, templateId]
   );
 
