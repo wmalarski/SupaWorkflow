@@ -24,7 +24,7 @@ Playground.args = {
         position: { x: 0, y: 0 },
         routes: ["route1", "route2"],
         isTargetAll: false,
-        teamIds: [1, 2],
+        teamId: 2,
         description: "",
         title: "",
       },

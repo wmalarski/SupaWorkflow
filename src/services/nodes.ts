@@ -19,7 +19,7 @@ export type MessageNodePosition = {
 export type MessageTemplateNodeData = {
   kind: MessageKind.TemplateNode;
   position: MessageNodePosition;
-  teamIds: number[];
+  teamId: number | null;
   isTargetAll: boolean;
   title: string;
   description: string;

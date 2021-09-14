@@ -24,7 +24,7 @@ Playground.args = {
         position: { x: 0, y: 0 },
         fields: ["field1", "field2"],
         isTargetAll: true,
-        teamIds: [1, 2],
+        teamId: 1,
         description: "",
         title: "",
       },

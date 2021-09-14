@@ -64,8 +64,8 @@ const TemplateDecisionNode = ({
         />
         <TemplateTeamsForm
           teams={teams}
-          selected={messageData.teamIds}
-          onChange={(teamIds) => handleChange({ teamIds })}
+          selected={messageData.teamId}
+          onChange={(teamId) => handleChange({ teamId })}
         />
         <TemplateTargetForm
           isTargetAll={messageData.isTargetAll}

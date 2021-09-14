@@ -10,7 +10,7 @@ export type GetNewNodeMessageOptions = {
 const dataBase = {
   position: { x: 0, y: 0 },
   isTargetAll: false,
-  teamIds: [],
+  teamId: 1,
   description: "",
   title: "",
 };

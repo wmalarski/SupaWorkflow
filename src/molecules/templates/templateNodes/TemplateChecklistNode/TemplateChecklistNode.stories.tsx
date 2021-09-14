@@ -24,7 +24,7 @@ Playground.args = {
         position: { x: 0, y: 0 },
         tasks: ["task1", "task2"],
         isTargetAll: false,
-        teamIds: [1, 3],
+        teamId: 3,
         description: "",
         title: "",
       },

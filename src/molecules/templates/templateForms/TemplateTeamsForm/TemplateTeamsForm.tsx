@@ -1,12 +1,12 @@
-import { Checkbox, Heading, Text, VStack } from "@chakra-ui/react";
+import { Heading, Select, VStack } from "@chakra-ui/react";
 import React from "react";
 import { Team } from "../../../../services";
 import { useText } from "../../../../utils";
 
 export type TemplateTeamsFormProps = {
   teams: Team[];
-  selected: number[];
-  onChange: (selected: number[]) => void;
+  selected: number | null;
+  onChange: (selected: number | null) => void;
 };
 
 const TemplateTeamsForm = ({
@@ -19,23 +19,17 @@ const TemplateTeamsForm = ({
   return (
     <VStack width="100%">
       <Heading size="xs">{text("teamsTemplateNode")}</Heading>
-      <VStack maxHeight={100} overflowY="auto" width="100%">
+      <Select
+        size="sm"
+        value={selected ?? undefined}
+        onChange={(event) => onChange(Number(event.target.value))}
+      >
         {teams.map((team) => (
-          <Checkbox
-            key={team.id}
-            isChecked={selected.includes(team.id)}
-            onChange={(event) =>
-              onChange(
-                event.target.checked
-                  ? [...selected, team.id]
-                  : selected.filter((e) => e !== team.id)
-              )
-            }
-          >
-            <Text fontSize="sm">{team.name}</Text>
-          </Checkbox>
+          <option key={team.id} value={team.id}>
+            {team.name}
+          </option>
         ))}
-      </VStack>
+      </Select>
     </VStack>
   );
 };

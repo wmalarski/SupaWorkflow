@@ -22,5 +22,5 @@ const Template: ComponentStory<typeof TemplateTeamsForm> = (args) => {
 export const Playground = Template.bind({});
 Playground.args = {
   teams: defaultTeams,
-  selected: [1, 2],
+  selected: null,
 };
