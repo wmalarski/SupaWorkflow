@@ -1,4 +1,4 @@
-import { Box, Heading, Text, VStack } from "@chakra-ui/react";
+import { Box, StackDivider, VStack } from "@chakra-ui/react";
 import React from "react";
 import { Handle, Position } from "react-flow-renderer";
 import {
@@ -6,15 +6,14 @@ import {
   MessageKind,
   MessageNodeType,
 } from "../../../../services/nodes";
-import { useText } from "../../../../utils";
 import { WorkflowNodeProps } from "../../workflowEditor/WorkflowEditorView/WorkflowEditorView.utils";
+import WorkflowFooterForm from "../../workflowForms/WorkflowFooterForm/WorkflowFooterForm";
+import WorkflowHeaderForm from "../../workflowForms/WorkflowHeaderForm/WorkflowHeaderForm";
 import WorkflowDecisionNodeHandle from "./WorkflowDecisionNodeHandle";
 
 const WorkflowDecisionNode = ({
-  data: { message },
+  data: { message, onChange },
 }: WorkflowNodeProps): React.ReactElement | null => {
-  const text = useText();
-
   if (
     message.data.kind !== MessageKind.WorkflowNode ||
     message.data.datatype !== MessageNodeType.Decision
@@ -22,7 +21,14 @@ const WorkflowDecisionNode = ({
     return null;
 
   const messageData: MessageDecisionWorkflowNodeData = message.data;
-  const { routes, title, description } = messageData.template;
+
+  const handleChange = (newData: Partial<MessageDecisionWorkflowNodeData>) =>
+    onChange({
+      data: { ...messageData, ...newData },
+      id: message.id,
+      template_id: message.template_id,
+      workflow_id: message.workflow_id,
+    });
 
   return (
     <Box
@@ -34,14 +40,17 @@ const WorkflowDecisionNode = ({
       padding={2}
     >
       <Handle type="target" position={Position.Left} />
-      <VStack>
-        <Heading>{title}</Heading>
-        <Text>{description}</Text>
+      <VStack divider={<StackDivider borderColor="gray.200" />}>
+        <WorkflowHeaderForm template={messageData.template} />
+        <WorkflowFooterForm
+          isDone={messageData.isDone}
+          onChange={(isDone) => handleChange({ isDone })}
+        />
       </VStack>
-      {routes.map((route, index) => (
+      {messageData.template.routes.map((route, index) => (
         <WorkflowDecisionNodeHandle
           key={route}
-          count={routes.length}
+          count={messageData.template.routes.length}
           index={index}
         />
       ))}

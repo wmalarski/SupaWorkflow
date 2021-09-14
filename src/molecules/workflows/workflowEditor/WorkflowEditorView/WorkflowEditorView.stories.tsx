@@ -19,6 +19,7 @@ const initialMessages: Message[] = [
       kind: MessageKind.WorkflowNode,
       datatype: MessageNodeType.Decision,
       selected: null,
+      isDone: false,
       template: {
         kind: MessageKind.TemplateNode,
         position: { x: 0, y: 150 },
@@ -38,6 +39,7 @@ const initialMessages: Message[] = [
       kind: MessageKind.WorkflowNode,
       datatype: MessageNodeType.Checklist,
       checked: [],
+      isDone: false,
       template: {
         kind: MessageKind.TemplateNode,
         position: { x: 350, y: 300 },
@@ -57,6 +59,7 @@ const initialMessages: Message[] = [
       kind: MessageKind.WorkflowNode,
       datatype: MessageNodeType.Form,
       values: {},
+      isDone: false,
       template: {
         kind: MessageKind.TemplateNode,
         position: { x: 350, y: 150 },
@@ -76,6 +79,7 @@ const initialMessages: Message[] = [
       kind: MessageKind.WorkflowNode,
       datatype: MessageNodeType.Checklist,
       checked: [1],
+      isDone: false,
       template: {
         kind: MessageKind.TemplateNode,
         position: { x: 350, y: 0 },
@@ -95,6 +99,7 @@ const initialMessages: Message[] = [
       kind: MessageKind.WorkflowNode,
       datatype: MessageNodeType.Form,
       values: { 0: "Value" },
+      isDone: false,
       template: {
         kind: MessageKind.TemplateNode,
         position: { x: 700, y: 225 },
@@ -114,6 +119,7 @@ const initialMessages: Message[] = [
       kind: MessageKind.WorkflowNode,
       datatype: MessageNodeType.Form,
       values: { 1: "Value" },
+      isDone: false,
       template: {
         kind: MessageKind.TemplateNode,
         position: { x: 700, y: 75 },
@@ -229,9 +235,21 @@ const Template: ComponentStory<typeof WorkflowEditorView> = (props) => {
     <WorkflowEditorView
       {...props}
       messages={messages}
-      onChange={() =>
+      onChange={(args) =>
         setMessages((current) => {
-          return current;
+          const index = current.findIndex((message) => message.id === args.id);
+          const next = [...current];
+          next.splice(
+            index,
+            index < 0 ? 0 : 1,
+            { ...current[index], ...args } ?? {
+              ...args,
+              deleted: false,
+              updated_at: "",
+            }
+          );
+          console.log({ args, current, next, index });
+          return next;
         })
       }
     />

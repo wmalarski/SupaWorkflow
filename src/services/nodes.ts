@@ -27,6 +27,7 @@ export type MessageTemplateNodeData = {
 
 export type MessageWorkflowNodeData = {
   kind: MessageKind.WorkflowNode;
+  isDone: boolean;
 };
 
 export type MessageTemplateEdgeData = {

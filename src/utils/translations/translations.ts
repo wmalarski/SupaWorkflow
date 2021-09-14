@@ -118,6 +118,9 @@ const translation = {
   saveTemplateNode: "Save",
   editMessage: "Edit",
 
+  // Workflow editor
+  workflowNodeDone: "Done",
+
   // Add team
   addTeamHeader: "Add new team",
   addTeamName: "Name",
