@@ -5,12 +5,15 @@ import { AfterRendererProps } from "../../templateForms/TemplateListForm/Templat
 
 const TemplateDecisionNodeHandle = ({
   index,
+  count,
 }: AfterRendererProps): React.ReactElement | null => (
   <TemplateHandle
     type="source"
     position={Position.Right}
     id={String(index)}
-    style={{ top: 50 + index * 32 }}
+    style={{
+      top: `${Math.floor(((index + 1) * 100) / (count + 1))}%`,
+    }}
   />
 );
 

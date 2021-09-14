@@ -52,16 +52,14 @@ export const messageToElement = ({
 
   switch (data.kind) {
     case "edge": {
-      const routes = messages.flatMap((e) =>
+      const label = messages.flatMap((e) =>
         data.sourceHandle &&
         e.data.kind === "node" &&
         e.id === data.source &&
         e.data.datatype === MessageNodeType.DecisionTemplate
-          ? [e.data.routes]
+          ? [e.data.routes[Number(data.sourceHandle)]]
           : []
       )[0];
-
-      const label = routes[Number(data.sourceHandle)];
 
       return {
         id,

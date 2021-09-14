@@ -17,6 +17,7 @@ export type ListFormData = {
 
 export type AfterRendererProps = {
   index: number;
+  count: number;
 };
 
 export type ListFormProps = {
@@ -46,6 +47,7 @@ const ListForm = ({
     setValue(`entries.${index}`, "");
     setValue("entries", newEntries);
     setCount(count - 1);
+    onChange(newEntries);
   };
 
   const handleAdd = (index: number) => () => {
@@ -53,6 +55,7 @@ const ListForm = ({
     newEntries.splice(index + 1, 0, "");
     setValue("entries", newEntries);
     setCount(count + 1);
+    onChange(newEntries);
   };
 
   const handleUp = (index: number) => () => {
@@ -60,6 +63,7 @@ const ListForm = ({
     const [entry] = newEntries.splice(index, 1);
     newEntries.splice(index - 1, 0, entry);
     setValue("entries", newEntries);
+    onChange(newEntries);
   };
 
   const handleDown = (index: number) => () => {
@@ -67,10 +71,15 @@ const ListForm = ({
     const [entry] = newEntries.splice(index, 1);
     newEntries.splice(index + 1, 0, entry);
     setValue("entries", newEntries);
+    onChange(newEntries);
+  };
+
+  const handleChange = (data: ListFormData) => {
+    onChange(data.entries);
   };
 
   return (
-    <form onChange={handleSubmit(onChange)}>
+    <form onChange={handleSubmit(handleChange)}>
       <VStack spacing={2}>
         <Heading size="xs">{heading}</Heading>
         {Array(count)
@@ -111,7 +120,7 @@ const ListForm = ({
                   <DeleteIcon />
                 </IconButton>
               </ButtonGroup>
-              {AfterRenderer && <AfterRenderer index={index} />}
+              {AfterRenderer && <AfterRenderer index={index} count={count} />}
             </HStack>
           ))}
       </VStack>
