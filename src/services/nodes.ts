@@ -58,14 +58,20 @@ export type MessageDecisionTemplateNodeData = MessageTemplateNodeData & {
 };
 
 export type MessageChecklistWorkflowNodeData = MessageWorkflowNodeData & {
+  datatype: MessageNodeType.Checklist;
+  checked: number[];
   template: MessageChecklistTemplateNodeData;
 };
 
 export type MessageFormWorkflowNodeData = MessageWorkflowNodeData & {
+  datatype: MessageNodeType.Form;
+  values: Record<number, string>;
   template: MessageFormTemplateNodeData;
 };
 
 export type MessageDecisionWorkflowNodeData = MessageWorkflowNodeData & {
+  datatype: MessageNodeType.Decision;
+  selected: number | null;
   template: MessageDecisionTemplateNodeData;
 };
 

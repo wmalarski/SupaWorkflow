@@ -49,7 +49,7 @@ export const messageToElement = ({
       return {
         id,
         position: data.template.position,
-        type: data.template.datatype,
+        type: data.datatype,
         style: { width: 300 },
         data: { teams, message, onChange },
       };
