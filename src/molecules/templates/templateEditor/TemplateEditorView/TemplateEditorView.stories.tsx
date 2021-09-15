@@ -15,10 +15,10 @@ const initialMessages: Message[] = [
   {
     ...baseMessage,
     id: "1",
-    data: {
+    state: {
       kind: MessageKind.TemplateNode,
       position: { x: 50, y: 125 },
-      datatype: MessageNodeType.Checklist,
+      nodeType: MessageNodeType.Checklist,
       tasks: ["check1", "check2"],
       teamId: defaultTeams[2].id,
       isTargetAll: false,
@@ -29,10 +29,10 @@ const initialMessages: Message[] = [
   {
     ...baseMessage,
     id: "2",
-    data: {
+    state: {
       kind: MessageKind.TemplateNode,
       position: { x: 100, y: 125 },
-      datatype: MessageNodeType.Form,
+      nodeType: MessageNodeType.Form,
       fields: ["field1", "field2"],
       teamId: defaultTeams[1].id,
       isTargetAll: true,
@@ -43,10 +43,10 @@ const initialMessages: Message[] = [
   {
     ...baseMessage,
     id: "3",
-    data: {
+    state: {
       kind: MessageKind.TemplateNode,
       position: { x: 250, y: 250 },
-      datatype: MessageNodeType.Decision,
+      nodeType: MessageNodeType.Decision,
       routes: ["route1", "route2"],
       teamId: null,
       isTargetAll: false,
@@ -57,12 +57,12 @@ const initialMessages: Message[] = [
   {
     ...baseMessage,
     id: "e1-2",
-    data: { kind: MessageKind.TemplateEdge, source: "1", target: "2" },
+    state: { kind: MessageKind.TemplateEdge, source: "1", target: "2" },
   },
   {
     ...baseMessage,
     id: "e2-3",
-    data: { kind: MessageKind.TemplateEdge, source: "2", target: "3" },
+    state: { kind: MessageKind.TemplateEdge, source: "2", target: "3" },
   },
 ];
 

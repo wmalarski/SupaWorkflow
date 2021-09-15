@@ -2,8 +2,8 @@ import { Elements, FlowElement } from "react-flow-renderer";
 import { Message, SelectTeamMemberRow, Team } from "../../../../services";
 import {
   MessageKind,
-  MessageWorkflowEdgeData,
-  MessageWorkflowNodeData,
+  MessageWorkflowEdgeState,
+  MessageWorkflowNodeState,
 } from "../../../../services/nodes";
 import { MutationArgs } from "../../../../utils/rep";
 
@@ -11,13 +11,13 @@ export type WorkflowNodeData = {
   team?: Team;
   teamMembers: SelectTeamMemberRow[];
   message: Message;
-  data: MessageWorkflowNodeData;
+  state: MessageWorkflowNodeState;
   onChange: (message: MutationArgs["putMessage"]) => void;
 };
 
 export type WorkflowEdgeData = {
   message: Message;
-  data: MessageWorkflowEdgeData;
+  state: MessageWorkflowEdgeState;
 };
 
 export type WorkflowData = WorkflowNodeData | WorkflowEdgeData;
@@ -48,34 +48,34 @@ export const messageToElement = ({
   message,
   onChange,
 }: MessageToElementOptions): FlowElement<WorkflowData> | null => {
-  const { id, data } = message;
+  const { id, state } = message;
 
-  switch (data.kind) {
+  switch (state.kind) {
     case MessageKind.WorkflowEdge:
       return {
         id,
-        source: data.template.source,
-        target: data.template.target,
-        sourceHandle: data.template.sourceHandle,
-        targetHandle: data.template.targetHandle,
+        source: state.template.source,
+        target: state.template.target,
+        sourceHandle: state.template.sourceHandle,
+        targetHandle: state.template.targetHandle,
         data: {
-          data,
+          state,
           message,
         },
       };
     case MessageKind.WorkflowNode:
       return {
         id,
-        position: data.template.position,
-        type: data.datatype,
+        position: state.template.position,
+        type: state.nodeType,
         style: { width: 300 },
         data: {
-          data,
+          state,
           message,
           onChange,
-          team: teams.find((t) => t.id === data.template.teamId),
+          team: teams.find((t) => t.id === state.template.teamId),
           teamMembers: teamMembers.filter(
-            (member) => member.team_id === data.template.teamId
+            (member) => member.team_id === state.template.teamId
           ),
         },
       };

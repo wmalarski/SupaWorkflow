@@ -15,16 +15,16 @@ const initialMessages: Message[] = [
   {
     ...baseMessage,
     id: "1",
-    data: {
+    state: {
       kind: MessageKind.WorkflowNode,
-      datatype: MessageNodeType.Decision,
+      nodeType: MessageNodeType.Decision,
       selected: null,
       isDone: false,
       assigneeId: 1,
       template: {
         kind: MessageKind.TemplateNode,
         position: { x: 0, y: 150 },
-        datatype: MessageNodeType.Decision,
+        nodeType: MessageNodeType.Decision,
         routes: ["route1", "route2"],
         teamId: defaultTeams[4].id,
         isTargetAll: false,
@@ -36,16 +36,16 @@ const initialMessages: Message[] = [
   {
     ...baseMessage,
     id: "2",
-    data: {
+    state: {
       kind: MessageKind.WorkflowNode,
-      datatype: MessageNodeType.Checklist,
+      nodeType: MessageNodeType.Checklist,
       checked: [],
       isDone: false,
       assigneeId: null,
       template: {
         kind: MessageKind.TemplateNode,
         position: { x: 350, y: 300 },
-        datatype: MessageNodeType.Checklist,
+        nodeType: MessageNodeType.Checklist,
         tasks: ["check1", "check2"],
         teamId: defaultTeams[0].id,
         isTargetAll: false,
@@ -57,16 +57,16 @@ const initialMessages: Message[] = [
   {
     ...baseMessage,
     id: "3",
-    data: {
+    state: {
       kind: MessageKind.WorkflowNode,
-      datatype: MessageNodeType.Form,
+      nodeType: MessageNodeType.Form,
       values: {},
       isDone: false,
       assigneeId: 0,
       template: {
         kind: MessageKind.TemplateNode,
         position: { x: 350, y: 150 },
-        datatype: MessageNodeType.Form,
+        nodeType: MessageNodeType.Form,
         fields: ["field1", "field2"],
         teamId: defaultTeams[2].id,
         isTargetAll: true,
@@ -78,16 +78,16 @@ const initialMessages: Message[] = [
   {
     ...baseMessage,
     id: "4",
-    data: {
+    state: {
       kind: MessageKind.WorkflowNode,
-      datatype: MessageNodeType.Checklist,
+      nodeType: MessageNodeType.Checklist,
       checked: [1],
       isDone: false,
       assigneeId: 2,
       template: {
         kind: MessageKind.TemplateNode,
         position: { x: 350, y: 0 },
-        datatype: MessageNodeType.Checklist,
+        nodeType: MessageNodeType.Checklist,
         tasks: ["check1", "check2"],
         teamId: defaultTeams[0].id,
         isTargetAll: false,
@@ -99,16 +99,16 @@ const initialMessages: Message[] = [
   {
     ...baseMessage,
     id: "5",
-    data: {
+    state: {
       kind: MessageKind.WorkflowNode,
-      datatype: MessageNodeType.Form,
+      nodeType: MessageNodeType.Form,
       values: { 0: "Value" },
       isDone: false,
       assigneeId: 0,
       template: {
         kind: MessageKind.TemplateNode,
         position: { x: 700, y: 225 },
-        datatype: MessageNodeType.Form,
+        nodeType: MessageNodeType.Form,
         fields: ["field1", "field2"],
         teamId: null,
         isTargetAll: true,
@@ -120,16 +120,16 @@ const initialMessages: Message[] = [
   {
     ...baseMessage,
     id: "6",
-    data: {
+    state: {
       kind: MessageKind.WorkflowNode,
-      datatype: MessageNodeType.Form,
+      nodeType: MessageNodeType.Form,
       values: { 1: "Value" },
       isDone: false,
       assigneeId: null,
       template: {
         kind: MessageKind.TemplateNode,
         position: { x: 700, y: 75 },
-        datatype: MessageNodeType.Form,
+        nodeType: MessageNodeType.Form,
         fields: ["field1", "field2"],
         teamId: defaultTeams[1].id,
         isTargetAll: true,
@@ -141,7 +141,7 @@ const initialMessages: Message[] = [
   {
     ...baseMessage,
     id: "e1-4",
-    data: {
+    state: {
       kind: MessageKind.WorkflowEdge,
       template: {
         kind: MessageKind.TemplateEdge,
@@ -154,7 +154,7 @@ const initialMessages: Message[] = [
   {
     ...baseMessage,
     id: "e1-3",
-    data: {
+    state: {
       kind: MessageKind.WorkflowEdge,
       template: {
         kind: MessageKind.TemplateEdge,
@@ -167,7 +167,7 @@ const initialMessages: Message[] = [
   {
     ...baseMessage,
     id: "e1-2",
-    data: {
+    state: {
       kind: MessageKind.WorkflowEdge,
       template: {
         kind: MessageKind.TemplateEdge,
@@ -180,7 +180,7 @@ const initialMessages: Message[] = [
   {
     ...baseMessage,
     id: "e4-6",
-    data: {
+    state: {
       kind: MessageKind.WorkflowEdge,
       template: {
         kind: MessageKind.TemplateEdge,
@@ -192,7 +192,7 @@ const initialMessages: Message[] = [
   {
     ...baseMessage,
     id: "e3-6",
-    data: {
+    state: {
       kind: MessageKind.WorkflowEdge,
       template: {
         kind: MessageKind.TemplateEdge,
@@ -204,7 +204,7 @@ const initialMessages: Message[] = [
   {
     ...baseMessage,
     id: "e3-5",
-    data: {
+    state: {
       kind: MessageKind.WorkflowEdge,
       template: {
         kind: MessageKind.TemplateEdge,
@@ -216,7 +216,7 @@ const initialMessages: Message[] = [
   {
     ...baseMessage,
     id: "e2-5",
-    data: {
+    state: {
       kind: MessageKind.WorkflowEdge,
       template: {
         kind: MessageKind.TemplateEdge,

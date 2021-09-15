@@ -48,34 +48,34 @@ export const messageToElement = ({
   messages,
   onChange,
 }: MessageToElementOptions): FlowElement<TemplateNodeData> | null => {
-  const { id, data } = message;
+  const { id, state } = message;
 
-  switch (data.kind) {
+  switch (state.kind) {
     case MessageKind.TemplateEdge: {
       const label = messages.flatMap((e) =>
-        data.sourceHandle &&
-        e.data.kind === MessageKind.TemplateNode &&
-        e.id === data.source &&
-        e.data.datatype === MessageNodeType.Decision
-          ? [e.data.routes[Number(data.sourceHandle)]]
+        state.sourceHandle &&
+        e.state.kind === MessageKind.TemplateNode &&
+        e.id === state.source &&
+        e.state.nodeType === MessageNodeType.Decision
+          ? [e.state.routes[Number(state.sourceHandle)]]
           : []
       )[0];
 
       return {
         id,
         label,
-        source: data.source,
-        target: data.target,
-        sourceHandle: data.sourceHandle,
-        targetHandle: data.targetHandle,
+        source: state.source,
+        target: state.target,
+        sourceHandle: state.sourceHandle,
+        targetHandle: state.targetHandle,
         data: { teams, message, onChange },
       };
     }
     case MessageKind.TemplateNode:
       return {
         id,
-        position: data.position,
-        type: data.datatype,
+        position: state.position,
+        type: state.nodeType,
         style: { width: 300 },
         data: { teams, message, onChange },
       };
@@ -114,7 +114,7 @@ export const getNewEdgeMessage = ({
         id: nanoid(),
         template_id: templateId,
         workflow_id: null,
-        data: {
+        state: {
           kind: MessageKind.TemplateEdge,
           source: connection.source,
           target: connection.target,

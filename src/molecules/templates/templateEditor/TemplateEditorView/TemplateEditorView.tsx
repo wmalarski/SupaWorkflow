@@ -51,8 +51,8 @@ const TemplateEditorView = ({
   const handleElementsRemove = useCallback(
     (els: Elements<TemplateNodeData>) =>
       elementsToMessages(els).forEach(
-        ({ data, id, template_id, workflow_id }) =>
-          onDelete({ data, id, template_id, workflow_id })
+        ({ state, id, template_id, workflow_id }) =>
+          onDelete({ state, id, template_id, workflow_id })
       ),
     [onDelete]
   );
@@ -69,13 +69,13 @@ const TemplateEditorView = ({
   const handleNodeDragStop = useCallback(
     (_event: React.MouseEvent, node: Node<TemplateNodeData>) => {
       const updated = messages.find((message) => message.id === node.id);
-      if (!updated || updated.data.kind !== MessageKind.TemplateNode) return;
+      if (!updated || updated.state.kind !== MessageKind.TemplateNode) return;
       onChange({
         id: updated.id,
         template_id: updated.template_id,
         workflow_id: updated.workflow_id,
-        data: {
-          ...updated.data,
+        state: {
+          ...updated.state,
           kind: MessageKind.TemplateNode,
           position: node.position,
         },

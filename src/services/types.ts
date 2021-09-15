@@ -1,4 +1,4 @@
-import { MessageElement } from "./nodes";
+import { MessageState } from "./nodes";
 
 export type Profile = {
   id: number;
@@ -70,7 +70,7 @@ export type Message = {
   id: string;
   template_id: number;
   workflow_id: number | null;
-  data: MessageElement;
+  state: MessageState;
   updated_at: string;
   deleted: boolean;
 };

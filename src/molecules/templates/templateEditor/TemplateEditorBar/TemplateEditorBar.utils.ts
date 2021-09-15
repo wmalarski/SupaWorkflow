@@ -3,11 +3,11 @@ import { MessageKind, MessageNodeType } from "../../../../services/nodes";
 import { MutationArgs } from "../../../../utils/rep";
 
 export type GetNewNodeMessageOptions = {
-  datatype: MessageNodeType;
+  nodeType: MessageNodeType;
   templateId: number;
 };
 
-const dataBase = {
+const stateBase = {
   position: { x: 0, y: 0 },
   isTargetAll: false,
   teamId: 1,
@@ -16,7 +16,7 @@ const dataBase = {
 };
 
 export const getNewNodeMessage = ({
-  datatype,
+  nodeType,
   templateId,
 }: GetNewNodeMessageOptions): MutationArgs["putMessage"] | null => {
   const base = {
@@ -25,34 +25,34 @@ export const getNewNodeMessage = ({
     template_id: templateId,
   };
 
-  switch (datatype) {
+  switch (nodeType) {
     case MessageNodeType.Checklist:
       return {
         ...base,
-        data: {
-          ...dataBase,
+        state: {
+          ...stateBase,
           kind: MessageKind.TemplateNode,
-          datatype: MessageNodeType.Checklist,
+          nodeType: MessageNodeType.Checklist,
           tasks: [""],
         },
       };
     case MessageNodeType.Decision:
       return {
         ...base,
-        data: {
-          ...dataBase,
+        state: {
+          ...stateBase,
           kind: MessageKind.TemplateNode,
-          datatype: MessageNodeType.Decision,
+          nodeType: MessageNodeType.Decision,
           routes: [""],
         },
       };
     case MessageNodeType.Form:
       return {
         ...base,
-        data: {
-          ...dataBase,
+        state: {
+          ...stateBase,
           kind: MessageKind.TemplateNode,
-          datatype: MessageNodeType.Form,
+          nodeType: MessageNodeType.Form,
           fields: [""],
         },
       };

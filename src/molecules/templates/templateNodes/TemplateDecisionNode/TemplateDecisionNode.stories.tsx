@@ -18,8 +18,8 @@ Playground.args = {
   data: {
     message: {
       ...defaultMessage,
-      data: {
-        datatype: MessageNodeType.Decision,
+      state: {
+        nodeType: MessageNodeType.Decision,
         kind: MessageKind.TemplateNode,
         position: { x: 0, y: 0 },
         routes: ["route1", "route2"],

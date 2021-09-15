@@ -18,8 +18,8 @@ Playground.args = {
   data: {
     message: {
       ...defaultMessage,
-      data: {
-        datatype: MessageNodeType.Form,
+      state: {
+        nodeType: MessageNodeType.Form,
         kind: MessageKind.TemplateNode,
         position: { x: 0, y: 0 },
         fields: ["field1", "field2"],

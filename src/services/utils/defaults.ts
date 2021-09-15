@@ -103,9 +103,9 @@ export const defaultOrganizationMember: OrganizationMember = {
 };
 
 export const defaultMessage: Message = {
-  data: {
+  state: {
     kind: MessageKind.TemplateNode,
-    datatype: MessageNodeType.Checklist,
+    nodeType: MessageNodeType.Checklist,
     position: { x: 0, y: 0 },
     tasks: ["task1", "task2"],
     isTargetAll: true,

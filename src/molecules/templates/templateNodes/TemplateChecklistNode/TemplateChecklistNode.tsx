@@ -2,7 +2,7 @@ import { Box, Heading, StackDivider, VStack } from "@chakra-ui/react";
 import React from "react";
 import { Position } from "react-flow-renderer";
 import {
-  MessageChecklistTemplateNodeData,
+  MessageChecklistTemplateNodeState,
   MessageKind,
   MessageNodeType,
 } from "../../../../services/nodes";
@@ -20,16 +20,16 @@ const TemplateChecklistNode = ({
   const text = useText();
 
   if (
-    message.data.kind !== MessageKind.TemplateNode ||
-    message.data.datatype !== MessageNodeType.Checklist
+    message.state.kind !== MessageKind.TemplateNode ||
+    message.state.nodeType !== MessageNodeType.Checklist
   )
     return null;
 
-  const messageData: MessageChecklistTemplateNodeData = message.data;
+  const state: MessageChecklistTemplateNodeState = message.state;
 
-  const handleChange = (newData: Partial<MessageChecklistTemplateNodeData>) =>
+  const handleChange = (newState: Partial<MessageChecklistTemplateNodeState>) =>
     onChange({
-      data: { ...messageData, ...newData },
+      state: { ...state, ...newState },
       id: message.id,
       template_id: message.template_id,
       workflow_id: message.workflow_id,
@@ -50,22 +50,22 @@ const TemplateChecklistNode = ({
           {text("checklistTemplateNode")}
         </Heading>
         <TemplateDetailsForm
-          description={messageData.description}
-          title={messageData.title}
+          description={state.description}
+          title={state.title}
           onChange={(update) => handleChange(update)}
         />
         <TemplateListForm
           heading={text("checksTemplateNode")}
-          entries={message.data.tasks}
+          entries={message.state.tasks}
           onChange={(tasks) => handleChange({ tasks })}
         />
         <TemplateTeamsForm
           teams={teams}
-          selected={messageData.teamId}
+          selected={state.teamId}
           onChange={(teamId) => handleChange({ teamId })}
         />
         <TemplateTargetForm
-          isTargetAll={messageData.isTargetAll}
+          isTargetAll={state.isTargetAll}
           onChange={(isTargetAll: boolean) => handleChange({ isTargetAll })}
         />
       </VStack>

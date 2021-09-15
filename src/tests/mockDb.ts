@@ -5,7 +5,7 @@ import {
   OrganizationRole,
   TeamRole,
 } from "../services";
-import { MessageElement } from "../services/nodes";
+import { MessageState } from "../services/nodes";
 
 export const dbIndexCounter = (() => {
   let index = 1;
@@ -80,7 +80,7 @@ export const mockDb = factory({
     id: primaryKey(String),
     template_id: Number,
     workflow_id: (): number | null => null,
-    data: (): MessageElement => defaultMessage.data,
+    data: (): MessageState => defaultMessage.state,
     updated_at: String,
     deleted: Boolean,
   },

@@ -2,7 +2,7 @@ import { Box, StackDivider, VStack } from "@chakra-ui/react";
 import React from "react";
 import { Handle, Position } from "react-flow-renderer";
 import {
-  MessageDecisionWorkflowNodeData,
+  MessageDecisionWorkflowNodeState,
   MessageNodeType,
 } from "../../../../services/nodes";
 import {
@@ -14,13 +14,13 @@ import WorkflowHeaderForm from "../../workflowForms/WorkflowHeaderForm/WorkflowH
 import WorkflowDecisionNodeHandle from "./WorkflowDecisionNodeHandle";
 
 const WorkflowDecisionNode = ({
-  data: { message, data, onChange },
+  data: { message, state: state, onChange },
 }: WorkflowNodeProps<WorkflowNodeData>): React.ReactElement | null => {
-  if (data.datatype !== MessageNodeType.Decision) return null;
+  if (state.nodeType !== MessageNodeType.Decision) return null;
 
-  const handleChange = (newData: Partial<MessageDecisionWorkflowNodeData>) =>
+  const handleChange = (newState: Partial<MessageDecisionWorkflowNodeState>) =>
     onChange({
-      data: { ...data, ...newData },
+      state: { ...state, ...newState },
       id: message.id,
       template_id: message.template_id,
       workflow_id: message.workflow_id,
@@ -37,16 +37,16 @@ const WorkflowDecisionNode = ({
     >
       <Handle type="target" position={Position.Left} />
       <VStack divider={<StackDivider borderColor="gray.200" />}>
-        <WorkflowHeaderForm template={data.template} />
+        <WorkflowHeaderForm template={state.template} />
         <WorkflowFooterForm
-          isDone={data.isDone}
+          isDone={state.isDone}
           onChange={(isDone) => handleChange({ isDone })}
         />
       </VStack>
-      {data.template.routes.map((route, index) => (
+      {state.template.routes.map((route, index) => (
         <WorkflowDecisionNodeHandle
           key={route}
-          count={data.template.routes.length}
+          count={state.template.routes.length}
           index={index}
         />
       ))}

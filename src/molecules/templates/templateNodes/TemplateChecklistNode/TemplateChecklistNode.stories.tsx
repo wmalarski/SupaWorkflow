@@ -18,8 +18,8 @@ Playground.args = {
   data: {
     message: {
       ...defaultMessage,
-      data: {
-        datatype: MessageNodeType.Checklist,
+      state: {
+        nodeType: MessageNodeType.Checklist,
         kind: MessageKind.TemplateNode,
         position: { x: 0, y: 0 },
         tasks: ["task1", "task2"],

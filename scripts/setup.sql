@@ -82,7 +82,7 @@ CREATE TABLE message (
     id VARCHAR(21) PRIMARY KEY NOT NULL,      
     template_id BIGINT NOT NULL REFERENCES template,
     workflow_id BIGINT REFERENCES workflow,
-    data JSON NOT NULL,
+    state JSON NOT NULL,
     updated_at TIMESTAMP NOT NULL DEFAULT NOW(),
     deleted boolean NOT NULL DEFAULT false
 );

@@ -17,7 +17,7 @@ export type MessageNodePosition = {
 };
 
 // Base types
-export type MessageTemplateNodeDataBase = {
+export type MessageTemplateNodeBaseState = {
   kind: MessageKind.TemplateNode;
   position: MessageNodePosition;
   teamId: number | null;
@@ -26,13 +26,13 @@ export type MessageTemplateNodeDataBase = {
   description: string;
 };
 
-export type MessageWorkflowNodeDataBase = {
+export type MessageWorkflowNodeBaseState = {
   kind: MessageKind.WorkflowNode;
   assigneeId: number | null;
   isDone: boolean;
 };
 
-export type MessageTemplateEdgeDataBase = {
+export type MessageTemplateEdgeBaseState = {
   kind: MessageKind.TemplateEdge;
   source: string;
   target: string;
@@ -40,62 +40,62 @@ export type MessageTemplateEdgeDataBase = {
   targetHandle?: string | null;
 };
 
-export type MessageWorkflowEdgeDataBase = {
+export type MessageWorkflowEdgeBaseState = {
   kind: MessageKind.WorkflowEdge;
-  template: MessageTemplateEdgeDataBase;
+  template: MessageTemplateEdgeBaseState;
 };
 
 // Discriminative types
-export type MessageChecklistTemplateNodeData = MessageTemplateNodeDataBase & {
-  datatype: MessageNodeType.Checklist;
+export type MessageChecklistTemplateNodeState = MessageTemplateNodeBaseState & {
+  nodeType: MessageNodeType.Checklist;
   tasks: string[];
 };
 
-export type MessageFormTemplateNodeData = MessageTemplateNodeDataBase & {
-  datatype: MessageNodeType.Form;
+export type MessageFormTemplateNodeState = MessageTemplateNodeBaseState & {
+  nodeType: MessageNodeType.Form;
   fields: string[];
 };
 
-export type MessageDecisionTemplateNodeData = MessageTemplateNodeDataBase & {
-  datatype: MessageNodeType.Decision;
+export type MessageDecisionTemplateNodeState = MessageTemplateNodeBaseState & {
+  nodeType: MessageNodeType.Decision;
   routes: string[];
 };
 
-export type MessageChecklistWorkflowNodeData = MessageWorkflowNodeDataBase & {
-  datatype: MessageNodeType.Checklist;
+export type MessageChecklistWorkflowNodeState = MessageWorkflowNodeBaseState & {
+  nodeType: MessageNodeType.Checklist;
   checked: number[];
-  template: MessageChecklistTemplateNodeData;
+  template: MessageChecklistTemplateNodeState;
 };
 
-export type MessageFormWorkflowNodeData = MessageWorkflowNodeDataBase & {
-  datatype: MessageNodeType.Form;
+export type MessageFormWorkflowNodeState = MessageWorkflowNodeBaseState & {
+  nodeType: MessageNodeType.Form;
   values: Record<number, string>;
-  template: MessageFormTemplateNodeData;
+  template: MessageFormTemplateNodeState;
 };
 
-export type MessageDecisionWorkflowNodeData = MessageWorkflowNodeDataBase & {
-  datatype: MessageNodeType.Decision;
+export type MessageDecisionWorkflowNodeState = MessageWorkflowNodeBaseState & {
+  nodeType: MessageNodeType.Decision;
   selected: number | null;
-  template: MessageDecisionTemplateNodeData;
+  template: MessageDecisionTemplateNodeState;
 };
 
 // Union types
-export type MessageTemplateNodeData =
-  | MessageChecklistTemplateNodeData
-  | MessageFormTemplateNodeData
-  | MessageDecisionTemplateNodeData;
+export type MessageTemplateNodeState =
+  | MessageChecklistTemplateNodeState
+  | MessageFormTemplateNodeState
+  | MessageDecisionTemplateNodeState;
 
-export type MessageWorkflowNodeData =
-  | MessageChecklistWorkflowNodeData
-  | MessageFormWorkflowNodeData
-  | MessageDecisionWorkflowNodeData;
+export type MessageWorkflowNodeState =
+  | MessageChecklistWorkflowNodeState
+  | MessageFormWorkflowNodeState
+  | MessageDecisionWorkflowNodeState;
 
-export type MessageTemplateEdgeData = MessageTemplateEdgeDataBase;
+export type MessageTemplateEdgeState = MessageTemplateEdgeBaseState;
 
-export type MessageWorkflowEdgeData = MessageWorkflowEdgeDataBase;
+export type MessageWorkflowEdgeState = MessageWorkflowEdgeBaseState;
 
-export type MessageElement =
-  | MessageTemplateNodeData
-  | MessageWorkflowNodeData
-  | MessageTemplateEdgeData
-  | MessageWorkflowEdgeData;
+export type MessageState =
+  | MessageTemplateNodeState
+  | MessageWorkflowNodeState
+  | MessageTemplateEdgeState
+  | MessageWorkflowEdgeState;
