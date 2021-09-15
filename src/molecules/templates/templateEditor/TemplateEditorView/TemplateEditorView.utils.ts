@@ -1,7 +1,11 @@
 import { nanoid } from "nanoid";
 import { Connection, Edge, Elements, FlowElement } from "react-flow-renderer";
 import { Message, Team } from "../../../../services";
-import { MessageKind, MessageNodeType } from "../../../../services/nodes";
+import {
+  MessageKind,
+  MessageNodeType,
+  MessageTemplateEdgeState,
+} from "../../../../services/nodes";
 import { MutationArgs } from "../../../../utils/rep";
 import { TemplateData } from "./TemplateEditorView.types";
 
@@ -12,6 +16,19 @@ export type MessageToElementOptions = {
   onChange: (message: MutationArgs["putMessage"]) => void;
 };
 
+const findLabel = (
+  state: MessageTemplateEdgeState,
+  messages: Message[]
+): string =>
+  messages.flatMap((e) =>
+    state.sourceHandle &&
+    e.state.kind === MessageKind.TemplateNode &&
+    e.id === state.source &&
+    e.state.nodeType === MessageNodeType.Decision
+      ? [e.state.routes[Number(state.sourceHandle)]]
+      : []
+  )[0];
+
 export const messageToElement = ({
   teams,
   message,
@@ -21,19 +38,10 @@ export const messageToElement = ({
   const { id, state } = message;
 
   switch (state.kind) {
-    case MessageKind.TemplateEdge: {
-      const label = messages.flatMap((e) =>
-        state.sourceHandle &&
-        e.state.kind === MessageKind.TemplateNode &&
-        e.id === state.source &&
-        e.state.nodeType === MessageNodeType.Decision
-          ? [e.state.routes[Number(state.sourceHandle)]]
-          : []
-      )[0];
-
+    case MessageKind.TemplateEdge:
       return {
         id,
-        label,
+        label: findLabel(state, messages),
         source: state.source,
         target: state.target,
         sourceHandle: state.sourceHandle,
@@ -44,7 +52,6 @@ export const messageToElement = ({
           templateId: message.template_id,
         },
       };
-    }
     case MessageKind.TemplateNode:
       return {
         id,

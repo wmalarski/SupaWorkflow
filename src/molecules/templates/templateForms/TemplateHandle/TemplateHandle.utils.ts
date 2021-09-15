@@ -1,5 +1,5 @@
 import { Connection, Edge } from "react-flow-renderer";
-import { TemplateData } from "../../templateEditor/TemplateEditorView/TemplateEditorView.utils";
+import { TemplateData } from "../../templateEditor/TemplateEditorView/TemplateEditorView.types";
 
 export type FindEdgeCycleOptions = {
   edges: Edge<TemplateData>[];
