@@ -1,4 +1,4 @@
-import { Heading, Select, VStack } from "@chakra-ui/react";
+import { Heading, Select, Text, VStack } from "@chakra-ui/react";
 import React from "react";
 import { Team } from "../../../../services";
 import { useText } from "../../../../utils";
@@ -17,7 +17,7 @@ const TemplateTeamsForm = ({
   const text = useText();
 
   return (
-    <VStack width="100%">
+    <VStack>
       <Heading size="xs">{text("teamsTemplateNode")}</Heading>
       <Select
         size="sm"
@@ -25,9 +25,9 @@ const TemplateTeamsForm = ({
         onChange={(event) => onChange(Number(event.target.value))}
       >
         {teams.map((team) => (
-          <option key={team.id} value={team.id}>
+          <Text as="option" key={team.id} value={team.id} fontSize="sm">
             {team.name}
-          </option>
+          </Text>
         ))}
       </Select>
     </VStack>

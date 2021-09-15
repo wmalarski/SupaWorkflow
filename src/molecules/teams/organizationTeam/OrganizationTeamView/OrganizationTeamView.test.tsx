@@ -2,7 +2,7 @@ import "@testing-library/jest-dom";
 import "@testing-library/jest-dom/extend-expect";
 import { render } from "@testing-library/react";
 import React from "react";
-import { defaultTeamMember } from "../../../../services";
+import { defaultTeamMembers } from "../../../../services";
 import { ContextsMock } from "../../../../tests/wrappers";
 import OrganizationTeamView from "./OrganizationTeamView";
 
@@ -16,9 +16,7 @@ function renderComponent(props: Partial<ComponentProps> = {}) {
     pageSize: 10,
     count: 30,
     isLoading: false,
-    teamMembers: Array(5)
-      .fill(defaultTeamMember)
-      .map((team, index) => ({ ...team, id: index })),
+    teamMembers: defaultTeamMembers,
   };
   return render(
     <ContextsMock>

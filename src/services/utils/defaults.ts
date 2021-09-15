@@ -1,5 +1,5 @@
 import { User } from "@supabase/supabase-js";
-import { Message } from "..";
+import { Message, SelectTeamMemberRow } from "..";
 import { MessageKind, MessageNodeType } from "../nodes";
 import {
   Member,
@@ -78,6 +78,20 @@ export const defaultTeamMember: TeamMember = {
   team_id: 1,
 };
 
+export const defaultTeamMembers: SelectTeamMemberRow[] = Array(5)
+  .fill(defaultTeamMember)
+  .map((teamMember, index) => ({
+    ...teamMember,
+    id: index + 1,
+    profile_id: index + 1,
+    profile: {
+      ...defaultProfile,
+      id: index + 1,
+      user_id: `uid${index + 1}`,
+      name: `${defaultProfile.name}-${index + 1}`,
+    },
+  }));
+
 export const defaultTeam: Team = {
   avatar: null,
   color: "#ff0000",
@@ -91,8 +105,8 @@ export const defaultTeams: Team[] = Array(5)
   .fill(defaultTeam)
   .map((team, index) => ({
     ...team,
-    id: index,
-    name: `${team.name}-${index}`,
+    id: index + 1,
+    name: `${team.name}-${index + 1}`,
   }));
 
 export const defaultOrganizationMember: OrganizationMember = {

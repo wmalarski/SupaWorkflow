@@ -121,6 +121,8 @@ const translation = {
   // Workflow editor
   workflowNodeDone: "Done",
   workflowNodeAssignee: "Assignee",
+  workflowNodeNoneAssignee: "None",
+  workflowNodeNoTeam: "No Team Assigned",
 
   // Add team
   addTeamHeader: "Add new team",

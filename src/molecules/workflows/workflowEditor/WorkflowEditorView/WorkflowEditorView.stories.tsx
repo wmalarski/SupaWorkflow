@@ -1,6 +1,10 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React, { useEffect, useState } from "react";
-import { defaultTeams, Message } from "../../../../services";
+import {
+  defaultTeamMembers,
+  defaultTeams,
+  Message,
+} from "../../../../services";
 import { MessageKind, MessageNodeType } from "../../../../services/nodes";
 import WorkflowEditorView from "./WorkflowEditorView";
 
@@ -23,7 +27,7 @@ const initialMessages: Message[] = [
       assigneeId: 1,
       template: {
         kind: MessageKind.TemplateNode,
-        position: { x: 0, y: 150 },
+        position: { x: 0, y: 300 },
         nodeType: MessageNodeType.Decision,
         routes: ["route1", "route2"],
         teamId: defaultTeams[4].id,
@@ -44,7 +48,7 @@ const initialMessages: Message[] = [
       assigneeId: null,
       template: {
         kind: MessageKind.TemplateNode,
-        position: { x: 350, y: 300 },
+        position: { x: 350, y: 600 },
         nodeType: MessageNodeType.Checklist,
         tasks: ["check1", "check2"],
         teamId: defaultTeams[0].id,
@@ -65,7 +69,7 @@ const initialMessages: Message[] = [
       assigneeId: 0,
       template: {
         kind: MessageKind.TemplateNode,
-        position: { x: 350, y: 150 },
+        position: { x: 350, y: 300 },
         nodeType: MessageNodeType.Form,
         fields: ["field1", "field2"],
         teamId: defaultTeams[2].id,
@@ -107,7 +111,7 @@ const initialMessages: Message[] = [
       assigneeId: 0,
       template: {
         kind: MessageKind.TemplateNode,
-        position: { x: 700, y: 225 },
+        position: { x: 700, y: 450 },
         nodeType: MessageNodeType.Form,
         fields: ["field1", "field2"],
         teamId: null,
@@ -128,7 +132,7 @@ const initialMessages: Message[] = [
       assigneeId: null,
       template: {
         kind: MessageKind.TemplateNode,
-        position: { x: 700, y: 75 },
+        position: { x: 700, y: 150 },
         nodeType: MessageNodeType.Form,
         fields: ["field1", "field2"],
         teamId: defaultTeams[1].id,
@@ -266,6 +270,7 @@ export const Playground = Template.bind({});
 Playground.args = {
   messages: initialMessages,
   teams: defaultTeams,
+  teamMembers: defaultTeamMembers,
   templateId: 1,
   workflowId: 1,
 };

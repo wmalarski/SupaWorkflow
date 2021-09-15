@@ -9,11 +9,12 @@ import {
   WorkflowNodeData,
   WorkflowNodeProps,
 } from "../../workflowEditor/WorkflowEditorView/WorkflowEditorView.utils";
+import WorkflowAssigneeForm from "../../workflowForms/WorkflowAssigneeForm/WorkflowAssigneeForm";
 import WorkflowFooterForm from "../../workflowForms/WorkflowFooterForm/WorkflowFooterForm";
 import WorkflowHeaderForm from "../../workflowForms/WorkflowHeaderForm/WorkflowHeaderForm";
 
 const WorkflowChecklistNode = ({
-  data: { message, state, onChange },
+  data: { message, state, team, teamMembers, onChange },
 }: WorkflowNodeProps<WorkflowNodeData>): React.ReactElement | null => {
   if (state.nodeType !== MessageNodeType.Checklist) return null;
 
@@ -37,6 +38,12 @@ const WorkflowChecklistNode = ({
       <Handle type="target" position={Position.Left} />
       <VStack divider={<StackDivider borderColor="gray.200" />}>
         <WorkflowHeaderForm template={state.template} />
+        <WorkflowAssigneeForm
+          assigneeId={state.assigneeId}
+          onChange={(assigneeId) => handleChange({ assigneeId })}
+          teamMembers={teamMembers}
+          team={team}
+        />
         <WorkflowFooterForm
           isDone={state.isDone}
           onChange={(isDone) => handleChange({ isDone })}
