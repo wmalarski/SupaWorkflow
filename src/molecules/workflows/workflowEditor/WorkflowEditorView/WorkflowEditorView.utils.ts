@@ -12,13 +12,17 @@ export type WorkflowNodeData<
 > = {
   team?: Team;
   teamMembers: SelectTeamMemberRow[];
-  message: Message;
+  messageId: string;
+  templateId: number;
+  workflowId: number | null;
   state: TState;
   onChange: (message: MutationArgs["putMessage"]) => void;
 };
 
 export type WorkflowEdgeData = {
-  message: Message;
+  messageId: string;
+  templateId: number;
+  workflowId: number | null;
   state: MessageWorkflowEdgeState;
 };
 
@@ -65,7 +69,9 @@ export const messageToElement = ({
         targetHandle: state.template.targetHandle,
         data: {
           state,
-          message,
+          messageId: message.id,
+          templateId: message.template_id,
+          workflowId: message.workflow_id,
         },
       };
     case MessageKind.WorkflowNode:
@@ -78,8 +84,10 @@ export const messageToElement = ({
         draggable: false,
         data: {
           state,
-          message,
           onChange,
+          messageId: message.id,
+          templateId: message.template_id,
+          workflowId: message.workflow_id,
           team: teams.find((t) => t.id === state.template.teamId),
           teamMembers: teamMembers.filter(
             (member) => member.team_id === state.template.teamId

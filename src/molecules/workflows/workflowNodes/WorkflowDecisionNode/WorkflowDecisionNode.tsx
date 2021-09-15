@@ -10,14 +10,22 @@ import WorkflowRadioForm from "../../workflowForms/WorkflowRadioForm/WorkflowRad
 import WorkflowDecisionNodeHandle from "./WorkflowDecisionNodeHandle";
 
 const WorkflowDecisionNode = ({
-  data: { message, state, teamMembers, team, onChange },
+  data: {
+    state,
+    teamMembers,
+    team,
+    workflowId,
+    messageId,
+    templateId,
+    onChange,
+  },
 }: WorkflowNodeProps<MessageDecisionWorkflowNodeState>): React.ReactElement | null => {
   const handleChange = (newState: Partial<MessageDecisionWorkflowNodeState>) =>
     onChange({
       state: { ...state, ...newState },
-      id: message.id,
-      template_id: message.template_id,
-      workflow_id: message.workflow_id,
+      id: messageId,
+      template_id: templateId,
+      workflow_id: workflowId,
     });
 
   return (

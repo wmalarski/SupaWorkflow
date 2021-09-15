@@ -9,14 +9,22 @@ import WorkflowFooterForm from "../../workflowForms/WorkflowFooterForm/WorkflowF
 import WorkflowHeaderForm from "../../workflowForms/WorkflowHeaderForm/WorkflowHeaderForm";
 
 const WorkflowChecklistNode = ({
-  data: { message, state, team, teamMembers, onChange },
+  data: {
+    state,
+    team,
+    teamMembers,
+    templateId,
+    messageId,
+    workflowId,
+    onChange,
+  },
 }: WorkflowNodeProps<MessageChecklistWorkflowNodeState>): React.ReactElement | null => {
   const handleChange = (newState: Partial<MessageChecklistWorkflowNodeState>) =>
     onChange({
       state: { ...state, ...newState },
-      id: message.id,
-      template_id: message.template_id,
-      workflow_id: message.workflow_id,
+      id: messageId,
+      template_id: templateId,
+      workflow_id: workflowId,
     });
 
   return (
