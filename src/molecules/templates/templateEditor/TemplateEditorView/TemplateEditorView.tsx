@@ -15,10 +15,10 @@ import TemplateChecklistNode from "../../templateNodes/TemplateChecklistNode/Tem
 import TemplateDecisionNode from "../../templateNodes/TemplateDecisionNode/TemplateDecisionNode";
 import TemplateFormNode from "../../templateNodes/TemplateFormNode/TemplateFormNode";
 import TemplateEditorBar from "../TemplateEditorBar/TemplateEditorBar";
+import { TemplateData } from "./TemplateEditorView.types";
 import {
   getNewEdgeMessage,
   messagesToElements,
-  TemplateData,
 } from "./TemplateEditorView.utils";
 
 export type TemplateEditorViewProps = {

@@ -3,7 +3,7 @@ import React, { useCallback, useMemo } from "react";
 import { Position } from "react-flow-renderer";
 import { MessageChecklistTemplateNodeState } from "../../../../services/nodes";
 import { useText } from "../../../../utils";
-import { TemplateNodeProps } from "../../templateEditor/TemplateEditorView/TemplateEditorView.utils";
+import { TemplateNodeProps } from "../../templateEditor/TemplateEditorView/TemplateEditorView.types";
 import TemplateDetailsForm from "../../templateForms/TemplateDetailsForm/TemplateDetailsForm";
 import TemplateHandle from "../../templateForms/TemplateHandle/TemplateHandle";
 import TemplateListForm from "../../templateForms/TemplateListForm/TemplateListForm";

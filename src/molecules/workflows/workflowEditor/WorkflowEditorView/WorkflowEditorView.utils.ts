@@ -1,50 +1,14 @@
 import { Elements, FlowElement } from "react-flow-renderer";
 import { Message, SelectTeamMemberRow, Team } from "../../../../services";
-import {
-  MessageKind,
-  MessageWorkflowEdgeState,
-  MessageWorkflowNodeState,
-} from "../../../../services/nodes";
+import { MessageKind } from "../../../../services/nodes";
 import { MutationArgs } from "../../../../utils/rep";
-
-export type WorkflowNodeData<
-  TState extends MessageWorkflowNodeState = MessageWorkflowNodeState
-> = {
-  teams: Team[];
-  teamMembers: SelectTeamMemberRow[];
-  messageId: string;
-  templateId: number;
-  workflowId: number | null;
-  state: TState;
-  onChange: (message: MutationArgs["putMessage"]) => void;
-};
-
-export type WorkflowEdgeData = {
-  messageId: string;
-  templateId: number;
-  workflowId: number | null;
-  state: MessageWorkflowEdgeState;
-};
-
-export type WorkflowData = WorkflowNodeData | WorkflowEdgeData;
-
-export type WorkflowNodeProps<TState extends MessageWorkflowNodeState> = {
-  id: string;
-  isConnectable: boolean;
-  isDragging: boolean;
-  selected: boolean;
-  sourcePosition?: string;
-  targetPosition?: string;
-  type: string;
-  xPos: number;
-  yPos: number;
-  data: WorkflowNodeData<TState>;
-};
+import { WorkflowData } from "./WorkflowEditorView.types";
 
 export type MessageToElementOptions = {
   teams: Team[];
   teamMembers: SelectTeamMemberRow[];
   message: Message;
+  messages: Message[];
   onChange: (message: MutationArgs["putMessage"]) => void;
 };
 
@@ -57,13 +21,22 @@ export const messageToElement = ({
   const { id, state } = message;
 
   switch (state.kind) {
-    case MessageKind.WorkflowEdge:
+    case MessageKind.WorkflowEdge: {
+      // const label = messages.flatMap((e) =>
+      //   state.template.sourceHandle &&
+      //   e.state.kind === MessageKind.WorkflowNode &&
+      //   e.state.template.kind === MessageKind.TemplateNode &&
+      //   e.state.template === state.template.source &&
+      //   e.state.nodeType === MessageNodeType.Decision
+      //     ? [e.state.routes[Number(state.sourceHandle)]]
+      //     : []
+      // )[0];
+
       return {
         id,
         source: state.template.source,
         target: state.template.target,
         connectable: false,
-        draggable: false,
         animated: true,
         sourceHandle: state.template.sourceHandle,
         targetHandle: state.template.targetHandle,
@@ -74,14 +47,15 @@ export const messageToElement = ({
           workflowId: message.workflow_id,
         },
       };
-    case MessageKind.WorkflowNode:
+    }
+    case MessageKind.WorkflowNode: {
       return {
         id,
         position: state.template.position,
         type: state.nodeType,
         style: { width: 300 },
+        animated: true,
         connectable: false,
-        draggable: false,
         data: {
           state,
           onChange,
@@ -92,6 +66,7 @@ export const messageToElement = ({
           teamMembers,
         },
       };
+    }
     default:
       return null;
   }
@@ -111,6 +86,12 @@ export const messagesToElements = ({
   onChange,
 }: MessagesToElementsOptions): Elements<WorkflowData> =>
   messages.flatMap((message) => {
-    const element = messageToElement({ teams, teamMembers, message, onChange });
+    const element = messageToElement({
+      teams,
+      teamMembers,
+      message,
+      messages,
+      onChange,
+    });
     return element ? [element] : [];
   });

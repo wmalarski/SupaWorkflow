@@ -2,7 +2,7 @@ import { Box, StackDivider, VStack } from "@chakra-ui/react";
 import React, { useCallback, useMemo } from "react";
 import { Handle, Position } from "react-flow-renderer";
 import { MessageDecisionWorkflowNodeState } from "../../../../services/nodes";
-import { WorkflowNodeProps } from "../../workflowEditor/WorkflowEditorView/WorkflowEditorView.utils";
+import { WorkflowNodeProps } from "../../workflowEditor/WorkflowEditorView/WorkflowEditorView.types";
 import WorkflowAssigneeForm from "../../workflowForms/WorkflowAssigneeForm/WorkflowAssigneeForm";
 import WorkflowFooterForm from "../../workflowForms/WorkflowFooterForm/WorkflowFooterForm";
 import WorkflowHeaderForm from "../../workflowForms/WorkflowHeaderForm/WorkflowHeaderForm";

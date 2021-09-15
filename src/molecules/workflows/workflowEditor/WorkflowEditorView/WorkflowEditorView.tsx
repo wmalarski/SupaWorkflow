@@ -11,7 +11,8 @@ import { MutationArgs } from "../../../../utils/rep";
 import WorkflowChecklistNode from "../../workflowNodes/WorkflowChecklistNode/WorkflowChecklistNode";
 import WorkflowDecisionNode from "../../workflowNodes/WorkflowDecisionNode/WorkflowDecisionNode";
 import WorkflowFormNode from "../../workflowNodes/WorkflowFormNode/WorkflowFormNode";
-import { messagesToElements, WorkflowData } from "./WorkflowEditorView.utils";
+import { WorkflowData } from "./WorkflowEditorView.types";
+import { messagesToElements } from "./WorkflowEditorView.utils";
 
 export type WorkflowEditorViewProps = {
   templateId: number;
