@@ -10,6 +10,7 @@ import {
   WorkflowNodeProps,
 } from "../../workflowEditor/WorkflowEditorView/WorkflowEditorView.utils";
 import WorkflowAssigneeForm from "../../workflowForms/WorkflowAssigneeForm/WorkflowAssigneeForm";
+import WorkflowCheckboxesForm from "../../workflowForms/WorkflowCheckboxesForm/WorkflowCheckboxesForm";
 import WorkflowFooterForm from "../../workflowForms/WorkflowFooterForm/WorkflowFooterForm";
 import WorkflowHeaderForm from "../../workflowForms/WorkflowHeaderForm/WorkflowHeaderForm";
 
@@ -43,6 +44,11 @@ const WorkflowChecklistNode = ({
           onChange={(assigneeId) => handleChange({ assigneeId })}
           teamMembers={teamMembers}
           team={team}
+        />
+        <WorkflowCheckboxesForm
+          checked={state.checked}
+          onChange={(checked) => handleChange({ checked })}
+          options={state.template.tasks}
         />
         <WorkflowFooterForm
           isDone={state.isDone}
