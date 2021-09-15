@@ -124,6 +124,7 @@ const translation = {
   workflowNodeNoneAssignee: "None",
   workflowNodeNoTeam: "No Team Assigned",
   workflowRadioSelect: "Choices",
+  workflowNodeFields: "Fields",
 
   // Add team
   addTeamHeader: "Add new team",

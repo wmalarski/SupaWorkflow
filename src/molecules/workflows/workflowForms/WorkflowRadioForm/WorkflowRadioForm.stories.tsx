@@ -13,7 +13,16 @@ const Template: ComponentStory<typeof WorkflowRadioForm> = (args) => {
 
   useEffect(() => setState(args.selected), [args.selected]);
 
-  return <WorkflowRadioForm {...args} selected={state} onChange={setState} />;
+  return (
+    <WorkflowRadioForm
+      {...args}
+      selected={state}
+      onChange={(value) => {
+        setState(value);
+        args.onChange(value);
+      }}
+    />
+  );
 };
 
 export const Playground = Template.bind({});

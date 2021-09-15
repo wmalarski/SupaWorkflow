@@ -14,7 +14,14 @@ const Template: ComponentStory<typeof WorkflowCheckboxesForm> = (args) => {
   useEffect(() => setState(args.checked), [args.checked]);
 
   return (
-    <WorkflowCheckboxesForm {...args} checked={state} onChange={setState} />
+    <WorkflowCheckboxesForm
+      {...args}
+      checked={state}
+      onChange={(value) => {
+        setState(value);
+        args.onChange(value);
+      }}
+    />
   );
 };
 

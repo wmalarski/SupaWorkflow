@@ -1,5 +1,5 @@
 import { Box, StackDivider, VStack } from "@chakra-ui/react";
-import React from "react";
+import React, { memo } from "react";
 import { Handle, Position } from "react-flow-renderer";
 import {
   MessageFormWorkflowNodeState,
@@ -10,6 +10,7 @@ import {
   WorkflowNodeProps,
 } from "../../workflowEditor/WorkflowEditorView/WorkflowEditorView.utils";
 import WorkflowAssigneeForm from "../../workflowForms/WorkflowAssigneeForm/WorkflowAssigneeForm";
+import WorkflowFieldsForm from "../../workflowForms/WorkflowFieldsForm/WorkflowFieldsForm";
 import WorkflowFooterForm from "../../workflowForms/WorkflowFooterForm/WorkflowFooterForm";
 import WorkflowHeaderForm from "../../workflowForms/WorkflowHeaderForm/WorkflowHeaderForm";
 
@@ -44,6 +45,11 @@ const WorkflowFormNode = ({
           teamMembers={teamMembers}
           team={team}
         />
+        <WorkflowFieldsForm
+          fields={state.template.fields}
+          onChange={(values) => handleChange({ values })}
+          values={state.values}
+        />
         <WorkflowFooterForm
           isDone={state.isDone}
           onChange={(isDone) => handleChange({ isDone })}
@@ -54,4 +60,4 @@ const WorkflowFormNode = ({
   );
 };
 
-export default WorkflowFormNode;
+export default memo(WorkflowFormNode);
