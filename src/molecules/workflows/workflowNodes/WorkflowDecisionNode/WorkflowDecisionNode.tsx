@@ -3,28 +3,24 @@ import React from "react";
 import { Handle, Position } from "react-flow-renderer";
 import {
   MessageDecisionWorkflowNodeData,
-  MessageKind,
   MessageNodeType,
 } from "../../../../services/nodes";
-import { WorkflowNodeProps } from "../../workflowEditor/WorkflowEditorView/WorkflowEditorView.utils";
+import {
+  WorkflowNodeData,
+  WorkflowNodeProps,
+} from "../../workflowEditor/WorkflowEditorView/WorkflowEditorView.utils";
 import WorkflowFooterForm from "../../workflowForms/WorkflowFooterForm/WorkflowFooterForm";
 import WorkflowHeaderForm from "../../workflowForms/WorkflowHeaderForm/WorkflowHeaderForm";
 import WorkflowDecisionNodeHandle from "./WorkflowDecisionNodeHandle";
 
 const WorkflowDecisionNode = ({
-  data: { message, onChange },
-}: WorkflowNodeProps): React.ReactElement | null => {
-  if (
-    message.data.kind !== MessageKind.WorkflowNode ||
-    message.data.datatype !== MessageNodeType.Decision
-  )
-    return null;
-
-  const messageData: MessageDecisionWorkflowNodeData = message.data;
+  data: { message, data, onChange },
+}: WorkflowNodeProps<WorkflowNodeData>): React.ReactElement | null => {
+  if (data.datatype !== MessageNodeType.Decision) return null;
 
   const handleChange = (newData: Partial<MessageDecisionWorkflowNodeData>) =>
     onChange({
-      data: { ...messageData, ...newData },
+      data: { ...data, ...newData },
       id: message.id,
       template_id: message.template_id,
       workflow_id: message.workflow_id,
@@ -41,16 +37,16 @@ const WorkflowDecisionNode = ({
     >
       <Handle type="target" position={Position.Left} />
       <VStack divider={<StackDivider borderColor="gray.200" />}>
-        <WorkflowHeaderForm template={messageData.template} />
+        <WorkflowHeaderForm template={data.template} />
         <WorkflowFooterForm
-          isDone={messageData.isDone}
+          isDone={data.isDone}
           onChange={(isDone) => handleChange({ isDone })}
         />
       </VStack>
-      {messageData.template.routes.map((route, index) => (
+      {data.template.routes.map((route, index) => (
         <WorkflowDecisionNodeHandle
           key={route}
-          count={messageData.template.routes.length}
+          count={data.template.routes.length}
           index={index}
         />
       ))}

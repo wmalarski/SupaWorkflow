@@ -16,7 +16,8 @@ export type MessageNodePosition = {
   y: number;
 };
 
-export type MessageTemplateNodeData = {
+// Base types
+export type MessageTemplateNodeDataBase = {
   kind: MessageKind.TemplateNode;
   position: MessageNodePosition;
   teamId: number | null;
@@ -25,12 +26,13 @@ export type MessageTemplateNodeData = {
   description: string;
 };
 
-export type MessageWorkflowNodeData = {
+export type MessageWorkflowNodeDataBase = {
   kind: MessageKind.WorkflowNode;
+  assigneeId: number | null;
   isDone: boolean;
 };
 
-export type MessageTemplateEdgeData = {
+export type MessageTemplateEdgeDataBase = {
   kind: MessageKind.TemplateEdge;
   source: string;
   target: string;
@@ -38,50 +40,62 @@ export type MessageTemplateEdgeData = {
   targetHandle?: string | null;
 };
 
-export type MessageWorkflowEdgeData = {
+export type MessageWorkflowEdgeDataBase = {
   kind: MessageKind.WorkflowEdge;
-  template: MessageTemplateEdgeData;
+  template: MessageTemplateEdgeDataBase;
 };
 
-export type MessageChecklistTemplateNodeData = MessageTemplateNodeData & {
+// Discriminative types
+export type MessageChecklistTemplateNodeData = MessageTemplateNodeDataBase & {
   datatype: MessageNodeType.Checklist;
   tasks: string[];
 };
 
-export type MessageFormTemplateNodeData = MessageTemplateNodeData & {
+export type MessageFormTemplateNodeData = MessageTemplateNodeDataBase & {
   datatype: MessageNodeType.Form;
   fields: string[];
 };
 
-export type MessageDecisionTemplateNodeData = MessageTemplateNodeData & {
+export type MessageDecisionTemplateNodeData = MessageTemplateNodeDataBase & {
   datatype: MessageNodeType.Decision;
   routes: string[];
 };
 
-export type MessageChecklistWorkflowNodeData = MessageWorkflowNodeData & {
+export type MessageChecklistWorkflowNodeData = MessageWorkflowNodeDataBase & {
   datatype: MessageNodeType.Checklist;
   checked: number[];
   template: MessageChecklistTemplateNodeData;
 };
 
-export type MessageFormWorkflowNodeData = MessageWorkflowNodeData & {
+export type MessageFormWorkflowNodeData = MessageWorkflowNodeDataBase & {
   datatype: MessageNodeType.Form;
   values: Record<number, string>;
   template: MessageFormTemplateNodeData;
 };
 
-export type MessageDecisionWorkflowNodeData = MessageWorkflowNodeData & {
+export type MessageDecisionWorkflowNodeData = MessageWorkflowNodeDataBase & {
   datatype: MessageNodeType.Decision;
   selected: number | null;
   template: MessageDecisionTemplateNodeData;
 };
 
-export type MessageElement =
+// Union types
+export type MessageTemplateNodeData =
   | MessageChecklistTemplateNodeData
   | MessageFormTemplateNodeData
-  | MessageDecisionTemplateNodeData
+  | MessageDecisionTemplateNodeData;
+
+export type MessageWorkflowNodeData =
   | MessageChecklistWorkflowNodeData
   | MessageFormWorkflowNodeData
-  | MessageDecisionWorkflowNodeData
+  | MessageDecisionWorkflowNodeData;
+
+export type MessageTemplateEdgeData = MessageTemplateEdgeDataBase;
+
+export type MessageWorkflowEdgeData = MessageWorkflowEdgeDataBase;
+
+export type MessageElement =
+  | MessageTemplateNodeData
+  | MessageWorkflowNodeData
   | MessageTemplateEdgeData
   | MessageWorkflowEdgeData;

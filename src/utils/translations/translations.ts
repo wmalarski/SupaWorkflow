@@ -120,6 +120,7 @@ const translation = {
 
   // Workflow editor
   workflowNodeDone: "Done",
+  workflowNodeAssignee: "Assignee",
 
   // Add team
   addTeamHeader: "Add new team",

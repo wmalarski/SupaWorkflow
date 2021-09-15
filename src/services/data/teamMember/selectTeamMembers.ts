@@ -10,7 +10,8 @@ import { Profile, supabase, TABLES } from "../..";
 import { TeamMember } from "../../types";
 
 export type SelectTeamMembersArgs = {
-  teamId: number;
+  organizationId?: number;
+  teamId?: number;
   from: number;
   to: number;
 };
@@ -33,13 +34,19 @@ export const selectTeamMembersKey = (
 ): SelectTeamMembersKey => ["TeamMembers", args];
 
 export const selectTeamMembers = async ({
-  queryKey: [, { teamId, from, to }],
+  queryKey: [, { teamId, organizationId, from, to }],
 }: QueryFunctionContext<SelectTeamMembersKey>): Promise<SelectTeamMemberResult> => {
-  const { data, error, count } = await supabase
+  const builder = supabase
     .from<SelectTeamMemberRow>(TABLES.teamMember)
     .select("*, profile: profile!profile_id", { count: "exact" })
-    .eq("team_id", teamId)
     .range(from, to);
+
+  const teamBuilder = teamId ? builder.eq("team_id", teamId) : builder;
+  const organizationBuilder = organizationId
+    ? teamBuilder.match({ "team_id.organization_id": organizationId })
+    : teamBuilder;
+
+  const { data, error, count } = await organizationBuilder;
 
   if (error) throw error;
 

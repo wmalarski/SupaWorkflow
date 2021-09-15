@@ -20,6 +20,7 @@ const initialMessages: Message[] = [
       datatype: MessageNodeType.Decision,
       selected: null,
       isDone: false,
+      assigneeId: 1,
       template: {
         kind: MessageKind.TemplateNode,
         position: { x: 0, y: 150 },
@@ -40,6 +41,7 @@ const initialMessages: Message[] = [
       datatype: MessageNodeType.Checklist,
       checked: [],
       isDone: false,
+      assigneeId: null,
       template: {
         kind: MessageKind.TemplateNode,
         position: { x: 350, y: 300 },
@@ -60,6 +62,7 @@ const initialMessages: Message[] = [
       datatype: MessageNodeType.Form,
       values: {},
       isDone: false,
+      assigneeId: 0,
       template: {
         kind: MessageKind.TemplateNode,
         position: { x: 350, y: 150 },
@@ -80,6 +83,7 @@ const initialMessages: Message[] = [
       datatype: MessageNodeType.Checklist,
       checked: [1],
       isDone: false,
+      assigneeId: 2,
       template: {
         kind: MessageKind.TemplateNode,
         position: { x: 350, y: 0 },
@@ -100,6 +104,7 @@ const initialMessages: Message[] = [
       datatype: MessageNodeType.Form,
       values: { 0: "Value" },
       isDone: false,
+      assigneeId: 0,
       template: {
         kind: MessageKind.TemplateNode,
         position: { x: 700, y: 225 },
@@ -120,6 +125,7 @@ const initialMessages: Message[] = [
       datatype: MessageNodeType.Form,
       values: { 1: "Value" },
       isDone: false,
+      assigneeId: null,
       template: {
         kind: MessageKind.TemplateNode,
         position: { x: 700, y: 75 },

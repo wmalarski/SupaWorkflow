@@ -1,15 +1,28 @@
 import { Elements, FlowElement } from "react-flow-renderer";
-import { Message, Team } from "../../../../services";
-import { MessageKind } from "../../../../services/nodes";
+import { Message, SelectTeamMemberRow, Team } from "../../../../services";
+import {
+  MessageKind,
+  MessageWorkflowEdgeData,
+  MessageWorkflowNodeData,
+} from "../../../../services/nodes";
 import { MutationArgs } from "../../../../utils/rep";
 
 export type WorkflowNodeData = {
-  teams: Team[];
+  team?: Team;
+  teamMembers: SelectTeamMemberRow[];
   message: Message;
+  data: MessageWorkflowNodeData;
   onChange: (message: MutationArgs["putMessage"]) => void;
 };
 
-export type WorkflowNodeProps = {
+export type WorkflowEdgeData = {
+  message: Message;
+  data: MessageWorkflowEdgeData;
+};
+
+export type WorkflowData = WorkflowNodeData | WorkflowEdgeData;
+
+export type WorkflowNodeProps<TData extends WorkflowData> = {
   id: string;
   isConnectable: boolean;
   isDragging: boolean;
@@ -19,20 +32,22 @@ export type WorkflowNodeProps = {
   type: string;
   xPos: number;
   yPos: number;
-  data: WorkflowNodeData;
+  data: TData;
 };
 
 export type MessageToElementOptions = {
   teams: Team[];
+  teamMembers: SelectTeamMemberRow[];
   message: Message;
   onChange: (message: MutationArgs["putMessage"]) => void;
 };
 
 export const messageToElement = ({
   teams,
+  teamMembers,
   message,
   onChange,
-}: MessageToElementOptions): FlowElement<WorkflowNodeData> | null => {
+}: MessageToElementOptions): FlowElement<WorkflowData> | null => {
   const { id, data } = message;
 
   switch (data.kind) {
@@ -43,7 +58,10 @@ export const messageToElement = ({
         target: data.template.target,
         sourceHandle: data.template.sourceHandle,
         targetHandle: data.template.targetHandle,
-        data: { teams, message, onChange },
+        data: {
+          data,
+          message,
+        },
       };
     case MessageKind.WorkflowNode:
       return {
@@ -51,7 +69,15 @@ export const messageToElement = ({
         position: data.template.position,
         type: data.datatype,
         style: { width: 300 },
-        data: { teams, message, onChange },
+        data: {
+          data,
+          message,
+          onChange,
+          team: teams.find((t) => t.id === data.template.teamId),
+          teamMembers: teamMembers.filter(
+            (member) => member.team_id === data.template.teamId
+          ),
+        },
       };
     default:
       return null;
@@ -60,16 +86,18 @@ export const messageToElement = ({
 
 export type MessagesToElementsOptions = {
   teams: Team[];
+  teamMembers: SelectTeamMemberRow[];
   messages: Message[];
   onChange: (message: MutationArgs["putMessage"]) => void;
 };
 
 export const messagesToElements = ({
   teams,
+  teamMembers,
   messages,
   onChange,
-}: MessagesToElementsOptions): Elements<WorkflowNodeData> =>
+}: MessagesToElementsOptions): Elements<WorkflowData> =>
   messages.flatMap((message) => {
-    const element = messageToElement({ teams, message, onChange });
+    const element = messageToElement({ teams, teamMembers, message, onChange });
     return element ? [element] : [];
   });

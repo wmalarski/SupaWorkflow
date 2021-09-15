@@ -3,27 +3,23 @@ import React from "react";
 import { Handle, Position } from "react-flow-renderer";
 import {
   MessageChecklistWorkflowNodeData,
-  MessageKind,
   MessageNodeType,
 } from "../../../../services/nodes";
-import { WorkflowNodeProps } from "../../workflowEditor/WorkflowEditorView/WorkflowEditorView.utils";
+import {
+  WorkflowNodeData,
+  WorkflowNodeProps,
+} from "../../workflowEditor/WorkflowEditorView/WorkflowEditorView.utils";
 import WorkflowFooterForm from "../../workflowForms/WorkflowFooterForm/WorkflowFooterForm";
 import WorkflowHeaderForm from "../../workflowForms/WorkflowHeaderForm/WorkflowHeaderForm";
 
 const WorkflowChecklistNode = ({
-  data: { message, onChange },
-}: WorkflowNodeProps): React.ReactElement | null => {
-  if (
-    message.data.kind !== MessageKind.WorkflowNode ||
-    message.data.datatype !== MessageNodeType.Checklist
-  )
-    return null;
-
-  const messageData: MessageChecklistWorkflowNodeData = message.data;
+  data: { message, data, onChange },
+}: WorkflowNodeProps<WorkflowNodeData>): React.ReactElement | null => {
+  if (data.datatype !== MessageNodeType.Checklist) return null;
 
   const handleChange = (newData: Partial<MessageChecklistWorkflowNodeData>) =>
     onChange({
-      data: { ...messageData, ...newData },
+      data: { ...data, ...newData },
       id: message.id,
       template_id: message.template_id,
       workflow_id: message.workflow_id,
@@ -40,9 +36,9 @@ const WorkflowChecklistNode = ({
     >
       <Handle type="target" position={Position.Left} />
       <VStack divider={<StackDivider borderColor="gray.200" />}>
-        <WorkflowHeaderForm template={messageData.template} />
+        <WorkflowHeaderForm template={data.template} />
         <WorkflowFooterForm
-          isDone={messageData.isDone}
+          isDone={data.isDone}
           onChange={(isDone) => handleChange({ isDone })}
         />
       </VStack>

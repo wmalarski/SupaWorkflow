@@ -1,9 +1,9 @@
 import { Heading, Text, VStack } from "@chakra-ui/react";
 import React from "react";
-import { MessageTemplateNodeData } from "../../../../services/nodes";
+import { MessageTemplateNodeDataBase } from "../../../../services/nodes";
 
 export type WorkflowHeaderFormProps = {
-  template: MessageTemplateNodeData;
+  template: MessageTemplateNodeDataBase;
 };
 
 const WorkflowHeaderForm = ({
