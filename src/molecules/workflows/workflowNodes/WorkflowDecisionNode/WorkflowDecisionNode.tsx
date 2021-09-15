@@ -12,6 +12,7 @@ import {
 import WorkflowAssigneeForm from "../../workflowForms/WorkflowAssigneeForm/WorkflowAssigneeForm";
 import WorkflowFooterForm from "../../workflowForms/WorkflowFooterForm/WorkflowFooterForm";
 import WorkflowHeaderForm from "../../workflowForms/WorkflowHeaderForm/WorkflowHeaderForm";
+import WorkflowRadioForm from "../../workflowForms/WorkflowRadioForm/WorkflowRadioForm";
 import WorkflowDecisionNodeHandle from "./WorkflowDecisionNodeHandle";
 
 const WorkflowDecisionNode = ({
@@ -44,6 +45,11 @@ const WorkflowDecisionNode = ({
           onChange={(assigneeId) => handleChange({ assigneeId })}
           teamMembers={teamMembers}
           team={team}
+        />
+        <WorkflowRadioForm
+          selected={state.selected}
+          options={state.template.routes}
+          onChange={(selected) => handleChange({ selected })}
         />
         <WorkflowFooterForm
           isDone={state.isDone}
