@@ -1,14 +1,8 @@
 import { Box, StackDivider, VStack } from "@chakra-ui/react";
 import React from "react";
 import { Handle, Position } from "react-flow-renderer";
-import {
-  MessageChecklistWorkflowNodeState,
-  MessageNodeType,
-} from "../../../../services/nodes";
-import {
-  WorkflowNodeData,
-  WorkflowNodeProps,
-} from "../../workflowEditor/WorkflowEditorView/WorkflowEditorView.utils";
+import { MessageChecklistWorkflowNodeState } from "../../../../services/nodes";
+import { WorkflowNodeProps } from "../../workflowEditor/WorkflowEditorView/WorkflowEditorView.utils";
 import WorkflowAssigneeForm from "../../workflowForms/WorkflowAssigneeForm/WorkflowAssigneeForm";
 import WorkflowCheckboxesForm from "../../workflowForms/WorkflowCheckboxesForm/WorkflowCheckboxesForm";
 import WorkflowFooterForm from "../../workflowForms/WorkflowFooterForm/WorkflowFooterForm";
@@ -16,9 +10,7 @@ import WorkflowHeaderForm from "../../workflowForms/WorkflowHeaderForm/WorkflowH
 
 const WorkflowChecklistNode = ({
   data: { message, state, team, teamMembers, onChange },
-}: WorkflowNodeProps<WorkflowNodeData>): React.ReactElement | null => {
-  if (state.nodeType !== MessageNodeType.Checklist) return null;
-
+}: WorkflowNodeProps<MessageChecklistWorkflowNodeState>): React.ReactElement | null => {
   const handleChange = (newState: Partial<MessageChecklistWorkflowNodeState>) =>
     onChange({
       state: { ...state, ...newState },

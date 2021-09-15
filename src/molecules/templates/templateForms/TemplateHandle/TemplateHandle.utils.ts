@@ -1,15 +1,15 @@
 import { Connection, Edge } from "react-flow-renderer";
-import { TemplateNodeData } from "../../templateEditor/TemplateEditorView/TemplateEditorView.utils";
+import { TemplateData } from "../../templateEditor/TemplateEditorView/TemplateEditorView.utils";
 
 export type FindEdgeCycleOptions = {
-  edges: Edge<TemplateNodeData>[];
+  edges: Edge<TemplateData>[];
   connection: Connection;
 };
 
 const searchEdgeCycle = (
   source: string,
   targets: string[],
-  edges: Edge<TemplateNodeData>[]
+  edges: Edge<TemplateData>[]
 ): boolean => {
   const targetEdges = edges.filter((edge) => targets.includes(edge.source));
   if (targetEdges.length === 0) return false;

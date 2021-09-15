@@ -1,11 +1,7 @@
 import { Box, Heading, StackDivider, VStack } from "@chakra-ui/react";
 import React from "react";
 import { Position } from "react-flow-renderer";
-import {
-  MessageFormTemplateNodeState,
-  MessageKind,
-  MessageNodeType,
-} from "../../../../services/nodes";
+import { MessageFormTemplateNodeState } from "../../../../services/nodes";
 import { useText } from "../../../../utils";
 import { TemplateNodeProps } from "../../templateEditor/TemplateEditorView/TemplateEditorView.utils";
 import TemplateDetailsForm from "../../templateForms/TemplateDetailsForm/TemplateDetailsForm";
@@ -15,24 +11,16 @@ import TemplateTargetForm from "../../templateForms/TemplateTargetForm/TemplateT
 import TemplateTeamsForm from "../../templateForms/TemplateTeamsForm/TemplateTeamsForm";
 
 const TemplateFormNode = ({
-  data: { teams, message, onChange },
-}: TemplateNodeProps): React.ReactElement | null => {
+  data: { teams, messageId, state, templateId, onChange },
+}: TemplateNodeProps<MessageFormTemplateNodeState>): React.ReactElement | null => {
   const text = useText();
-
-  if (
-    message.state.kind !== MessageKind.TemplateNode ||
-    message.state.nodeType !== MessageNodeType.Form
-  )
-    return null;
-
-  const state: MessageFormTemplateNodeState = message.state;
 
   const handleChange = (newState: Partial<MessageFormTemplateNodeState>) =>
     onChange({
       state: { ...state, ...newState },
-      id: message.id,
-      template_id: message.template_id,
-      workflow_id: message.workflow_id,
+      id: messageId,
+      template_id: templateId,
+      workflow_id: null,
     });
 
   return (

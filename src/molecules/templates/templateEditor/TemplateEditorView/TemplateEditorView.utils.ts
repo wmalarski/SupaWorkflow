@@ -1,16 +1,33 @@
 import { nanoid } from "nanoid";
 import { Connection, Edge, Elements, FlowElement } from "react-flow-renderer";
 import { Message, Team } from "../../../../services";
-import { MessageKind, MessageNodeType } from "../../../../services/nodes";
+import {
+  MessageKind,
+  MessageNodeType,
+  MessageTemplateEdgeState,
+  MessageTemplateNodeState,
+} from "../../../../services/nodes";
 import { MutationArgs } from "../../../../utils/rep";
 
-export type TemplateNodeData = {
+export type TemplateNodeData<
+  TState extends MessageTemplateNodeState = MessageTemplateNodeState
+> = {
   teams: Team[];
-  message: Message;
+  state: TState;
+  messageId: string;
+  templateId: number;
   onChange: (message: MutationArgs["putMessage"]) => void;
 };
 
-export type TemplateNodeProps = {
+export type TemplateEdgeData = {
+  messageId: string;
+  templateId: number;
+  state: MessageTemplateEdgeState;
+};
+
+export type TemplateData = TemplateNodeData | TemplateEdgeData;
+
+export type TemplateNodeProps<TState extends MessageTemplateNodeState> = {
   id: string;
   isConnectable: boolean;
   isDragging: boolean;
@@ -20,20 +37,8 @@ export type TemplateNodeProps = {
   type: string;
   xPos: number;
   yPos: number;
-  data: TemplateNodeData;
+  data: TemplateNodeData<TState>;
 };
-
-export const elementToMessage = (
-  element: FlowElement<TemplateNodeData>
-): Message | null => element.data?.message ?? null;
-
-export const elementsToMessages = (
-  elements: Elements<TemplateNodeData>
-): Message[] =>
-  elements.flatMap((element) => {
-    const message = elementToMessage(element);
-    return message ? [message] : [];
-  });
 
 export type MessageToElementOptions = {
   teams: Team[];
@@ -47,7 +52,7 @@ export const messageToElement = ({
   message,
   messages,
   onChange,
-}: MessageToElementOptions): FlowElement<TemplateNodeData> | null => {
+}: MessageToElementOptions): FlowElement<TemplateData> | null => {
   const { id, state } = message;
 
   switch (state.kind) {
@@ -68,7 +73,11 @@ export const messageToElement = ({
         target: state.target,
         sourceHandle: state.sourceHandle,
         targetHandle: state.targetHandle,
-        data: { teams, message, onChange },
+        data: {
+          state,
+          messageId: message.id,
+          templateId: message.template_id,
+        },
       };
     }
     case MessageKind.TemplateNode:
@@ -77,7 +86,13 @@ export const messageToElement = ({
         position: state.position,
         type: state.nodeType,
         style: { width: 300 },
-        data: { teams, message, onChange },
+        data: {
+          teams,
+          state,
+          messageId: message.id,
+          templateId: message.template_id,
+          onChange,
+        },
       };
     default:
       return null;
@@ -94,7 +109,7 @@ export const messagesToElements = ({
   teams,
   messages,
   onChange,
-}: MessagesToElementsOptions): Elements<TemplateNodeData> =>
+}: MessagesToElementsOptions): Elements<TemplateData> =>
   messages.flatMap((message) => {
     const element = messageToElement({ teams, message, messages, onChange });
     return element ? [element] : [];
@@ -102,7 +117,7 @@ export const messagesToElements = ({
 
 export type GetNewEdgeMessageOptions = {
   templateId: number;
-  connection: Connection | Edge<TemplateNodeData>;
+  connection: Connection | Edge<TemplateData>;
 };
 
 export const getNewEdgeMessage = ({

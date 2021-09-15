@@ -16,10 +16,9 @@ import TemplateDecisionNode from "../../templateNodes/TemplateDecisionNode/Templ
 import TemplateFormNode from "../../templateNodes/TemplateFormNode/TemplateFormNode";
 import TemplateEditorBar from "../TemplateEditorBar/TemplateEditorBar";
 import {
-  elementsToMessages,
   getNewEdgeMessage,
   messagesToElements,
-  TemplateNodeData,
+  TemplateData,
 } from "./TemplateEditorView.utils";
 
 export type TemplateEditorViewProps = {
@@ -43,22 +42,28 @@ const TemplateEditorView = ({
   onChange,
   onDelete,
 }: TemplateEditorViewProps): React.ReactElement => {
-  const elements = useMemo<Elements<TemplateNodeData>>(
+  const elements = useMemo<Elements<TemplateData>>(
     () => messagesToElements({ teams, messages, onChange }),
     [messages, onChange, teams]
   );
 
   const handleElementsRemove = useCallback(
-    (els: Elements<TemplateNodeData>) =>
-      elementsToMessages(els).forEach(
-        ({ state, id, template_id, workflow_id }) =>
-          onDelete({ state, id, template_id, workflow_id })
+    (els: Elements<TemplateData>) =>
+      els.forEach(
+        ({ data }) =>
+          data &&
+          onDelete({
+            state: data.state,
+            id: data.messageId,
+            template_id: data.templateId,
+            workflow_id: null,
+          })
       ),
     [onDelete]
   );
 
   const handleConnect = useCallback(
-    (connection: Connection | Edge<TemplateNodeData>) => {
+    (connection: Connection | Edge<TemplateData>) => {
       const edge = getNewEdgeMessage({ connection, templateId });
       if (!edge) return;
       onChange(edge);
@@ -67,7 +72,7 @@ const TemplateEditorView = ({
   );
 
   const handleNodeDragStop = useCallback(
-    (_event: React.MouseEvent, node: Node<TemplateNodeData>) => {
+    (_event: React.MouseEvent, node: Node<TemplateData>) => {
       const updated = messages.find((message) => message.id === node.id);
       if (!updated || updated.state.kind !== MessageKind.TemplateNode) return;
       onChange({

@@ -2,11 +2,7 @@ import { Box, Heading } from "@chakra-ui/layout";
 import { StackDivider, VStack } from "@chakra-ui/react";
 import React from "react";
 import { Position } from "react-flow-renderer";
-import {
-  MessageDecisionTemplateNodeState,
-  MessageKind,
-  MessageNodeType,
-} from "../../../../services/nodes";
+import { MessageDecisionTemplateNodeState } from "../../../../services/nodes";
 import { useText } from "../../../../utils";
 import { TemplateNodeProps } from "../../templateEditor/TemplateEditorView/TemplateEditorView.utils";
 import TemplateDetailsForm from "../../templateForms/TemplateDetailsForm/TemplateDetailsForm";
@@ -17,24 +13,16 @@ import TemplateTeamsForm from "../../templateForms/TemplateTeamsForm/TemplateTea
 import TemplateDecisionNodeHandle from "./TemplateDecisionNodeHandle";
 
 const TemplateDecisionNode = ({
-  data: { teams, message, onChange },
-}: TemplateNodeProps): React.ReactElement | null => {
+  data: { teams, messageId, templateId, state, onChange },
+}: TemplateNodeProps<MessageDecisionTemplateNodeState>): React.ReactElement | null => {
   const text = useText();
-
-  if (
-    message.state.kind !== MessageKind.TemplateNode ||
-    message.state.nodeType !== MessageNodeType.Decision
-  )
-    return null;
-
-  const state: MessageDecisionTemplateNodeState = message.state;
 
   const handleChange = (newState: Partial<MessageDecisionTemplateNodeState>) =>
     onChange({
       state: { ...state, ...newState },
-      id: message.id,
-      template_id: message.template_id,
-      workflow_id: message.workflow_id,
+      id: messageId,
+      template_id: templateId,
+      workflow_id: null,
     });
 
   return (
@@ -58,7 +46,7 @@ const TemplateDecisionNode = ({
         />
         <TemplateListForm
           heading={text("decisionsTemplateNode")}
-          entries={message.state.routes}
+          entries={state.routes}
           onChange={(routes) => handleChange({ routes })}
           AfterRenderer={TemplateDecisionNodeHandle}
         />

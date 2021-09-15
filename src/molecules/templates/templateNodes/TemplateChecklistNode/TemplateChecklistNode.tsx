@@ -1,11 +1,7 @@
 import { Box, Heading, StackDivider, VStack } from "@chakra-ui/react";
 import React from "react";
 import { Position } from "react-flow-renderer";
-import {
-  MessageChecklistTemplateNodeState,
-  MessageKind,
-  MessageNodeType,
-} from "../../../../services/nodes";
+import { MessageChecklistTemplateNodeState } from "../../../../services/nodes";
 import { useText } from "../../../../utils";
 import { TemplateNodeProps } from "../../templateEditor/TemplateEditorView/TemplateEditorView.utils";
 import TemplateDetailsForm from "../../templateForms/TemplateDetailsForm/TemplateDetailsForm";
@@ -15,24 +11,16 @@ import TemplateTargetForm from "../../templateForms/TemplateTargetForm/TemplateT
 import TemplateTeamsForm from "../../templateForms/TemplateTeamsForm/TemplateTeamsForm";
 
 const TemplateChecklistNode = ({
-  data: { teams, message, onChange },
-}: TemplateNodeProps): React.ReactElement | null => {
+  data: { teams, state, messageId, templateId, onChange },
+}: TemplateNodeProps<MessageChecklistTemplateNodeState>): React.ReactElement | null => {
   const text = useText();
-
-  if (
-    message.state.kind !== MessageKind.TemplateNode ||
-    message.state.nodeType !== MessageNodeType.Checklist
-  )
-    return null;
-
-  const state: MessageChecklistTemplateNodeState = message.state;
 
   const handleChange = (newState: Partial<MessageChecklistTemplateNodeState>) =>
     onChange({
       state: { ...state, ...newState },
-      id: message.id,
-      template_id: message.template_id,
-      workflow_id: message.workflow_id,
+      id: messageId,
+      template_id: templateId,
+      workflow_id: null,
     });
 
   return (
@@ -56,7 +44,7 @@ const TemplateChecklistNode = ({
         />
         <TemplateListForm
           heading={text("checksTemplateNode")}
-          entries={message.state.tasks}
+          entries={state.tasks}
           onChange={(tasks) => handleChange({ tasks })}
         />
         <TemplateTeamsForm

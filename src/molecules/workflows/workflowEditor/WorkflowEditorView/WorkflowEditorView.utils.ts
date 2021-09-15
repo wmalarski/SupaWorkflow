@@ -7,11 +7,13 @@ import {
 } from "../../../../services/nodes";
 import { MutationArgs } from "../../../../utils/rep";
 
-export type WorkflowNodeData = {
+export type WorkflowNodeData<
+  TState extends MessageWorkflowNodeState = MessageWorkflowNodeState
+> = {
   team?: Team;
   teamMembers: SelectTeamMemberRow[];
   message: Message;
-  state: MessageWorkflowNodeState;
+  state: TState;
   onChange: (message: MutationArgs["putMessage"]) => void;
 };
 
@@ -22,7 +24,7 @@ export type WorkflowEdgeData = {
 
 export type WorkflowData = WorkflowNodeData | WorkflowEdgeData;
 
-export type WorkflowNodeProps<TData extends WorkflowData> = {
+export type WorkflowNodeProps<TState extends MessageWorkflowNodeState> = {
   id: string;
   isConnectable: boolean;
   isDragging: boolean;
@@ -32,7 +34,7 @@ export type WorkflowNodeProps<TData extends WorkflowData> = {
   type: string;
   xPos: number;
   yPos: number;
-  data: TData;
+  data: WorkflowNodeData<TState>;
 };
 
 export type MessageToElementOptions = {
@@ -56,6 +58,9 @@ export const messageToElement = ({
         id,
         source: state.template.source,
         target: state.template.target,
+        connectable: false,
+        draggable: false,
+        animated: true,
         sourceHandle: state.template.sourceHandle,
         targetHandle: state.template.targetHandle,
         data: {
@@ -69,6 +74,8 @@ export const messageToElement = ({
         position: state.template.position,
         type: state.nodeType,
         style: { width: 300 },
+        connectable: false,
+        draggable: false,
         data: {
           state,
           message,
