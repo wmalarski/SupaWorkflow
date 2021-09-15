@@ -8,11 +8,14 @@ export type WorkflowHeaderFormProps = {
 
 const WorkflowHeaderForm = ({
   template: { title, description },
-}: WorkflowHeaderFormProps): React.ReactElement => (
-  <VStack>
-    <Heading size="sm">{title}</Heading>
-    <Text fontSize="sm">{description}</Text>
-  </VStack>
-);
+}: WorkflowHeaderFormProps): React.ReactElement => {
+  console.log(title);
+  return (
+    <VStack>
+      <Heading size="sm">{title}</Heading>
+      <Text fontSize="sm">{description}</Text>
+    </VStack>
+  );
+};
 
 export default WorkflowHeaderForm;

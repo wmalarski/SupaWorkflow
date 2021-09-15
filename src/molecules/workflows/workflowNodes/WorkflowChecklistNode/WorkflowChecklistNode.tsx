@@ -1,5 +1,5 @@
 import { Box, StackDivider, VStack } from "@chakra-ui/react";
-import React from "react";
+import React, { useCallback, useMemo } from "react";
 import { Handle, Position } from "react-flow-renderer";
 import { MessageChecklistWorkflowNodeState } from "../../../../services/nodes";
 import { WorkflowNodeProps } from "../../workflowEditor/WorkflowEditorView/WorkflowEditorView.utils";
@@ -11,7 +11,7 @@ import WorkflowHeaderForm from "../../workflowForms/WorkflowHeaderForm/WorkflowH
 const WorkflowChecklistNode = ({
   data: {
     state,
-    team,
+    teams,
     teamMembers,
     templateId,
     messageId,
@@ -19,44 +19,59 @@ const WorkflowChecklistNode = ({
     onChange,
   },
 }: WorkflowNodeProps<MessageChecklistWorkflowNodeState>): React.ReactElement | null => {
-  const handleChange = (newState: Partial<MessageChecklistWorkflowNodeState>) =>
-    onChange({
-      state: { ...state, ...newState },
-      id: messageId,
-      template_id: templateId,
-      workflow_id: workflowId,
-    });
+  const handleChange = useCallback(
+    (newState: Partial<MessageChecklistWorkflowNodeState>) =>
+      onChange({
+        state: { ...state, ...newState },
+        id: messageId,
+        template_id: templateId,
+        workflow_id: workflowId,
+      }),
+    [messageId, onChange, state, templateId, workflowId]
+  );
 
-  return (
-    <Box
-      bg="white"
-      border="solid"
-      borderWidth={1}
-      borderColor="black"
-      borderRadius={5}
-      padding={2}
-    >
-      <Handle type="target" position={Position.Left} />
-      <VStack divider={<StackDivider borderColor="gray.200" />}>
-        <WorkflowHeaderForm template={state.template} />
-        <WorkflowAssigneeForm
-          assigneeId={state.assigneeId}
-          onChange={(assigneeId) => handleChange({ assigneeId })}
-          teamMembers={teamMembers}
-          team={team}
-        />
-        <WorkflowCheckboxesForm
-          checked={state.checked}
-          onChange={(checked) => handleChange({ checked })}
-          options={state.template.tasks}
-        />
-        <WorkflowFooterForm
-          isDone={state.isDone}
-          onChange={(isDone) => handleChange({ isDone })}
-        />
-      </VStack>
-      <Handle type="source" position={Position.Right} />
-    </Box>
+  return useMemo(
+    () => (
+      <Box
+        bg="white"
+        border="solid"
+        borderWidth={1}
+        borderColor="black"
+        borderRadius={5}
+        padding={2}
+      >
+        <Handle type="target" position={Position.Left} />
+        <VStack divider={<StackDivider borderColor="gray.200" />}>
+          <WorkflowHeaderForm template={state.template} />
+          <WorkflowAssigneeForm
+            assigneeId={state.assigneeId}
+            onChange={(assigneeId) => handleChange({ assigneeId })}
+            teamMembers={teamMembers}
+            teams={teams}
+            teamId={state.template.teamId}
+          />
+          <WorkflowCheckboxesForm
+            checked={state.checked}
+            onChange={(checked) => handleChange({ checked })}
+            options={state.template.tasks}
+          />
+          <WorkflowFooterForm
+            isDone={state.isDone}
+            onChange={(isDone) => handleChange({ isDone })}
+          />
+        </VStack>
+        <Handle type="source" position={Position.Right} />
+      </Box>
+    ),
+    [
+      handleChange,
+      state.assigneeId,
+      state.checked,
+      state.isDone,
+      state.template,
+      teams,
+      teamMembers,
+    ]
   );
 };
 

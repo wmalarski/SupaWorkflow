@@ -10,7 +10,7 @@ import { MutationArgs } from "../../../../utils/rep";
 export type WorkflowNodeData<
   TState extends MessageWorkflowNodeState = MessageWorkflowNodeState
 > = {
-  team?: Team;
+  teams: Team[];
   teamMembers: SelectTeamMemberRow[];
   messageId: string;
   templateId: number;
@@ -88,10 +88,8 @@ export const messageToElement = ({
           messageId: message.id,
           templateId: message.template_id,
           workflowId: message.workflow_id,
-          team: teams.find((t) => t.id === state.template.teamId),
-          teamMembers: teamMembers.filter(
-            (member) => member.team_id === state.template.teamId
-          ),
+          teams,
+          teamMembers,
         },
       };
     default:

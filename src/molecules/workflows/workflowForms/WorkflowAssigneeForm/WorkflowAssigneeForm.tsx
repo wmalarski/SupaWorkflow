@@ -6,18 +6,23 @@ import { useText } from "../../../../utils";
 
 export type WorkflowAssigneeFormProps = {
   assigneeId: number | null;
-  team?: Team;
+  teams: Team[];
+  teamId: number | null;
   teamMembers: SelectTeamMemberRow[];
   onChange: (assigneeId: number | null) => void;
 };
 
 const WorkflowAssigneeForm = ({
   assigneeId,
-  team,
-  onChange,
+  teams,
+  teamId,
   teamMembers,
+  onChange,
 }: WorkflowAssigneeFormProps): React.ReactElement => {
   const text = useText();
+
+  const team = teams.find((t) => t.id === teamId) ?? null;
+  const members = teamMembers.filter((member) => member.team_id === teamId);
 
   return (
     <VStack>
@@ -36,7 +41,7 @@ const WorkflowAssigneeForm = ({
             )
           }
         >
-          {teamMembers.map((member) => (
+          {members.map((member) => (
             <Text
               key={member.id}
               fontSize="sm"

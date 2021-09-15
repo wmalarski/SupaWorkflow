@@ -16,6 +16,7 @@ const Template: ComponentStory<typeof WorkflowAssigneeForm> = (args) => (
 export const Playground = Template.bind({});
 Playground.args = {
   assigneeId: null,
-  team: defaultTeam,
+  teamId: defaultTeam.id,
+  teams: [defaultTeam],
   teamMembers: defaultTeamMembers,
 };

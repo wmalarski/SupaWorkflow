@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { defaultTeams, Message } from "../../../../services";
 import { MessageKind, MessageNodeType } from "../../../../services/nodes";
 import TemplateEditorView from "./TemplateEditorView";
@@ -81,27 +81,31 @@ const Template: ComponentStory<typeof TemplateEditorView> = (props) => {
 
   useEffect(() => setMessages(props.messages), [props.messages]);
 
+  const handleChange = useCallback(
+    (args) =>
+      setMessages((current) => {
+        const index = current.findIndex((message) => message.id === args.id);
+        const next = [...current];
+        next.splice(
+          index,
+          index < 0 ? 0 : 1,
+          { ...current[index], ...args } ?? {
+            ...args,
+            deleted: false,
+            updated_at: "",
+          }
+        );
+        console.log({ args, current, next, index });
+        return next;
+      }),
+    []
+  );
+
   return (
     <TemplateEditorView
       {...props}
       messages={messages}
-      onChange={(args) =>
-        setMessages((current) => {
-          const index = current.findIndex((message) => message.id === args.id);
-          const next = [...current];
-          next.splice(
-            index,
-            index < 0 ? 0 : 1,
-            { ...current[index], ...args } ?? {
-              ...args,
-              deleted: false,
-              updated_at: "",
-            }
-          );
-          console.log({ args, current, next, index });
-          return next;
-        })
-      }
+      onChange={handleChange}
       onDelete={(args) =>
         setMessages((current) =>
           current.filter((message) => message.id !== args.id)
