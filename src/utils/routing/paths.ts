@@ -7,6 +7,7 @@ import {
 
 const paths = {
   home: "/",
+  notFound: "/404",
   signIn: "/signIn",
   signUp: "/signUp",
   dashboard: (tab?: DashboardTab | null): string =>

@@ -1,3 +1,4 @@
+import { PostgrestError } from "@supabase/supabase-js";
 import { createContext, ReactNode, useContext, useMemo } from "react";
 import { defaultTeam, Team } from "../../services";
 import { useSelectTeam } from "../../services/data/team/selectTeam";
@@ -24,6 +25,7 @@ export type TeamContextProviderProps = {
   fallback?: ReactNode;
   enabled?: boolean;
   initialData?: Team;
+  onError?: (err: PostgrestError) => void;
 };
 
 export const TeamContextProvider = ({
@@ -32,8 +34,12 @@ export const TeamContextProvider = ({
   enabled,
   fallback,
   initialData,
+  onError,
 }: TeamContextProviderProps): React.ReactElement => {
-  const { data } = useSelectTeam({ id: teamId }, { initialData, enabled });
+  const { data } = useSelectTeam(
+    { id: teamId },
+    { initialData, enabled, onError }
+  );
 
   const teamValue = useMemo(
     () => data && { team: data, isInitialized: true },

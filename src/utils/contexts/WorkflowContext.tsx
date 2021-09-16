@@ -1,3 +1,4 @@
+import { PostgrestError } from "@supabase/supabase-js";
 import { createContext, ReactNode, useContext, useMemo } from "react";
 import { defaultWorkflow, useSelectWorkflow, Workflow } from "../../services";
 
@@ -23,6 +24,7 @@ export type WorkflowContextProviderProps = {
   fallback?: ReactNode;
   enabled?: boolean;
   initialData?: Workflow;
+  onError?: (err: PostgrestError) => void;
 };
 
 export const WorkflowContextProvider = ({
@@ -31,10 +33,11 @@ export const WorkflowContextProvider = ({
   enabled,
   fallback,
   initialData,
+  onError,
 }: WorkflowContextProviderProps): React.ReactElement => {
   const { data } = useSelectWorkflow(
     { id: workflowId },
-    { initialData, enabled }
+    { initialData, enabled, onError }
   );
 
   const workflowValue = useMemo(

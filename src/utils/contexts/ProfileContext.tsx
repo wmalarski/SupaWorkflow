@@ -1,3 +1,4 @@
+import { PostgrestError } from "@supabase/supabase-js";
 import { createContext, ReactNode, useContext, useMemo } from "react";
 import { defaultProfile, Profile, useSelectProfile } from "../../services";
 
@@ -23,6 +24,7 @@ export type ProfileContextProviderProps = {
   fallback?: ReactNode;
   enabled?: boolean;
   initialData?: Profile;
+  onError?: (err: PostgrestError) => void;
 };
 
 export const ProfileContextProvider = ({
@@ -31,8 +33,12 @@ export const ProfileContextProvider = ({
   fallback,
   enabled,
   initialData,
+  onError,
 }: ProfileContextProviderProps): React.ReactElement | null => {
-  const { data } = useSelectProfile({ userId }, { initialData, enabled });
+  const { data } = useSelectProfile(
+    { userId },
+    { initialData, enabled, onError }
+  );
 
   const profileValue = useMemo(
     () => data && { profile: data, isInitialized: true },

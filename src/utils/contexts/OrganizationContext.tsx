@@ -1,3 +1,4 @@
+import { PostgrestError } from "@supabase/supabase-js";
 import { createContext, ReactNode, useContext, useMemo } from "react";
 import {
   defaultOrganization,
@@ -41,6 +42,7 @@ export type OrganizationContextProviderProps = {
   userId: string;
   enabled?: boolean;
   initialData?: SelectMemberResult;
+  onError?: (err: PostgrestError) => void;
 };
 
 export const OrganizationContextProvider = ({
@@ -50,10 +52,11 @@ export const OrganizationContextProvider = ({
   userId,
   enabled,
   initialData,
+  onError,
 }: OrganizationContextProviderProps): React.ReactElement | null => {
   const { data } = useSelectMember(
     { organizationId: organizationId, userId },
-    { initialData, enabled }
+    { initialData, enabled, onError }
   );
 
   const profileValue = useMemo(

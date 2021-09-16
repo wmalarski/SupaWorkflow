@@ -1,3 +1,4 @@
+import { PostgrestError } from "@supabase/supabase-js";
 import { createContext, ReactNode, useContext, useMemo } from "react";
 import { defaultTemplate, Template, useSelectTemplate } from "../../services";
 
@@ -23,6 +24,7 @@ export type TemplateContextProviderProps = {
   fallback?: ReactNode;
   initialData?: Template;
   enabled?: boolean;
+  onError?: (err: PostgrestError) => void;
 };
 
 export const TemplateContextProvider = ({
@@ -31,10 +33,11 @@ export const TemplateContextProvider = ({
   enabled,
   fallback,
   initialData,
+  onError,
 }: TemplateContextProviderProps): React.ReactElement => {
   const { data } = useSelectTemplate(
     { id: templateId },
-    { initialData, enabled }
+    { initialData, enabled, onError }
   );
 
   const templateValue = useMemo(
