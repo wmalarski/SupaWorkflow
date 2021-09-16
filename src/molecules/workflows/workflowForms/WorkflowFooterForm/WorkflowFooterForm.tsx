@@ -5,11 +5,13 @@ import { useText } from "../../../../utils";
 
 export type WorkflowFooterFormProps = {
   isDone: boolean;
+  isEnabled: boolean;
   onChange: (isDone: boolean) => void;
 };
 
 const WorkflowFooterForm = ({
   isDone,
+  isEnabled,
   onChange,
 }: WorkflowFooterFormProps): React.ReactElement => {
   const text = useText();
@@ -18,6 +20,7 @@ const WorkflowFooterForm = ({
     <HStack>
       <Checkbox
         isChecked={isDone}
+        isDisabled={!isEnabled}
         onChange={(event) => onChange(event.target.checked)}
       >
         {text("workflowNodeDone")}

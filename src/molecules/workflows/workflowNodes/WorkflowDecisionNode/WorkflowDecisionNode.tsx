@@ -1,9 +1,10 @@
-import { Box, StackDivider, VStack } from "@chakra-ui/react";
+import { StackDivider, VStack } from "@chakra-ui/react";
 import React, { useCallback, useMemo } from "react";
 import { Handle, Position } from "react-flow-renderer";
 import { MessageDecisionWorkflowNodeState } from "../../../../services/nodes";
 import { WorkflowNodeProps } from "../../workflowEditor/WorkflowEditorView/WorkflowEditorView.types";
 import WorkflowAssigneeForm from "../../workflowForms/WorkflowAssigneeForm/WorkflowAssigneeForm";
+import WorkflowBoxForm from "../../workflowForms/WorkflowBoxForm/WorkflowBoxForm";
 import WorkflowFooterForm from "../../workflowForms/WorkflowFooterForm/WorkflowFooterForm";
 import WorkflowHeaderForm from "../../workflowForms/WorkflowHeaderForm/WorkflowHeaderForm";
 import WorkflowRadioForm from "../../workflowForms/WorkflowRadioForm/WorkflowRadioForm";
@@ -34,30 +35,30 @@ const WorkflowDecisionNode = ({
 
   return useMemo(
     () => (
-      <Box
-        bg={isEnabled ? "white" : "gray"}
-        border="solid"
-        borderWidth={1}
-        borderColor="black"
-        borderRadius={5}
-        padding={2}
+      <WorkflowBoxForm
+        isEnabled={isEnabled}
+        teamId={state.template.teamId}
+        teams={teams}
       >
         <Handle type="target" position={Position.Left} />
         <VStack divider={<StackDivider borderColor="gray.200" />}>
           <WorkflowHeaderForm template={state.template} />
           <WorkflowAssigneeForm
             assigneeId={state.assigneeId}
+            isEnabled={isEnabled}
             onChange={(assigneeId) => handleChange({ assigneeId })}
             teamMembers={teamMembers}
             teams={teams}
             teamId={state.template.teamId}
           />
           <WorkflowRadioForm
+            isEnabled={isEnabled}
             selected={state.selected}
             options={state.template.routes}
             onChange={(selected) => handleChange({ selected })}
           />
           <WorkflowFooterForm
+            isEnabled={isEnabled}
             isDone={state.isDone}
             onChange={(isDone) => handleChange({ isDone })}
           />
@@ -69,7 +70,7 @@ const WorkflowDecisionNode = ({
             index={index}
           />
         ))}
-      </Box>
+      </WorkflowBoxForm>
     ),
     [
       isEnabled,

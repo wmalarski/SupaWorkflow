@@ -6,6 +6,7 @@ import { useText } from "../../../../utils";
 
 export type WorkflowAssigneeFormProps = {
   assigneeId: number | null;
+  isEnabled: boolean;
   teams: Team[];
   teamId: number | null;
   teamMembers: SelectTeamMemberRow[];
@@ -14,6 +15,7 @@ export type WorkflowAssigneeFormProps = {
 
 const WorkflowAssigneeForm = ({
   assigneeId,
+  isEnabled,
   teams,
   teamId,
   teamMembers,
@@ -21,7 +23,7 @@ const WorkflowAssigneeForm = ({
 }: WorkflowAssigneeFormProps): React.ReactElement => {
   const text = useText();
 
-  const team = teams.find((t) => t.id === teamId) ?? null;
+  const team = teams.find((t) => t.id === teamId);
   const members = teamMembers.filter((member) => member.team_id === teamId);
 
   return (
@@ -33,6 +35,7 @@ const WorkflowAssigneeForm = ({
         </Text>
         <Select
           size="sm"
+          isDisabled={!isEnabled}
           value={assigneeId ?? undefined}
           placeholder={text("workflowNodeNoneAssignee")}
           onChange={(event) =>

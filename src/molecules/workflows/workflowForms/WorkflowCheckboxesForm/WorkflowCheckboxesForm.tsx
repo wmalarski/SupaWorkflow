@@ -5,11 +5,13 @@ import { useText } from "../../../../utils";
 export type WorkflowCheckboxesFormProps = {
   checked: number[];
   options: string[];
+  isEnabled: boolean;
   onChange: (checked: number[]) => void;
 };
 
 const WorkflowCheckboxesForm = ({
   checked,
+  isEnabled,
   onChange,
   options,
 }: WorkflowCheckboxesFormProps): React.ReactElement => {
@@ -19,6 +21,7 @@ const WorkflowCheckboxesForm = ({
     <VStack>
       <Heading size="xs">{text("workflowRadioSelect")}</Heading>
       <CheckboxGroup
+        isDisabled={!isEnabled}
         value={checked.map(String)}
         onChange={(nextValue) => {
           console.log({ nextValue });

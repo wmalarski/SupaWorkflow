@@ -1,9 +1,10 @@
-import { Box, StackDivider, VStack } from "@chakra-ui/react";
+import { StackDivider, VStack } from "@chakra-ui/react";
 import React, { memo, useCallback, useMemo } from "react";
 import { Handle, Position } from "react-flow-renderer";
 import { MessageFormWorkflowNodeState } from "../../../../services/nodes";
 import { WorkflowNodeProps } from "../../workflowEditor/WorkflowEditorView/WorkflowEditorView.types";
 import WorkflowAssigneeForm from "../../workflowForms/WorkflowAssigneeForm/WorkflowAssigneeForm";
+import WorkflowBoxForm from "../../workflowForms/WorkflowBoxForm/WorkflowBoxForm";
 import WorkflowFieldsForm from "../../workflowForms/WorkflowFieldsForm/WorkflowFieldsForm";
 import WorkflowFooterForm from "../../workflowForms/WorkflowFooterForm/WorkflowFooterForm";
 import WorkflowHeaderForm from "../../workflowForms/WorkflowHeaderForm/WorkflowHeaderForm";
@@ -33,18 +34,16 @@ const WorkflowFormNode = ({
 
   return useMemo(
     () => (
-      <Box
-        bg={isEnabled ? "white" : "gray"}
-        border="solid"
-        borderWidth={1}
-        borderColor="black"
-        borderRadius={5}
-        padding={2}
+      <WorkflowBoxForm
+        isEnabled={isEnabled}
+        teamId={state.template.teamId}
+        teams={teams}
       >
         <Handle type="target" position={Position.Left} />
         <VStack divider={<StackDivider borderColor="gray.200" />}>
           <WorkflowHeaderForm template={state.template} />
           <WorkflowAssigneeForm
+            isEnabled={isEnabled}
             assigneeId={state.assigneeId}
             onChange={(assigneeId) => handleChange({ assigneeId })}
             teamMembers={teamMembers}
@@ -52,17 +51,19 @@ const WorkflowFormNode = ({
             teamId={state.template.teamId}
           />
           <WorkflowFieldsForm
+            isEnabled={isEnabled}
             fields={state.template.fields}
             onChange={(values) => handleChange({ values })}
             values={state.values}
           />
           <WorkflowFooterForm
+            isEnabled={isEnabled}
             isDone={state.isDone}
             onChange={(isDone) => handleChange({ isDone })}
           />
         </VStack>
         <Handle type="source" position={Position.Right} />
-      </Box>
+      </WorkflowBoxForm>
     ),
     [
       isEnabled,

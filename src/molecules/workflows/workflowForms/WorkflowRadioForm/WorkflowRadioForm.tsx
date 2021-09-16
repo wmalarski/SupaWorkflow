@@ -5,12 +5,14 @@ import { useText } from "../../../../utils";
 export type WorkflowRadioFormProps = {
   selected: number | null;
   options: string[];
+  isEnabled: boolean;
   onChange: (value: number | null) => void;
 };
 
 const WorkflowRadioForm = ({
   selected,
   options,
+  isEnabled,
   onChange,
 }: WorkflowRadioFormProps): React.ReactElement => {
   const text = useText();
@@ -19,6 +21,7 @@ const WorkflowRadioForm = ({
     <VStack>
       <Heading size="xs">{text("workflowRadioSelect")}</Heading>
       <RadioGroup
+        isDisabled={!isEnabled}
         value={selected ?? undefined}
         onChange={(nextValue) => onChange(Number(nextValue))}
       >

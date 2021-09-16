@@ -7,11 +7,13 @@ import { useText } from "../../../../utils";
 export type WorkflowFieldsFormProps = {
   values: Record<number, string>;
   fields: string[];
+  isEnabled: boolean;
   onChange: (value: Record<number, string>) => void;
 };
 
 const WorkflowFieldsForm = ({
   fields,
+  isEnabled,
   onChange,
   values,
 }: WorkflowFieldsFormProps): React.ReactElement => {
@@ -29,6 +31,7 @@ const WorkflowFieldsForm = ({
             <GridItem>
               <Input
                 size="sm"
+                isDisabled={!isEnabled}
                 value={values[index] ?? ""}
                 onChange={(event) =>
                   onChange({ ...values, [index]: event.target.value })
