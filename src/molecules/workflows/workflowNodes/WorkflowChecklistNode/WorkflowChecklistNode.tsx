@@ -3,22 +3,12 @@ import React, { useCallback, useMemo } from "react";
 import { Handle, Position } from "react-flow-renderer";
 import { MessageChecklistWorkflowNodeState } from "../../../../services/nodes";
 import { WorkflowNodeProps } from "../../workflowEditor/WorkflowEditorView/WorkflowEditorView.types";
-import WorkflowAssigneeForm from "../../workflowForms/WorkflowAssigneeForm/WorkflowAssigneeForm";
 import WorkflowBoxForm from "../../workflowForms/WorkflowBoxForm/WorkflowBoxForm";
 import WorkflowCheckboxesForm from "../../workflowForms/WorkflowCheckboxesForm/WorkflowCheckboxesForm";
 import WorkflowHeaderForm from "../../workflowForms/WorkflowHeaderForm/WorkflowHeaderForm";
 
 const WorkflowChecklistNode = ({
-  data: {
-    state,
-    teams,
-    isEnabled,
-    teamMembers,
-    templateId,
-    messageId,
-    workflowId,
-    onChange,
-  },
+  data: { state, isEnabled, templateId, messageId, workflowId, onChange },
 }: WorkflowNodeProps<MessageChecklistWorkflowNodeState>): React.ReactElement | null => {
   const handleChange = useCallback(
     (newState: Partial<MessageChecklistWorkflowNodeState>) =>
@@ -37,13 +27,6 @@ const WorkflowChecklistNode = ({
         <Handle type="target" position={Position.Left} />
         <VStack divider={<StackDivider borderColor="gray.200" />}>
           <WorkflowHeaderForm template={state.template} />
-          <WorkflowAssigneeForm
-            assigneeId={state.assigneeId}
-            onChange={(assigneeId) => handleChange({ assigneeId })}
-            teamMembers={teamMembers}
-            teams={teams}
-            teamId={state.template.teamId}
-          />
           <WorkflowCheckboxesForm
             isEnabled={isEnabled}
             checked={state.checked}
@@ -59,16 +42,7 @@ const WorkflowChecklistNode = ({
         <Handle type="source" position={Position.Right} />
       </WorkflowBoxForm>
     ),
-    [
-      isEnabled,
-      state.template,
-      state.assigneeId,
-      state.checked,
-      state.isDone,
-      teamMembers,
-      teams,
-      handleChange,
-    ]
+    [isEnabled, state.template, state.checked, state.isDone, handleChange]
   );
 };
 

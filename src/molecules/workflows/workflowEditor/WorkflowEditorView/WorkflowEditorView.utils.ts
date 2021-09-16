@@ -1,5 +1,5 @@
 import { ArrowHeadType, Elements, FlowElement } from "react-flow-renderer";
-import { Message, SelectTeamMemberRow, Team } from "../../../../services";
+import { Message, Team } from "../../../../services";
 import {
   MessageKind,
   MessageNodeType,
@@ -88,7 +88,6 @@ const findEnabledTree = (messages: Message[]): Record<string, boolean> => {
 
 export type MessageToElementOptions = {
   teams: Team[];
-  teamMembers: SelectTeamMemberRow[];
   message: Message;
   messages: Message[];
   onChange: (message: MutationArgs["putMessage"]) => void;
@@ -96,7 +95,6 @@ export type MessageToElementOptions = {
 
 export const messageToElement = ({
   teams,
-  teamMembers,
   message,
   messages,
   onChange,
@@ -146,7 +144,6 @@ export const messageToElement = ({
           templateId: message.template_id,
           workflowId: message.workflow_id,
           teams,
-          teamMembers,
         },
       };
     default:
@@ -156,21 +153,18 @@ export const messageToElement = ({
 
 export type MessagesToElementsOptions = {
   teams: Team[];
-  teamMembers: SelectTeamMemberRow[];
   messages: Message[];
   onChange: (message: MutationArgs["putMessage"]) => void;
 };
 
 export const messagesToElements = ({
   teams,
-  teamMembers,
   messages,
   onChange,
 }: MessagesToElementsOptions): Elements<WorkflowData> =>
   messages.flatMap((message) => {
     const element = messageToElement({
       teams,
-      teamMembers,
       message,
       messages,
       onChange,

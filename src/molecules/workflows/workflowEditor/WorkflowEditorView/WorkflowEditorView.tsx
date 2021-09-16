@@ -5,7 +5,7 @@ import ReactFlow, {
   Controls,
   Elements,
 } from "react-flow-renderer";
-import { Message, SelectTeamMemberRow, Team } from "../../../../services";
+import { Message, Team } from "../../../../services";
 import { MessageNodeType } from "../../../../services/nodes";
 import { MutationArgs } from "../../../../utils/rep";
 import WorkflowChecklistNode from "../../workflowNodes/WorkflowChecklistNode/WorkflowChecklistNode";
@@ -15,10 +15,7 @@ import { WorkflowData } from "./WorkflowEditorView.types";
 import { messagesToElements } from "./WorkflowEditorView.utils";
 
 export type WorkflowEditorViewProps = {
-  templateId: number;
-  workflowId: number;
   teams: Team[];
-  teamMembers: SelectTeamMemberRow[];
   messages: Message[];
   onChange: (args: MutationArgs["putMessage"]) => void;
 };
@@ -31,13 +28,12 @@ const nodeTypes = {
 
 const WorkflowEditorView = ({
   teams,
-  teamMembers,
   messages,
   onChange,
 }: WorkflowEditorViewProps): React.ReactElement => {
   const elements = useMemo<Elements<WorkflowData>>(
-    () => messagesToElements({ teams, teamMembers, messages, onChange }),
-    [messages, onChange, teamMembers, teams]
+    () => messagesToElements({ teams, messages, onChange }),
+    [messages, onChange, teams]
   );
 
   return (

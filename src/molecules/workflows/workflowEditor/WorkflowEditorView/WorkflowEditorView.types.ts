@@ -1,4 +1,4 @@
-import { SelectTeamMemberRow, Team } from "../../../../services";
+import { Team } from "../../../../services";
 import {
   MessageWorkflowEdgeState,
   MessageWorkflowNodeState,
@@ -9,7 +9,6 @@ export type WorkflowNodeData<
   TState extends MessageWorkflowNodeState = MessageWorkflowNodeState
 > = {
   teams: Team[];
-  teamMembers: SelectTeamMemberRow[];
   isEnabled: boolean;
   messageId: string;
   templateId: number;

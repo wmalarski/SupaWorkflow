@@ -29,7 +29,6 @@ export type MessageTemplateNodeBaseState = {
 export type MessageWorkflowNodeBaseState = {
   kind: MessageKind.WorkflowNode;
   templateNodeId: string;
-  assigneeId: number | null;
   isDone: boolean;
 };
 

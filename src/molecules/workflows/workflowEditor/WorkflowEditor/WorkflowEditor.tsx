@@ -1,5 +1,5 @@
 import React from "react";
-import { useSelectTeamMembers, useSelectTeams } from "../../../../services";
+import { useSelectTeams } from "../../../../services";
 import {
   useOrganizationContext,
   useTemplateContext,
@@ -35,20 +35,11 @@ const WorkflowEditor = ({
     to: 50,
   });
 
-  const { data: teamMembers } = useSelectTeamMembers({
-    organizationId: organization.id,
-    from: 0,
-    to: 50,
-  });
-
   return (
     <View
       messages={messages}
       onChange={putMessage}
       teams={teams?.entries ?? []}
-      teamMembers={teamMembers?.entries ?? []}
-      templateId={template.id}
-      workflowId={workflow.id}
     />
   );
 };

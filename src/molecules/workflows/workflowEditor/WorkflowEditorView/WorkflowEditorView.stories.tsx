@@ -1,10 +1,6 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React, { useCallback, useEffect, useState } from "react";
-import {
-  defaultTeamMembers,
-  defaultTeams,
-  Message,
-} from "../../../../services";
+import { defaultTeams, Message } from "../../../../services";
 import { MessageKind, MessageNodeType } from "../../../../services/nodes";
 import WorkflowEditorView from "./WorkflowEditorView";
 
@@ -24,7 +20,6 @@ const initialMessages: Message[] = [
       nodeType: MessageNodeType.Decision,
       selected: null,
       isDone: false,
-      assigneeId: 1,
       templateNodeId: "1",
       template: {
         kind: MessageKind.TemplateNode,
@@ -46,7 +41,6 @@ const initialMessages: Message[] = [
       nodeType: MessageNodeType.Checklist,
       checked: [],
       isDone: false,
-      assigneeId: null,
       templateNodeId: "2",
       template: {
         kind: MessageKind.TemplateNode,
@@ -68,7 +62,6 @@ const initialMessages: Message[] = [
       nodeType: MessageNodeType.Form,
       values: {},
       isDone: false,
-      assigneeId: 0,
       templateNodeId: "3",
       template: {
         kind: MessageKind.TemplateNode,
@@ -90,7 +83,6 @@ const initialMessages: Message[] = [
       nodeType: MessageNodeType.Checklist,
       checked: [1],
       isDone: false,
-      assigneeId: 2,
       templateNodeId: "4",
       template: {
         kind: MessageKind.TemplateNode,
@@ -112,7 +104,6 @@ const initialMessages: Message[] = [
       nodeType: MessageNodeType.Form,
       values: { 0: "Value" },
       isDone: false,
-      assigneeId: 0,
       templateNodeId: "5",
       template: {
         kind: MessageKind.TemplateNode,
@@ -134,7 +125,6 @@ const initialMessages: Message[] = [
       nodeType: MessageNodeType.Form,
       values: { 1: "Value" },
       isDone: false,
-      assigneeId: null,
       templateNodeId: "6",
       template: {
         kind: MessageKind.TemplateNode,
@@ -280,7 +270,4 @@ export const Playground = Template.bind({});
 Playground.args = {
   messages: initialMessages,
   teams: defaultTeams,
-  teamMembers: defaultTeamMembers,
-  templateId: 1,
-  workflowId: 1,
 };
