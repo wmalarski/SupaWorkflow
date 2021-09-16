@@ -36,24 +36,36 @@ const findEnabledTreeRec = (
     .filter((edge) => edge.target === target.templateNodeId)
     .flatMap((edge) => {
       const source = nodes.find((node) => node.templateNodeId === edge.source);
-      return source ? [source] : [];
+      return source ? [{ source, edge }] : [];
     });
 
+  if (sources.length === 0) return { ...result, [target.templateNodeId]: true };
+
   const updatedResult = sources.reduce<Record<string, boolean>>(
-    (prev, source) => {
+    (prev, { source }) => {
       if (prev[source.templateNodeId]) return prev;
       return { ...prev, ...findEnabledTreeRec(source, edges, nodes, prev) };
     },
     result
   );
 
-  const sourcesEnabled = sources.every(
-    (source) => updatedResult[source.templateNodeId] && source.isDone
-  );
+  const predicate = ({
+    source,
+    edge,
+  }: {
+    source: MessageWorkflowNodeState;
+    edge: MessageTemplateEdgeBaseState;
+  }) => {
+    const base = updatedResult[source.templateNodeId] && source.isDone;
+    if (source.nodeType !== MessageNodeType.Decision) return base;
+    return base && source.selected === Number(edge.sourceHandle);
+  };
 
   return {
     ...updatedResult,
-    [target.templateNodeId]: sourcesEnabled,
+    [target.templateNodeId]: target.template.isTargetAll
+      ? sources.every(predicate)
+      : sources.some(predicate),
   };
 };
 
@@ -111,7 +123,7 @@ export const messageToElement = ({
           workflowId: message.workflow_id,
         },
       };
-    case MessageKind.WorkflowNode: {
+    case MessageKind.WorkflowNode:
       return {
         id,
         position: state.template.position,
@@ -130,7 +142,6 @@ export const messageToElement = ({
           teamMembers,
         },
       };
-    }
     default:
       return null;
   }
