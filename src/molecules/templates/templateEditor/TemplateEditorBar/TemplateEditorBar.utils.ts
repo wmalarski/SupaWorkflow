@@ -1,6 +1,6 @@
 import { nanoid } from "nanoid";
 import { MessageKind, MessageNodeType } from "../../../../services/nodes";
-import { MutationArgs } from "../../../../utils/rep";
+import { MutationArgs } from "../../../../utils/rep/types";
 
 export type GetNewNodeMessageOptions = {
   nodeType: MessageNodeType;

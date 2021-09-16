@@ -12,7 +12,7 @@ import {
   MessageNodeType,
   MessageTemplateEdgeState,
 } from "../../../../services/nodes";
-import { MutationArgs } from "../../../../utils/rep";
+import { MutationArgs } from "../../../../utils/rep/types";
 import { TemplateData } from "./TemplateEditorView.types";
 
 export type MessageToElementOptions = {

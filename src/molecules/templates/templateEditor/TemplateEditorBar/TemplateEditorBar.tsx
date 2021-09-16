@@ -3,7 +3,7 @@ import { Button, ButtonGroup } from "@chakra-ui/react";
 import React, { useCallback } from "react";
 import { MessageNodeType } from "../../../../services/nodes";
 import { useText } from "../../../../utils";
-import { MutationArgs } from "../../../../utils/rep";
+import { MutationArgs } from "../../../../utils/rep/types";
 import { getNewNodeMessage } from "./TemplateEditorBar.utils";
 
 export type TemplateEditorBarProps = {

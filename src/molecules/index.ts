@@ -28,7 +28,6 @@ export { default as TemplateHeader } from "./templates/templateHeader/TemplateHe
 export { default as TemplateSideBar } from "./templates/templateSideBar/TemplateSideBar/TemplateSideBar";
 export { default as TemplatesList } from "./templates/templatesList/TemplatesList/TemplatesList";
 export { default as CreateWorkflow } from "./workflows/createWorkflow/CreateWorkflow/CreateWorkflow";
-export { default as WorkflowEditor } from "./workflows/workflowEditor/WorkflowEditor/WorkflowEditor";
 export { default as WorkflowHeader } from "./workflows/workflowHeader/WorkflowHeader/WorkflowHeader";
 export { default as WorkflowSideBar } from "./workflows/workflowSideBar/WorkflowSideBar/WorkflowSideBar";
 export { default as WorkflowsList } from "./workflows/workflowsList/WorkflowsList/WorkflowsList";

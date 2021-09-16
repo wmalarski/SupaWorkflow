@@ -7,7 +7,7 @@ import {
   MessageWorkflowEdgeState,
   MessageWorkflowNodeState,
 } from "../../../../services/nodes";
-import { MutationArgs } from "../../../../utils/rep";
+import { MutationArgs } from "../../../../utils/rep/types";
 import { WorkflowData } from "./WorkflowEditorView.types";
 
 const findLabel = (

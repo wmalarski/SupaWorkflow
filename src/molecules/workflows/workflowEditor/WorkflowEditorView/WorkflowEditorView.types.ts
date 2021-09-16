@@ -3,7 +3,7 @@ import {
   MessageWorkflowEdgeState,
   MessageWorkflowNodeState,
 } from "../../../../services/nodes";
-import { MutationArgs } from "../../../../utils/rep";
+import { MutationArgs } from "../../../../utils/rep/types";
 
 export type WorkflowNodeData<
   TState extends MessageWorkflowNodeState = MessageWorkflowNodeState

@@ -5,7 +5,7 @@ import {
   useTemplateContext,
   useWorkflowContext,
 } from "../../../../utils";
-import { useMessages } from "../../../../utils/rep";
+import { useMessages } from "../../../../utils/rep/messages";
 import { useRepMutations } from "../../../../utils/rep/RepContext";
 import WorkflowEditorView from "../WorkflowEditorView/WorkflowEditorView";
 

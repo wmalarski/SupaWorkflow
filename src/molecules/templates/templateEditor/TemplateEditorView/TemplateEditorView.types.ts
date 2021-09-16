@@ -3,7 +3,7 @@ import {
   MessageTemplateEdgeState,
   MessageTemplateNodeState,
 } from "../../../../services/nodes";
-import { MutationArgs } from "../../../../utils/rep";
+import { MutationArgs } from "../../../../utils/rep/types";
 
 export type TemplateNodeData<
   TState extends MessageTemplateNodeState = MessageTemplateNodeState

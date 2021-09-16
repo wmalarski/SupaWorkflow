@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelectTeams } from "../../../../services";
 import { useOrganizationContext, useTemplateContext } from "../../../../utils";
-import { useMessages } from "../../../../utils/rep";
+import { useMessages } from "../../../../utils/rep/messages";
 import { useRepMutations } from "../../../../utils/rep/RepContext";
 import TemplateEditorView from "../TemplateEditorView/TemplateEditorView";
 

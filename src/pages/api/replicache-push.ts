@@ -5,7 +5,8 @@ import {
   UpsertMessageArgs,
   upsertMessages,
 } from "../../services";
-import { Mutation, MutationPush, resolvePush } from "../../utils/rep";
+import resolvePush from "../../utils/rep/resolvePush";
+import { Mutation, MutationPush } from "../../utils/rep/types";
 
 type ReduceAcc = {
   mutationId: number;
@@ -58,7 +59,14 @@ const handler = async (
       mutations: [],
     });
 
-    await upsertMessages(mutations);
+    const uniqueMutations = Object.values(
+      mutations.reduce<Record<string, UpsertMessageArgs>>(
+        (prev, mutation) => ({ ...prev, [mutation.id]: mutation }),
+        {}
+      )
+    );
+
+    await upsertMessages(uniqueMutations);
 
     await updateClient({
       id: push.clientID,
