@@ -18,30 +18,36 @@ export const useTemplateContext = (): Template => {
 };
 
 export type TemplateContextProviderProps = {
-  template: Template;
+  templateId: number;
   children: ReactNode;
+  fallback?: ReactNode;
+  initialData?: Template;
   enabled?: boolean;
 };
 
 export const TemplateContextProvider = ({
-  template,
+  templateId,
   children,
   enabled,
+  fallback,
+  initialData,
 }: TemplateContextProviderProps): React.ReactElement => {
   const { data } = useSelectTemplate(
-    { id: template.id },
-    { initialData: template, enabled }
+    { id: templateId },
+    { initialData, enabled }
   );
 
-  const value = useMemo(
-    () => ({ template: data ?? template, isInitialized: true }),
-    [data, template]
+  const templateValue = useMemo(
+    () => data && { template: data, isInitialized: true },
+    [data]
   );
 
-  return (
-    <TemplateContext.Provider value={value}>
+  return templateValue ? (
+    <TemplateContext.Provider value={templateValue}>
       {children}
     </TemplateContext.Provider>
+  ) : (
+    <>{fallback}</>
   );
 };
 

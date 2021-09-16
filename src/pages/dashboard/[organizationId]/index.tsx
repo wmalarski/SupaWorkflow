@@ -1,25 +1,23 @@
 import React from "react";
 import { OrganizationSwitch } from "../../../organisms";
 import {
-  GetOrganizationProps,
-  getOrganizationProps,
   OrganizationContextProvider,
+  useNumberParam,
+  useUserContext,
 } from "../../../utils";
 
-const OrganizationPage = ({
-  member,
-  organization,
-  profile,
-}: GetOrganizationProps): React.ReactElement => (
-  <OrganizationContextProvider
-    member={member}
-    organization={organization}
-    profile={profile}
-  >
-    <OrganizationSwitch />
-  </OrganizationContextProvider>
-);
+const OrganizationPage = (): React.ReactElement | null => {
+  const { user } = useUserContext();
+  const organizationId = useNumberParam("organizationId");
 
-export const getServerSideProps = getOrganizationProps;
+  return user && organizationId ? (
+    <OrganizationContextProvider
+      organizationId={organizationId}
+      userId={user.id}
+    >
+      <OrganizationSwitch />
+    </OrganizationContextProvider>
+  ) : null;
+};
 
 export default OrganizationPage;

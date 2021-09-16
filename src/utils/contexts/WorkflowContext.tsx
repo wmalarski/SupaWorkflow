@@ -18,30 +18,36 @@ export const useWorkflowContext = (): Workflow => {
 };
 
 export type WorkflowContextProviderProps = {
-  workflow: Workflow;
+  workflowId: number;
   children: ReactNode;
+  fallback?: ReactNode;
   enabled?: boolean;
+  initialData?: Workflow;
 };
 
 export const WorkflowContextProvider = ({
-  workflow,
+  workflowId,
   children,
   enabled,
+  fallback,
+  initialData,
 }: WorkflowContextProviderProps): React.ReactElement => {
   const { data } = useSelectWorkflow(
-    { id: workflow.id },
-    { initialData: workflow, enabled }
+    { id: workflowId },
+    { initialData, enabled }
   );
 
-  const value = useMemo(
-    () => ({ workflow: data ?? workflow, isInitialized: true }),
-    [data, workflow]
+  const workflowValue = useMemo(
+    () => data && { workflow: data, isInitialized: true },
+    [data]
   );
 
-  return (
-    <WorkflowContext.Provider value={value}>
+  return workflowValue ? (
+    <WorkflowContext.Provider value={workflowValue}>
       {children}
     </WorkflowContext.Provider>
+  ) : (
+    <>{fallback}</>
   );
 };
 

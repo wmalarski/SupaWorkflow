@@ -12,7 +12,7 @@ import { useUserContext } from "../utils";
 const IndexPage: NextPage = () => (
   <Page
     header={
-      useUserContext() ? (
+      useUserContext()?.user ? (
         <Header left={<LandingHeader />} right={<ProfileHeader />} />
       ) : (
         <AnonHeader />

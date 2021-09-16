@@ -1,29 +1,27 @@
 import React from "react";
 import { TemplateSwitch } from "../../../../organisms";
 import {
-  getTemplateProps,
-  GetTemplateProps,
   OrganizationContextProvider,
   TemplateContextProvider,
+  useNumberParam,
+  useUserContext,
 } from "../../../../utils";
 
-const TemplatePage = ({
-  template,
-  member,
-  organization,
-  profile,
-}: GetTemplateProps): React.ReactElement => (
-  <OrganizationContextProvider
-    member={member}
-    organization={organization}
-    profile={profile}
-  >
-    <TemplateContextProvider template={template}>
-      <TemplateSwitch />
-    </TemplateContextProvider>
-  </OrganizationContextProvider>
-);
+const TemplatePage = (): React.ReactElement | null => {
+  const { user } = useUserContext();
+  const organizationId = useNumberParam("organizationId");
+  const templateId = useNumberParam("templateId");
 
-export const getServerSideProps = getTemplateProps;
+  return user && organizationId && templateId ? (
+    <OrganizationContextProvider
+      organizationId={organizationId}
+      userId={user.id}
+    >
+      <TemplateContextProvider templateId={templateId}>
+        <TemplateSwitch />
+      </TemplateContextProvider>
+    </OrganizationContextProvider>
+  ) : null;
+};
 
 export default TemplatePage;

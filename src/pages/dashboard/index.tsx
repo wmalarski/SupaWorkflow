@@ -1,22 +1,20 @@
 import React from "react";
 import { DashboardSwitch } from "../../organisms";
 import { Profile } from "../../services";
-import {
-  getProfileProps,
-  GetProfileProps,
-  ProfileContextProvider,
-} from "../../utils";
+import { ProfileContextProvider, useUserContext } from "../../utils";
 
 export type DashboardPageProps = {
   profile: Profile;
 };
 
-const DashboardPage = ({ profile }: GetProfileProps): React.ReactElement => (
-  <ProfileContextProvider profile={profile}>
-    <DashboardSwitch />
-  </ProfileContextProvider>
-);
+const DashboardPage = (): React.ReactElement | null => {
+  const { user } = useUserContext();
 
-export const getServerSideProps = getProfileProps;
+  return user ? (
+    <ProfileContextProvider userId={user.id}>
+      <DashboardSwitch />
+    </ProfileContextProvider>
+  ) : null;
+};
 
 export default DashboardPage;

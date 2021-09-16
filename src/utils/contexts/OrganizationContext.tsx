@@ -5,7 +5,7 @@ import {
   Organization,
   OrganizationMember,
   OrganizationRole,
-  Profile,
+  SelectMemberResult,
   useSelectMember,
 } from "../../services";
 import ProfileContext from "./ProfileContext";
@@ -35,41 +35,45 @@ export const useOrganizationContext = (): OrganizationValue => {
 };
 
 export type OrganizationContextProviderProps = {
-  organization: Organization;
-  member: OrganizationMember;
-  profile: Profile;
   children: ReactNode;
+  fallback?: ReactNode;
+  organizationId: number;
+  userId: string;
   enabled?: boolean;
+  initialData?: SelectMemberResult;
 };
 
 export const OrganizationContextProvider = ({
-  organization,
-  member,
-  profile,
   children,
+  fallback,
+  organizationId,
+  userId,
   enabled,
-}: OrganizationContextProviderProps): React.ReactElement => {
+  initialData,
+}: OrganizationContextProviderProps): React.ReactElement | null => {
   const { data } = useSelectMember(
-    { organizationId: organization.id, userId: profile.user_id },
-    { initialData: { member, profile, organization }, enabled }
+    { organizationId: organizationId, userId },
+    { initialData, enabled }
   );
 
   const profileValue = useMemo(
-    () => ({ profile: data?.profile ?? profile, isInitialized: true }),
-    [data, profile]
+    () => data && { profile: data.profile, isInitialized: true },
+    [data]
   );
 
   const organizationValue = useMemo(
-    () => ({ value: data ?? { member, organization }, isInitialized: true }),
-    [data, member, organization]
+    () => data && { value: data, isInitialized: true },
+    [data]
   );
 
-  return (
+  return profileValue && organizationValue ? (
     <ProfileContext.Provider value={profileValue}>
       <OrganizationContext.Provider value={organizationValue}>
         {children}
       </OrganizationContext.Provider>
     </ProfileContext.Provider>
+  ) : (
+    <>{fallback}</>
   );
 };
 

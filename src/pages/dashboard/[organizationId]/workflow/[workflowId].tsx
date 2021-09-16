@@ -1,29 +1,27 @@
 import React from "react";
 import { WorkflowSwitch } from "../../../../organisms";
 import {
-  GetWorkflowProps,
-  getWorkflowProps,
   OrganizationContextProvider,
+  useNumberParam,
+  useUserContext,
   WorkflowContextProvider,
 } from "../../../../utils";
 
-const WorkflowPage = ({
-  member,
-  profile,
-  workflow,
-  organization,
-}: GetWorkflowProps): React.ReactElement => (
-  <OrganizationContextProvider
-    member={member}
-    profile={profile}
-    organization={organization}
-  >
-    <WorkflowContextProvider workflow={workflow}>
-      <WorkflowSwitch />
-    </WorkflowContextProvider>
-  </OrganizationContextProvider>
-);
+const WorkflowPage = (): React.ReactElement | null => {
+  const { user } = useUserContext();
+  const organizationId = useNumberParam("organizationId");
+  const workflowId = useNumberParam("workflowId");
 
-export const getServerSideProps = getWorkflowProps;
+  return user && workflowId && organizationId ? (
+    <OrganizationContextProvider
+      organizationId={organizationId}
+      userId={user.id}
+    >
+      <WorkflowContextProvider workflowId={workflowId}>
+        <WorkflowSwitch />
+      </WorkflowContextProvider>
+    </OrganizationContextProvider>
+  ) : null;
+};
 
 export default WorkflowPage;

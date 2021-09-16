@@ -19,27 +19,32 @@ export const useTeamContext = (): Team => {
 };
 
 export type TeamContextProviderProps = {
-  team: Team;
+  teamId: number;
   children: ReactNode;
+  fallback?: ReactNode;
   enabled?: boolean;
+  initialData?: Team;
 };
 
 export const TeamContextProvider = ({
-  team,
+  teamId,
   children,
   enabled,
+  fallback,
+  initialData,
 }: TeamContextProviderProps): React.ReactElement => {
-  const { data } = useSelectTeam(
-    { id: team.id },
-    { initialData: team, enabled }
+  const { data } = useSelectTeam({ id: teamId }, { initialData, enabled });
+
+  const teamValue = useMemo(
+    () => data && { team: data, isInitialized: true },
+    [data]
   );
 
-  const value = useMemo(
-    () => ({ team: data ?? team, isInitialized: true }),
-    [data, team]
+  return teamValue ? (
+    <TeamContext.Provider value={teamValue}>{children}</TeamContext.Provider>
+  ) : (
+    <>{fallback}</>
   );
-
-  return <TeamContext.Provider value={value}>{children}</TeamContext.Provider>;
 };
 
 export default TeamContext;

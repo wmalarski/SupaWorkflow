@@ -18,28 +18,33 @@ export const useProfileContext = (): Profile => {
 };
 
 export type ProfileContextProviderProps = {
-  profile: Profile;
+  userId: string;
   children: ReactNode;
+  fallback?: ReactNode;
   enabled?: boolean;
+  initialData?: Profile;
 };
 
 export const ProfileContextProvider = ({
-  profile,
+  userId,
   children,
+  fallback,
   enabled,
-}: ProfileContextProviderProps): React.ReactElement => {
-  const { data } = useSelectProfile(
-    { userId: profile.user_id },
-    { initialData: profile, enabled }
+  initialData,
+}: ProfileContextProviderProps): React.ReactElement | null => {
+  const { data } = useSelectProfile({ userId }, { initialData, enabled });
+
+  const profileValue = useMemo(
+    () => data && { profile: data, isInitialized: true },
+    [data]
   );
 
-  const value = useMemo(
-    () => ({ profile: data ?? profile, isInitialized: true }),
-    [data, profile]
-  );
-
-  return (
-    <ProfileContext.Provider value={value}>{children}</ProfileContext.Provider>
+  return profileValue ? (
+    <ProfileContext.Provider value={profileValue}>
+      {children}
+    </ProfileContext.Provider>
+  ) : (
+    <>{fallback}</>
   );
 };
 

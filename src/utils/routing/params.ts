@@ -34,3 +34,13 @@ export const useTabParam = <
 
   return tabParam in tabs ? (tabs[tabParam] as T[K]) : null;
 };
+
+export const useNumberParam = (param: string): number | null => {
+  const router = useRouter();
+
+  const value = validateNumberParam(router.query?.[param]);
+
+  if (!value && value !== 0) return null;
+
+  return value;
+};
