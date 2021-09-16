@@ -10,6 +10,7 @@ export type WorkflowNodeData<
 > = {
   teams: Team[];
   teamMembers: SelectTeamMemberRow[];
+  isEnabled: boolean;
   messageId: string;
   templateId: number;
   workflowId: number | null;

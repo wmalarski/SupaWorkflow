@@ -12,6 +12,7 @@ const WorkflowFormNode = ({
   data: {
     state,
     teams,
+    isEnabled,
     teamMembers,
     messageId,
     templateId,
@@ -33,7 +34,7 @@ const WorkflowFormNode = ({
   return useMemo(
     () => (
       <Box
-        bg="white"
+        bg={isEnabled ? "white" : "gray"}
         border="solid"
         borderWidth={1}
         borderColor="black"
@@ -64,13 +65,14 @@ const WorkflowFormNode = ({
       </Box>
     ),
     [
-      handleChange,
-      state.assigneeId,
-      state.isDone,
+      isEnabled,
       state.template,
+      state.assigneeId,
       state.values,
-      teams,
+      state.isDone,
       teamMembers,
+      teams,
+      handleChange,
     ]
   );
 };

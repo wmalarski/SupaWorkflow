@@ -3,18 +3,12 @@ import { Message, SelectTeamMemberRow, Team } from "../../../../services";
 import {
   MessageKind,
   MessageNodeType,
+  MessageTemplateEdgeBaseState,
   MessageWorkflowEdgeState,
+  MessageWorkflowNodeState,
 } from "../../../../services/nodes";
 import { MutationArgs } from "../../../../utils/rep";
 import { WorkflowData } from "./WorkflowEditorView.types";
-
-export type MessageToElementOptions = {
-  teams: Team[];
-  teamMembers: SelectTeamMemberRow[];
-  message: Message;
-  messages: Message[];
-  onChange: (message: MutationArgs["putMessage"]) => void;
-};
 
 const findLabel = (
   state: MessageWorkflowEdgeState,
@@ -24,11 +18,69 @@ const findLabel = (
     state.template.sourceHandle &&
     e.state.kind === MessageKind.WorkflowNode &&
     e.state.template.kind === MessageKind.TemplateNode &&
-    String(e.state.templateId) === state.template.source &&
+    e.state.templateNodeId === state.template.source &&
     e.state.template.nodeType === MessageNodeType.Decision
       ? [e.state.template.routes[Number(state.template.sourceHandle)]]
       : []
   )[0];
+
+const findEnabledTreeRec = (
+  target: MessageWorkflowNodeState,
+  edges: MessageTemplateEdgeBaseState[],
+  nodes: MessageWorkflowNodeState[],
+  result: Record<string, boolean>
+): Record<string, boolean> => {
+  if (result[target.templateNodeId]) return result;
+
+  const sources = edges
+    .filter((edge) => edge.target === target.templateNodeId)
+    .flatMap((edge) => {
+      const source = nodes.find((node) => node.templateNodeId === edge.source);
+      return source ? [source] : [];
+    });
+
+  const updatedResult = sources.reduce<Record<string, boolean>>(
+    (prev, source) => {
+      if (prev[source.templateNodeId]) return prev;
+      return { ...prev, ...findEnabledTreeRec(source, edges, nodes, prev) };
+    },
+    result
+  );
+
+  const sourcesEnabled = sources.every(
+    (source) => updatedResult[source.templateNodeId] && source.isDone
+  );
+
+  return {
+    ...updatedResult,
+    [target.templateNodeId]: sourcesEnabled,
+  };
+};
+
+const findEnabledTree = (messages: Message[]): Record<string, boolean> => {
+  const edges = messages.flatMap((message) => {
+    if (message.state.kind !== MessageKind.WorkflowEdge) return [];
+    return [message.state.template];
+  });
+
+  const nodes = messages.flatMap((message) => {
+    if (message.state.kind !== MessageKind.WorkflowNode) return [];
+    return [message.state];
+  });
+
+  return nodes.reduce<Record<string, boolean>>((prev, state) => {
+    if (prev[state.templateNodeId]) return prev;
+    return { ...prev, ...findEnabledTreeRec(state, edges, nodes, prev) };
+  }, {});
+};
+
+export type MessageToElementOptions = {
+  teams: Team[];
+  teamMembers: SelectTeamMemberRow[];
+  message: Message;
+  messages: Message[];
+  onChange: (message: MutationArgs["putMessage"]) => void;
+};
 
 export const messageToElement = ({
   teams,
@@ -38,6 +90,8 @@ export const messageToElement = ({
   onChange,
 }: MessageToElementOptions): FlowElement<WorkflowData> | null => {
   const { id, state } = message;
+
+  const isNodeEnabled = findEnabledTree(messages);
 
   switch (state.kind) {
     case MessageKind.WorkflowEdge:
@@ -68,6 +122,7 @@ export const messageToElement = ({
         data: {
           state,
           onChange,
+          isEnabled: isNodeEnabled[id] ?? false,
           messageId: message.id,
           templateId: message.template_id,
           workflowId: message.workflow_id,

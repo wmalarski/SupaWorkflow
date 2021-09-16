@@ -25,7 +25,7 @@ const initialMessages: Message[] = [
       selected: null,
       isDone: false,
       assigneeId: 1,
-      templateId: 1,
+      templateNodeId: "1",
       template: {
         kind: MessageKind.TemplateNode,
         position: { x: 0, y: 300 },
@@ -47,7 +47,7 @@ const initialMessages: Message[] = [
       checked: [],
       isDone: false,
       assigneeId: null,
-      templateId: 2,
+      templateNodeId: "2",
       template: {
         kind: MessageKind.TemplateNode,
         position: { x: 350, y: 600 },
@@ -69,7 +69,7 @@ const initialMessages: Message[] = [
       values: {},
       isDone: false,
       assigneeId: 0,
-      templateId: 3,
+      templateNodeId: "3",
       template: {
         kind: MessageKind.TemplateNode,
         position: { x: 350, y: 300 },
@@ -91,7 +91,7 @@ const initialMessages: Message[] = [
       checked: [1],
       isDone: false,
       assigneeId: 2,
-      templateId: 4,
+      templateNodeId: "4",
       template: {
         kind: MessageKind.TemplateNode,
         position: { x: 350, y: 0 },
@@ -113,7 +113,7 @@ const initialMessages: Message[] = [
       values: { 0: "Value" },
       isDone: false,
       assigneeId: 0,
-      templateId: 5,
+      templateNodeId: "5",
       template: {
         kind: MessageKind.TemplateNode,
         position: { x: 700, y: 450 },
@@ -135,14 +135,14 @@ const initialMessages: Message[] = [
       values: { 1: "Value" },
       isDone: false,
       assigneeId: null,
-      templateId: 6,
+      templateNodeId: "6",
       template: {
         kind: MessageKind.TemplateNode,
         position: { x: 700, y: 150 },
         nodeType: MessageNodeType.Form,
         fields: ["field1", "field2"],
         teamId: defaultTeams[1].id,
-        isTargetAll: true,
+        isTargetAll: false,
         description: "FormTemplate Title",
         title: "Form 6",
       },

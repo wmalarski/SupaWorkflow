@@ -14,6 +14,7 @@ const WorkflowDecisionNode = ({
     state,
     teamMembers,
     teams,
+    isEnabled,
     workflowId,
     messageId,
     templateId,
@@ -34,7 +35,7 @@ const WorkflowDecisionNode = ({
   return useMemo(
     () => (
       <Box
-        bg="white"
+        bg={isEnabled ? "white" : "gray"}
         border="solid"
         borderWidth={1}
         borderColor="black"
@@ -71,13 +72,14 @@ const WorkflowDecisionNode = ({
       </Box>
     ),
     [
-      handleChange,
-      state.assigneeId,
-      state.isDone,
-      state.selected,
+      isEnabled,
       state.template,
-      teams,
+      state.assigneeId,
+      state.selected,
+      state.isDone,
       teamMembers,
+      teams,
+      handleChange,
     ]
   );
 };

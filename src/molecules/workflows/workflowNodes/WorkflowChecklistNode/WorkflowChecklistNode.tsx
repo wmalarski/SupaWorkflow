@@ -12,6 +12,7 @@ const WorkflowChecklistNode = ({
   data: {
     state,
     teams,
+    isEnabled,
     teamMembers,
     templateId,
     messageId,
@@ -33,7 +34,7 @@ const WorkflowChecklistNode = ({
   return useMemo(
     () => (
       <Box
-        bg="white"
+        bg={isEnabled ? "white" : "gray"}
         border="solid"
         borderWidth={1}
         borderColor="black"
@@ -64,13 +65,14 @@ const WorkflowChecklistNode = ({
       </Box>
     ),
     [
-      handleChange,
+      isEnabled,
+      state.template,
       state.assigneeId,
       state.checked,
       state.isDone,
-      state.template,
-      teams,
       teamMembers,
+      teams,
+      handleChange,
     ]
   );
 };
