@@ -1,10 +1,11 @@
-import { Box, Heading } from "@chakra-ui/layout";
+import { Heading } from "@chakra-ui/layout";
 import { StackDivider, VStack } from "@chakra-ui/react";
 import React, { useCallback, useMemo } from "react";
 import { Position } from "react-flow-renderer";
 import { MessageDecisionTemplateNodeState } from "../../../../services/nodes";
 import { useText } from "../../../../utils";
 import { TemplateNodeProps } from "../../templateEditor/TemplateEditorView/TemplateEditorView.types";
+import TemplateBoxForm from "../../templateForms/TemplateBoxForm/TemplateBoxForm";
 import TemplateDetailsForm from "../../templateForms/TemplateDetailsForm/TemplateDetailsForm";
 import TemplateHandle from "../../templateForms/TemplateHandle/TemplateHandle";
 import TemplateListForm from "../../templateForms/TemplateListForm/TemplateListForm";
@@ -30,14 +31,7 @@ const TemplateDecisionNode = ({
 
   return useMemo(
     () => (
-      <Box
-        bg="white"
-        border="solid"
-        borderWidth={1}
-        borderColor="black"
-        borderRadius={5}
-        padding={2}
-      >
+      <TemplateBoxForm>
         <TemplateHandle type="target" position={Position.Left} />
         <VStack divider={<StackDivider borderColor="gray.200" />}>
           <Heading size="sm" p={2}>
@@ -64,7 +58,7 @@ const TemplateDecisionNode = ({
             onChange={(isTargetAll: boolean) => handleChange({ isTargetAll })}
           />
         </VStack>
-      </Box>
+      </TemplateBoxForm>
     ),
     [
       handleChange,
