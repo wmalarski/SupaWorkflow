@@ -6,7 +6,6 @@ import { WorkflowNodeProps } from "../../workflowEditor/WorkflowEditorView/Workf
 import WorkflowAssigneeForm from "../../workflowForms/WorkflowAssigneeForm/WorkflowAssigneeForm";
 import WorkflowBoxForm from "../../workflowForms/WorkflowBoxForm/WorkflowBoxForm";
 import WorkflowCheckboxesForm from "../../workflowForms/WorkflowCheckboxesForm/WorkflowCheckboxesForm";
-import WorkflowFooterForm from "../../workflowForms/WorkflowFooterForm/WorkflowFooterForm";
 import WorkflowHeaderForm from "../../workflowForms/WorkflowHeaderForm/WorkflowHeaderForm";
 
 const WorkflowChecklistNode = ({
@@ -34,16 +33,11 @@ const WorkflowChecklistNode = ({
 
   return useMemo(
     () => (
-      <WorkflowBoxForm
-        isEnabled={isEnabled}
-        teamId={state.template.teamId}
-        teams={teams}
-      >
+      <WorkflowBoxForm isEnabled={isEnabled && !state.isDone}>
         <Handle type="target" position={Position.Left} />
         <VStack divider={<StackDivider borderColor="gray.200" />}>
           <WorkflowHeaderForm template={state.template} />
           <WorkflowAssigneeForm
-            isEnabled={isEnabled}
             assigneeId={state.assigneeId}
             onChange={(assigneeId) => handleChange({ assigneeId })}
             teamMembers={teamMembers}
@@ -53,13 +47,13 @@ const WorkflowChecklistNode = ({
           <WorkflowCheckboxesForm
             isEnabled={isEnabled}
             checked={state.checked}
-            onChange={(checked) => handleChange({ checked })}
+            onChange={(checked) =>
+              handleChange({
+                checked,
+                isDone: checked.length === state.template.tasks.length,
+              })
+            }
             options={state.template.tasks}
-          />
-          <WorkflowFooterForm
-            isEnabled={isEnabled}
-            isDone={state.isDone}
-            onChange={(isDone) => handleChange({ isDone })}
           />
         </VStack>
         <Handle type="source" position={Position.Right} />

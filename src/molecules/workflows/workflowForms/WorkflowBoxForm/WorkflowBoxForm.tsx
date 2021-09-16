@@ -1,27 +1,15 @@
 import { Box } from "@chakra-ui/react";
 import React from "react";
-import { Team } from "../../../../services";
 
 export type WorkflowBoxFormProps = {
   children: React.ReactNode;
   isEnabled: boolean;
-  teamId: number | null;
-  teams: Team[];
 };
 
 const WorkflowBoxForm = ({
-  teams,
-  teamId,
   children,
 }: WorkflowBoxFormProps): React.ReactElement => (
-  <Box
-    bg="white"
-    border="solid"
-    borderWidth={1}
-    borderColor={teams.find((t) => t.id === teamId)?.color}
-    borderRadius={5}
-    padding={2}
-  >
+  <Box bg="white" border="solid" borderWidth={1} borderRadius={5} padding={2}>
     {children}
     <Box
       position="fixed"

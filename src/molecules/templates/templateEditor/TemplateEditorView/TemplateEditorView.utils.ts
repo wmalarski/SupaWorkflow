@@ -1,5 +1,11 @@
 import { nanoid } from "nanoid";
-import { Connection, Edge, Elements, FlowElement } from "react-flow-renderer";
+import {
+  ArrowHeadType,
+  Connection,
+  Edge,
+  Elements,
+  FlowElement,
+} from "react-flow-renderer";
 import { Message, Team } from "../../../../services";
 import {
   MessageKind,
@@ -42,6 +48,8 @@ export const messageToElement = ({
       return {
         id,
         label: findLabel(state, messages),
+        animated: true,
+        arrowHeadType: ArrowHeadType.Arrow,
         source: state.source,
         target: state.target,
         sourceHandle: state.sourceHandle,

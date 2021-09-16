@@ -34,16 +34,11 @@ const WorkflowFormNode = ({
 
   return useMemo(
     () => (
-      <WorkflowBoxForm
-        isEnabled={isEnabled}
-        teamId={state.template.teamId}
-        teams={teams}
-      >
+      <WorkflowBoxForm isEnabled={isEnabled && !state.isDone}>
         <Handle type="target" position={Position.Left} />
         <VStack divider={<StackDivider borderColor="gray.200" />}>
           <WorkflowHeaderForm template={state.template} />
           <WorkflowAssigneeForm
-            isEnabled={isEnabled}
             assigneeId={state.assigneeId}
             onChange={(assigneeId) => handleChange({ assigneeId })}
             teamMembers={teamMembers}
@@ -51,7 +46,7 @@ const WorkflowFormNode = ({
             teamId={state.template.teamId}
           />
           <WorkflowFieldsForm
-            isEnabled={isEnabled}
+            isEnabled={isEnabled && !state.isDone}
             fields={state.template.fields}
             onChange={(values) => handleChange({ values })}
             values={state.values}

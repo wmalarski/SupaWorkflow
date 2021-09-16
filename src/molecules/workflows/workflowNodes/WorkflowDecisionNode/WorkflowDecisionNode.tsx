@@ -5,7 +5,6 @@ import { MessageDecisionWorkflowNodeState } from "../../../../services/nodes";
 import { WorkflowNodeProps } from "../../workflowEditor/WorkflowEditorView/WorkflowEditorView.types";
 import WorkflowAssigneeForm from "../../workflowForms/WorkflowAssigneeForm/WorkflowAssigneeForm";
 import WorkflowBoxForm from "../../workflowForms/WorkflowBoxForm/WorkflowBoxForm";
-import WorkflowFooterForm from "../../workflowForms/WorkflowFooterForm/WorkflowFooterForm";
 import WorkflowHeaderForm from "../../workflowForms/WorkflowHeaderForm/WorkflowHeaderForm";
 import WorkflowRadioForm from "../../workflowForms/WorkflowRadioForm/WorkflowRadioForm";
 import WorkflowDecisionNodeHandle from "./WorkflowDecisionNodeHandle";
@@ -35,17 +34,12 @@ const WorkflowDecisionNode = ({
 
   return useMemo(
     () => (
-      <WorkflowBoxForm
-        isEnabled={isEnabled}
-        teamId={state.template.teamId}
-        teams={teams}
-      >
+      <WorkflowBoxForm isEnabled={isEnabled && !state.isDone}>
         <Handle type="target" position={Position.Left} />
         <VStack divider={<StackDivider borderColor="gray.200" />}>
           <WorkflowHeaderForm template={state.template} />
           <WorkflowAssigneeForm
             assigneeId={state.assigneeId}
-            isEnabled={isEnabled}
             onChange={(assigneeId) => handleChange({ assigneeId })}
             teamMembers={teamMembers}
             teams={teams}
@@ -55,12 +49,7 @@ const WorkflowDecisionNode = ({
             isEnabled={isEnabled}
             selected={state.selected}
             options={state.template.routes}
-            onChange={(selected) => handleChange({ selected })}
-          />
-          <WorkflowFooterForm
-            isEnabled={isEnabled}
-            isDone={state.isDone}
-            onChange={(isDone) => handleChange({ isDone })}
+            onChange={(selected) => handleChange({ selected, isDone: true })}
           />
         </VStack>
         {state.template.routes.map((route, index) => (

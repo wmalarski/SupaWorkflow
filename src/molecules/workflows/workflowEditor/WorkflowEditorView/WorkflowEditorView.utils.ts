@@ -1,4 +1,4 @@
-import { Elements, FlowElement } from "react-flow-renderer";
+import { ArrowHeadType, Elements, FlowElement } from "react-flow-renderer";
 import { Message, SelectTeamMemberRow, Team } from "../../../../services";
 import {
   MessageKind,
@@ -110,12 +110,20 @@ export const messageToElement = ({
       return {
         id,
         label: findLabel(state, messages),
+        animated: true,
+        connectable: false,
+        arrowHeadType: ArrowHeadType.Arrow,
         source: state.template.source,
         target: state.template.target,
-        connectable: false,
-        animated: true,
         sourceHandle: state.template.sourceHandle,
         targetHandle: state.template.targetHandle,
+        style: {
+          strokeWidth:
+            isNodeEnabled[state.template.source] &&
+            isNodeEnabled[state.template.target]
+              ? 3
+              : 1,
+        },
         data: {
           state,
           messageId: message.id,
@@ -129,7 +137,6 @@ export const messageToElement = ({
         position: state.template.position,
         type: state.nodeType,
         style: { width: 300 },
-        animated: true,
         connectable: false,
         data: {
           state,

@@ -6,7 +6,7 @@ import { useText } from "../../../../utils";
 
 export type WorkflowAssigneeFormProps = {
   assigneeId: number | null;
-  isEnabled: boolean;
+  isDisabled?: boolean;
   teams: Team[];
   teamId: number | null;
   teamMembers: SelectTeamMemberRow[];
@@ -15,7 +15,7 @@ export type WorkflowAssigneeFormProps = {
 
 const WorkflowAssigneeForm = ({
   assigneeId,
-  isEnabled,
+  isDisabled,
   teams,
   teamId,
   teamMembers,
@@ -35,7 +35,7 @@ const WorkflowAssigneeForm = ({
         </Text>
         <Select
           size="sm"
-          isDisabled={!isEnabled}
+          isDisabled={isDisabled}
           value={assigneeId ?? undefined}
           placeholder={text("workflowNodeNoneAssignee")}
           onChange={(event) =>
