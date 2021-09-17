@@ -323,40 +323,127 @@ CREATE POLICY "Delete" ON public.team FOR DELETE USING (
 );
 
 ---- team_member ----
-CREATE POLICY "Select" ON public.team_member FOR
-SELECT
-  USING ((role() = 'authenticated':: text));
+CREATE POLICY "Select" ON public.team_member FOR SELECT USING (
+  exists(
+    select 
+      1
+    from 
+      members
+      inner join team on team.organization_id = members.organization_id
+    where
+      members.profile_user_id = auth.uid()
+      and team.id = team_member.team_id
+  )
+);
 
-CREATE POLICY "Insert" ON public.team_member FOR INSERT WITH CHECK ((role() = 'authenticated':: text));
+CREATE POLICY "Insert" ON public.team_member FOR INSERT WITH CHECK (
+  exists(
+    select 
+      1
+    from 
+      members
+      inner join team on team.organization_id = members.organization_id
+    where
+      members.profile_user_id = auth.uid()
+      and team.id = team_member.team_id
+      and (
+        members.member_role = 'mod'
+        or members.member_role = 'owner'
+      )
+  )
+);
 
-CREATE POLICY "Update" ON public.team_member FOR
-UPDATE
-  USING ((role() = 'authenticated':: text)) WITH CHECK ((role() = 'authenticated':: text));
+CREATE POLICY "Update" ON public.team_member FOR UPDATE USING (
+  exists(
+    select 
+      1
+    from 
+      members
+      inner join team on team.organization_id = members.organization_id
+    where
+      members.profile_user_id = auth.uid()
+      and team.id = team_member.team_id
+      and (
+        members.member_role = 'mod'
+        or members.member_role = 'owner'
+      )
+  )
+) WITH CHECK (
+  exists(
+    select 
+      1
+    from 
+      members
+      inner join team on team.organization_id = members.organization_id
+    where
+      members.profile_user_id = auth.uid()
+      and team.id = team_member.team_id
+      and (
+        members.member_role = 'mod'
+        or members.member_role = 'owner'
+      )
+  )
+);
 
-CREATE POLICY "Delete" ON public.team_member FOR DELETE USING ((role() = 'authenticated':: text));
+CREATE POLICY "Delete" ON public.team_member FOR DELETE USING (
+  exists(
+    select 
+      1
+    from 
+      members
+      inner join team on team.organization_id = members.organization_id
+    where
+      members.profile_user_id = auth.uid()
+      and team.id = team_member.team_id
+      and (
+        members.member_role = 'mod'
+        or members.member_role = 'owner'
+      )
+  )
+);
 
 ---- template ----
-CREATE POLICY "Select" ON public.template FOR
-SELECT
-  USING ((role() = 'authenticated':: text));
-
-CREATE POLICY "Insert" ON public.template FOR INSERT WITH CHECK ((role() = 'authenticated':: text));
-
-CREATE POLICY "Update" ON public.template FOR
-UPDATE
-  USING ((role() = 'authenticated':: text)) WITH CHECK ((role() = 'authenticated':: text));
-
-CREATE POLICY "Delete" ON public.template FOR DELETE USING ((role() = 'authenticated':: text));
+CREATE POLICY "All" ON public.template FOR ALL USING (
+  exists(
+    select
+      1
+    from
+      members
+    where
+      members.profile_user_id = auth.uid()
+      and members.organization_id = template.organization_id
+  )
+) WITH CHECK (
+  exists(
+    select
+      1
+    from
+      members
+    where
+      members.profile_user_id = auth.uid()
+      and members.organization_id = template.organization_id
+  )
+);
 
 ---- workflow ----
-CREATE POLICY "Select" ON public.workflow FOR
-SELECT
-  USING ((role() = 'authenticated':: text));
-
-CREATE POLICY "Insert" ON public.workflow FOR INSERT WITH CHECK ((role() = 'authenticated':: text));
-
-CREATE POLICY "Update" ON public.workflow FOR
-UPDATE
-  USING ((role() = 'authenticated':: text)) WITH CHECK ((role() = 'authenticated':: text));
-
-CREATE POLICY "Delete" ON public.workflow FOR DELETE USING ((role() = 'authenticated':: text));
+CREATE POLICY "All" ON public.workflow FOR ALL USING (
+  exists(
+    select
+      1
+    from
+      members
+    where
+      members.profile_user_id = auth.uid()
+      and members.organization_id = workflow.organization_id
+  )
+) WITH CHECK (
+  exists(
+    select
+      1
+    from
+      members
+    where
+      members.profile_user_id = auth.uid()
+      and members.organization_id = workflow.organization_id
+  )
+);
