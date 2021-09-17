@@ -27,8 +27,9 @@ SELECT
       from
         members
       where
-        members.profile_user_id = auth.uid()
-        and members.organization_id = public.organization.id
+        (members.profile_user_id = auth.uid()
+        and members.organization_id = public.organization.id)
+        or members.organization_author_id = get_profile_id(auth.uid())
     )
   );
 
