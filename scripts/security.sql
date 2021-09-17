@@ -18,58 +18,52 @@ create or replace view members as
     inner join organization on organization.id = organization_member.organization_id;
 
 ---- Organization ----
-CREATE POLICY "Enable only for organization members" ON public.organization FOR
-SELECT
-  USING (
-    exists(
-      select
-        1
-      from
-        members
-      where
-        (members.profile_user_id = auth.uid()
-        and members.organization_id = public.organization.id)
-        or members.organization_author_id = get_profile_id(auth.uid())
-    )
-  );
+CREATE POLICY "Enable only for organization members" ON public.organization FOR SELECT USING (
+  exists(
+    select
+      1
+    from
+      members
+    where
+      (members.profile_user_id = auth.uid()
+      and members.organization_id = public.organization.id)
+      or members.organization_author_id = get_profile_id(auth.uid())
+  )
+);
 
-CREATE POLICY "policy_name"
-ON public.organization
-FOR INSERT WITH CHECK (
+CREATE POLICY "policy_name" ON public.organization FOR INSERT WITH CHECK (
   auth.role() = 'authenticated'
 );
 
-CREATE POLICY "Enable update for users based on role" ON public.organization FOR
-UPDATE
-  USING (
-    exists(
-      select
-        1
-      from
-        members
-      where
-        members.profile_user_id = auth.uid()
-        and members.organization_id = public.organization.id
-        and (
-          members.member_role = 'mod'
-          or members.member_role = 'owner'
-        )
-    )
-  ) WITH CHECK (
-    exists(
-      select
-        1
-      from
-        members
-      where
-        members.profile_user_id = auth.uid()
-        and members.organization_id = public.organization.id
-        and (
-          members.member_role = 'mod'
-          or members.member_role = 'owner'
-        )
-    )
-  );
+CREATE POLICY "Enable update for users based on role" ON public.organization FOR UPDATE USING (
+  exists(
+    select
+      1
+    from
+      members
+    where
+      members.profile_user_id = auth.uid()
+      and members.organization_id = public.organization.id
+      and (
+        members.member_role = 'mod'
+        or members.member_role = 'owner'
+      )
+  )
+) WITH CHECK (
+  exists(
+    select
+      1
+    from
+      members
+    where
+      members.profile_user_id = auth.uid()
+      and members.organization_id = public.organization.id
+      and (
+        members.member_role = 'mod'
+        or members.member_role = 'owner'
+      )
+  )
+);
 
 CREATE POLICY "Enable delete for users based on role" ON public.organization FOR DELETE USING (
   exists(
@@ -88,81 +82,143 @@ CREATE POLICY "Enable delete for users based on role" ON public.organization FOR
 );
 
 ---- assignee ----
-CREATE POLICY "Select" ON public.assignee FOR SELECT USING (
-  exists(
-    select 
-      1 
-    from 
-      members inner join 
-      workflow on workflow.organization_id = members.organization_id 
-    where 
-      members.profile_user_id = auth.uid()
-      and workflow.id = assignee.workflow_id
+CREATE POLICY "All" ON public.assignee FOR ALL USING ((
+    EXISTS (
+      SELECT
+        1
+      FROM
+        (
+          members
+          JOIN workflow ON (
+            (workflow.organization_id = members.organization_id)
+          )
+        )
+      WHERE
+        (
+          (members.profile_user_id = uid())
+          AND (workflow.id = assignee.workflow_id)
+        )
+    )
+  )
+) WITH CHECK (
+  (
+    EXISTS (
+      SELECT
+        1
+      FROM
+        (
+          members
+          JOIN workflow ON (
+            (workflow.organization_id = members.organization_id)
+          )
+        )
+      WHERE
+        (
+          (members.profile_user_id = uid())
+          AND (workflow.id = assignee.workflow_id)
+        )
+    )
   )
 );
-
-CREATE POLICY "Insert" ON public.assignee FOR INSERT WITH CHECK (
-  exists(
-    select 
-      1 
-    from 
-      members inner join 
-      workflow on workflow.organization_id = members.organization_id 
-    where 
-      members.profile_user_id = auth.uid()
-      and workflow.id = assignee.workflow_id
-  )
-);
-
-CREATE POLICY "Update" ON public.assignee FOR UPDATE USING (  
-  exists(
-    select 
-      1 
-    from 
-      members inner join 
-      workflow on workflow.organization_id = members.organization_id 
-    where 
-      members.profile_user_id = auth.uid()
-      and workflow.id = assignee.workflow_id
-  )
-) WITH CHECK (  
-  exists(
-    select 
-      1 
-    from 
-      members inner join 
-      workflow on workflow.organization_id = members.organization_id 
-    where 
-      members.profile_user_id = auth.uid()
-      and workflow.id = assignee.workflow_id
-  )
-);
-
-CREATE POLICY "Delete" ON public.assignee FOR DELETE USING (  
-  exists(
-    select 
-      1 
-    from 
-      members inner join 
-      workflow on workflow.organization_id = members.organization_id 
-    where 
-      members.profile_user_id = auth.uid()
-      and workflow.id = assignee.workflow_id
-  )
-);
-
 ---- message ----
-CREATE POLICY "Select" ON public.message FOR
-SELECT
-  USING ((role() = 'authenticated':: text));
+CREATE POLICY "All" ON public.message FOR ALL USING (
+  exists(
+    select
+      1
+    from
+      members
+      inner join template on template.organization_id = members.organization_id
+    where
+      members.profile_user_id = auth.uid()
+      and template.id = message.template_id
+  )
+) WITH CHECK (
+  exists(
+    select
+      1
+    from
+      members
+      inner join template on template.organization_id = members.organization_id
+    where
+      members.profile_user_id = auth.uid()
+      and template.id = message.template_id
+  )
+);
 
-CREATE POLICY "Insert" ON public.message FOR INSERT WITH CHECK ((role() = 'authenticated':: text));
+---- organization members
+CREATE POLICY "Enable only for organization members" ON public.organization_member FOR SELECT USING (
+  exists(
+    select 
+      1
+    from 
+      members
+    where
+      members.profile_user_id = auth.uid()
+      and members.organization_id = organization_member.organization_id
+  )
+);
 
-CREATE POLICY "Update" ON public.message FOR
-UPDATE
-  USING ((role() = 'authenticated':: text)) WITH CHECK ((role() = 'authenticated':: text));
+CREATE POLICY "policy_name" ON public.organization_member FOR INSERT WITH CHECK (
+  exists(
+    select 
+      1
+    from 
+      members
+    where
+      members.profile_user_id = auth.uid()
+      and members.organization_id = organization_member.organization_id
+      and (
+        members.member_role = 'mod'
+        or members.member_role = 'owner'
+      )
+  )
+);
 
-CREATE POLICY "Delete" ON public.message FOR DELETE USING ((role() = 'authenticated':: text));
+CREATE POLICY "Enable update for users based on role" ON public.organization_member FOR UPDATE USING (
+  exists(
+    select 
+      1
+    from 
+      members
+    where
+      members.profile_user_id = auth.uid()
+      and members.organization_id = organization_member.organization_id
+      and (
+        members.member_role = 'mod'
+        or members.member_role = 'owner'
+      )
+  )
+) WITH CHECK (
+  exists(
+    select 
+      1
+    from 
+      members
+    where
+      members.profile_user_id = auth.uid()
+      and members.organization_id = organization_member.organization_id
+      and (
+        members.member_role = 'mod'
+        or members.member_role = 'owner'
+      )
+  )
+);
+
+CREATE POLICY "Enable delete for users based on role" ON public.organization_member FOR DELETE USING (
+  exists(
+    select 
+      1
+    from 
+      members
+    where
+      members.profile_user_id = auth.uid()
+      and members.organization_id = organization_member.organization_id
+      and (
+        members.member_role = 'mod'
+        or members.member_role = 'owner'
+      )
+  )
+);
 
 ---- profile ----
 CREATE POLICY "Select" ON public.profile FOR
