@@ -82,42 +82,31 @@ CREATE POLICY "Enable delete for users based on role" ON public.organization FOR
 );
 
 ---- assignee ----
-CREATE POLICY "All" ON public.assignee FOR ALL USING ((
-    EXISTS (
-      SELECT
-        1
-      FROM
-        (
-          members
-          JOIN workflow ON (
-            (workflow.organization_id = members.organization_id)
-          )
-        )
-      WHERE
-        (
-          (members.profile_user_id = uid())
-          AND (workflow.id = assignee.workflow_id)
-        )
-    )
+CREATE POLICY "All" ON public.assignee FOR ALL USING (
+  EXISTS (
+    SELECT
+      1
+    FROM
+      members
+      JOIN workflow ON (
+        (workflow.organization_id = members.organization_id)
+      )
+    WHERE
+      (members.profile_user_id = uid())
+      AND (workflow.id = assignee.workflow_id)
   )
 ) WITH CHECK (
-  (
-    EXISTS (
-      SELECT
-        1
-      FROM
-        (
-          members
-          JOIN workflow ON (
-            (workflow.organization_id = members.organization_id)
-          )
-        )
-      WHERE
-        (
-          (members.profile_user_id = uid())
-          AND (workflow.id = assignee.workflow_id)
-        )
-    )
+  EXISTS (
+    SELECT
+      1
+    FROM
+      members
+      JOIN workflow ON (
+        (workflow.organization_id = members.organization_id)
+      )
+    WHERE
+      (members.profile_user_id = uid())
+      AND (workflow.id = assignee.workflow_id)
   )
 );
 ---- message ----
@@ -221,43 +210,117 @@ CREATE POLICY "Enable delete for users based on role" ON public.organization_mem
 );
 
 ---- profile ----
-CREATE POLICY "Select" ON public.profile FOR
-SELECT
-  USING ((role() = 'authenticated':: text));
+CREATE POLICY "Select" ON public.profile FOR SELECT USING (
+  role() = 'authenticated':: text
+);
 
-CREATE POLICY "Insert" ON public.profile FOR INSERT WITH CHECK ((role() = 'authenticated':: text));
+CREATE POLICY "Insert" ON public.profile FOR INSERT WITH CHECK (
+  false
+);
 
-CREATE POLICY "Update" ON public.profile FOR
-UPDATE
-  USING ((role() = 'authenticated':: text)) WITH CHECK ((role() = 'authenticated':: text));
+CREATE POLICY "Update" ON public.profile FOR UPDATE USING (
+  profile.user_id = auth.uid()
+) WITH CHECK (
+  profile.user_id = auth.uid()
+);
 
-CREATE POLICY "Delete" ON public.profile FOR DELETE USING ((role() = 'authenticated':: text));
+CREATE POLICY "Delete" ON public.profile FOR DELETE USING (
+  profile.user_id = auth.uid()
+);
 
 ---- replicache_client ----
-CREATE POLICY "Select" ON public.replicache_client FOR
-SELECT
-  USING ((role() = 'authenticated':: text));
+CREATE POLICY "Select" ON public.replicache_client FOR SELECT USING (
+  role() = 'authenticated':: text
+);
 
-CREATE POLICY "Insert" ON public.replicache_client FOR INSERT WITH CHECK ((role() = 'authenticated':: text));
+CREATE POLICY "Insert" ON public.replicache_client FOR INSERT WITH CHECK (
+  role() = 'authenticated':: text
+);
 
-CREATE POLICY "Update" ON public.replicache_client FOR
-UPDATE
-  USING ((role() = 'authenticated':: text)) WITH CHECK ((role() = 'authenticated':: text));
+CREATE POLICY "Update" ON public.replicache_client FOR UPDATE USING (
+  role() = 'authenticated':: text
+) WITH CHECK (
+  role() = 'authenticated':: text
+);
 
-CREATE POLICY "Delete" ON public.replicache_client FOR DELETE USING ((role() = 'authenticated':: text));
+CREATE POLICY "Delete" ON public.replicache_client FOR DELETE USING (
+  role() = 'authenticated':: text
+);
 
 ---- team ----
-CREATE POLICY "Select" ON public.team FOR
-SELECT
-  USING ((role() = 'authenticated':: text));
+CREATE POLICY "Select" ON public.team FOR SELECT USING (
+  exists(
+    select 
+      1
+    from 
+      members
+    where
+      members.profile_user_id = auth.uid()
+      and members.organization_id = team.organization_id
+  )
+);
 
-CREATE POLICY "Insert" ON public.team FOR INSERT WITH CHECK ((role() = 'authenticated':: text));
+CREATE POLICY "Insert" ON public.team FOR INSERT WITH CHECK (
+  exists(
+    select 
+      1
+    from 
+      members
+    where
+      members.profile_user_id = auth.uid()
+      and members.organization_id = team.organization_id
+      and (
+        members.member_role = 'mod'
+        or members.member_role = 'owner'
+      )
+  )
+);
 
-CREATE POLICY "Update" ON public.team FOR
-UPDATE
-  USING ((role() = 'authenticated':: text)) WITH CHECK ((role() = 'authenticated':: text));
+CREATE POLICY "Update" ON public.team FOR UPDATE USING (
+  exists(
+    select 
+      1
+    from 
+      members
+    where
+      members.profile_user_id = auth.uid()
+      and members.organization_id = team.organization_id
+      and (
+        members.member_role = 'mod'
+        or members.member_role = 'owner'
+      )
+  )
+) WITH CHECK (
+  exists(
+    select 
+      1
+    from 
+      members
+    where
+      members.profile_user_id = auth.uid()
+      and members.organization_id = team.organization_id
+      and (
+        members.member_role = 'mod'
+        or members.member_role = 'owner'
+      )
+  )
+);
 
-CREATE POLICY "Delete" ON public.team FOR DELETE USING ((role() = 'authenticated':: text));
+CREATE POLICY "Delete" ON public.team FOR DELETE USING (
+  exists(
+    select 
+      1
+    from 
+      members
+    where
+      members.profile_user_id = auth.uid()
+      and members.organization_id = team.organization_id
+      and (
+        members.member_role = 'mod'
+        or members.member_role = 'owner'
+      )
+  )
+);
 
 ---- team_member ----
 CREATE POLICY "Select" ON public.team_member FOR
