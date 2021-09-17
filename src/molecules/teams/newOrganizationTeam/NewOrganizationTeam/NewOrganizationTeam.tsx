@@ -1,6 +1,7 @@
+import { useRouter } from "next/router";
 import React from "react";
 import { useInsertTeam } from "../../../../services";
-import { useOrganizationContext } from "../../../../utils";
+import { paths, useOrganizationContext } from "../../../../utils";
 import NewOrganizationTeamView from "../NewOrganizationTeamView/NewOrganizationTeamView";
 
 type ViewProps = React.ComponentProps<typeof NewOrganizationTeamView>;
@@ -12,9 +13,19 @@ export type NewOrganizationTeamProps = {
 const NewOrganizationTeam = ({
   View = NewOrganizationTeamView,
 }: NewOrganizationTeamProps): React.ReactElement => {
+  const router = useRouter();
   const { organization } = useOrganizationContext();
 
-  const { mutate: insertTeam, isLoading, error, data } = useInsertTeam();
+  const {
+    mutate: insertTeam,
+    isLoading,
+    error,
+    data,
+  } = useInsertTeam({
+    onSuccess: (team) => {
+      team && router.push(paths.team(organization.id, team?.id));
+    },
+  });
 
   return (
     <View
