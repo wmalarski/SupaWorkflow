@@ -5,6 +5,7 @@ import {
   FormLabel,
   Heading,
   Input,
+  Textarea,
   VStack,
 } from "@chakra-ui/react";
 import { PostgrestError } from "@supabase/supabase-js";
@@ -39,7 +40,7 @@ const CreateOrganizationView = ({
   });
 
   const {
-    formState: { errors, isValid, isDirty },
+    formState: { errors, isDirty },
     register,
     handleSubmit,
   } = useForm<CreateOrganizationViewData>();
@@ -51,23 +52,25 @@ const CreateOrganizationView = ({
 
         <FormControl isInvalid={!!errors.name}>
           <FormLabel>{text("addOrganizationName")}</FormLabel>
-          <Input {...register("name", nameValidator)} />
+          <Input
+            {...register("name", nameValidator)}
+            placeholder={text("addOrganizationName")}
+          />
           <FormErrorMessage>{errors.name?.message}</FormErrorMessage>
         </FormControl>
 
         <FormControl isInvalid={!!errors.description}>
           <FormLabel>{text("addOrganizationDescription")}</FormLabel>
-          <Input {...register("description")} />
+          <Textarea
+            {...register("description")}
+            placeholder={text("addOrganizationDescription")}
+          />
           <FormErrorMessage>{errors.description?.message}</FormErrorMessage>
         </FormControl>
 
         <FormErrorMessage>{error?.message}</FormErrorMessage>
 
-        <Button
-          isDisabled={!isValid || !isDirty}
-          isLoading={isLoading}
-          type="submit"
-        >
+        <Button isDisabled={!isDirty} isLoading={isLoading} type="submit">
           {text("addOrganizationSubmit")}
         </Button>
       </VStack>

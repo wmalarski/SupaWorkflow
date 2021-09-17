@@ -11,7 +11,6 @@ import { PostgrestError, User } from "@supabase/supabase-js";
 import React from "react";
 import { useForm } from "react-hook-form";
 import {
-  confirmPasswordResolver,
   useEmailValidator,
   usePasswordValidator,
   useText,
@@ -46,11 +45,11 @@ const SignUpView = ({
   const passwordValidator = usePasswordValidator();
 
   const {
-    formState: { errors, isDirty, isValid },
+    formState: { errors, isDirty },
     register,
     handleSubmit,
   } = useForm<SignUpViewData, SignUpViewContext>({
-    resolver: confirmPasswordResolver,
+    // resolver: confirmPasswordResolver,
     context: { text },
   });
 
@@ -79,11 +78,7 @@ const SignUpView = ({
 
         <FormErrorMessage>{error?.message}</FormErrorMessage>
 
-        <Button
-          isDisabled={!isValid || !isDirty}
-          isLoading={isLoading}
-          type="submit"
-        >
+        <Button isDisabled={!isDirty} isLoading={isLoading} type="submit">
           {text("signUpButton")}
         </Button>
       </VStack>

@@ -1,4 +1,4 @@
-import { AddIcon } from "@chakra-ui/icons";
+import { AddIcon, SettingsIcon } from "@chakra-ui/icons";
 import { Heading, HStack, Text, VStack } from "@chakra-ui/react";
 import React from "react";
 import { Link } from "../../../../atoms";
@@ -56,9 +56,10 @@ const DashboardSideBarView = ({
         href={paths.dashboard(DashboardTab.profile)}
         nextProps={{ shallow: true }}
       >
-        <Text pl={3} fontSize="sm">
-          {text("navigationProfileSettings")}
-        </Text>
+        <HStack pl={3}>
+          <SettingsIcon />
+          <Text fontSize="sm">{text("navigationProfileSettings")}</Text>
+        </HStack>
       </Link>
     </VStack>
   );

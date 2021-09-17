@@ -85,3 +85,107 @@ CREATE POLICY "Enable delete for users based on role" ON public.organization FOR
       )
   )
 );
+
+---- assignee ----
+CREATE POLICY "Select" ON public.assignee FOR
+SELECT
+  USING ((role() = 'authenticated':: text));
+
+CREATE POLICY "Insert" ON public.assignee FOR INSERT WITH CHECK ((role() = 'authenticated':: text));
+
+CREATE POLICY "Update" ON public.assignee FOR
+UPDATE
+  USING ((role() = 'authenticated':: text)) WITH CHECK ((role() = 'authenticated':: text));
+
+CREATE POLICY "Delete" ON public.assignee FOR DELETE USING ((role() = 'authenticated':: text));
+
+---- message ----
+CREATE POLICY "Select" ON public.message FOR
+SELECT
+  USING ((role() = 'authenticated':: text));
+
+CREATE POLICY "Insert" ON public.message FOR INSERT WITH CHECK ((role() = 'authenticated':: text));
+
+CREATE POLICY "Update" ON public.message FOR
+UPDATE
+  USING ((role() = 'authenticated':: text)) WITH CHECK ((role() = 'authenticated':: text));
+
+CREATE POLICY "Delete" ON public.message FOR DELETE USING ((role() = 'authenticated':: text));
+
+---- profile ----
+CREATE POLICY "Select" ON public.profile FOR
+SELECT
+  USING ((role() = 'authenticated':: text));
+
+CREATE POLICY "Insert" ON public.profile FOR INSERT WITH CHECK ((role() = 'authenticated':: text));
+
+CREATE POLICY "Update" ON public.profile FOR
+UPDATE
+  USING ((role() = 'authenticated':: text)) WITH CHECK ((role() = 'authenticated':: text));
+
+CREATE POLICY "Delete" ON public.profile FOR DELETE USING ((role() = 'authenticated':: text));
+
+---- replicache_client ----
+CREATE POLICY "Select" ON public.replicache_client FOR
+SELECT
+  USING ((role() = 'authenticated':: text));
+
+CREATE POLICY "Insert" ON public.replicache_client FOR INSERT WITH CHECK ((role() = 'authenticated':: text));
+
+CREATE POLICY "Update" ON public.replicache_client FOR
+UPDATE
+  USING ((role() = 'authenticated':: text)) WITH CHECK ((role() = 'authenticated':: text));
+
+CREATE POLICY "Delete" ON public.replicache_client FOR DELETE USING ((role() = 'authenticated':: text));
+
+---- team ----
+CREATE POLICY "Select" ON public.team FOR
+SELECT
+  USING ((role() = 'authenticated':: text));
+
+CREATE POLICY "Insert" ON public.team FOR INSERT WITH CHECK ((role() = 'authenticated':: text));
+
+CREATE POLICY "Update" ON public.team FOR
+UPDATE
+  USING ((role() = 'authenticated':: text)) WITH CHECK ((role() = 'authenticated':: text));
+
+CREATE POLICY "Delete" ON public.team FOR DELETE USING ((role() = 'authenticated':: text));
+
+---- team_member ----
+CREATE POLICY "Select" ON public.team_member FOR
+SELECT
+  USING ((role() = 'authenticated':: text));
+
+CREATE POLICY "Insert" ON public.team_member FOR INSERT WITH CHECK ((role() = 'authenticated':: text));
+
+CREATE POLICY "Update" ON public.team_member FOR
+UPDATE
+  USING ((role() = 'authenticated':: text)) WITH CHECK ((role() = 'authenticated':: text));
+
+CREATE POLICY "Delete" ON public.team_member FOR DELETE USING ((role() = 'authenticated':: text));
+
+---- template ----
+CREATE POLICY "Select" ON public.template FOR
+SELECT
+  USING ((role() = 'authenticated':: text));
+
+CREATE POLICY "Insert" ON public.template FOR INSERT WITH CHECK ((role() = 'authenticated':: text));
+
+CREATE POLICY "Update" ON public.template FOR
+UPDATE
+  USING ((role() = 'authenticated':: text)) WITH CHECK ((role() = 'authenticated':: text));
+
+CREATE POLICY "Delete" ON public.template FOR DELETE USING ((role() = 'authenticated':: text));
+
+---- workflow ----
+CREATE POLICY "Select" ON public.workflow FOR
+SELECT
+  USING ((role() = 'authenticated':: text));
+
+CREATE POLICY "Insert" ON public.workflow FOR INSERT WITH CHECK ((role() = 'authenticated':: text));
+
+CREATE POLICY "Update" ON public.workflow FOR
+UPDATE
+  USING ((role() = 'authenticated':: text)) WITH CHECK ((role() = 'authenticated':: text));
+
+CREATE POLICY "Delete" ON public.workflow FOR DELETE USING ((role() = 'authenticated':: text));
