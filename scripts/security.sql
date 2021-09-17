@@ -88,17 +88,68 @@ CREATE POLICY "Enable delete for users based on role" ON public.organization FOR
 );
 
 ---- assignee ----
-CREATE POLICY "Select" ON public.assignee FOR
-SELECT
-  USING ((role() = 'authenticated':: text));
+CREATE POLICY "Select" ON public.assignee FOR SELECT USING (
+  exists(
+    select 
+      1 
+    from 
+      members inner join 
+      workflow on workflow.organization_id = members.organization_id 
+    where 
+      members.profile_user_id = auth.uid()
+      and workflow.id = assignee.workflow_id
+  )
+);
 
-CREATE POLICY "Insert" ON public.assignee FOR INSERT WITH CHECK ((role() = 'authenticated':: text));
+CREATE POLICY "Insert" ON public.assignee FOR INSERT WITH CHECK (
+  exists(
+    select 
+      1 
+    from 
+      members inner join 
+      workflow on workflow.organization_id = members.organization_id 
+    where 
+      members.profile_user_id = auth.uid()
+      and workflow.id = assignee.workflow_id
+  )
+);
 
-CREATE POLICY "Update" ON public.assignee FOR
-UPDATE
-  USING ((role() = 'authenticated':: text)) WITH CHECK ((role() = 'authenticated':: text));
+CREATE POLICY "Update" ON public.assignee FOR UPDATE USING (  
+  exists(
+    select 
+      1 
+    from 
+      members inner join 
+      workflow on workflow.organization_id = members.organization_id 
+    where 
+      members.profile_user_id = auth.uid()
+      and workflow.id = assignee.workflow_id
+  )
+) WITH CHECK (  
+  exists(
+    select 
+      1 
+    from 
+      members inner join 
+      workflow on workflow.organization_id = members.organization_id 
+    where 
+      members.profile_user_id = auth.uid()
+      and workflow.id = assignee.workflow_id
+  )
+);
 
-CREATE POLICY "Delete" ON public.assignee FOR DELETE USING ((role() = 'authenticated':: text));
+CREATE POLICY "Delete" ON public.assignee FOR DELETE USING (  
+  exists(
+    select 
+      1 
+    from 
+      members inner join 
+      workflow on workflow.organization_id = members.organization_id 
+    where 
+      members.profile_user_id = auth.uid()
+      and workflow.id = assignee.workflow_id
+  )
+);
 
 ---- message ----
 CREATE POLICY "Select" ON public.message FOR
