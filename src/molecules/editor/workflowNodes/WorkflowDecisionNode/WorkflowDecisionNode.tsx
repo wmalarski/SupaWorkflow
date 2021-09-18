@@ -2,8 +2,8 @@ import { StackDivider, VStack } from "@chakra-ui/react";
 import React, { useCallback, useMemo } from "react";
 import { Handle, Position } from "react-flow-renderer";
 import { MessageDecisionWorkflowNodeState } from "../../../../services/nodes";
+import NodeBoxForm from "../../nodeForms/NodeBoxForm/NodeBoxForm";
 import { WorkflowNodeProps } from "../../workflowEditor/WorkflowEditorView/WorkflowEditorView.types";
-import WorkflowBoxForm from "../../workflowForms/WorkflowBoxForm/WorkflowBoxForm";
 import WorkflowHeaderForm from "../../workflowForms/WorkflowHeaderForm/WorkflowHeaderForm";
 import WorkflowRadioForm from "../../workflowForms/WorkflowRadioForm/WorkflowRadioForm";
 import WorkflowDecisionNodeHandle from "./WorkflowDecisionNodeHandle";
@@ -24,7 +24,7 @@ const WorkflowDecisionNode = ({
 
   return useMemo(
     () => (
-      <WorkflowBoxForm isEnabled={isEnabled && !state.isDone}>
+      <NodeBoxForm>
         <Handle type="target" position={Position.Left} />
         <VStack divider={<StackDivider borderColor="gray.200" />}>
           <WorkflowHeaderForm template={state.template} />
@@ -42,9 +42,9 @@ const WorkflowDecisionNode = ({
             index={index}
           />
         ))}
-      </WorkflowBoxForm>
+      </NodeBoxForm>
     ),
-    [isEnabled, state.template, state.selected, state.isDone, handleChange]
+    [isEnabled, state.template, state.selected, handleChange]
   );
 };
 

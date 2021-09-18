@@ -3,8 +3,8 @@ import React, { useCallback, useMemo } from "react";
 import { Position } from "react-flow-renderer";
 import { MessageFormTemplateNodeState } from "../../../../services/nodes";
 import { useText } from "../../../../utils";
+import NodeBoxForm from "../../nodeForms/NodeBoxForm/NodeBoxForm";
 import { TemplateNodeProps } from "../../templateEditor/TemplateEditorView/TemplateEditorView.types";
-import TemplateBoxForm from "../../templateForms/TemplateBoxForm/TemplateBoxForm";
 import TemplateDetailsForm from "../../templateForms/TemplateDetailsForm/TemplateDetailsForm";
 import TemplateHandle from "../../templateForms/TemplateHandle/TemplateHandle";
 import TemplateListForm from "../../templateForms/TemplateListForm/TemplateListForm";
@@ -29,7 +29,7 @@ const TemplateFormNode = ({
 
   return useMemo(
     () => (
-      <TemplateBoxForm>
+      <NodeBoxForm>
         <TemplateHandle type="target" position={Position.Left} />
         <VStack divider={<StackDivider borderColor="gray.200" />}>
           <Heading size="sm" p={2}>
@@ -56,7 +56,7 @@ const TemplateFormNode = ({
           />
         </VStack>
         <TemplateHandle type="source" position={Position.Right} />
-      </TemplateBoxForm>
+      </NodeBoxForm>
     ),
     [
       handleChange,

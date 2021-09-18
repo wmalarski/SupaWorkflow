@@ -2,8 +2,8 @@ import { StackDivider, VStack } from "@chakra-ui/react";
 import React, { useCallback, useMemo } from "react";
 import { Handle, Position } from "react-flow-renderer";
 import { MessageChecklistWorkflowNodeState } from "../../../../services/nodes";
+import NodeBoxForm from "../../nodeForms/NodeBoxForm/NodeBoxForm";
 import { WorkflowNodeProps } from "../../workflowEditor/WorkflowEditorView/WorkflowEditorView.types";
-import WorkflowBoxForm from "../../workflowForms/WorkflowBoxForm/WorkflowBoxForm";
 import WorkflowCheckboxesForm from "../../workflowForms/WorkflowCheckboxesForm/WorkflowCheckboxesForm";
 import WorkflowHeaderForm from "../../workflowForms/WorkflowHeaderForm/WorkflowHeaderForm";
 
@@ -23,7 +23,7 @@ const WorkflowChecklistNode = ({
 
   return useMemo(
     () => (
-      <WorkflowBoxForm isEnabled={isEnabled && !state.isDone}>
+      <NodeBoxForm>
         <Handle type="target" position={Position.Left} />
         <VStack divider={<StackDivider borderColor="gray.200" />}>
           <WorkflowHeaderForm template={state.template} />
@@ -40,9 +40,9 @@ const WorkflowChecklistNode = ({
           />
         </VStack>
         <Handle type="source" position={Position.Right} />
-      </WorkflowBoxForm>
+      </NodeBoxForm>
     ),
-    [isEnabled, state.template, state.checked, state.isDone, handleChange]
+    [isEnabled, state.template, state.checked, handleChange]
   );
 };
 

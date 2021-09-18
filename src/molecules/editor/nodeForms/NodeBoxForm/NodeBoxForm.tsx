@@ -1,13 +1,11 @@
 import { Box, useColorMode } from "@chakra-ui/react";
 import React from "react";
 
-export type TemplateBoxFormProps = {
+export type NodeBoxFormProps = {
   children: React.ReactNode;
 };
 
-const TemplateBoxForm = ({
-  children,
-}: TemplateBoxFormProps): React.ReactElement => {
+const NodeBoxForm = ({ children }: NodeBoxFormProps): React.ReactElement => {
   const { colorMode } = useColorMode();
   return (
     <Box
@@ -23,4 +21,4 @@ const TemplateBoxForm = ({
   );
 };
 
-export default TemplateBoxForm;
+export default NodeBoxForm;
