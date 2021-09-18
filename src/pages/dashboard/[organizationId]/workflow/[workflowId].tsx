@@ -11,14 +11,19 @@ import {
 
 const WorkflowPage = (): React.ReactElement => {
   const router = useRouter();
-  const { user } = useUserContext();
+  const { user, isInitialized } = useUserContext();
   const organizationId = useNumberParam("organizationId");
   const workflowId = useNumberParam("workflowId");
 
   useEffect(() => {
-    if (!router.isReady || (organizationId && workflowId && user)) return;
+    if (
+      !router.isReady ||
+      !isInitialized ||
+      (organizationId && workflowId && user)
+    )
+      return;
     router.push(paths.notFound);
-  }, [organizationId, router, workflowId, user]);
+  }, [organizationId, router, workflowId, user, isInitialized]);
 
   return user && workflowId && organizationId ? (
     <OrganizationContextProvider

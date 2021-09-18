@@ -10,13 +10,13 @@ import {
 
 const OrganizationPage = (): React.ReactElement => {
   const router = useRouter();
-  const { user } = useUserContext();
+  const { user, isInitialized } = useUserContext();
   const organizationId = useNumberParam("organizationId");
 
   useEffect(() => {
-    if (!router.isReady || (organizationId && user)) return;
+    if (!router.isReady || !isInitialized || (organizationId && user)) return;
     router.push(paths.notFound);
-  }, [organizationId, router, user]);
+  }, [isInitialized, organizationId, router, user]);
 
   return user && organizationId ? (
     <OrganizationContextProvider

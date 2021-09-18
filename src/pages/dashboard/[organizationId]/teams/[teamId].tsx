@@ -11,14 +11,15 @@ import {
 
 const TeamPage = (): React.ReactElement => {
   const router = useRouter();
-  const { user } = useUserContext();
+  const { user, isInitialized } = useUserContext();
   const organizationId = useNumberParam("organizationId");
   const teamId = useNumberParam("teamId");
 
   useEffect(() => {
-    if (!router.isReady || (organizationId && teamId && user)) return;
+    if (!router.isReady || !isInitialized || (organizationId && teamId && user))
+      return;
     router.push(paths.notFound);
-  }, [organizationId, router, teamId, user]);
+  }, [isInitialized, organizationId, router, teamId, user]);
 
   return user && organizationId && teamId ? (
     <OrganizationContextProvider

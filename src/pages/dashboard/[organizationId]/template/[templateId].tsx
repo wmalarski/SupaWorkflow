@@ -11,14 +11,19 @@ import {
 
 const TemplatePage = (): React.ReactElement => {
   const router = useRouter();
-  const { user } = useUserContext();
+  const { user, isInitialized } = useUserContext();
   const organizationId = useNumberParam("organizationId");
   const templateId = useNumberParam("templateId");
 
   useEffect(() => {
-    if (!router.isReady || (organizationId && templateId && user)) return;
+    if (
+      !router.isReady ||
+      !isInitialized ||
+      (organizationId && templateId && user)
+    )
+      return;
     router.push(paths.notFound);
-  }, [organizationId, router, templateId, user]);
+  }, [isInitialized, organizationId, router, templateId, user]);
 
   return user && organizationId && templateId ? (
     <OrganizationContextProvider
