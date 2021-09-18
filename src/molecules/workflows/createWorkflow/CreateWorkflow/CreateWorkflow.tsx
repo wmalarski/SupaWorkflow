@@ -43,7 +43,6 @@ const CreateWorkflow = ({
           description: data.description,
           name: data.name,
           organization_id: organization.id,
-          template_data: [],
           template_id: template.id,
         })
       }

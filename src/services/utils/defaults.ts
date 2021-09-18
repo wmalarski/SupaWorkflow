@@ -67,7 +67,6 @@ export const defaultWorkflow: Workflow = {
   id: 1,
   name: "Workflow Name",
   organization_id: 1,
-  template_data: [],
   template_id: 1,
 };
 

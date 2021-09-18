@@ -10,6 +10,8 @@ export const upsertMessages = async (
 ): Promise<Message[]> => {
   const { data, error } = await fromSupabase("message").upsert(args);
 
+  console.log("upsertMessages", error);
+
   if (error) throw error;
 
   return data ?? [];

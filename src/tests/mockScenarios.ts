@@ -69,7 +69,6 @@ export const addWorkflowsScenario = (count?: number): Workflow[] =>
         description: workflow.description,
         name: `${workflow.name}-${index}`,
         organization_id: workflow.organization_id,
-        template_data: workflow.template_data,
         template_id: workflow.template_id,
       })
     );

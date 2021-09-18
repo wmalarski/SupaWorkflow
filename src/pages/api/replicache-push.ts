@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import {
   selectOrInsertClient,
+  supabase,
   updateClient,
   UpsertMessageArgs,
   upsertMessages,
@@ -48,8 +49,10 @@ const handler = async (
   req: NextApiRequest,
   res: NextApiResponse
 ): Promise<void> => {
+  supabase.auth.setAuth(req.cookies["sb:token"]);
+
   const push: MutationPush = req.body;
-  console.log("Processing push", JSON.stringify(push));
+  console.log("Processing push");
 
   try {
     const { last_mutation_id } = await selectOrInsertClient(push.clientID);
@@ -73,7 +76,7 @@ const handler = async (
       last_mutation_id: mutationId,
     });
   } catch (error) {
-    console.log({ error });
+    console.log("PUSH error:", { error });
   }
   res.json({});
 };

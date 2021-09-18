@@ -5,18 +5,27 @@ import {
   UseMutationResult,
 } from "react-query";
 import { Workflow } from "../../types";
-import fromSupabase from "../../utils/fromSupabase";
 
 export type InsertWorkflowArgs = Omit<Workflow, "id">;
 
 export const insertWorkflow = async (
   args: InsertWorkflowArgs
 ): Promise<Workflow> => {
-  const { data, error } = await fromSupabase("workflow").insert(args).single();
+  const result = await fetch("/api/workflow", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    credentials: "same-origin",
+    body: JSON.stringify(args),
+  });
 
-  if (error || !data) throw error;
+  console.log({ result });
 
-  return data;
+  // const { data, error } = await fromSupabase("workflow").insert(args).single();
+
+  // if (error || !data) throw error;
+
+  // return data;
+  throw "Not implemented";
 };
 
 export const useInsertWorkflow = (

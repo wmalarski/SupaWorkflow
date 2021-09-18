@@ -57,8 +57,6 @@ export const organizationMemberHandlers = [
   rest.get<DefaultRequestBody, OrganizationMember[]>(
     `${SUPABASE_ENDPOINT}/${TABLES.organizationMember}`,
     (_req, res, ctx) => {
-      console.log({ _req });
-
       const members = mockDb.organizationMembers.findMany({});
 
       return res(

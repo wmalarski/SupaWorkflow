@@ -23,10 +23,7 @@ const WorkflowCheckboxesForm = ({
       <CheckboxGroup
         isDisabled={!isEnabled}
         value={checked.map(String)}
-        onChange={(nextValue) => {
-          console.log({ nextValue });
-          onChange(nextValue.map(Number));
-        }}
+        onChange={(nextValue) => onChange(nextValue.map(Number))}
       >
         <VStack>
           {options.map((option, index) => (

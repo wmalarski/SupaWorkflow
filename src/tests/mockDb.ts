@@ -1,10 +1,5 @@
 import { factory, primaryKey } from "@mswjs/data";
-import {
-  defaultMessage,
-  Message,
-  OrganizationRole,
-  TeamRole,
-} from "../services";
+import { defaultMessage, OrganizationRole, TeamRole } from "../services";
 import { MessageState } from "../services/nodes";
 
 export const dbIndexCounter = (() => {
@@ -88,7 +83,6 @@ export const mockDb = factory({
     id: primaryKey(Number),
     organization_id: Number,
     template_id: Number,
-    template_data: (): Message[] => [],
     name: String,
     description: String,
     avatar: (): string | null => null,

@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { PullResponse } from "replicache";
-import { selectClient, selectMessages } from "../../services";
+import { selectClient, selectMessages, supabase } from "../../services";
 import resolvePull from "../../utils/rep/resolvePull";
 
 const handler = async (
@@ -8,6 +8,7 @@ const handler = async (
   res: NextApiResponse
 ): Promise<void> => {
   const { clientID, cookie } = req.body;
+  supabase.auth.setAuth(req.cookies["sb:token"]);
   console.log(`Processing pull`, JSON.stringify(req.body));
 
   try {
@@ -40,8 +41,9 @@ const handler = async (
 
     res.json(response);
     res.end();
-  } catch (e) {
-    res.status(500).send(String(e));
+  } catch (error) {
+    console.log("PULL error:", { error });
+    res.status(500).send(String(error));
   }
 };
 

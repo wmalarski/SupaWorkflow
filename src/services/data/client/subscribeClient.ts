@@ -18,7 +18,7 @@ export const useSubscribeClient = ({
     const subscription = supabase
       .from(`client:id=eq.${id}`)
       .on("*", (args) => {
-        console.log("args", { args, id });
+        console.log("useSubscribeClient", { args, id });
         onChange(args);
       })
       .subscribe();

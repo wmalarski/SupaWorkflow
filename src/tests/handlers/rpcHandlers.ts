@@ -56,8 +56,6 @@ export const rpcHandlers = [
       role: body.role,
     });
 
-    console.log({ body, organization, profile });
-
     return res(ctx.json({}));
   }),
 ];

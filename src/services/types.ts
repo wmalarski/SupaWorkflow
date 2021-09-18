@@ -79,7 +79,6 @@ export type Workflow = {
   id: number;
   organization_id: number;
   template_id: number;
-  template_data: Message[];
   name: string;
   description: string;
   avatar: string | null;
