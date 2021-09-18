@@ -1,5 +1,5 @@
 import React from "react";
-import WorkflowEditor from "../../molecules/workflows/workflowEditor/WorkflowEditor/WorkflowEditor";
+import WorkflowEditor from "../../molecules/editor/workflowEditor/WorkflowEditor/WorkflowEditor";
 import { useWorkflowContext } from "../../utils";
 import { RepContextProvider } from "../../utils/rep/RepContext";
 
