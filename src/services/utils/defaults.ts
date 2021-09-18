@@ -71,6 +71,10 @@ export const defaultWorkflow: Workflow = {
   template_id: 1,
 };
 
+export const defaultWorkflows: Workflow[] = Array(5)
+  .fill(defaultWorkflow)
+  .map((workflow, index) => ({ ...workflow, id: index }));
+
 export const defaultTeamMember: TeamMember = {
   id: 1,
   profile_id: 1,

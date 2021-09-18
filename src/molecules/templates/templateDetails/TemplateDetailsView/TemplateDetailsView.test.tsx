@@ -3,9 +3,9 @@ import "@testing-library/jest-dom/extend-expect";
 import { render } from "@testing-library/react";
 import React from "react";
 import { defaultWorkflows } from "../../../../services";
-import WorkflowsListView from "./WorkflowsListView";
+import TemplateDetailsView from "./TemplateDetailsView";
 
-type ComponentProps = Parameters<typeof WorkflowsListView>[0];
+type ComponentProps = Parameters<typeof TemplateDetailsView>[0];
 
 function renderComponent(props: Partial<ComponentProps> = {}) {
   const defaultProps: ComponentProps = {
@@ -16,10 +16,10 @@ function renderComponent(props: Partial<ComponentProps> = {}) {
     isLoading: false,
     workflows: defaultWorkflows,
   };
-  return render(<WorkflowsListView {...defaultProps} {...props} />);
+  return render(<TemplateDetailsView {...defaultProps} {...props} />);
 }
 
-describe("<WorkflowsListView />", () => {
+describe("<TemplateDetailsView />", () => {
   it("should render", async () => {
     expect.hasAssertions();
 

@@ -1,6 +1,6 @@
 import dynamic from "next/dynamic";
 import React from "react";
-import { CreateWorkflow } from "../../molecules";
+import { CreateWorkflow, TemplateDetails } from "../../molecules";
 import { TemplateTab, useTabParam } from "../../utils";
 import TemplateLayout from "./TemplateLayout";
 
@@ -25,7 +25,11 @@ const TemplateSwitch = (): React.ReactElement | null => {
         </TemplateLayout>
       );
     default:
-      return null;
+      return (
+        <TemplateLayout>
+          <TemplateDetails />
+        </TemplateLayout>
+      );
   }
 };
 

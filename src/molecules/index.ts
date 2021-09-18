@@ -24,6 +24,7 @@ export { default as OrganizationTeams } from "./teams/organizationTeams/Organiza
 export { default as TeamHeader } from "./teams/teamHeader/TeamHeader/TeamHeader";
 export { default as TeamSideBar } from "./teams/teamSideBar/TeamSideBar/TeamSideBar";
 export { default as CreateTemplate } from "./templates/createTemplate/CreateTemplate/CreateTemplate";
+export { default as TemplateDetails } from "./templates/templateDetails/TemplateDetails/TemplateDetails";
 export { default as TemplateHeader } from "./templates/templateHeader/TemplateHeader/TemplateHeader";
 export { default as TemplateSideBar } from "./templates/templateSideBar/TemplateSideBar/TemplateSideBar";
 export { default as TemplatesList } from "./templates/templatesList/TemplatesList/TemplatesList";

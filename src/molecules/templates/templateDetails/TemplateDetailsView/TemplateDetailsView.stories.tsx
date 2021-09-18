@@ -1,15 +1,15 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
 import { defaultWorkflows } from "../../../../services";
-import WorkflowsListView from "./WorkflowsListView";
+import TemplateDetailsView from "./TemplateDetailsView";
 
 export default {
-  title: "Molecules/Workflows/WorkflowsListView",
-  component: WorkflowsListView,
-} as ComponentMeta<typeof WorkflowsListView>;
+  title: "Molecules/TemplateDetailsView",
+  component: TemplateDetailsView,
+} as ComponentMeta<typeof TemplateDetailsView>;
 
-const Template: ComponentStory<typeof WorkflowsListView> = (args) => (
-  <WorkflowsListView {...args} />
+const Template: ComponentStory<typeof TemplateDetailsView> = (args) => (
+  <TemplateDetailsView {...args} />
 );
 
 export const Playground = Template.bind({});

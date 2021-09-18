@@ -5,6 +5,7 @@ import {
   FormLabel,
   Heading,
   Input,
+  Textarea,
   VStack,
 } from "@chakra-ui/react";
 import { PostgrestError } from "@supabase/supabase-js";
@@ -39,7 +40,7 @@ const CreateTemplateView = ({
   });
 
   const {
-    formState: { errors, isDirty, isValid },
+    formState: { errors, isDirty },
     register,
     handleSubmit,
   } = useForm<CreateTemplateViewData>();
@@ -57,17 +58,13 @@ const CreateTemplateView = ({
 
         <FormControl isInvalid={!!errors.description}>
           <FormLabel>{text("addTemplateDescription")}</FormLabel>
-          <Input {...register("description")} />
+          <Textarea {...register("description")} />
           <FormErrorMessage>{errors.description?.message}</FormErrorMessage>
         </FormControl>
 
         <FormErrorMessage>{error?.message}</FormErrorMessage>
 
-        <Button
-          isDisabled={!isValid || !isDirty}
-          isLoading={isLoading}
-          type="submit"
-        >
+        <Button isDisabled={!isDirty} isLoading={isLoading} type="submit">
           {text("addTemplateSubmit")}
         </Button>
       </VStack>

@@ -39,7 +39,7 @@ const CreateWorkflowView = ({
   });
 
   const {
-    formState: { errors, isValid, isDirty },
+    formState: { errors, isDirty },
     register,
     handleSubmit,
   } = useForm<CreateWorkflowViewData>();
@@ -63,11 +63,7 @@ const CreateWorkflowView = ({
 
         <FormErrorMessage>{error?.message}</FormErrorMessage>
 
-        <Button
-          isDisabled={isValid || !isDirty}
-          isLoading={isLoading}
-          type="submit"
-        >
+        <Button isDisabled={!isDirty} isLoading={isLoading} type="submit">
           {text("addWorkflowSubmit")}
         </Button>
       </VStack>
