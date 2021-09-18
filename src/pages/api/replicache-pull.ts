@@ -10,12 +10,15 @@ const handler = async (
 ): Promise<void> => {
   const { clientID, cookie } = req.body;
   supabase.auth.setAuth(req.cookies["sb:token"]);
-  console.log(`Processing pull`, JSON.stringify(req.body));
 
   const templateId = validateNumberParam(req.query.templateId);
   const workflowId = validateNumberParam(req.query.workflowId);
 
-  console.log({ query: req.query, templateId, workflowId });
+  console.log(
+    `Processing pull`,
+    JSON.stringify({ ...req.body, templateId, workflowId })
+  );
+
   if (!templateId) {
     res.status(400).end();
     return;
@@ -27,12 +30,6 @@ const handler = async (
       selectMessages({ updatedAt: cookie, templateId, workflowId }),
     ]);
 
-    // TODO: check this logic
-    // const dates = changed
-    //   .map((message) => new Date(message.updated_at).getTime())
-    //   .sort();
-
-    // const lastDate = dates[dates.length - 1] ?? 0;
     const newCookie = new Date().toISOString();
     const lastMutationID = client?.last_mutation_id ?? 0;
 

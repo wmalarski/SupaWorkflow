@@ -1,10 +1,6 @@
 import React from "react";
 import { useSelectTeams } from "../../../../services";
-import {
-  useOrganizationContext,
-  useTemplateContext,
-  useWorkflowContext,
-} from "../../../../utils";
+import { useOrganizationContext, useWorkflowContext } from "../../../../utils";
 import { useRepContext } from "../../../../utils/rep/RepContext";
 import WorkflowEditorView from "../WorkflowEditorView/WorkflowEditorView";
 
@@ -19,12 +15,11 @@ const WorkflowEditor = ({
 }: WorkflowEditorProps): React.ReactElement => {
   const organization = useOrganizationContext();
   const workflow = useWorkflowContext();
-  const template = useTemplateContext();
 
   const { mutations, useMessages } = useRepContext();
 
   const messages = useMessages({
-    templateId: template.id,
+    templateId: workflow.template_id,
     workflowId: workflow.id,
   });
 

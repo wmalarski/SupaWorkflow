@@ -1,5 +1,6 @@
 import dynamic from "next/dynamic";
 import React from "react";
+import { WorkflowDetails } from "../../molecules";
 import { useTabParam, WorkflowTab } from "../../utils";
 import WorkflowLayout from "./WorkflowLayout";
 
@@ -18,7 +19,11 @@ const WorkflowSwitch = (): React.ReactElement | null => {
         </WorkflowLayout>
       );
     default:
-      return null;
+      return (
+        <WorkflowLayout>
+          <WorkflowDetails />
+        </WorkflowLayout>
+      );
   }
 };
 
