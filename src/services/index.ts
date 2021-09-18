@@ -35,3 +35,4 @@ export { default as queryClient } from "./queryClient";
 export * from "./supabase";
 export * from "./types";
 export * from "./utils/defaults";
+export * from "./utils/nodesMappers";

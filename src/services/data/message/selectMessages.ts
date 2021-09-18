@@ -24,7 +24,7 @@ export const selectMessages = async ({
 
   const workflowBuilder = workflowId
     ? updatedAtBuilder.eq("workflow_id", workflowId)
-    : updatedAtBuilder;
+    : updatedAtBuilder.is("workflow_id", null);
 
   const deletedBuilder =
     deleted === true || deleted === false

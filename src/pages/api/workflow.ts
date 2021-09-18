@@ -1,14 +1,45 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { supabase } from "../../services";
+import {
+  mapTemplateToWorkflow,
+  selectMessages,
+  supabase,
+  upsertMessages,
+} from "../../services";
+import {
+  insertWorkflow,
+  InsertWorkflowArgs,
+} from "../../services/data/workflow/insertWorkflow";
 
 const handler = async (
   req: NextApiRequest,
   res: NextApiResponse
 ): Promise<void> => {
-  console.log({ cookies: req.cookies, body: req.body, headers: req.headers });
   supabase.auth.setAuth(req.cookies["sb:token"]);
 
-  res.status(200).end();
+  const args: InsertWorkflowArgs = req.body;
+
+  try {
+    const templateMessages = await selectMessages({
+      templateId: args.template_id,
+      workflowId: null,
+      deleted: false,
+    });
+
+    const workflow = await insertWorkflow(args);
+
+    const workflowMessages = mapTemplateToWorkflow({
+      messages: templateMessages,
+      workflowId: workflow.id,
+    });
+
+    await upsertMessages(workflowMessages);
+
+    res.status(200).json(workflow);
+    res.end();
+  } catch (error) {
+    console.log("Workflow error:", { error });
+    res.status(500).send(String(error));
+  }
 };
 
 export default handler;

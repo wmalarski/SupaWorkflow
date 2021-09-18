@@ -5,10 +5,21 @@ import {
   UseMutationResult,
 } from "react-query";
 import { Workflow } from "../../types";
+import fromSupabase from "../../utils/fromSupabase";
 
 export type InsertWorkflowArgs = Omit<Workflow, "id">;
 
 export const insertWorkflow = async (
+  args: InsertWorkflowArgs
+): Promise<Workflow> => {
+  const { data, error } = await fromSupabase("workflow").insert(args).single();
+
+  if (error || !data) throw error;
+
+  return data;
+};
+
+export const insertWorkflowMiddleware = async (
   args: InsertWorkflowArgs
 ): Promise<Workflow> => {
   const result = await fetch("/api/workflow", {
@@ -18,17 +29,10 @@ export const insertWorkflow = async (
     body: JSON.stringify(args),
   });
 
-  console.log({ result });
-
-  // const { data, error } = await fromSupabase("workflow").insert(args).single();
-
-  // if (error || !data) throw error;
-
-  // return data;
-  throw "Not implemented";
+  return await result.json();
 };
 
 export const useInsertWorkflow = (
   options?: UseMutationOptions<Workflow, PostgrestError, InsertWorkflowArgs>
 ): UseMutationResult<Workflow, PostgrestError, InsertWorkflowArgs> =>
-  useMutation(insertWorkflow, options);
+  useMutation(insertWorkflowMiddleware, options);

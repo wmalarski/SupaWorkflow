@@ -28,12 +28,12 @@ const handler = async (
     ]);
 
     // TODO: check this logic
-    const dates = changed
-      .map((message) => new Date(message.updated_at).getTime())
-      .sort();
+    // const dates = changed
+    //   .map((message) => new Date(message.updated_at).getTime())
+    //   .sort();
 
-    const lastDate = dates[dates.length - 1] ?? 0;
-    const newCookie = lastDate && new Date(lastDate).toISOString();
+    // const lastDate = dates[dates.length - 1] ?? 0;
+    const newCookie = new Date().toISOString();
     const lastMutationID = client?.last_mutation_id ?? 0;
 
     console.log({ changed, newCookie });
