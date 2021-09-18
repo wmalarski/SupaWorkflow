@@ -44,3 +44,13 @@ export const useNumberParam = (param: string): number | null => {
 
   return value;
 };
+
+export const getUrlSearchParams = (
+  init: Record<string, string | null>
+): URLSearchParams =>
+  new URLSearchParams(
+    Object.entries(init).reduce<Record<string, string>>(
+      (prev, [key, value]) => (value ? { ...prev, [key]: value } : prev),
+      {}
+    )
+  );

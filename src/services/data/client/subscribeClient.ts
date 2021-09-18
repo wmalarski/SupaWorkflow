@@ -5,7 +5,7 @@ import { Client } from "../../types";
 
 export type UseSubscribeClientArgs = {
   id?: string;
-  onChange: (payload: SupabaseRealtimePayload<Client>) => void;
+  onChange?: (payload: SupabaseRealtimePayload<Client>) => void;
 };
 
 export const useSubscribeClient = ({
@@ -19,7 +19,7 @@ export const useSubscribeClient = ({
       .from(`client:id=eq.${id}`)
       .on("*", (args) => {
         console.log("useSubscribeClient", { args, id });
-        onChange(args);
+        onChange?.(args);
       })
       .subscribe();
 

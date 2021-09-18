@@ -1,20 +1,20 @@
 import { useSubscribe } from "replicache-react";
 import { Message } from "../../services";
-import { useRepContext } from "./RepContext";
 import repKeys from "./repKeys";
+import { MessageReplicache } from "./types";
 
 export type UseMessagesOptions = {
   templateId: number;
   workflowId?: number;
+  rep: MessageReplicache;
 };
 
 export const useMessages = ({
   templateId,
   workflowId,
-}: UseMessagesOptions): Message[] => {
-  const rep = useRepContext();
-
-  return useSubscribe<Message[]>(
+  rep,
+}: UseMessagesOptions): Message[] =>
+  useSubscribe<Message[]>(
     rep,
     async (tx) => {
       const list = await tx
@@ -27,4 +27,3 @@ export const useMessages = ({
     [],
     [templateId, workflowId]
   );
-};

@@ -5,8 +5,7 @@ import {
   useTemplateContext,
   useWorkflowContext,
 } from "../../../../utils";
-import { useMessages } from "../../../../utils/rep/messages";
-import { useRepMutations } from "../../../../utils/rep/RepContext";
+import { useRepContext } from "../../../../utils/rep/RepContext";
 import WorkflowEditorView from "../WorkflowEditorView/WorkflowEditorView";
 
 type ViewProps = React.ComponentProps<typeof WorkflowEditorView>;
@@ -22,12 +21,12 @@ const WorkflowEditor = ({
   const workflow = useWorkflowContext();
   const template = useTemplateContext();
 
+  const { mutations, useMessages } = useRepContext();
+
   const messages = useMessages({
     templateId: template.id,
     workflowId: workflow.id,
   });
-
-  const { putMessage: putMessage } = useRepMutations();
 
   const { data: teams } = useSelectTeams({
     organizationId: organization.id,
@@ -38,7 +37,7 @@ const WorkflowEditor = ({
   return (
     <View
       messages={messages}
-      onChange={putMessage}
+      onChange={mutations.putMessage}
       teams={teams?.entries ?? []}
     />
   );

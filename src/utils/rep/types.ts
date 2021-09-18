@@ -1,3 +1,4 @@
+import { Replicache } from "replicache";
 import mutators from "./mutations";
 
 export type Mutations = {
@@ -18,3 +19,5 @@ export type MutationPush = {
   clientID: string;
   mutations: Mutation[];
 };
+
+export type MessageReplicache = Replicache<typeof mutators>;
