@@ -3944,6 +3944,13 @@
   resolved "https://registry.yarnpkg.com/@types/json5/-/json5-0.0.29.tgz#ee28707ae94e11d2b827bcbe5270bcea7f3e71ee"
   integrity sha1-7ihweulOEdK4J7y+UnC86n8+ce4=
 
+"@types/lodash-es@^4.17.4":
+  version "4.17.5"
+  resolved "https://registry.yarnpkg.com/@types/lodash-es/-/lodash-es-4.17.5.tgz#1c3fdd16849d84aea43890b1c60da379fb501353"
+  integrity sha512-SHBoI8/0aoMQWAgUHMQ599VM6ZiSKg8sh/0cFqqlQQMyY9uEplc0ULU5yQNzcvdR4ZKa0ey8+vFmahuRbOCT1A==
+  dependencies:
+    "@types/lodash" "*"
+
 "@types/lodash.get@^4.4.6":
   version "4.4.6"
   resolved "https://registry.yarnpkg.com/@types/lodash.get/-/lodash.get-4.4.6.tgz#0c7ac56243dae0f9f09ab6f75b29471e2e777240"
@@ -4111,10 +4118,10 @@
     "@types/scheduler" "*"
     csstype "^3.0.2"
 
-"@types/react@17.0.20":
-  version "17.0.20"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-17.0.20.tgz#a4284b184d47975c71658cd69e759b6bd37c3b8c"
-  integrity sha512-wWZrPlihslrPpcKyCSlmIlruakxr57/buQN1RjlIeaaTWDLtJkTtRW429MoQJergvVKc4IWBpRhWw7YNh/7GVA==
+"@types/react@17.0.21":
+  version "17.0.21"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-17.0.21.tgz#069c43177cd419afaab5ce26bb4e9056549f7ea6"
+  integrity sha512-GzzXCpOthOjXvrAUFQwU/svyxu658cwu00Q9ugujS4qc1zXgLFaO0kS2SLOaMWLt2Jik781yuHCWB7UcYdGAeQ==
   dependencies:
     "@types/prop-types" "*"
     "@types/scheduler" "*"
@@ -7188,10 +7195,10 @@ eslint-plugin-import@^2.24.2:
     resolve "^1.20.0"
     tsconfig-paths "^3.11.0"
 
-eslint-plugin-jest@^24.4.0:
-  version "24.4.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-jest/-/eslint-plugin-jest-24.4.0.tgz#fa4b614dbd46a98b652d830377971f097bda9262"
-  integrity sha512-8qnt/hgtZ94E9dA6viqfViKBfkJwFHXgJmTWlMGDgunw1XJEGqm3eiPjDsTanM3/u/3Az82nyQM9GX7PM/QGmg==
+eslint-plugin-jest@^24.4.2:
+  version "24.4.2"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-jest/-/eslint-plugin-jest-24.4.2.tgz#9e8cf05ee6a0e3025e6149df2f36950abfa8d5bf"
+  integrity sha512-jNMnqwX75z0RXRMXkxwb/+9ylKJYJLJ8nT8nBT0XFM5qx4IQGxP4edMawa0qGkSbHae0BDPBmi8I2QF0/F04XQ==
   dependencies:
     "@typescript-eslint/experimental-utils" "^4.0.1"
 
@@ -7247,10 +7254,10 @@ eslint-plugin-react@^7.23.1:
     resolve "^2.0.0-next.3"
     string.prototype.matchall "^4.0.5"
 
-eslint-plugin-react@^7.25.1:
-  version "7.25.1"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-react/-/eslint-plugin-react-7.25.1.tgz#9286b7cd9bf917d40309760f403e53016eda8331"
-  integrity sha512-P4j9K1dHoFXxDNP05AtixcJEvIT6ht8FhYKsrkY0MPCPaUMYijhpWwNiRDZVtA8KFuZOkGSeft6QwH8KuVpJug==
+eslint-plugin-react@^7.25.2:
+  version "7.25.2"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-react/-/eslint-plugin-react-7.25.2.tgz#d567a217d306b76dd110561f28074e2328ae38f8"
+  integrity sha512-elx4585wgmryanJK4C5IoSKQyVZ+e7H0t2JOOtJNBql0cuercvSShvRReuLBbfx8687yW5yv+UL7pXwMsd6adQ==
   dependencies:
     array-includes "^3.1.3"
     array.prototype.flatmap "^1.2.4"
@@ -7776,6 +7783,11 @@ flat-cache@^3.0.4:
   dependencies:
     flatted "^3.1.0"
     rimraf "^3.0.2"
+
+flatbuffers@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/flatbuffers/-/flatbuffers-2.0.3.tgz#3bfb2c00c0d5acc1a5d219087e0ee25c756f410a"
+  integrity sha512-lTN0GS4FjwPY6h8BDDuq8f2ZORIyRgI4pHXzIt7GBsTgyCt2z9OAPiWNaeEaNcjrmuLLzFagEDwpYiqGv5BEWg==
 
 flatted@^3.1.0:
   version "3.2.2"
@@ -8331,6 +8343,11 @@ hash-base@^3.0.0:
     inherits "^2.0.4"
     readable-stream "^3.6.0"
     safe-buffer "^5.2.0"
+
+hash-wasm@^4.9.0:
+  version "4.9.0"
+  resolved "https://registry.yarnpkg.com/hash-wasm/-/hash-wasm-4.9.0.tgz#7e9dcc9f7d6bd0cc802f2a58f24edce999744206"
+  integrity sha512-7SW7ejyfnRxuOc7ptQHSf4LDoZaWOivfzqw+5rpcQku0nHfmicPKE51ra9BiRLAmT8+gGLestr1XroUkqdjL6w==
 
 hash.js@^1.0.0, hash.js@^1.0.3:
   version "1.1.7"
@@ -10088,6 +10105,11 @@ locate-path@^6.0.0:
   dependencies:
     p-locate "^5.0.0"
 
+lodash-es@^4.17.21:
+  version "4.17.21"
+  resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.21.tgz#43e626c46e6591b7750beb2b50117390c609e3ee"
+  integrity sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==
+
 lodash.clonedeep@^4.5.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/lodash.clonedeep/-/lodash.clonedeep-4.5.0.tgz#e23f3f9c4f8fbdde872529c1071857a086e5ccef"
@@ -11599,10 +11621,10 @@ prettier-linter-helpers@^1.0.0:
   dependencies:
     fast-diff "^1.1.2"
 
-prettier@^2.4.0:
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.4.0.tgz#85bdfe0f70c3e777cf13a4ffff39713ca6f64cba"
-  integrity sha512-DsEPLY1dE5HF3BxCRBmD4uYZ+5DCbvatnolqTqcxEgKVZnL2kUfyu7b8pPQ5+hTBkdhU9SLUmK0/pHb07RE4WQ==
+prettier@^2.4.1:
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.4.1.tgz#671e11c89c14a4cfc876ce564106c4a6726c9f5c"
+  integrity sha512-9fbDAXSBcc6Bs1mZrDYb3XKzDLm4EXXL9sC1LqKP5rZkT6KRr/rf9amVUcODVXgguK/isJz0d0hP72WeaKWsvA==
 
 prettier@~2.2.1:
   version "2.2.1"
@@ -12457,15 +12479,20 @@ repeat-string@^1.5.4, repeat-string@^1.6.1:
   resolved "https://registry.yarnpkg.com/repeat-string/-/repeat-string-1.6.1.tgz#8dcae470e1c88abc2d600fff4a776286da75e637"
   integrity sha1-jcrkcOHIirwtYA//Sndihtp15jc=
 
-replicache-react@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/replicache-react/-/replicache-react-1.0.3.tgz#d02331a20292da7288ac73f3e3e495be2361cb20"
-  integrity sha512-VmozRDCqIqdqoAdN7P7uWjFZfX/axUbijJ/ek/jQ4Ym6NrhpYHHbq1cjE+ZgddDv1WrlAmmoghoodBNs8+WO4w==
+replicache-react@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/replicache-react/-/replicache-react-2.0.0.tgz#5e588466de7efa78e1952e055ea24376b06c2720"
+  integrity sha512-0PpFEjXa79RA9wIVVWwgtVhHGt641593mGHYq/emVcdtdsrD1++ufT0SYh+2nw8v++9Y/i/TndEPrjnj7AqcUA==
 
-replicache@^6.4.2:
-  version "6.4.2"
-  resolved "https://registry.yarnpkg.com/replicache/-/replicache-6.4.2.tgz#a1ccd945c5210b389e063cd683eb574aded869b2"
-  integrity sha512-fig62TTU3nf/Z29pxIwL62hF3jBsmuhOV5ISwXMXgMva4Ye9g67xrFys+qzrbSEHo/bkqd5uyGF7v6T6BvXHAQ==
+replicache@^7.0.0:
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/replicache/-/replicache-7.0.0.tgz#f7de5e5aeff148f3aeb17233b17dc64e21b556a7"
+  integrity sha512-XU6LTeumjV/48gqpOUUzkgx51O0eoUToWSDpJyUPqbN1JcmIj9ZBY4VKHXoJCmZzgs2DE8FKvEFSC/OQzd1rPQ==
+  dependencies:
+    "@types/lodash-es" "^4.17.4"
+    flatbuffers "^2.0.3"
+    hash-wasm "^4.9.0"
+    lodash-es "^4.17.21"
 
 require-directory@^2.1.1:
   version "2.1.1"

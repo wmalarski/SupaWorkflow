@@ -14,7 +14,6 @@ export type RepContextValue = Replicache<typeof mutators>;
 const rep: RepContextValue = new Replicache({
   pushURL: "/api/replicache-push",
   pullURL: "/api/replicache-pull",
-  wasmModule: "/replicache.wasm",
   mutators,
 });
 
