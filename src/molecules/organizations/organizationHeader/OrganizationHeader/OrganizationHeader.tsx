@@ -17,7 +17,7 @@ const OrganizationHeader = ({
 }: OrganizationHeaderProps): React.ReactElement => {
   const tab = useTabParam(OrganizationTab);
 
-  const { organization } = useOrganizationContext();
+  const organization = useOrganizationContext();
 
   return <View tab={tab} organizationId={organization.id} />;
 };

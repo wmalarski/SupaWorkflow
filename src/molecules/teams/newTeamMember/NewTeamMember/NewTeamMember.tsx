@@ -15,7 +15,7 @@ const SEARCH_SIZE = 5;
 const NewTeamMember = ({
   View = NewTeamMemberView,
 }: NewTeamMemberProps): React.ReactElement => {
-  const { organization } = useOrganizationContext();
+  const organization = useOrganizationContext();
   const team = useTeamContext();
 
   const [name, setName] = useState<string>();

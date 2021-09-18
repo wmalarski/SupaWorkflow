@@ -18,7 +18,7 @@ export type WorkflowEditorProps = {
 const WorkflowEditor = ({
   View = WorkflowEditorView,
 }: WorkflowEditorProps): React.ReactElement => {
-  const { organization } = useOrganizationContext();
+  const organization = useOrganizationContext();
   const workflow = useWorkflowContext();
   const template = useTemplateContext();
 

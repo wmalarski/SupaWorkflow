@@ -29,10 +29,16 @@ const OrganizationContext = createContext<OrganizationContextValue>({
   isInitialized: false,
 });
 
-export const useOrganizationContext = (): OrganizationValue => {
+export const useOrganizationContext = (): Organization => {
   const context = useContext(OrganizationContext);
   if (!context.isInitialized) throw "Organization Context not initialized";
-  return context.value;
+  return context.value.organization;
+};
+
+export const useOrganizationMemberContext = (): OrganizationMember => {
+  const context = useContext(OrganizationContext);
+  if (!context.isInitialized) throw "Organization Context not initialized";
+  return context.value.member;
 };
 
 export type OrganizationContextProviderProps = {
@@ -89,7 +95,7 @@ export const OrganizationRoleGuard = ({
   children,
   roles,
 }: OrganizationRoleGuardProps): React.ReactElement | null => {
-  const { member } = useOrganizationContext();
+  const member = useOrganizationMemberContext();
 
   return roles.includes(member.role) ? <>{children}</> : null;
 };

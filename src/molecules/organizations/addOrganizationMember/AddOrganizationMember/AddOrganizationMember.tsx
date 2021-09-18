@@ -12,7 +12,7 @@ export type AddOrganizationMemberProps = {
 const AddOrganizationMember = ({
   View = AddOrganizationMemberView,
 }: AddOrganizationMemberProps): React.ReactElement => {
-  const { organization } = useOrganizationContext();
+  const organization = useOrganizationContext();
 
   const {
     mutate: inviteMember,

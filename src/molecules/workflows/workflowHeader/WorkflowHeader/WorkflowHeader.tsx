@@ -19,7 +19,7 @@ const WorkflowHeader = ({
   const tab = useTabParam(WorkflowTab);
 
   const workflow = useWorkflowContext();
-  const { organization } = useOrganizationContext();
+  const organization = useOrganizationContext();
 
   return (
     <View tab={tab} organizationId={organization.id} workflowId={workflow.id} />

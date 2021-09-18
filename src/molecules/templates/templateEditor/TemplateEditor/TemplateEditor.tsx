@@ -14,7 +14,7 @@ export type TemplateEditorProps = {
 const TemplateEditor = ({
   View = TemplateEditorView,
 }: TemplateEditorProps): React.ReactElement => {
-  const { organization } = useOrganizationContext();
+  const organization = useOrganizationContext();
   const template = useTemplateContext();
 
   const messages = useMessages({ templateId: template.id });

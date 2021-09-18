@@ -14,7 +14,7 @@ const NewOrganizationTeam = ({
   View = NewOrganizationTeamView,
 }: NewOrganizationTeamProps): React.ReactElement => {
   const router = useRouter();
-  const { organization } = useOrganizationContext();
+  const organization = useOrganizationContext();
 
   const {
     mutate: insertTeam,

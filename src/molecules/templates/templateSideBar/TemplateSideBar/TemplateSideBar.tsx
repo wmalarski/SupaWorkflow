@@ -11,7 +11,7 @@ export type TemplateSideBarProps = {
 const TemplateSideBar = ({
   View = TemplateSideBarView,
 }: TemplateSideBarProps): React.ReactElement => {
-  const { organization } = useOrganizationContext();
+  const organization = useOrganizationContext();
   const template = useTemplateContext();
 
   return <View organizationId={organization.id} templateId={template.id} />;

@@ -15,7 +15,7 @@ const CreateTemplate = ({
 }: CreateTemplateProps): React.ReactElement => {
   const router = useRouter();
 
-  const { organization } = useOrganizationContext();
+  const organization = useOrganizationContext();
 
   const {
     mutate: insertTemplate,

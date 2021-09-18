@@ -14,7 +14,7 @@ export type OrganizationTeamsProps = {
 const OrganizationTeams = ({
   View = OrganizationTeamsView,
 }: OrganizationTeamsProps): React.ReactElement => {
-  const { organization } = useOrganizationContext();
+  const organization = useOrganizationContext();
 
   const [page, setPage] = useState(0);
 

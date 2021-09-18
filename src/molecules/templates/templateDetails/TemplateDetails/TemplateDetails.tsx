@@ -15,7 +15,7 @@ const TemplateDetails = ({
   View = TemplateDetailsView,
 }: TemplateDetailsProps): React.ReactElement => {
   const template = useTemplateContext();
-  const { organization } = useOrganizationContext();
+  const organization = useOrganizationContext();
 
   const [page, setPage] = useState(0);
 

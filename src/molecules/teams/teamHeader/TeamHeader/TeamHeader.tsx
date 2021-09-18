@@ -11,7 +11,7 @@ export type TeamHeaderProps = {
 const TeamHeader = ({
   View = TeamHeaderView,
 }: TeamHeaderProps): React.ReactElement => {
-  const { organization } = useOrganizationContext();
+  const organization = useOrganizationContext();
   const team = useTeamContext();
 
   return <View organizationId={organization.id} teamId={team.id} />;

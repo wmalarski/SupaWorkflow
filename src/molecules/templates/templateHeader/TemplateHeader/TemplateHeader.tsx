@@ -19,7 +19,7 @@ const TemplateHeader = ({
   const tab = useTabParam(TemplateTab);
 
   const template = useTemplateContext();
-  const { organization } = useOrganizationContext();
+  const organization = useOrganizationContext();
 
   return (
     <View tab={tab} templateId={template.id} organizationId={organization.id} />

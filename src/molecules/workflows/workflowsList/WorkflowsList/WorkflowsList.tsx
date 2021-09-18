@@ -14,7 +14,7 @@ export type WorkflowsListProps = {
 const WorkflowsList = ({
   View = WorkflowsListView,
 }: WorkflowsListProps): React.ReactElement => {
-  const { organization } = useOrganizationContext();
+  const organization = useOrganizationContext();
 
   const [page, setPage] = useState(0);
 

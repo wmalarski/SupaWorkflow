@@ -19,7 +19,7 @@ const CreateWorkflow = ({
 }: CreateWorkflowProps): React.ReactElement => {
   const router = useRouter();
 
-  const { organization } = useOrganizationContext();
+  const organization = useOrganizationContext();
   const template = useTemplateContext();
 
   const {
