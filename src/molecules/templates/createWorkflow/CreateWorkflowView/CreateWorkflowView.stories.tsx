@@ -3,7 +3,7 @@ import React from "react";
 import CreateWorkflowView from "./CreateWorkflowView";
 
 export default {
-  title: "Molecules/Workflows/CreateWorkflowView",
+  title: "Molecules/Templates/CreateWorkflowView",
   component: CreateWorkflowView,
 } as ComponentMeta<typeof CreateWorkflowView>;
 

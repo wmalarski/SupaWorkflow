@@ -5,7 +5,7 @@ import { ContextsMock } from "../../../../tests/wrappers";
 import OrganizationMembersView from "./OrganizationMembersView";
 
 export default {
-  title: "Molecules/Organization/OrganizationMembersView",
+  title: "Molecules/Organizations/OrganizationMembersView",
   component: OrganizationMembersView,
 } as ComponentMeta<typeof OrganizationMembersView>;
 

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import WorkflowRadioForm from "./WorkflowRadioForm";
 
 export default {
-  title: "Molecules/Workflows/WorkflowRadioForm",
+  title: "Molecules/Editor/WorkflowRadioForm",
   component: WorkflowRadioForm,
   argTypes: { onChange: { action: "onChange" } },
 } as ComponentMeta<typeof WorkflowRadioForm>;

@@ -4,7 +4,7 @@ import { defaultWorkflows } from "../../../../services";
 import WorkflowsListView from "./WorkflowsListView";
 
 export default {
-  title: "Molecules/Workflows/WorkflowsListView",
+  title: "Molecules/Organizations/WorkflowsListView",
   component: WorkflowsListView,
 } as ComponentMeta<typeof WorkflowsListView>;
 

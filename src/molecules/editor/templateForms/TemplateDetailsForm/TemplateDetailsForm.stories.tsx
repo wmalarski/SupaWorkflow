@@ -3,7 +3,7 @@ import React from "react";
 import TemplateDetailsForm from "./TemplateDetailsForm";
 
 export default {
-  title: "Molecules/Templates/TemplateDetailsForm",
+  title: "Molecules/Editor/TemplateDetailsForm",
   component: TemplateDetailsForm,
   argTypes: { onChange: { action: "onChange" } },
 } as ComponentMeta<typeof TemplateDetailsForm>;

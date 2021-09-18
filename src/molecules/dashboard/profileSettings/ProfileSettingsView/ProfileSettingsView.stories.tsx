@@ -4,7 +4,7 @@ import { defaultProfile } from "../../../../services";
 import ProfileSettingsView from "./ProfileSettingsView";
 
 export default {
-  title: "Molecules/Profile/ProfileSettingsView",
+  title: "Molecules/Dashboard/ProfileSettingsView",
   component: ProfileSettingsView,
   argTypes: { onSubmit: { type: "action" } },
 } as ComponentMeta<typeof ProfileSettingsView>;

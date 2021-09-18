@@ -3,7 +3,7 @@ import React from "react";
 import WorkflowFormNode from "./WorkflowFormNode";
 
 export default {
-  title: "Molecules/Workflows/WorkflowFormNode",
+  title: "Molecules/Editor/WorkflowFormNode",
   component: WorkflowFormNode,
 } as ComponentMeta<typeof WorkflowFormNode>;
 

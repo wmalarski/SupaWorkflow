@@ -3,7 +3,7 @@ import React from "react";
 import WorkflowDecisionNode from "./WorkflowDecisionNode";
 
 export default {
-  title: "Molecules/Workflows/WorkflowDecisionNode",
+  title: "Molecules/Editor/WorkflowDecisionNode",
   component: WorkflowDecisionNode,
 } as ComponentMeta<typeof WorkflowDecisionNode>;
 

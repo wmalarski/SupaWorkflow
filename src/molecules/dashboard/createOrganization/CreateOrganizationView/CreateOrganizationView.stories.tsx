@@ -3,7 +3,7 @@ import React from "react";
 import CreateOrganizationView from "./CreateOrganizationView";
 
 export default {
-  title: "Molecules/Organizations/CreateOrganizationView",
+  title: "Molecules/Dashboard/CreateOrganizationView",
   component: CreateOrganizationView,
   argTypes: { onSubmit: { action: "onSubmit" } },
 } as ComponentMeta<typeof CreateOrganizationView>;

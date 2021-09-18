@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import WorkflowCheckboxesForm from "./WorkflowCheckboxesForm";
 
 export default {
-  title: "Molecules/Workflows/WorkflowCheckboxesForm",
+  title: "Molecules/Editor/WorkflowCheckboxesForm",
   component: WorkflowCheckboxesForm,
   argTypes: { onChange: { action: "onChange" } },
 } as ComponentMeta<typeof WorkflowCheckboxesForm>;

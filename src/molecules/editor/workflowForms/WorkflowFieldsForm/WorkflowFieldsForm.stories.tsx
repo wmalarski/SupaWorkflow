@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import WorkflowFieldsForm from "./WorkflowFieldsForm";
 
 export default {
-  title: "Molecules/Workflows/WorkflowFieldsForm",
+  title: "Molecules/Editor/WorkflowFieldsForm",
   component: WorkflowFieldsForm,
   argTypes: { onChange: { action: "onChange" } },
 } as ComponentMeta<typeof WorkflowFieldsForm>;

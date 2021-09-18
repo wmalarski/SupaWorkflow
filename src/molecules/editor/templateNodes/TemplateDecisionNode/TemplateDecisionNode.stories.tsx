@@ -5,7 +5,7 @@ import { MessageKind, MessageNodeType } from "../../../../services/nodes";
 import TemplateDecisionNode from "./TemplateDecisionNode";
 
 export default {
-  title: "Molecules/Templates/TemplateDecisionNode",
+  title: "Molecules/Editor/TemplateDecisionNode",
   component: TemplateDecisionNode,
 } as ComponentMeta<typeof TemplateDecisionNode>;
 

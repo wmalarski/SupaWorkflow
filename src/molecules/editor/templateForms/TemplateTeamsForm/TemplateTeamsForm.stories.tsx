@@ -4,7 +4,7 @@ import { defaultTeams } from "../../../../services";
 import TemplateTeamsForm from "./TemplateTeamsForm";
 
 export default {
-  title: "Molecules/Templates/TemplateTeamsForm",
+  title: "Molecules/Editor/TemplateTeamsForm",
   component: TemplateTeamsForm,
   argTypes: { onChange: { action: "onChange" } },
 } as ComponentMeta<typeof TemplateTeamsForm>;

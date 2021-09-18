@@ -228,7 +228,7 @@ const initialMessages: Message[] = [
 ];
 
 export default {
-  title: "Molecules/Workflows/WorkflowEditorView",
+  title: "Molecules/Editor/WorkflowEditorView",
   component: WorkflowEditorView,
 } as ComponentMeta<typeof WorkflowEditorView>;
 

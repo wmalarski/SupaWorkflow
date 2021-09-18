@@ -3,7 +3,7 @@ import React from "react";
 import TemplatesListView from "./TemplatesListView";
 
 export default {
-  title: "Molecules/Templates/TemplatesListView",
+  title: "Molecules/Organizations/TemplatesListView",
   component: TemplatesListView,
 } as ComponentMeta<typeof TemplatesListView>;
 

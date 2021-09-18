@@ -3,7 +3,7 @@ import React from "react";
 import WorkflowChecklistNode from "./WorkflowChecklistNode";
 
 export default {
-  title: "Molecules/Workflows/WorkflowChecklistNode",
+  title: "Molecules/Editor/WorkflowChecklistNode",
   component: WorkflowChecklistNode,
 } as ComponentMeta<typeof WorkflowChecklistNode>;
 

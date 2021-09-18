@@ -4,7 +4,7 @@ import { defaultTeams } from "../../../../services";
 import OrganizationTeamsView from "./OrganizationTeamsView";
 
 export default {
-  title: "Molecules/Teams/OrganizationTeamsView",
+  title: "Molecules/Organizations/OrganizationTeamsView",
   component: OrganizationTeamsView,
 } as ComponentMeta<typeof OrganizationTeamsView>;
 

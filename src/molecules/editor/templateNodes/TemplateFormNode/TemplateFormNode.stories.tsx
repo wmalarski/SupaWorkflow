@@ -5,7 +5,7 @@ import { MessageKind, MessageNodeType } from "../../../../services/nodes";
 import TemplateFormNode from "./TemplateFormNode";
 
 export default {
-  title: "Molecules/Templates/TemplateFormNode",
+  title: "Molecules/Editor/TemplateFormNode",
   component: TemplateFormNode,
 } as ComponentMeta<typeof TemplateFormNode>;
 

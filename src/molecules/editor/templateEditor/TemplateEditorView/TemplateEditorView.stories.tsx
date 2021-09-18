@@ -72,7 +72,7 @@ export type StoryArguments = {
 };
 
 export default {
-  title: "Molecules/Templates/TemplateEditorView",
+  title: "Molecules/Editor/TemplateEditorView",
   component: TemplateEditorView,
 } as ComponentMeta<React.ComponentType<StoryArguments>>;
 

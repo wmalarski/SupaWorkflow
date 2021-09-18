@@ -3,7 +3,7 @@ import React from "react";
 import DashboardCornerView from "./DashboardCornerView";
 
 export default {
-  title: "Molecules/Dashboard/DashboardCornerView",
+  title: "Molecules/Common/DashboardCornerView",
   component: DashboardCornerView,
 } as ComponentMeta<typeof DashboardCornerView>;
 

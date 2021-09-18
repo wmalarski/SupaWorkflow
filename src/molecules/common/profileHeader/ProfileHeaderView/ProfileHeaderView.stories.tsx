@@ -3,7 +3,7 @@ import React from "react";
 import ProfileHeaderView from "./ProfileHeaderView";
 
 export default {
-  title: "Molecules/Profile/ProfileHeaderView",
+  title: "Molecules/Common/ProfileHeaderView",
   component: ProfileHeaderView,
 } as ComponentMeta<typeof ProfileHeaderView>;
 

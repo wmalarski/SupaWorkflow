@@ -5,7 +5,7 @@ import { MessageKind, MessageNodeType } from "../../../../services/nodes";
 import TemplateChecklistNode from "./TemplateChecklistNode";
 
 export default {
-  title: "Molecules/Templates/TemplateChecklistNode",
+  title: "Molecules/Editor/TemplateChecklistNode",
   component: TemplateChecklistNode,
 } as ComponentMeta<typeof TemplateChecklistNode>;
 
