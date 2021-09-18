@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { PullResponse } from "replicache";
 import { selectClient, selectMessages, supabase } from "../../services";
+import { validateNumberParam } from "../../utils";
 import resolvePull from "../../utils/rep/resolvePull";
 
 const handler = async (
@@ -11,10 +12,19 @@ const handler = async (
   supabase.auth.setAuth(req.cookies["sb:token"]);
   console.log(`Processing pull`, JSON.stringify(req.body));
 
+  const templateId = validateNumberParam(req.query.templateId);
+  const workflowId = validateNumberParam(req.query.workflowId);
+
+  console.log({ query: req.query, templateId, workflowId });
+  if (!templateId) {
+    res.status(400).end();
+    return;
+  }
+
   try {
     const [client, changed] = await Promise.all([
       selectClient({ id: clientID }),
-      selectMessages({ updatedAt: cookie }),
+      selectMessages({ updatedAt: cookie, templateId, workflowId }),
     ]);
 
     // TODO: check this logic
