@@ -38,7 +38,7 @@ export const selectTeamMembers = async ({
 }: QueryFunctionContext<SelectTeamMembersKey>): Promise<SelectTeamMemberResult> => {
   const builder = supabase
     .from<SelectTeamMemberRow>(TABLES.teamMember)
-    .select("*, profile: profile!profile_id", { count: "exact" })
+    .select("*, profile: profile!profile_id ( * )", { count: "exact" })
     .range(from, to);
 
   const teamBuilder = teamId ? builder.eq("team_id", teamId) : builder;

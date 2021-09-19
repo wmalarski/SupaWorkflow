@@ -75,7 +75,7 @@ function Autocomplete<TData>({
                 {...getItemProps({ item, index })}
               >
                 <Box display="inline-flex" alignItems="center">
-                  {item}
+                  {itemToString(item)}
                 </Box>
               </ListItem>
             ))}
