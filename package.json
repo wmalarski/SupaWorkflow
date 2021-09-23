@@ -3,16 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint --dir src",
+    "bootstrap": "yarn install; lerna bootstrap;",
+    "run:next": "lerna run --scope next-front-end --stream dev",
+    "start": "run-p --print-label package:*",
+    "build": "lerna run --parallel build",
+    "prepare": "husky install",
     "prettier": "prettier 'src/**/*.(ts|tsx)' --write",
     "tsc": "tsc --noEmit",
     "test": "jest  --maxWorkers=2",
     "test:watch": "jest --watch --maxWorkers=2",
     "test:coverage": "jest --coverage --maxWorkers=2",
-    "prepare": "husky install",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
@@ -63,40 +63,11 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "husky": "^7.0.2",
     "jest": "^27.2.0",
+    "lerna": "^4.0.0",
     "lint-staged": "^11.1.2",
     "msw": "^0.35.0",
     "prettier": "^2.4.1",
     "ts-jest": "^27.0.5",
     "typescript": "4.4.3"
-  },
-  "jest": {
-    "globalSetup": "<rootDir>/src/tests/test.env.ts",
-    "testEnvironment": "jsdom",
-    "moduleNameMapper": {
-      "\\.(css|less)$": "<rootDir>/src/tests/__mocks__/styleMock.js"
-    },
-    "transform": {
-      "^.+\\.(ts|tsx)$": "ts-jest"
-    },
-    "testMatch": [
-      "**/src/**/*.test.(ts|tsx)"
-    ],
-    "testPathIgnorePatterns": [
-      "./.next/",
-      "./node_modules/"
-    ],
-    "globals": {
-      "ts-jest": {
-        "tsconfig": "tsconfig.jest.json"
-      }
-    },
-    "collectCoverageFrom": [
-      "src/**/*.{ts,tsx}",
-      "!<rootDir>/src/**/*.stories.tsx",
-      "!<rootDir>/src/tests/**"
-    ],
-    "setupFilesAfterEnv": [
-      "<rootDir>/src/tests/setupTests.ts"
-    ]
   }
 }

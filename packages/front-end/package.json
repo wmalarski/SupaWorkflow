@@ -1,0 +1,41 @@
+{
+  "name": "next-front-end",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint --dir src"
+  },
+  "jest": {
+    "globalSetup": "<rootDir>/src/tests/test.env.ts",
+    "testEnvironment": "jsdom",
+    "moduleNameMapper": {
+      "\\.(css|less)$": "<rootDir>/src/tests/__mocks__/styleMock.js"
+    },
+    "transform": {
+      "^.+\\.(ts|tsx)$": "ts-jest"
+    },
+    "testMatch": [
+      "**/src/**/*.test.(ts|tsx)"
+    ],
+    "testPathIgnorePatterns": [
+      "./.next/",
+      "./node_modules/"
+    ],
+    "globals": {
+      "ts-jest": {
+        "tsconfig": "tsconfig.jest.json"
+      }
+    },
+    "collectCoverageFrom": [
+      "src/**/*.{ts,tsx}",
+      "!<rootDir>/src/**/*.stories.tsx",
+      "!<rootDir>/src/tests/**"
+    ],
+    "setupFilesAfterEnv": [
+      "<rootDir>/src/tests/setupTests.ts"
+    ]
+  }
+}
