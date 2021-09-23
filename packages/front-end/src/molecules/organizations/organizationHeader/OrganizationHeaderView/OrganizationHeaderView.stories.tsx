@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
-import { OrganizationTab } from "../../../../utils";
+import { OrganizationTab } from "utils";
 import OrganizationHeaderView from "./OrganizationHeaderView";
 
 export default {

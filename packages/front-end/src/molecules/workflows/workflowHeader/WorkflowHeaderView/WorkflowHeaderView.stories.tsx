@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
-import { WorkflowTab } from "../../../../utils";
+import { WorkflowTab } from "utils";
 import WorkflowHeaderView from "./WorkflowHeaderView";
 
 export default {

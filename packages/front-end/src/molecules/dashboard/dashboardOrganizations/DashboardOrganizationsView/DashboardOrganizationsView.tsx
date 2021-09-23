@@ -1,7 +1,7 @@
 import { Heading, SimpleGrid, VStack } from "@chakra-ui/react";
 import { Organization } from "@supa-workflow/services";
 import React from "react";
-import { useText } from "../../../../utils";
+import { useText } from "utils";
 import OrganizationBox from "../OrganizationBox/OrganizationBox";
 
 export type DashboardOrganizationsViewProps = {

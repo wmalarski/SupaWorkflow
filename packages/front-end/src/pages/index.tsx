@@ -1,13 +1,13 @@
 import { useUserContext } from "@supa-workflow/services";
-import type { NextPage } from "next";
-import React from "react";
 import {
   AnonHeader,
   LandingHeader,
   LandingTop,
   ProfileHeader,
-} from "../molecules";
-import { Header, Page } from "../templates";
+} from "molecules";
+import type { NextPage } from "next";
+import React from "react";
+import { Header, Page } from "templates";
 
 const IndexPage: NextPage = () => (
   <Page

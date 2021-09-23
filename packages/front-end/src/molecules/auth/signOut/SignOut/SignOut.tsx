@@ -1,7 +1,7 @@
 import { useSignOut } from "@supa-workflow/services";
 import { useRouter } from "next/router";
 import React from "react";
-import { paths } from "../../../../utils";
+import { paths } from "utils";
 import SignOutView, { SignOutViewProps } from "../SignOutView/SignOutView";
 
 export type SignOutProps = {

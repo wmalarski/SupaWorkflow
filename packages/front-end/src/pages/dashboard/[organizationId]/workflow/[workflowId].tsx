@@ -4,9 +4,9 @@ import {
   WorkflowContextProvider,
 } from "@supa-workflow/services";
 import { useRouter } from "next/router";
+import { LoadingPane, WorkflowSwitch } from "organisms";
 import React, { useEffect } from "react";
-import { LoadingPane, WorkflowSwitch } from "../../../../organisms";
-import { paths, useNumberParam } from "../../../../utils";
+import { paths, useNumberParam } from "utils";
 
 const WorkflowPage = (): React.ReactElement => {
   const router = useRouter();

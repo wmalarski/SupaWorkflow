@@ -2,7 +2,7 @@ import { CheckIcon, EditIcon, HamburgerIcon } from "@chakra-ui/icons";
 import { Button, ButtonGroup } from "@chakra-ui/react";
 import { MessageNodeType } from "@supa-workflow/services";
 import React, { useCallback } from "react";
-import { useText } from "../../../../utils";
+import { useText } from "utils";
 import { MutationArgs } from "../../../../utils/rep/types";
 import { getNewNodeMessage } from "./TemplateEditorBar.utils";
 

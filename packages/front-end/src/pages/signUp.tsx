@@ -1,7 +1,7 @@
+import { AnonHeader, SignUp } from "molecules";
 import type { NextPage } from "next";
 import React from "react";
-import { AnonHeader, SignUp } from "../molecules";
-import { Page } from "../templates";
+import { Page } from "templates";
 
 const SignUpPage: NextPage = () => (
   <Page header={<AnonHeader />}>

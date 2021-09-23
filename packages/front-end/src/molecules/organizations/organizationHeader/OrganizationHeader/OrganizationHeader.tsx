@@ -1,6 +1,6 @@
 import { useOrganizationContext } from "@supa-workflow/services";
 import React from "react";
-import { OrganizationTab, useTabParam } from "../../../../utils";
+import { OrganizationTab, useTabParam } from "utils";
 import OrganizationHeaderView from "../OrganizationHeaderView/OrganizationHeaderView";
 
 type ViewProps = React.ComponentProps<typeof OrganizationHeaderView>;

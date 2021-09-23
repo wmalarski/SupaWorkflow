@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
-import { TemplateTab } from "../../../../utils";
+import { TemplateTab } from "utils";
 import TemplateHeaderView from "./TemplateHeaderView";
 
 export default {

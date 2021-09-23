@@ -12,7 +12,7 @@ import { Organization } from "@supa-workflow/services";
 import { PostgrestError } from "@supabase/supabase-js";
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useText, useTextValidator } from "../../../../utils";
+import { useText, useTextValidator } from "utils";
 
 export type OrganizationSettingsViewProps = {
   isLoading: boolean;

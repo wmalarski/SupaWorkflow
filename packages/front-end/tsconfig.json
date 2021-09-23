@@ -12,6 +12,21 @@
     "jsx": "preserve",
     "incremental": true,
     "paths": {
+      "@/atoms/*": [
+        "./atoms/*"
+      ],
+      "@/organisms/*": [
+        "./organisms/*"
+      ],
+      "@/molecules/*": [
+        "./molecules/*"
+      ],
+      "@/templates/*": [
+        "./templates/*"
+      ],
+      "@/utils/*": [
+        "./utils/*"
+      ],
       "@supa-workflow/services": [
         "../../services/src/index"
       ],

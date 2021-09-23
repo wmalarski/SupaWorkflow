@@ -3,8 +3,8 @@ import {
   useUserContext,
 } from "@supa-workflow/services";
 import { useRouter } from "next/router";
+import { DashboardSwitch, LoadingPane } from "organisms";
 import React, { useEffect } from "react";
-import { DashboardSwitch, LoadingPane } from "../../organisms";
 import { paths } from "../../utils";
 
 const DashboardPage = (): React.ReactElement => {

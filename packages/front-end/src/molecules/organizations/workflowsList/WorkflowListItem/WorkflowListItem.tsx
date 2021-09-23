@@ -1,8 +1,8 @@
 import { Heading, LinkBox, Text } from "@chakra-ui/react";
 import { Workflow } from "@supa-workflow/services";
+import { LinkOverlay } from "atoms";
 import React from "react";
-import { LinkOverlay } from "../../../../atoms";
-import { paths } from "../../../../utils";
+import { paths } from "utils";
 
 export type WorkflowListItemProps = {
   workflow: Workflow;

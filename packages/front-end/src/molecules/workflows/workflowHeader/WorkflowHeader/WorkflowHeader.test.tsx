@@ -2,8 +2,8 @@ import "@testing-library/jest-dom";
 import "@testing-library/jest-dom/extend-expect";
 import { render, screen } from "@testing-library/react";
 import React from "react";
+import { WorkflowTab } from "utils";
 import { ContextsMock } from "../../../../tests/wrappers";
-import { WorkflowTab } from "../../../../utils";
 import { WorkflowHeaderViewProps } from "../WorkflowHeaderView/WorkflowHeaderView";
 import WorkflowHeader from "./WorkflowHeader";
 

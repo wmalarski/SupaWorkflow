@@ -1,8 +1,8 @@
 import { List, VStack } from "@chakra-ui/react";
 import { Workflow } from "@supa-workflow/services";
+import { Pagination } from "atoms";
 import React from "react";
-import { Pagination } from "../../../../atoms";
-import { useText } from "../../../../utils";
+import { useText } from "utils";
 import WorkflowListItem from "../WorkflowListItem/WorkflowListItem";
 
 export type WorkflowsListViewProps = {

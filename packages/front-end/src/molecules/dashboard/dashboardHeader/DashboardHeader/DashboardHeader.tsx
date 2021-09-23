@@ -1,5 +1,5 @@
 import React from "react";
-import { DashboardTab, useTabParam } from "../../../../utils";
+import { DashboardTab, useTabParam } from "utils";
 import DashboardHeaderView from "../DashboardHeaderView/DashboardHeaderView";
 
 type ViewProps = React.ComponentProps<typeof DashboardHeaderView>;

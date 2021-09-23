@@ -3,7 +3,7 @@ import {
   useTemplateContext,
 } from "@supa-workflow/services";
 import React from "react";
-import { TemplateTab, useTabParam } from "../../../../utils";
+import { TemplateTab, useTabParam } from "utils";
 import TemplateHeaderView from "../TemplateHeaderView/TemplateHeaderView";
 
 type ViewProps = React.ComponentProps<typeof TemplateHeaderView>;

@@ -5,7 +5,7 @@ import {
 } from "@supa-workflow/services";
 import { useRouter } from "next/router";
 import React from "react";
-import { paths } from "../../../../utils";
+import { paths } from "utils";
 import CreateWorkflowView from "../CreateWorkflowView/CreateWorkflowView";
 
 type ViewProps = React.ComponentProps<typeof CreateWorkflowView>;

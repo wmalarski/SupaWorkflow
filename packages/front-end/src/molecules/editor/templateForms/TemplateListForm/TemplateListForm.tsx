@@ -9,7 +9,7 @@ import { HStack, VStack } from "@chakra-ui/layout";
 import { ButtonGroup, Heading, IconButton } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useText } from "../../../../utils";
+import { useText } from "utils";
 
 export type ListFormData = {
   entries: string[];

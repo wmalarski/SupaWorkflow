@@ -1,7 +1,7 @@
 import { useSignOut } from "@supa-workflow/services";
 import { useRouter } from "next/router";
 import React from "react";
-import { paths } from "../../../../utils";
+import { paths } from "utils";
 import ProfileHeaderView from "../ProfileHeaderView/ProfileHeaderView";
 
 type ViewProps = React.ComponentProps<typeof ProfileHeaderView>;

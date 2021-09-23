@@ -1,8 +1,8 @@
 import { Text, VStack } from "@chakra-ui/react";
 import { Template } from "@supa-workflow/services";
+import { Link, Pagination } from "atoms";
 import React from "react";
-import { Link, Pagination } from "../../../../atoms";
-import { paths, useText } from "../../../../utils";
+import { paths, useText } from "utils";
 import { OrganizationTab, TemplateTab } from "../../../../utils/routing/types";
 
 export type TemplatesListViewProps = {

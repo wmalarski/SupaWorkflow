@@ -1,7 +1,7 @@
 import { Button, HStack } from "@chakra-ui/react";
 import React from "react";
+import { useText } from "utils";
 import ThemeButton from "../../../../atoms/ThemeButton/ThemeButton";
-import { useText } from "../../../../utils";
 
 export type ProfileHeaderViewProps = {
   onSignOutClicked: () => void;

@@ -1,7 +1,7 @@
 import { Button, Select, Td, Tr } from "@chakra-ui/react";
 import { Member, OrganizationRole } from "@supa-workflow/services";
 import React from "react";
-import { useText } from "../../../../utils";
+import { useText } from "utils";
 
 export type OrganizationMemberRowProps = {
   index: number;

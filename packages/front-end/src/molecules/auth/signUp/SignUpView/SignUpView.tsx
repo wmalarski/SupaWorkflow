@@ -15,7 +15,7 @@ import {
   usePasswordValidator,
   useText,
   UseTextFnc,
-} from "../../../../utils";
+} from "utils";
 
 export type SignUpViewProps = {
   isLoading: boolean;

@@ -2,8 +2,8 @@ import "@testing-library/jest-dom";
 import "@testing-library/jest-dom/extend-expect";
 import { render, screen } from "@testing-library/react";
 import React from "react";
+import { TemplateTab } from "utils";
 import { ContextsMock } from "../../../../tests/wrappers";
-import { TemplateTab } from "../../../../utils";
 import { TemplateHeaderViewProps } from "../TemplateHeaderView/TemplateHeaderView";
 import TemplateHeader from "./TemplateHeader";
 

@@ -1,7 +1,7 @@
 import { Grid, GridItem, Input, Text } from "@chakra-ui/react";
 import React from "react";
 import { useForm } from "react-hook-form";
-import { useText } from "../../../../utils";
+import { useText } from "utils";
 
 export type TemplateDetailsFormData = {
   title: string;

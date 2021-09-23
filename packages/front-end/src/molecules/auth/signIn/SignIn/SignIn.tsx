@@ -1,7 +1,7 @@
 import { useSignIn } from "@supa-workflow/services";
 import { useRouter } from "next/router";
 import React from "react";
-import { paths } from "../../../../utils";
+import { paths } from "utils";
 import SignInView, { SignInViewProps } from "../SignInView/SignInView";
 
 export type SignInProps = {

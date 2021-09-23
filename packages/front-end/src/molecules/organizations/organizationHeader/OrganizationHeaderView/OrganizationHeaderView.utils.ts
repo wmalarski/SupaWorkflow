@@ -1,4 +1,4 @@
-import { OrganizationTab, UseTextFnc } from "../../../../utils";
+import { OrganizationTab, UseTextFnc } from "utils";
 
 export const getTabText = (
   tab: OrganizationTab,

@@ -1,10 +1,10 @@
-import React from "react";
 import {
   CreateOrganization,
   DashboardOrganizations,
   ProfileSettings,
-} from "../../molecules";
-import { DashboardTab, useTabParam } from "../../utils";
+} from "molecules";
+import React from "react";
+import { DashboardTab, useTabParam } from "utils";
 import DashboardLayout from "./DashboardLayout";
 
 const DashboardSwitch = (): React.ReactElement => {

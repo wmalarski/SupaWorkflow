@@ -4,9 +4,9 @@ import {
   OrganizationRole,
   SelectMembersResult,
 } from "@supa-workflow/services";
+import { Pagination } from "atoms";
 import React from "react";
-import { Pagination } from "../../../../atoms";
-import { useText } from "../../../../utils";
+import { useText } from "utils";
 import OrganizationMemberRow from "../OrganizationMemberRow/OrganizationMemberRow";
 
 export type OrganizationMembersViewProps = {

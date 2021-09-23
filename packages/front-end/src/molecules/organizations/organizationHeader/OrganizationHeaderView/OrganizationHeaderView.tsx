@@ -1,7 +1,7 @@
 import { Breadcrumb, BreadcrumbItem } from "@chakra-ui/react";
+import { BreadcrumbLink } from "atoms";
 import React from "react";
-import { BreadcrumbLink } from "../../../../atoms";
-import { OrganizationTab, paths, useText } from "../../../../utils";
+import { OrganizationTab, paths, useText } from "utils";
 import { getTabText } from "./OrganizationHeaderView.utils";
 
 export type OrganizationHeaderViewProps = {

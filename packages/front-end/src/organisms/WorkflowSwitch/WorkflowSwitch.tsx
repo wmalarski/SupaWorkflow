@@ -1,7 +1,7 @@
+import { WorkflowDetails } from "molecules";
 import dynamic from "next/dynamic";
 import React from "react";
-import { WorkflowDetails } from "../../molecules";
-import { useTabParam, WorkflowTab } from "../../utils";
+import { useTabParam, WorkflowTab } from "utils";
 import WorkflowLayout from "./WorkflowLayout";
 
 const WorkflowWorkspace = dynamic(() => import("./WorkflowWorkspace"), {

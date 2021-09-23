@@ -3,9 +3,9 @@ import {
   useUserContext,
 } from "@supa-workflow/services";
 import { useRouter } from "next/router";
+import { LoadingPane, OrganizationSwitch } from "organisms";
 import React, { useEffect } from "react";
-import { LoadingPane, OrganizationSwitch } from "../../../organisms";
-import { paths, useNumberParam } from "../../../utils";
+import { paths, useNumberParam } from "utils";
 
 const OrganizationPage = (): React.ReactElement => {
   const router = useRouter();

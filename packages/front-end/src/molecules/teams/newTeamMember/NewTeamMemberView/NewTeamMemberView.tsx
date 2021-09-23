@@ -1,9 +1,9 @@
 import { Button, VStack } from "@chakra-ui/react";
 import { Member, TeamRole } from "@supa-workflow/services";
 import { PostgrestError } from "@supabase/supabase-js";
+import { Autocomplete } from "atoms";
 import React, { useState } from "react";
-import { Autocomplete } from "../../../../atoms";
-import { useText } from "../../../../utils";
+import { useText } from "utils";
 
 export type NewTeamMemberViewData = {
   profileId: number;

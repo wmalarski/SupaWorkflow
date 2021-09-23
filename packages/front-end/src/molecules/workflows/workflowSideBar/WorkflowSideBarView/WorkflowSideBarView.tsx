@@ -1,7 +1,7 @@
 import { Heading, Text, VStack } from "@chakra-ui/react";
+import { Link } from "atoms";
 import React from "react";
-import { Link } from "../../../../atoms";
-import { paths, useText, WorkflowTab } from "../../../../utils";
+import { paths, useText, WorkflowTab } from "utils";
 
 export type WorkflowSideBarViewProps = {
   organizationId: number;

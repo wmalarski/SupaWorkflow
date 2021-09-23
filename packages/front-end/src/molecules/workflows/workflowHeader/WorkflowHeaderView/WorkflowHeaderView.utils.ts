@@ -1,4 +1,4 @@
-import { UseTextFnc, WorkflowTab } from "../../../../utils";
+import { UseTextFnc, WorkflowTab } from "utils";
 
 export const getTabText = (
   tab: WorkflowTab,

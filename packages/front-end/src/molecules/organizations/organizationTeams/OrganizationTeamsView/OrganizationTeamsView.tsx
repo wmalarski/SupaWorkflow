@@ -1,8 +1,8 @@
 import { Button, Text, VStack } from "@chakra-ui/react";
 import { OrganizationRole, Team } from "@supa-workflow/services";
+import { Link, Pagination } from "atoms";
 import React from "react";
-import { Link, Pagination } from "../../../../atoms";
-import { paths, useText } from "../../../../utils";
+import { paths, useText } from "utils";
 import { OrganizationTab } from "../../../../utils/routing/types";
 
 export type OrganizationTeamsViewProps = {

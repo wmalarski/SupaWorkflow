@@ -12,7 +12,7 @@ import { OrganizationRole } from "@supa-workflow/services";
 import { PostgrestError } from "@supabase/supabase-js";
 import React from "react";
 import { useForm } from "react-hook-form";
-import { useEmailValidator, useText } from "../../../../utils";
+import { useEmailValidator, useText } from "utils";
 
 export type AddOrganizationMemberViewData = {
   email: string;
