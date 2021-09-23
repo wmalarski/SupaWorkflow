@@ -3,7 +3,6 @@ import "@testing-library/jest-dom/extend-expect";
 import { render } from "@testing-library/react";
 import React from "react";
 import { defaultTeam } from "../../../../services";
-import { ContextsMock } from "../../../../tests/wrappers";
 import OrganizationTeamsView from "./OrganizationTeamsView";
 
 type ComponentProps = Parameters<typeof OrganizationTeamsView>[0];
@@ -12,6 +11,7 @@ function renderComponent(props: Partial<ComponentProps> = {}) {
   const defaultProps: ComponentProps = {
     isLoading: false,
     organizationId: 1,
+    organizationRole: "mod",
     onPageChange: () => void 0,
     onDeleteTeam: () => void 0,
     page: 0,
@@ -21,11 +21,7 @@ function renderComponent(props: Partial<ComponentProps> = {}) {
       .fill(defaultTeam)
       .map((team, index) => ({ ...team, id: index })),
   };
-  return render(
-    <ContextsMock>
-      <OrganizationTeamsView {...defaultProps} {...props} />
-    </ContextsMock>
-  );
+  return render(<OrganizationTeamsView {...defaultProps} {...props} />);
 }
 
 describe("<OrganizationTeamsView />", () => {

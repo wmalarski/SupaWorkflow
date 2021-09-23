@@ -21,4 +21,5 @@ Playground.args = {
   count: 30,
   isLoading: false,
   teamMembers: defaultTeamMembers,
+  organizationRole: "mod",
 };

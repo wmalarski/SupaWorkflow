@@ -1,7 +1,6 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
-import { defaultMember } from "../../../../services";
-import { ContextsMock } from "../../../../tests/wrappers";
+import { defaultMember, defaultOrganizationMember } from "../../../../services";
 import OrganizationMembersView from "./OrganizationMembersView";
 
 export default {
@@ -10,9 +9,7 @@ export default {
 } as ComponentMeta<typeof OrganizationMembersView>;
 
 const Template: ComponentStory<typeof OrganizationMembersView> = (args) => (
-  <ContextsMock>
-    <OrganizationMembersView {...args} />
-  </ContextsMock>
+  <OrganizationMembersView {...args} />
 );
 
 export const Playground = Template.bind({});
@@ -22,6 +19,7 @@ Playground.args = {
   authorId: 1,
   isLoading: false,
   isUpdateLoading: false,
+  currentMember: defaultOrganizationMember,
   members: {
     count: 4,
     entries: new Array(10).fill(0).map((_, index) => ({

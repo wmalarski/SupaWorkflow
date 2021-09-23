@@ -2,18 +2,16 @@ import { AddIcon } from "@chakra-ui/icons";
 import { Heading, HStack, Text, VStack } from "@chakra-ui/react";
 import React from "react";
 import { Link } from "../../../../atoms";
-import {
-  OrganizationRoleGuard,
-  OrganizationTab,
-  paths,
-  useText,
-} from "../../../../utils";
+import { OrganizationRole } from "../../../../services";
+import { OrganizationTab, paths, useText } from "../../../../utils";
 
 export type OrganizationSideBarViewProps = {
+  organizationRole: OrganizationRole;
   organizationId: number;
 };
 
 const OrganizationSideBarView = ({
+  organizationRole,
   organizationId,
 }: OrganizationSideBarViewProps): React.ReactElement => {
   const text = useText();
@@ -47,7 +45,7 @@ const OrganizationSideBarView = ({
           {text("navigationMembers")}
         </Text>
       </Link>
-      <OrganizationRoleGuard roles={["mod", "owner"]}>
+      {["mod", "owner"].includes(organizationRole) && (
         <Link
           href={paths.organization(organizationId, OrganizationTab.settings)}
           nextProps={{ shallow: true }}
@@ -56,7 +54,7 @@ const OrganizationSideBarView = ({
             {text("navigationSettings")}
           </Text>
         </Link>
-      </OrganizationRoleGuard>
+      )}
 
       <Heading size="sm" pt={4}>
         {text("navigationTemplates")}

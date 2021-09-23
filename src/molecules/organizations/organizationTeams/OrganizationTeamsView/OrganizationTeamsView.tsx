@@ -1,14 +1,15 @@
 import { Button, Text, VStack } from "@chakra-ui/react";
 import React from "react";
 import { Link, Pagination } from "../../../../atoms";
-import { Team } from "../../../../services";
-import { OrganizationRoleGuard, paths, useText } from "../../../../utils";
+import { OrganizationRole, Team } from "../../../../services";
+import { paths, useText } from "../../../../utils";
 import { OrganizationTab } from "../../../../utils/routing/types";
 
 export type OrganizationTeamsViewProps = {
   page: number;
   pageSize: number;
   organizationId: number;
+  organizationRole: OrganizationRole;
   teams?: Team[] | null;
   count?: number | null;
   isLoading: boolean;
@@ -19,6 +20,7 @@ export type OrganizationTeamsViewProps = {
 const OrganizationTeamsView = ({
   isLoading,
   organizationId,
+  organizationRole,
   page,
   pageSize,
   count,
@@ -38,11 +40,11 @@ const OrganizationTeamsView = ({
           <Link href={paths.team(team.organization_id, team.id)}>
             <Text fontSize="sm">{team.name}</Text>
           </Link>
-          <OrganizationRoleGuard roles={["mod", "owner"]}>
+          {["mod", "owner"].includes(organizationRole) && (
             <Button onClick={() => onDeleteTeam(team.id)}>
               {text("teamsDelete")}
             </Button>
-          </OrganizationRoleGuard>
+          )}
         </React.Fragment>
       ))}
       <Pagination

@@ -4,7 +4,10 @@ import {
   useUpdateOrganizationMember,
 } from "../../../../services";
 import { useDeleteOrganizationMember } from "../../../../services/data/organizationMember/deleteOrganizationMember";
-import { useOrganizationContext } from "../../../../utils";
+import {
+  useOrganizationContext,
+  useOrganizationMemberContext,
+} from "../../../../utils";
 import OrganizationMembersView from "../OrganizationMembersView/OrganizationMembersView";
 
 type ViewProps = React.ComponentProps<typeof OrganizationMembersView>;
@@ -18,6 +21,7 @@ export type OrganizationMembersProps = {
 const OrganizationMembers = ({
   View = OrganizationMembersView,
 }: OrganizationMembersProps): React.ReactElement => {
+  const member = useOrganizationMemberContext();
   const organization = useOrganizationContext();
 
   const [page, setPage] = useState(0);
@@ -46,6 +50,7 @@ const OrganizationMembers = ({
       pageSize={PAGE_SIZE}
       onPageChange={setPage}
       members={members}
+      currentMember={member}
       isLoading={isLoading}
       isDeleteSuccess={isDeleteSuccess}
       isUpdateLoading={isUpdateLoading || isDeleteLoading}

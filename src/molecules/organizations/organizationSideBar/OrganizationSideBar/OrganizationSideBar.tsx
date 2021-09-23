@@ -1,5 +1,8 @@
 import React from "react";
-import { useOrganizationContext } from "../../../../utils";
+import {
+  useOrganizationContext,
+  useOrganizationMemberContext,
+} from "../../../../utils";
 import OrganizationSideBarView from "../OrganizationSideBarView/OrganizationSideBarView";
 
 type ViewProps = React.ComponentProps<typeof OrganizationSideBarView>;
@@ -12,8 +15,11 @@ const OrganizationSideBar = ({
   View = OrganizationSideBarView,
 }: OrganizationSideBarProps): React.ReactElement => {
   const organization = useOrganizationContext();
+  const member = useOrganizationMemberContext();
 
-  return <View organizationId={organization.id} />;
+  return (
+    <View organizationId={organization.id} organizationRole={member.role} />
+  );
 };
 
 export default React.memo(OrganizationSideBar);

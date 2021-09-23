@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { useDeleteTeam, useSelectTeams } from "../../../../services";
-import { useOrganizationContext } from "../../../../utils";
+import {
+  useOrganizationContext,
+  useOrganizationMemberContext,
+} from "../../../../utils";
 import OrganizationTeamsView from "../OrganizationTeamsView/OrganizationTeamsView";
 
 type ViewProps = React.ComponentProps<typeof OrganizationTeamsView>;
@@ -15,6 +18,7 @@ const OrganizationTeams = ({
   View = OrganizationTeamsView,
 }: OrganizationTeamsProps): React.ReactElement => {
   const organization = useOrganizationContext();
+  const member = useOrganizationMemberContext();
 
   const [page, setPage] = useState(0);
 
@@ -28,6 +32,7 @@ const OrganizationTeams = ({
 
   return (
     <View
+      organizationRole={member.role}
       organizationId={organization.id}
       teams={teams?.entries}
       count={teams?.count}

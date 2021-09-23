@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { useDeleteTeamMember } from "../../../../services/data/teamMember/deleteTeamMember";
 import { useSelectTeamMembers } from "../../../../services/data/teamMember/selectTeamMembers";
-import { useTeamContext } from "../../../../utils";
+import {
+  useOrganizationMemberContext,
+  useTeamContext,
+} from "../../../../utils";
 import OrganizationTeamView from "../OrganizationTeamView/OrganizationTeamView";
 
 type ViewProps = React.ComponentProps<typeof OrganizationTeamView>;
@@ -16,6 +19,7 @@ const OrganizationTeam = ({
   View = OrganizationTeamView,
 }: OrganizationTeamProps): React.ReactElement => {
   const team = useTeamContext();
+  const member = useOrganizationMemberContext();
 
   const [page, setPage] = useState(0);
 
@@ -35,6 +39,7 @@ const OrganizationTeam = ({
       page={page}
       pageSize={PAGE_SIZE}
       teamMembers={teamMembers?.entries}
+      organizationRole={member.role}
       onDeleteClick={(teamMemberId) =>
         deleteTeamMember({
           id: teamMemberId,

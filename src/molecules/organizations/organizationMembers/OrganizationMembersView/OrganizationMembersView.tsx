@@ -1,13 +1,18 @@
 import { Table, Tbody, Th, Thead, Tr, VStack } from "@chakra-ui/react";
 import React from "react";
 import { Pagination } from "../../../../atoms";
-import { OrganizationRole, SelectMembersResult } from "../../../../services";
-import { OrganizationRoleGuard, useText } from "../../../../utils";
+import {
+  OrganizationMember,
+  OrganizationRole,
+  SelectMembersResult,
+} from "../../../../services";
+import { useText } from "../../../../utils";
 import OrganizationMemberRow from "../OrganizationMemberRow/OrganizationMemberRow";
 
 export type OrganizationMembersViewProps = {
   page: number;
   pageSize: number;
+  currentMember: OrganizationMember;
   members?: SelectMembersResult | null;
   authorId: number;
   isLoading: boolean;
@@ -22,6 +27,7 @@ export type OrganizationMembersViewProps = {
 const OrganizationMembersView = ({
   page,
   pageSize,
+  currentMember,
   members,
   authorId,
   isLoading,
@@ -41,9 +47,9 @@ const OrganizationMembersView = ({
             <Th>{text("organizationMemberHeaderIndex")}</Th>
             <Th>{text("organizationMemberHeaderName")}</Th>
             <Th>{text("organizationMemberHeaderRole")}</Th>
-            <OrganizationRoleGuard roles={["mod", "owner"]}>
+            {["mod", "owner"].includes(currentMember.role) && (
               <Th>{text("organizationMemberHeaderDelete")}</Th>
-            </OrganizationRoleGuard>
+            )}
           </Tr>
         </Thead>
         <Tbody>

@@ -2,8 +2,7 @@ import "@testing-library/jest-dom";
 import "@testing-library/jest-dom/extend-expect";
 import { render } from "@testing-library/react";
 import React from "react";
-import { defaultMember } from "../../../../services";
-import { ContextsMock } from "../../../../tests/wrappers";
+import { defaultMember, defaultOrganizationMember } from "../../../../services";
 import OrganizationMembersView from "./OrganizationMembersView";
 
 type ComponentProps = Parameters<typeof OrganizationMembersView>[0];
@@ -16,6 +15,7 @@ function renderComponent(props: Partial<ComponentProps> = {}) {
     isLoading: false,
     isUpdateLoading: false,
     isDeleteSuccess: false,
+    currentMember: defaultOrganizationMember,
     members: {
       count: 4,
       entries: new Array(10).fill(0).map((_, index) => ({
@@ -27,11 +27,7 @@ function renderComponent(props: Partial<ComponentProps> = {}) {
     onPageChange: () => void 0,
     onUpdateClick: () => void 0,
   };
-  return render(
-    <ContextsMock>
-      <OrganizationMembersView {...defaultProps} {...props} />
-    </ContextsMock>
-  );
+  return render(<OrganizationMembersView {...defaultProps} {...props} />);
 }
 
 describe("<OrganizationMembersView />", () => {

@@ -1,12 +1,13 @@
 import { Button, Td, Tr } from "@chakra-ui/react";
 import React from "react";
-import { SelectTeamMemberRow } from "../../../../services";
-import { OrganizationRoleGuard, useText } from "../../../../utils";
+import { OrganizationRole, SelectTeamMemberRow } from "../../../../services";
+import { useText } from "../../../../utils";
 
 export type TeamMemberRowProps = {
   index: number;
   isLoading?: boolean;
   teamMember: SelectTeamMemberRow;
+  organizationRole: OrganizationRole;
   onDeleteClick: () => void;
 };
 
@@ -15,6 +16,7 @@ const TeamMemberRow = ({
   onDeleteClick,
   isLoading,
   teamMember,
+  organizationRole,
 }: TeamMemberRowProps): React.ReactElement => {
   const text = useText();
 
@@ -22,13 +24,13 @@ const TeamMemberRow = ({
     <Tr>
       <Td>{index + 1}</Td>
       <Td>{teamMember.profile_id}</Td>
-      <OrganizationRoleGuard roles={["mod", "owner"]}>
+      {["mod", "owner"].includes(organizationRole) && (
         <Td>
           <Button isLoading={isLoading} onClick={onDeleteClick}>
             {text("deleteOrganizationMember")}
           </Button>
         </Td>
-      </OrganizationRoleGuard>
+      )}
     </Tr>
   );
 };

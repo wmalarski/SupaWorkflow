@@ -1,8 +1,8 @@
 import { Table, Tbody, Th, Thead, Tr, VStack } from "@chakra-ui/react";
 import React from "react";
 import { Pagination } from "../../../../atoms";
-import { SelectTeamMemberRow } from "../../../../services";
-import { OrganizationRoleGuard, useText } from "../../../../utils";
+import { OrganizationRole, SelectTeamMemberRow } from "../../../../services";
+import { useText } from "../../../../utils";
 import TeamMemberRow from "../TeamMemberRow/TeamMemberRow";
 
 export type OrganizationTeamViewProps = {
@@ -11,6 +11,7 @@ export type OrganizationTeamViewProps = {
   count?: number;
   teamMembers?: SelectTeamMemberRow[] | null;
   isLoading?: boolean;
+  organizationRole: OrganizationRole;
   onPageChange: (page: number) => void;
   onDeleteClick: (teamMemberId: number) => void;
 };
@@ -21,6 +22,7 @@ const OrganizationTeamView = ({
   count,
   teamMembers,
   isLoading,
+  organizationRole,
   onDeleteClick,
   onPageChange,
 }: OrganizationTeamViewProps): React.ReactElement => {
@@ -33,9 +35,9 @@ const OrganizationTeamView = ({
           <Tr>
             <Th>{text("organizationMemberHeaderIndex")}</Th>
             <Th>{text("organizationMemberHeaderName")}</Th>
-            <OrganizationRoleGuard roles={["mod", "owner"]}>
+            {["mod", "owner"].includes(organizationRole) && (
               <Th>{text("organizationMemberHeaderDelete")}</Th>
-            </OrganizationRoleGuard>
+            )}
           </Tr>
         </Thead>
         <Tbody>
@@ -43,6 +45,7 @@ const OrganizationTeamView = ({
             <TeamMemberRow
               key={teamMember.id}
               index={index}
+              organizationRole={organizationRole}
               teamMember={teamMember}
               onDeleteClick={() => onDeleteClick(teamMember.id)}
             />

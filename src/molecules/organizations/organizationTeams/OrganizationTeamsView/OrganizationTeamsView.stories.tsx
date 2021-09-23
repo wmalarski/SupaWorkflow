@@ -16,6 +16,7 @@ export const Playground = Template.bind({});
 Playground.args = {
   isLoading: false,
   organizationId: 1,
+  organizationRole: "mod",
   onPageChange: () => void 0,
   onDeleteTeam: () => void 0,
   page: 0,
