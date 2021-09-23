@@ -1,6 +1,10 @@
+import {
+  selectClient,
+  selectMessages,
+  supabase,
+} from "@supa-workflow/services";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { PullResponse } from "replicache";
-import { selectClient, selectMessages, supabase } from "../../services";
 import { validateNumberParam } from "../../utils";
 import resolvePull from "../../utils/rep/resolvePull";
 

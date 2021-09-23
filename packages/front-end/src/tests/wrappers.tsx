@@ -1,5 +1,3 @@
-import React from "react";
-import { QueryClient, QueryClientProvider } from "react-query";
 import {
   defaultOrganization,
   defaultOrganizationMember,
@@ -13,12 +11,14 @@ import {
   Team,
   Template,
   Workflow,
-} from "../services";
-import OrganizationContext from "../utils/contexts/OrganizationContext";
-import ProfileContext from "../utils/contexts/ProfileContext";
-import TeamContext from "../utils/contexts/TeamContext";
-import TemplateContext from "../utils/contexts/TemplateContext";
-import WorkflowContext from "../utils/contexts/WorkflowContext";
+} from "@supa-workflow/services";
+import React from "react";
+import { QueryClient, QueryClientProvider } from "react-query";
+import OrganizationContext from "../../../services/src/contexts/OrganizationContext";
+import ProfileContext from "../../../services/src/contexts/ProfileContext";
+import TeamContext from "../../../services/src/contexts/TeamContext";
+import TemplateContext from "../../../services/src/contexts/TemplateContext";
+import WorkflowContext from "../../../services/src/contexts/WorkflowContext";
 
 export type ContextsMockProps = {
   children: React.ReactNode;

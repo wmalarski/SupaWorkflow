@@ -1,5 +1,8 @@
+import {
+  useOrganizationContext,
+  useTemplateContext,
+} from "@supa-workflow/services";
 import React from "react";
-import { useOrganizationContext, useTemplateContext } from "../../../../utils";
 import TemplateSideBarView from "../TemplateSideBarView/TemplateSideBarView";
 
 type ViewProps = React.ComponentProps<typeof TemplateSideBarView>;

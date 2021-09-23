@@ -1,6 +1,6 @@
 import { Heading, Text, VStack } from "@chakra-ui/react";
+import { MessageTemplateNodeBaseState } from "@supa-workflow/services";
 import React from "react";
-import { MessageTemplateNodeBaseState } from "../../../../services/nodes";
 
 export type WorkflowHeaderFormProps = {
   template: MessageTemplateNodeBaseState;

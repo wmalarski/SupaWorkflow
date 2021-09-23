@@ -1,4 +1,4 @@
-import { UpsertMessageArgs } from "../../services";
+import { UpsertMessageArgs } from "@supa-workflow/services";
 import { Mutation } from "./types";
 
 const resolvePush = (mutation: Mutation): UpsertMessageArgs => {

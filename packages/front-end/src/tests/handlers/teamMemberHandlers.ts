@@ -1,12 +1,12 @@
-import { PostgrestError } from "@supabase/supabase-js";
-import { DefaultRequestBody, rest } from "msw";
 import {
   DeleteTeamMemberArgs,
   InsertTeamMemberArgs,
   SUPABASE_ENDPOINT,
   TABLES,
   TeamMember,
-} from "../../services";
+} from "@supa-workflow/services";
+import { PostgrestError } from "@supabase/supabase-js";
+import { DefaultRequestBody, rest } from "msw";
 import { dbIndexCounter, mockDb } from "../mockDb";
 
 export const teamMemberHandlers = [

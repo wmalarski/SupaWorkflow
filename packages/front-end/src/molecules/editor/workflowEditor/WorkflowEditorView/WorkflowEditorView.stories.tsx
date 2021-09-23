@@ -1,7 +1,11 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
+import {
+  defaultTeams,
+  Message,
+  MessageKind,
+  MessageNodeType,
+} from "@supa-workflow/services";
 import React, { useCallback, useEffect, useState } from "react";
-import { defaultTeams, Message } from "../../../../services";
-import { MessageKind, MessageNodeType } from "../../../../services/nodes";
 import WorkflowEditorView from "./WorkflowEditorView";
 
 const baseMessage = {

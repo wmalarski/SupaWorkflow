@@ -1,9 +1,10 @@
-import React, { useState } from "react";
-import { useDeleteTeam, useSelectTeams } from "../../../../services";
 import {
+  useDeleteTeam,
   useOrganizationContext,
   useOrganizationMemberContext,
-} from "../../../../utils";
+  useSelectTeams,
+} from "@supa-workflow/services";
+import React, { useState } from "react";
 import OrganizationTeamsView from "../OrganizationTeamsView/OrganizationTeamsView";
 
 type ViewProps = React.ComponentProps<typeof OrganizationTeamsView>;

@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { defaultUser } from "@supa-workflow/services";
 import React from "react";
-import { defaultUser } from "../../../../services";
 import SignInView from "./SignInView";
 
 export default {

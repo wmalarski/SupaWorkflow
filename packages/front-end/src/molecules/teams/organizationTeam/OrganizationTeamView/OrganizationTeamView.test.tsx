@@ -1,8 +1,8 @@
+import { defaultTeamMembers } from "@supa-workflow/services";
 import "@testing-library/jest-dom";
 import "@testing-library/jest-dom/extend-expect";
 import { render } from "@testing-library/react";
 import React from "react";
-import { defaultTeamMembers } from "../../../../services";
 import OrganizationTeamView from "./OrganizationTeamView";
 
 type ComponentProps = Parameters<typeof OrganizationTeamView>[0];

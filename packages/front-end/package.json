@@ -1,7 +1,10 @@
 {
-  "name": "next-front-end",
+  "name": "@supa-workflow/next-front-end",
   "version": "0.1.0",
   "private": true,
+  "source": "src/index.ts",
+  "main": "dist/ui-lib.js",
+  "module": "dist/ui-lib.module.js",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -10,6 +13,12 @@
     "test": "jest  --maxWorkers=2",
     "test:watch": "jest --watch --maxWorkers=2",
     "test:coverage": "jest --coverage --maxWorkers=2"
+  },
+  "dependencies": {
+    "@supa-workflow/services": "1.0.0"
+  },
+  "devDependencies": {
+    "next-transpile-modules": "8.0.0"
   },
   "jest": {
     "globalSetup": "<rootDir>/src/tests/test.env.ts",

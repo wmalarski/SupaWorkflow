@@ -1,8 +1,8 @@
 import { AddIcon } from "@chakra-ui/icons";
 import { Heading, HStack, Text, VStack } from "@chakra-ui/react";
+import { OrganizationRole } from "@supa-workflow/services";
 import React from "react";
 import { Link } from "../../../../atoms";
-import { OrganizationRole } from "../../../../services";
 import { OrganizationTab, paths, useText } from "../../../../utils";
 
 export type OrganizationSideBarViewProps = {

@@ -1,5 +1,5 @@
+import { MessageKind, MessageNodeType } from "@supa-workflow/services";
 import { nanoid } from "nanoid";
-import { MessageKind, MessageNodeType } from "../../../../services/nodes";
 import { MutationArgs } from "../../../../utils/rep/types";
 
 export type GetNewNodeMessageOptions = {

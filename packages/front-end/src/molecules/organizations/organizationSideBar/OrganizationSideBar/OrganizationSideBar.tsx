@@ -1,8 +1,8 @@
-import React from "react";
 import {
   useOrganizationContext,
   useOrganizationMemberContext,
-} from "../../../../utils";
+} from "@supa-workflow/services";
+import React from "react";
 import OrganizationSideBarView from "../OrganizationSideBarView/OrganizationSideBarView";
 
 type ViewProps = React.ComponentProps<typeof OrganizationSideBarView>;

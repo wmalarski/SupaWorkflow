@@ -1,6 +1,5 @@
+import { useProfileContext, useUpdateProfile } from "@supa-workflow/services";
 import React from "react";
-import { useUpdateProfile } from "../../../../services/data/profile/updateProfile";
-import { useProfileContext } from "../../../../utils";
 import ProfileSettingsView from "../ProfileSettingsView/ProfileSettingsView";
 
 type ViewProps = React.ComponentProps<typeof ProfileSettingsView>;

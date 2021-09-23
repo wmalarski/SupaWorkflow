@@ -1,6 +1,9 @@
+import {
+  useOrganizationContext,
+  useSelectWorkflows,
+  useTemplateContext,
+} from "@supa-workflow/services";
 import React, { useState } from "react";
-import { useSelectWorkflows } from "../../../../services";
-import { useOrganizationContext, useTemplateContext } from "../../../../utils";
 import TemplateDetailsView from "../TemplateDetailsView/TemplateDetailsView";
 
 type ViewProps = React.ComponentProps<typeof TemplateDetailsView>;

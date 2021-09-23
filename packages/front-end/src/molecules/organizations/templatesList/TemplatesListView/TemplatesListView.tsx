@@ -1,7 +1,7 @@
 import { Text, VStack } from "@chakra-ui/react";
+import { Template } from "@supa-workflow/services";
 import React from "react";
 import { Link, Pagination } from "../../../../atoms";
-import { Template } from "../../../../services";
 import { paths, useText } from "../../../../utils";
 import { OrganizationTab, TemplateTab } from "../../../../utils/routing/types";
 

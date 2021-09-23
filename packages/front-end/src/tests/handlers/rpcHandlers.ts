@@ -1,9 +1,9 @@
-import { PostgrestError } from "@supabase/supabase-js";
-import { rest } from "msw";
 import {
   InviteOrganizationMemberArgs,
   SUPABASE_ENDPOINT,
-} from "../../services";
+} from "@supa-workflow/services";
+import { PostgrestError } from "@supabase/supabase-js";
+import { rest } from "msw";
 import { dbIndexCounter, mockDb } from "../mockDb";
 import { addProfileScenario } from "../mockScenarios";
 

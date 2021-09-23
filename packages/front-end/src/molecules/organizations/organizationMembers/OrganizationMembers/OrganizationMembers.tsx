@@ -1,13 +1,11 @@
-import React, { useState } from "react";
 import {
-  useSelectMembers,
-  useUpdateOrganizationMember,
-} from "../../../../services";
-import { useDeleteOrganizationMember } from "../../../../services/data/organizationMember/deleteOrganizationMember";
-import {
+  useDeleteOrganizationMember,
   useOrganizationContext,
   useOrganizationMemberContext,
-} from "../../../../utils";
+  useSelectMembers,
+  useUpdateOrganizationMember,
+} from "@supa-workflow/services";
+import React, { useState } from "react";
 import OrganizationMembersView from "../OrganizationMembersView/OrganizationMembersView";
 
 type ViewProps = React.ComponentProps<typeof OrganizationMembersView>;

@@ -1,5 +1,3 @@
-import { PostgrestError } from "@supabase/supabase-js";
-import { DefaultRequestBody, rest } from "msw";
 import {
   DeleteOrganizationArgs,
   InsertOrganizationArgs,
@@ -7,7 +5,9 @@ import {
   SUPABASE_ENDPOINT,
   TABLES,
   UpdateOrganizationArgs,
-} from "../../services";
+} from "@supa-workflow/services";
+import { PostgrestError } from "@supabase/supabase-js";
+import { DefaultRequestBody, rest } from "msw";
 import { dbIndexCounter, mockDb } from "../mockDb";
 
 export const organizationHandlers = [

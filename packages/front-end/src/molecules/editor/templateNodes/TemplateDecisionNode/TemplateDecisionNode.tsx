@@ -1,8 +1,8 @@
 import { Heading } from "@chakra-ui/layout";
 import { StackDivider, VStack } from "@chakra-ui/react";
+import { MessageDecisionTemplateNodeState } from "@supa-workflow/services";
 import React, { useCallback, useMemo } from "react";
 import { Position } from "react-flow-renderer";
-import { MessageDecisionTemplateNodeState } from "../../../../services/nodes";
 import { useText } from "../../../../utils";
 import NodeBoxForm from "../../nodeForms/NodeBoxForm/NodeBoxForm";
 import { TemplateNodeProps } from "../../templateEditor/TemplateEditorView/TemplateEditorView.types";

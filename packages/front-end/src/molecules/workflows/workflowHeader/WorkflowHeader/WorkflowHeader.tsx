@@ -1,10 +1,9 @@
-import React from "react";
 import {
   useOrganizationContext,
-  useTabParam,
   useWorkflowContext,
-  WorkflowTab,
-} from "../../../../utils";
+} from "@supa-workflow/services";
+import React from "react";
+import { useTabParam, WorkflowTab } from "../../../../utils";
 import WorkflowHeaderView from "../WorkflowHeaderView/WorkflowHeaderView";
 
 type ViewProps = React.ComponentProps<typeof WorkflowHeaderView>;

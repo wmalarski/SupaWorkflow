@@ -1,7 +1,7 @@
 import { Heading, LinkBox, Text } from "@chakra-ui/react";
+import { Organization } from "@supa-workflow/services";
 import React from "react";
 import { LinkOverlay } from "../../../../atoms";
-import { Organization } from "../../../../services";
 import { paths } from "../../../../utils";
 
 export type OrganizationBoxProps = {

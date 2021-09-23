@@ -1,7 +1,10 @@
+import {
+  useInsertTeamMember,
+  useOrganizationContext,
+  useSelectMembers,
+  useTeamContext,
+} from "@supa-workflow/services";
 import React, { useState } from "react";
-import { useSelectMembers } from "../../../../services";
-import { useInsertTeamMember } from "../../../../services/data/teamMember/insertTeamMember";
-import { useOrganizationContext, useTeamContext } from "../../../../utils";
 import NewTeamMemberView from "../NewTeamMemberView/NewTeamMemberView";
 
 type ViewProps = React.ComponentProps<typeof NewTeamMemberView>;

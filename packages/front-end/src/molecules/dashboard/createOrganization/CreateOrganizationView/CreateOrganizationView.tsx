@@ -8,10 +8,10 @@ import {
   Textarea,
   VStack,
 } from "@chakra-ui/react";
+import { Organization } from "@supa-workflow/services";
 import { PostgrestError } from "@supabase/supabase-js";
 import React from "react";
 import { useForm } from "react-hook-form";
-import { Organization } from "../../../../services";
 import { useText, useTextValidator } from "../../../../utils";
 
 export type CreateOrganizationViewData = {

@@ -1,8 +1,8 @@
 import { Button, VStack } from "@chakra-ui/react";
+import { Member, TeamRole } from "@supa-workflow/services";
 import { PostgrestError } from "@supabase/supabase-js";
 import React, { useState } from "react";
 import { Autocomplete } from "../../../../atoms";
-import { Member, TeamRole } from "../../../../services";
 import { useText } from "../../../../utils";
 
 export type NewTeamMemberViewData = {

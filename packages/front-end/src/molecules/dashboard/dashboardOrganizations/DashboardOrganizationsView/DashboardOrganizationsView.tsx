@@ -1,6 +1,6 @@
 import { Heading, SimpleGrid, VStack } from "@chakra-ui/react";
+import { Organization } from "@supa-workflow/services";
 import React from "react";
-import { Organization } from "../../../../services";
 import { useText } from "../../../../utils";
 import OrganizationBox from "../OrganizationBox/OrganizationBox";
 

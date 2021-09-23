@@ -1,7 +1,7 @@
 import { Table, Tbody, Th, Thead, Tr, VStack } from "@chakra-ui/react";
+import { OrganizationRole, SelectTeamMemberRow } from "@supa-workflow/services";
 import React from "react";
 import { Pagination } from "../../../../atoms";
-import { OrganizationRole, SelectTeamMemberRow } from "../../../../services";
 import { useText } from "../../../../utils";
 import TeamMemberRow from "../TeamMemberRow/TeamMemberRow";
 

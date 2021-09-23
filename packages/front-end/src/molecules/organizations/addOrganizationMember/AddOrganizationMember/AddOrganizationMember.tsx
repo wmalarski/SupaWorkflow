@@ -1,6 +1,8 @@
+import {
+  useInviteOrganizationMember,
+  useOrganizationContext,
+} from "@supa-workflow/services";
 import React from "react";
-import { useInviteOrganizationMember } from "../../../../services/data/organizationMember/inviteOrganizationMember";
-import { useOrganizationContext } from "../../../../utils";
 import AddOrganizationMemberView from "../AddOrganizationMemberView/AddOrganizationMemberView";
 
 type ViewProps = React.ComponentProps<typeof AddOrganizationMemberView>;

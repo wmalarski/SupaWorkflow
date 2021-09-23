@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "bootstrap": "yarn install; lerna bootstrap;",
-    "run:next": "lerna run --scope next-front-end --stream dev",
-    "start": "run-p --print-label package:*",
+    "dev": "lerna run --parallel dev",
+    "start": "lerna run start --parallel",
     "build": "lerna run --parallel build",
     "test": "lerna run test --stream",
     "test:watch": "lerna run test:watch --stream",
@@ -16,6 +16,9 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
+  "workspaces": [
+    "packages/*"
+  ],
   "dependencies": {
     "@chakra-ui/icons": "^1.0.15",
     "@chakra-ui/react": "^1.6.7",

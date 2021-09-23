@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { defaultOrganization } from "@supa-workflow/services";
 import React from "react";
-import { defaultOrganization } from "../../../../services";
 import OrganizationSettingsView from "./OrganizationSettingsView";
 
 export default {

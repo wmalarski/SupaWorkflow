@@ -1,7 +1,11 @@
+import {
+  ProfileContextProvider,
+  useUserContext,
+} from "@supa-workflow/services";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import { DashboardSwitch, LoadingPane } from "../../organisms";
-import { paths, ProfileContextProvider, useUserContext } from "../../utils";
+import { paths } from "../../utils";
 
 const DashboardPage = (): React.ReactElement => {
   const router = useRouter();

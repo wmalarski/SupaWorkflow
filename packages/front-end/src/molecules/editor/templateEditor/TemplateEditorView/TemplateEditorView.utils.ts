@@ -1,3 +1,10 @@
+import {
+  Message,
+  MessageKind,
+  MessageNodeType,
+  MessageTemplateEdgeState,
+  Team,
+} from "@supa-workflow/services";
 import { nanoid } from "nanoid";
 import {
   ArrowHeadType,
@@ -6,12 +13,6 @@ import {
   Elements,
   FlowElement,
 } from "react-flow-renderer";
-import { Message, Team } from "../../../../services";
-import {
-  MessageKind,
-  MessageNodeType,
-  MessageTemplateEdgeState,
-} from "../../../../services/nodes";
 import { MutationArgs } from "../../../../utils/rep/types";
 import { TemplateData } from "./TemplateEditorView.types";
 

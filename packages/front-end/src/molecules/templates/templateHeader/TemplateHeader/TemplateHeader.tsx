@@ -1,10 +1,9 @@
-import React from "react";
 import {
-  TemplateTab,
   useOrganizationContext,
-  useTabParam,
   useTemplateContext,
-} from "../../../../utils";
+} from "@supa-workflow/services";
+import React from "react";
+import { TemplateTab, useTabParam } from "../../../../utils";
 import TemplateHeaderView from "../TemplateHeaderView/TemplateHeaderView";
 
 type ViewProps = React.ComponentProps<typeof TemplateHeaderView>;

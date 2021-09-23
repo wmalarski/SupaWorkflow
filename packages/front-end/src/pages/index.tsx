@@ -1,3 +1,4 @@
+import { useUserContext } from "@supa-workflow/services";
 import type { NextPage } from "next";
 import React from "react";
 import {
@@ -7,7 +8,6 @@ import {
   ProfileHeader,
 } from "../molecules";
 import { Header, Page } from "../templates";
-import { useUserContext } from "../utils";
 
 const IndexPage: NextPage = () => (
   <Page

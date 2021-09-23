@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { defaultTeamMembers } from "@supa-workflow/services";
 import React from "react";
-import { defaultTeamMembers } from "../../../../services";
 import OrganizationTeamView from "./OrganizationTeamView";
 
 export default {

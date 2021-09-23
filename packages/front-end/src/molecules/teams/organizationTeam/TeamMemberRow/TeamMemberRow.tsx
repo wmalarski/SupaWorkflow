@@ -1,6 +1,6 @@
 import { Button, Td, Tr } from "@chakra-ui/react";
+import { OrganizationRole, SelectTeamMemberRow } from "@supa-workflow/services";
 import React from "react";
-import { OrganizationRole, SelectTeamMemberRow } from "../../../../services";
 import { useText } from "../../../../utils";
 
 export type TeamMemberRowProps = {

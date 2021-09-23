@@ -1,6 +1,6 @@
 import { Heading, Select, Text, VStack } from "@chakra-ui/react";
+import { Team } from "@supa-workflow/services";
 import React from "react";
-import { Team } from "../../../../services";
 import { useText } from "../../../../utils";
 
 export type TemplateTeamsFormProps = {

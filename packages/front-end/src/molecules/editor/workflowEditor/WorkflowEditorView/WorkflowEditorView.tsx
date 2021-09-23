@@ -1,3 +1,4 @@
+import { Message, MessageNodeType, Team } from "@supa-workflow/services";
 import React, { useMemo } from "react";
 import ReactFlow, {
   Background,
@@ -5,8 +6,6 @@ import ReactFlow, {
   Controls,
   Elements,
 } from "react-flow-renderer";
-import { Message, Team } from "../../../../services";
-import { MessageNodeType } from "../../../../services/nodes";
 import { MutationArgs } from "../../../../utils/rep/types";
 import WorkflowChecklistNode from "../../workflowNodes/WorkflowChecklistNode/WorkflowChecklistNode";
 import WorkflowDecisionNode from "../../workflowNodes/WorkflowDecisionNode/WorkflowDecisionNode";

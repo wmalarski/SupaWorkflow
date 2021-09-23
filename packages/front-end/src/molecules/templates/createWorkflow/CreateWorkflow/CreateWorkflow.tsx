@@ -1,11 +1,11 @@
-import { useRouter } from "next/router";
-import React from "react";
-import { useInsertWorkflow } from "../../../../services/data/workflow/insertWorkflow";
 import {
-  paths,
+  useInsertWorkflow,
   useOrganizationContext,
   useTemplateContext,
-} from "../../../../utils";
+} from "@supa-workflow/services";
+import { useRouter } from "next/router";
+import React from "react";
+import { paths } from "../../../../utils";
 import CreateWorkflowView from "../CreateWorkflowView/CreateWorkflowView";
 
 type ViewProps = React.ComponentProps<typeof CreateWorkflowView>;

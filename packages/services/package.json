@@ -1,0 +1,9 @@
+{
+  "name": "@supa-workflow/services",
+  "private": true,
+  "version": "1.0.0",
+  "source": "./src/index.ts",
+  "main": "dist/core-lib.js",
+  "module": "dist/core-lib.module.js",
+  "license": "MIT"
+}

@@ -1,7 +1,10 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
+import {
+  defaultTeams,
+  MessageKind,
+  MessageNodeType,
+} from "@supa-workflow/services";
 import React from "react";
-import { defaultTeams } from "../../../../services";
-import { MessageKind, MessageNodeType } from "../../../../services/nodes";
 import TemplateChecklistNode from "./TemplateChecklistNode";
 
 export default {

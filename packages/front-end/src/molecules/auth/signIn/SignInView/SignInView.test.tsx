@@ -1,8 +1,8 @@
+import { defaultUser } from "@supa-workflow/services";
 import "@testing-library/jest-dom";
 import "@testing-library/jest-dom/extend-expect";
 import { render } from "@testing-library/react";
 import React from "react";
-import { defaultUser } from "../../../../services";
 import SignInView from "./SignInView";
 
 type ComponentProps = React.ComponentProps<typeof SignInView>;

@@ -1,8 +1,8 @@
 import { AddIcon, SettingsIcon } from "@chakra-ui/icons";
 import { Heading, HStack, Text, VStack } from "@chakra-ui/react";
+import { Organization } from "@supa-workflow/services";
 import React from "react";
 import { Link } from "../../../../atoms";
-import { Organization } from "../../../../services";
 import { paths, useText } from "../../../../utils";
 import { DashboardTab } from "../../../../utils/routing/types";
 

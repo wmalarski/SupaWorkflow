@@ -1,11 +1,11 @@
-import type { NextApiRequest, NextApiResponse } from "next";
 import {
   selectOrInsertClient,
   supabase,
   updateClient,
   UpsertMessageArgs,
   upsertMessages,
-} from "../../services";
+} from "@supa-workflow/services";
+import type { NextApiRequest, NextApiResponse } from "next";
 import resolvePush from "../../utils/rep/resolvePush";
 import { Mutation, MutationPush } from "../../utils/rep/types";
 

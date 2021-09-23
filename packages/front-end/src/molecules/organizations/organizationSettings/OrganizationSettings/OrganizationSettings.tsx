@@ -1,10 +1,11 @@
-import { useRouter } from "next/router";
-import React from "react";
 import {
   useDeleteOrganization,
+  useOrganizationContext,
   useUpdateOrganization,
-} from "../../../../services";
-import { paths, useOrganizationContext } from "../../../../utils";
+} from "@supa-workflow/services";
+import { useRouter } from "next/router";
+import React from "react";
+import { paths } from "../../../../utils";
 import OrganizationSettingsView from "../OrganizationSettingsView/OrganizationSettingsView";
 
 type ViewProps = React.ComponentProps<typeof OrganizationSettingsView>;

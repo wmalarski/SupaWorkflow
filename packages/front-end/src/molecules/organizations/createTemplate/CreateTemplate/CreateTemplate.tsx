@@ -1,7 +1,10 @@
+import {
+  useInsertTemplate,
+  useOrganizationContext,
+} from "@supa-workflow/services";
 import { useRouter } from "next/router";
 import React from "react";
-import { useInsertTemplate } from "../../../../services";
-import { paths, useOrganizationContext } from "../../../../utils";
+import { paths } from "../../../../utils";
 import CreateTemplateView from "../CreateTemplateView/CreateTemplateView";
 
 type ViewProps = React.ComponentProps<typeof CreateTemplateView>;

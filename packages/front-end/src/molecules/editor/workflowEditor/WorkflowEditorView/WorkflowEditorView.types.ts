@@ -1,8 +1,8 @@
-import { Team } from "../../../../services";
 import {
   MessageWorkflowEdgeState,
   MessageWorkflowNodeState,
-} from "../../../../services/nodes";
+  Team,
+} from "@supa-workflow/services";
 import { MutationArgs } from "../../../../utils/rep/types";
 
 export type WorkflowNodeData<

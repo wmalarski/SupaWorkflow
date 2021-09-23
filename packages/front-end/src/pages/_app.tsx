@@ -1,10 +1,9 @@
 import { ChakraProvider } from "@chakra-ui/react";
+import { queryClient, UserContextProvider } from "@supa-workflow/services";
 import type { AppProps } from "next/app";
 import React from "react";
 import { QueryClientProvider } from "react-query";
-import { queryClient } from "../services";
 import theme from "../styles/theme";
-import { UserContextProvider } from "../utils";
 
 const MyApp = ({ Component, pageProps }: AppProps): React.ReactElement => (
   <ChakraProvider theme={theme}>

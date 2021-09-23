@@ -1,6 +1,10 @@
+import {
+  AUTH_ENDPOINT,
+  defaultUser,
+  ResponseError,
+} from "@supa-workflow/services";
 import { Session, UserCredentials } from "@supabase/supabase-js";
 import { rest } from "msw";
-import { AUTH_ENDPOINT, defaultUser, ResponseError } from "../../services";
 import { dbIndexCounter, mockDb } from "../mockDb";
 
 export const authHandlers = [

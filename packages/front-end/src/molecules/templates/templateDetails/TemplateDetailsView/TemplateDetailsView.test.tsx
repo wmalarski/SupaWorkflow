@@ -1,8 +1,8 @@
+import { defaultWorkflows } from "@supa-workflow/services";
 import "@testing-library/jest-dom";
 import "@testing-library/jest-dom/extend-expect";
 import { render } from "@testing-library/react";
 import React from "react";
-import { defaultWorkflows } from "../../../../services";
 import TemplateDetailsView from "./TemplateDetailsView";
 
 type ComponentProps = Parameters<typeof TemplateDetailsView>[0];

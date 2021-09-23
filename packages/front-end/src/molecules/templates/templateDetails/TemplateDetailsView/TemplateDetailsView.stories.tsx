@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { defaultWorkflows } from "@supa-workflow/services";
 import React from "react";
-import { defaultWorkflows } from "../../../../services";
 import TemplateDetailsView from "./TemplateDetailsView";
 
 export default {

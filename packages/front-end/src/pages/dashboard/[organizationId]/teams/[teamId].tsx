@@ -1,13 +1,12 @@
+import {
+  OrganizationContextProvider,
+  TeamContextProvider,
+  useUserContext,
+} from "@supa-workflow/services";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import { LoadingPane, TeamSwitch } from "../../../../organisms";
-import {
-  OrganizationContextProvider,
-  paths,
-  TeamContextProvider,
-  useNumberParam,
-  useUserContext,
-} from "../../../../utils";
+import { paths, useNumberParam } from "../../../../utils";
 
 const TeamPage = (): React.ReactElement => {
   const router = useRouter();

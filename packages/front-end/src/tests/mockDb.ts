@@ -1,6 +1,10 @@
 import { factory, primaryKey } from "@mswjs/data";
-import { defaultMessage, OrganizationRole, TeamRole } from "../services";
-import { MessageState } from "../services/nodes";
+import {
+  defaultMessage,
+  MessageState,
+  OrganizationRole,
+  TeamRole,
+} from "@supa-workflow/services";
 
 export const dbIndexCounter = (() => {
   let index = 1;

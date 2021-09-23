@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { defaultProfile } from "@supa-workflow/services";
 import React from "react";
-import { defaultProfile } from "../../../../services";
 import ProfileSettingsView from "./ProfileSettingsView";
 
 export default {

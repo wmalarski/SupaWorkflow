@@ -1,5 +1,8 @@
+import {
+  useOrganizationContext,
+  useWorkflowContext,
+} from "@supa-workflow/services";
 import React from "react";
-import { useOrganizationContext, useWorkflowContext } from "../../../../utils";
 import WorkflowSideBarView from "../WorkflowSideBarView/WorkflowSideBarView";
 
 type ViewProps = React.ComponentProps<typeof WorkflowSideBarView>;

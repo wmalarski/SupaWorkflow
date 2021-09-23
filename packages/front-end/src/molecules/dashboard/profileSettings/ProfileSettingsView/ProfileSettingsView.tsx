@@ -7,10 +7,10 @@ import {
   Input,
   VStack,
 } from "@chakra-ui/react";
+import { Profile } from "@supa-workflow/services";
 import { PostgrestError } from "@supabase/supabase-js";
 import React from "react";
 import { useForm } from "react-hook-form";
-import { Profile } from "../../../../services";
 import { useText, useTextValidator } from "../../../../utils";
 
 export type ProfileSettingsViewData = {

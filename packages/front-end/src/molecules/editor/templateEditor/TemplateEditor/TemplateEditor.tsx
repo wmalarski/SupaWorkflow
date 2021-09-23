@@ -1,6 +1,9 @@
+import {
+  useOrganizationContext,
+  useSelectTeams,
+  useTemplateContext,
+} from "@supa-workflow/services";
 import React from "react";
-import { useSelectTeams } from "../../../../services";
-import { useOrganizationContext, useTemplateContext } from "../../../../utils";
 import { useRepContext } from "../../../../utils/rep/RepContext";
 import TemplateEditorView from "../TemplateEditorView/TemplateEditorView";
 

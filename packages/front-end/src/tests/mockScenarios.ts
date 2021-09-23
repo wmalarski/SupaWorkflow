@@ -1,4 +1,3 @@
-import { User } from "@supabase/supabase-js";
 import {
   defaultMember,
   defaultOrganization,
@@ -13,7 +12,8 @@ import {
   Team,
   Template,
   Workflow,
-} from "../services";
+} from "@supa-workflow/services";
+import { User } from "@supabase/supabase-js";
 import { dbIndexCounter, mockDb } from "./mockDb";
 
 export const addProfileScenario = (

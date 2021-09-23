@@ -1,5 +1,5 @@
+import { Message } from "@supa-workflow/services";
 import { WriteTransaction } from "replicache";
-import { Message } from "../../services";
 import repKeys from "./repKeys";
 
 const mutators = {

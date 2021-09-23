@@ -1,5 +1,5 @@
+import { Member, SUPABASE_ENDPOINT, TABLES } from "@supa-workflow/services";
 import { DefaultRequestBody, rest } from "msw";
-import { Member, SUPABASE_ENDPOINT, TABLES } from "../../services";
 import { mockDb } from "../mockDb";
 
 export const memberHandlers = [

@@ -1,6 +1,6 @@
+import { useSignOut } from "@supa-workflow/services";
 import { useRouter } from "next/router";
 import React from "react";
-import { useSignOut } from "../../../../services";
 import { paths } from "../../../../utils";
 import ProfileHeaderView from "../ProfileHeaderView/ProfileHeaderView";
 

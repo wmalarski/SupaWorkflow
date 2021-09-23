@@ -1,11 +1,11 @@
 import { Table, Tbody, Th, Thead, Tr, VStack } from "@chakra-ui/react";
-import React from "react";
-import { Pagination } from "../../../../atoms";
 import {
   OrganizationMember,
   OrganizationRole,
   SelectMembersResult,
-} from "../../../../services";
+} from "@supa-workflow/services";
+import React from "react";
+import { Pagination } from "../../../../atoms";
 import { useText } from "../../../../utils";
 import OrganizationMemberRow from "../OrganizationMemberRow/OrganizationMemberRow";
 

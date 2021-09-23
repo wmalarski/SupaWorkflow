@@ -8,10 +8,10 @@ import {
   Select,
   VStack,
 } from "@chakra-ui/react";
+import { OrganizationRole } from "@supa-workflow/services";
 import { PostgrestError } from "@supabase/supabase-js";
 import React from "react";
 import { useForm } from "react-hook-form";
-import { OrganizationRole } from "../../../../services";
 import { useEmailValidator, useText } from "../../../../utils";
 
 export type AddOrganizationMemberViewData = {

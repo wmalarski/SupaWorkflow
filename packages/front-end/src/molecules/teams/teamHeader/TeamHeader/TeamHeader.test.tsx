@@ -1,8 +1,8 @@
+import { defaultOrganization, defaultTeam } from "@supa-workflow/services";
 import "@testing-library/jest-dom";
 import "@testing-library/jest-dom/extend-expect";
 import { render, screen } from "@testing-library/react";
 import React from "react";
-import { defaultOrganization, defaultTeam } from "../../../../services";
 import { ContextsMock } from "../../../../tests/wrappers";
 import { TeamHeaderViewProps } from "../TeamHeaderView/TeamHeaderView";
 import TeamHeader from "./TeamHeader";

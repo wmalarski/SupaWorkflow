@@ -1,8 +1,8 @@
+import { defaultProfile } from "@supa-workflow/services";
 import "@testing-library/jest-dom";
 import "@testing-library/jest-dom/extend-expect";
 import { render } from "@testing-library/react";
 import React from "react";
-import { defaultProfile } from "../../../../services";
 import ProfileSettingsView from "./ProfileSettingsView";
 
 type ComponentProps = Parameters<typeof ProfileSettingsView>[0];
