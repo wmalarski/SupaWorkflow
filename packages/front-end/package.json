@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint --dir src"
+    "lint": "next lint --dir src",
+    "test": "jest  --maxWorkers=2",
+    "test:watch": "jest --watch --maxWorkers=2",
+    "test:coverage": "jest --coverage --maxWorkers=2"
   },
   "jest": {
     "globalSetup": "<rootDir>/src/tests/test.env.ts",

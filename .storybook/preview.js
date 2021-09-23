@@ -1,6 +1,6 @@
 import { ChakraProvider } from "@chakra-ui/react";
 import React from "react";
-import theme from "../src/styles/theme";
+import theme from "../packages/front-end/src/styles/theme";
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
