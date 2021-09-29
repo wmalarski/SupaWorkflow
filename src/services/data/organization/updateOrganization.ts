@@ -5,7 +5,7 @@ import {
   UseMutationResult,
   useQueryClient,
 } from "react-query";
-import { useProfileContext } from "utils";
+import { useProfileContext } from "../../contexts/ProfileContext";
 import { Organization } from "../../types";
 import fromSupabase from "../../utils/fromSupabase";
 import { selectMemberKey } from "../members/selectMember";

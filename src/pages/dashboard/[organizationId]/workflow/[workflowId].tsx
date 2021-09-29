@@ -3,11 +3,10 @@ import { LoadingPane, WorkflowSwitch } from "organisms";
 import React, { useEffect } from "react";
 import {
   OrganizationContextProvider,
-  paths,
-  useNumberParam,
   useUserContext,
   WorkflowContextProvider,
-} from "utils";
+} from "services";
+import { paths, useNumberParam } from "utils";
 
 const WorkflowPage = (): React.ReactElement => {
   const router = useRouter();

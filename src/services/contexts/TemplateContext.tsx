@@ -1,13 +1,15 @@
 import { PostgrestError } from "@supabase/supabase-js";
 import { createContext, ReactNode, useContext, useMemo } from "react";
-import { defaultTemplate, Template, useSelectTemplate } from "services";
+import { useSelectTemplate } from "../data/template/selectTemplate";
+import { Template } from "../types";
+import { defaultTemplate } from "../utils/defaults";
 
 export type TemplateContextValue = {
   template: Template;
   isInitialized: boolean;
 };
 
-const TemplateContext = createContext<TemplateContextValue>({
+export const TemplateContext = createContext<TemplateContextValue>({
   template: defaultTemplate,
   isInitialized: false,
 });
@@ -53,5 +55,3 @@ export const TemplateContextProvider = ({
     <>{fallback}</>
   );
 };
-
-export default TemplateContext;

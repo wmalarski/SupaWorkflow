@@ -6,14 +6,15 @@ import {
   useEffect,
   useState,
 } from "react";
-import { supabase, useUpdateAuth } from "services";
+import { useUpdateAuth } from "../auth/updateAuth";
+import { supabase } from "../supabase";
 
 export type UserContextValue = {
   isInitialized: boolean;
   user: User | null;
 };
 
-const UserContext = createContext<UserContextValue>({
+export const UserContext = createContext<UserContextValue>({
   isInitialized: false,
   user: null,
 });
@@ -50,5 +51,3 @@ export const UserContextProvider = ({
 
   return <UserContext.Provider value={user}>{children}</UserContext.Provider>;
 };
-
-export default UserContext;

@@ -1,6 +1,5 @@
 import React from "react";
-import { useInviteOrganizationMember } from "services";
-import { useOrganizationContext } from "utils";
+import { useInviteOrganizationMember, useOrganizationContext } from "services";
 import AddOrganizationMemberView from "../AddOrganizationMemberView/AddOrganizationMemberView";
 
 type ViewProps = React.ComponentProps<typeof AddOrganizationMemberView>;

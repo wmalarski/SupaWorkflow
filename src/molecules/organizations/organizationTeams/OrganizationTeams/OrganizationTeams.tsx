@@ -1,6 +1,10 @@
 import React, { useState } from "react";
-import { useDeleteTeam, useSelectTeams } from "services";
-import { useOrganizationContext, useOrganizationMemberContext } from "utils";
+import {
+  useDeleteTeam,
+  useOrganizationContext,
+  useOrganizationMemberContext,
+  useSelectTeams,
+} from "services";
 import OrganizationTeamsView from "../OrganizationTeamsView/OrganizationTeamsView";
 
 type ViewProps = React.ComponentProps<typeof OrganizationTeamsView>;

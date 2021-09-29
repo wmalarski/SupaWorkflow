@@ -6,8 +6,8 @@ import {
 } from "molecules";
 import type { NextPage } from "next";
 import React from "react";
+import { useUserContext } from "services";
 import { Header, Page } from "templates";
-import { useUserContext } from "utils";
 
 const IndexPage: NextPage = () => (
   <Page

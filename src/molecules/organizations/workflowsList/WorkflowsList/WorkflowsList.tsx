@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { useSelectWorkflows } from "services";
-import { useOrganizationContext } from "utils";
+import { useOrganizationContext, useSelectWorkflows } from "services";
 import WorkflowsListView from "../WorkflowsListView/WorkflowsListView";
 
 type ViewProps = React.ComponentProps<typeof WorkflowsListView>;

@@ -1,13 +1,15 @@
 import { PostgrestError } from "@supabase/supabase-js";
 import { createContext, ReactNode, useContext, useMemo } from "react";
-import { defaultProfile, Profile, useSelectProfile } from "services";
+import { useSelectProfile } from "../data/profile/selectProfile";
+import { Profile } from "../types";
+import { defaultProfile } from "../utils/defaults";
 
 export type ProfileContextValue = {
   profile: Profile;
   isInitialized: boolean;
 };
 
-const ProfileContext = createContext<ProfileContextValue>({
+export const ProfileContext = createContext<ProfileContextValue>({
   profile: defaultProfile,
   isInitialized: false,
 });
@@ -53,5 +55,3 @@ export const ProfileContextProvider = ({
     <>{fallback}</>
   );
 };
-
-export default ProfileContext;

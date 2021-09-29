@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import React from "react";
-import { useInsertTeam } from "services";
-import { paths, useOrganizationContext } from "utils";
+import { useInsertTeam, useOrganizationContext } from "services";
+import { paths } from "utils";
 import NewOrganizationTeamView from "../NewOrganizationTeamView/NewOrganizationTeamView";
 
 type ViewProps = React.ComponentProps<typeof NewOrganizationTeamView>;

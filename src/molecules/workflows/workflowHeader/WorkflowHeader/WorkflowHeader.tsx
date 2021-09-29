@@ -1,10 +1,6 @@
 import React from "react";
-import {
-  useOrganizationContext,
-  useTabParam,
-  useWorkflowContext,
-  WorkflowTab,
-} from "utils";
+import { useOrganizationContext, useWorkflowContext } from "services";
+import { useTabParam, WorkflowTab } from "utils";
 import WorkflowHeaderView from "../WorkflowHeaderView/WorkflowHeaderView";
 
 type ViewProps = React.ComponentProps<typeof WorkflowHeaderView>;

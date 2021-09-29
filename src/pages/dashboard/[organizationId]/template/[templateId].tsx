@@ -3,11 +3,10 @@ import { LoadingPane, TemplateSwitch } from "organisms";
 import React, { useEffect } from "react";
 import {
   OrganizationContextProvider,
-  paths,
   TemplateContextProvider,
-  useNumberParam,
   useUserContext,
-} from "utils";
+} from "services";
+import { paths, useNumberParam } from "utils";
 
 const TemplatePage = (): React.ReactElement => {
   const router = useRouter();

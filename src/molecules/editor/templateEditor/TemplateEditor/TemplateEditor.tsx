@@ -1,6 +1,9 @@
 import React from "react";
-import { useSelectTeams } from "services";
-import { useOrganizationContext, useTemplateContext } from "utils";
+import {
+  useOrganizationContext,
+  useSelectTeams,
+  useTemplateContext,
+} from "services";
 import { useRepContext } from "utils/rep/RepContext";
 import TemplateEditorView from "../TemplateEditorView/TemplateEditorView";
 

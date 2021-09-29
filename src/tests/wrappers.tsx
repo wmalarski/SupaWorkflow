@@ -8,17 +8,17 @@ import {
   defaultTemplate,
   defaultWorkflow,
   Organization,
+  OrganizationContext,
   OrganizationMember,
   Profile,
+  ProfileContext,
   Team,
+  TeamContext,
   Template,
+  TemplateContext,
   Workflow,
+  WorkflowContext,
 } from "services";
-import OrganizationContext from "../utils/contexts/OrganizationContext";
-import ProfileContext from "../utils/contexts/ProfileContext";
-import TeamContext from "../utils/contexts/TeamContext";
-import TemplateContext from "../utils/contexts/TemplateContext";
-import WorkflowContext from "../utils/contexts/WorkflowContext";
 
 export type ContextsMockProps = {
   children: React.ReactNode;

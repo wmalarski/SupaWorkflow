@@ -1,5 +1,5 @@
 import React from "react";
-import { useOrganizationContext, useOrganizationMemberContext } from "utils";
+import { useOrganizationContext, useOrganizationMemberContext } from "services";
 import OrganizationSideBarView from "../OrganizationSideBarView/OrganizationSideBarView";
 
 type ViewProps = React.ComponentProps<typeof OrganizationSideBarView>;

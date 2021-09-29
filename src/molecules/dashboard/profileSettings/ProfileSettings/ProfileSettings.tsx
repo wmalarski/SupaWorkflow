@@ -1,6 +1,5 @@
 import React from "react";
-import { useUpdateProfile } from "services";
-import { useProfileContext } from "utils";
+import { useProfileContext, useUpdateProfile } from "services";
 import ProfileSettingsView from "../ProfileSettingsView/ProfileSettingsView";
 
 type ViewProps = React.ComponentProps<typeof ProfileSettingsView>;

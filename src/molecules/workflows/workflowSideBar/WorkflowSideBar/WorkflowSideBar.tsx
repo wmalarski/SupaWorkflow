@@ -1,5 +1,5 @@
 import React from "react";
-import { useOrganizationContext, useWorkflowContext } from "utils";
+import { useOrganizationContext, useWorkflowContext } from "services";
 import WorkflowSideBarView from "../WorkflowSideBarView/WorkflowSideBarView";
 
 type ViewProps = React.ComponentProps<typeof WorkflowSideBarView>;

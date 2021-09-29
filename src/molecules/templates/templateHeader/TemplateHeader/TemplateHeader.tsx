@@ -1,10 +1,6 @@
 import React from "react";
-import {
-  TemplateTab,
-  useOrganizationContext,
-  useTabParam,
-  useTemplateContext,
-} from "utils";
+import { useOrganizationContext, useTemplateContext } from "services";
+import { TemplateTab, useTabParam } from "utils";
 import TemplateHeaderView from "../TemplateHeaderView/TemplateHeaderView";
 
 type ViewProps = React.ComponentProps<typeof TemplateHeaderView>;

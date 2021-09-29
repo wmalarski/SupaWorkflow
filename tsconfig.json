@@ -28,6 +28,9 @@
       "@/molecules": [
         "./molecules/index"
       ],
+      "@/molecules/*": [
+        "./molecules/*"
+      ],
       "@/templates": [
         "./templates/index"
       ],

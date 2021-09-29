@@ -1,14 +1,15 @@
 import { PostgrestError } from "@supabase/supabase-js";
 import { createContext, ReactNode, useContext, useMemo } from "react";
 import {
-  defaultOrganization,
-  defaultOrganizationMember,
-  Organization,
-  OrganizationMember,
   SelectMemberResult,
   useSelectMember,
-} from "services";
-import ProfileContext from "./ProfileContext";
+} from "../data/members/selectMember";
+import { Organization, OrganizationMember } from "../types";
+import {
+  defaultOrganization,
+  defaultOrganizationMember,
+} from "../utils/defaults";
+import { ProfileContext } from "./ProfileContext";
 
 export type OrganizationValue = {
   organization: Organization;
@@ -20,7 +21,7 @@ export type OrganizationContextValue = {
   isInitialized: boolean;
 };
 
-const OrganizationContext = createContext<OrganizationContextValue>({
+export const OrganizationContext = createContext<OrganizationContextValue>({
   value: {
     organization: defaultOrganization,
     member: defaultOrganizationMember,
@@ -84,5 +85,3 @@ export const OrganizationContextProvider = ({
     <>{fallback}</>
   );
 };
-
-export default OrganizationContext;

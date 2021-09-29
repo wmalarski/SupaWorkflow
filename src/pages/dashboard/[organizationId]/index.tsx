@@ -1,12 +1,8 @@
 import { useRouter } from "next/router";
 import { LoadingPane, OrganizationSwitch } from "organisms";
 import React, { useEffect } from "react";
-import {
-  OrganizationContextProvider,
-  paths,
-  useNumberParam,
-  useUserContext,
-} from "utils";
+import { OrganizationContextProvider, useUserContext } from "services";
+import { paths, useNumberParam } from "utils";
 
 const OrganizationPage = (): React.ReactElement => {
   const router = useRouter();
