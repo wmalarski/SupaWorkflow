@@ -51,11 +51,16 @@ describe("<OrganizationMembers />", () => {
     renderComponent({}, organization);
 
     const member = members[0];
-    await waitFor(async () =>
-      expect(await screen.findByText(member.profile_name)).toBeInTheDocument()
+    await waitFor(
+      async () =>
+        await expect(
+          screen.findByText(member.profile_name)
+        ).resolves.toBeInTheDocument()
     );
 
-    expect(await screen.findByText(member.profile_name)).toBeInTheDocument();
+    await expect(
+      screen.findByText(member.profile_name)
+    ).resolves.toBeInTheDocument();
   });
 
   it("should delete", async () => {
@@ -67,11 +72,16 @@ describe("<OrganizationMembers />", () => {
     renderComponent({}, organization);
 
     const member = members[0];
-    await waitFor(async () =>
-      expect(await screen.findByText(member.profile_name)).toBeInTheDocument()
+    await waitFor(
+      async () =>
+        await expect(
+          screen.findByText(member.profile_name)
+        ).resolves.toBeInTheDocument()
     );
 
-    expect(await screen.findByText(member.profile_name)).toBeInTheDocument();
+    await expect(
+      screen.findByText(member.profile_name)
+    ).resolves.toBeInTheDocument();
 
     // userEvent.click(await screen.findByText(`Delete ${member.profile_name}`));
 

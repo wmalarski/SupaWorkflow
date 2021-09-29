@@ -33,12 +33,12 @@ describe("<TeamHeader />", () => {
 
     renderComponent();
 
-    expect(
-      await screen.findByText(`Team:${defaultTeam.id}`)
-    ).toBeInTheDocument();
-    expect(
-      await screen.findByText(`Organization:${defaultOrganization.id}`)
-    ).toBeInTheDocument();
+    await expect(
+      screen.findByText(`Team:${defaultTeam.id}`)
+    ).resolves.toBeInTheDocument();
+    await expect(
+      screen.findByText(`Organization:${defaultOrganization.id}`)
+    ).resolves.toBeInTheDocument();
   });
 
   it("should render default", async () => {

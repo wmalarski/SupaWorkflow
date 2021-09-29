@@ -31,7 +31,7 @@ describe("<WorkflowHeader />", () => {
 
     renderComponent();
 
-    expect(await screen.findByText("null")).toBeInTheDocument();
+    await expect(screen.findByText("null")).resolves.toBeInTheDocument();
   });
 
   it("should render correct tab for correct tab", async () => {
@@ -42,7 +42,9 @@ describe("<WorkflowHeader />", () => {
 
     renderComponent();
 
-    expect(await screen.findByText(WorkflowTab.edit)).toBeInTheDocument();
+    await expect(
+      screen.findByText(WorkflowTab.edit)
+    ).resolves.toBeInTheDocument();
   });
 
   it("should render default", async () => {

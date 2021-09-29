@@ -34,6 +34,6 @@ describe("<DashboardCorner />", () => {
 
     renderComponent();
 
-    expect(await screen.findByText("Click")).toBeInTheDocument();
+    await expect(screen.findByText("Click")).resolves.toBeInTheDocument();
   });
 });

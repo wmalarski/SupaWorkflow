@@ -43,11 +43,14 @@ describe("<OrganizationTeams />", () => {
 
     renderComponent();
 
-    await waitFor(async () =>
-      expect(await screen.findByText("Team Name-0")).toBeInTheDocument()
+    await waitFor(
+      async () =>
+        await expect(
+          screen.findByText("Team Name-0")
+        ).resolves.toBeInTheDocument()
     );
 
-    expect(await screen.findByText("Team Name-0")).toBeInTheDocument();
+    await expect(screen.findByText("Team Name-0")).resolves.toBeInTheDocument();
   });
 
   it("should delete", async () => {
@@ -57,14 +60,20 @@ describe("<OrganizationTeams />", () => {
 
     renderComponent();
 
-    await waitFor(async () =>
-      expect(await screen.findByText("Team Name-0")).toBeInTheDocument()
+    await waitFor(
+      async () =>
+        await expect(
+          screen.findByText("Team Name-0")
+        ).resolves.toBeInTheDocument()
     );
 
     userEvent.click(await screen.findByText("Delete Team Name-0"));
 
-    await waitFor(async () =>
-      expect(mockDb.team.count()).toStrictEqual(teams.length - 1)
+    await waitFor(
+      async () =>
+        await expect(mockDb.team.count()).resolves.toStrictEqual(
+          teams.length - 1
+        )
     );
 
     expect(mockDb.team.count()).toStrictEqual(teams.length - 1);
@@ -77,10 +86,13 @@ describe("<OrganizationTeams />", () => {
 
     renderComponent({ View: undefined });
 
-    await waitFor(async () =>
-      expect(await screen.findByText("Team Name-0")).toBeInTheDocument()
+    await waitFor(
+      async () =>
+        await expect(
+          screen.findByText("Team Name-0")
+        ).resolves.toBeInTheDocument()
     );
 
-    expect(await screen.findByText("Team Name-0")).toBeInTheDocument();
+    await expect(screen.findByText("Team Name-0")).resolves.toBeInTheDocument();
   });
 });

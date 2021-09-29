@@ -44,11 +44,16 @@ describe("<DashboardOrganizations />", () => {
 
     renderComponent();
 
-    await waitFor(async () =>
-      expect(await screen.findByText(organizations[0].name)).toBeInTheDocument()
+    await waitFor(
+      async () =>
+        await expect(
+          screen.findByText(organizations[0].name)
+        ).resolves.toBeInTheDocument()
     );
 
-    expect(await screen.findByText(organizations[0].name)).toBeInTheDocument();
+    await expect(
+      screen.findByText(organizations[0].name)
+    ).resolves.toBeInTheDocument();
   });
 
   it("should render default", async () => {

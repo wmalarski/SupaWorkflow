@@ -58,11 +58,16 @@ describe("<SignUp />", () => {
 
     userEvent.click(await screen.findByText("Click"));
 
-    await waitFor(async () =>
-      expect(await screen.findByText(defaultUserEmail)).toBeInTheDocument()
+    await waitFor(
+      async () =>
+        await expect(
+          screen.findByText(defaultUserEmail)
+        ).resolves.toBeInTheDocument()
     );
 
-    expect(await screen.findByText(defaultUserEmail)).toBeInTheDocument();
+    await expect(
+      screen.findByText(defaultUserEmail)
+    ).resolves.toBeInTheDocument();
     expect(mockDb.profile.getAll()).toHaveLength(1);
   });
 });

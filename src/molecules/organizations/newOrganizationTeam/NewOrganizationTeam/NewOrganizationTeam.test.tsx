@@ -45,11 +45,14 @@ describe("<NewOrganizationTeam />", () => {
 
     userEvent.click(await screen.findByText("Click"));
 
-    await waitFor(async () =>
-      expect(await screen.findByText("Team Name")).toBeInTheDocument()
+    await waitFor(
+      async () =>
+        await expect(
+          screen.findByText("Team Name")
+        ).resolves.toBeInTheDocument()
     );
 
-    expect(await screen.findByText("Team Name")).toBeInTheDocument();
+    await expect(screen.findByText("Team Name")).resolves.toBeInTheDocument();
   });
 
   it("should render default", async () => {

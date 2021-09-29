@@ -30,9 +30,9 @@ describe("<OrganizationSideBar />", () => {
 
     renderComponent();
 
-    expect(
-      await screen.findByText(`Org:${defaultOrganization.id}`)
-    ).toBeInTheDocument();
+    await expect(
+      screen.findByText(`Org:${defaultOrganization.id}`)
+    ).resolves.toBeInTheDocument();
   });
 
   it("should render default", async () => {

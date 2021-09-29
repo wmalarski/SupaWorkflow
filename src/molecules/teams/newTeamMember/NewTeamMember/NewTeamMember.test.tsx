@@ -57,11 +57,16 @@ describe("<NewTeamMember />", () => {
 
     renderComponent({}, organization);
 
-    await waitFor(async () =>
-      expect(await screen.findByText("Profile Name-0")).toBeInTheDocument()
+    await waitFor(
+      async () =>
+        await expect(
+          screen.findByText("Profile Name-0")
+        ).resolves.toBeInTheDocument()
     );
 
-    expect(await screen.findByText("Profile Name-0")).toBeInTheDocument();
+    await expect(
+      screen.findByText("Profile Name-0")
+    ).resolves.toBeInTheDocument();
   });
 
   it("should render search", async () => {
@@ -72,14 +77,18 @@ describe("<NewTeamMember />", () => {
 
     renderComponent({}, organization);
 
-    await waitFor(async () =>
-      expect(await screen.findByText("Profile Name-0")).toBeInTheDocument()
+    await waitFor(
+      async () =>
+        await expect(
+          screen.findByText("Profile Name-0")
+        ).resolves.toBeInTheDocument()
     );
 
     userEvent.click(await screen.findByText("Submit"));
 
-    await waitFor(async () =>
-      expect(mockDb.teamMember.count()).toBeGreaterThan(0)
+    await waitFor(
+      async () =>
+        await expect(mockDb.teamMember.count()).resolves.toBeGreaterThan(0)
     );
 
     expect(mockDb.teamMember.count()).toBeGreaterThan(0);

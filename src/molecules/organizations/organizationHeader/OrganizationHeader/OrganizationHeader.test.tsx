@@ -33,7 +33,7 @@ describe("<OrganizationHeader />", () => {
 
     renderComponent();
 
-    expect(await screen.findByText("null")).toBeInTheDocument();
+    await expect(screen.findByText("null")).resolves.toBeInTheDocument();
   });
 
   it("should render correct tab for correct tab", async () => {
@@ -44,9 +44,9 @@ describe("<OrganizationHeader />", () => {
 
     renderComponent();
 
-    expect(
-      await screen.findByText(OrganizationTab.members)
-    ).toBeInTheDocument();
+    await expect(
+      screen.findByText(OrganizationTab.members)
+    ).resolves.toBeInTheDocument();
   });
 
   it("should render default", async () => {

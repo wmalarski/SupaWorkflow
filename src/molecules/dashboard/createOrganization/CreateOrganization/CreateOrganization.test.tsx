@@ -74,11 +74,16 @@ describe("<CreateOrganization />", () => {
 
     userEvent.click(await screen.findByText("Click"));
 
-    await waitFor(async () =>
-      expect(await screen.findByText("error:Wrong author")).toBeInTheDocument()
+    await waitFor(
+      async () =>
+        await expect(
+          screen.findByText("error:Wrong author")
+        ).resolves.toBeInTheDocument()
     );
 
-    expect(await screen.findByText("error:Wrong author")).toBeInTheDocument();
+    await expect(
+      screen.findByText("error:Wrong author")
+    ).resolves.toBeInTheDocument();
   });
 
   it("should render default", async () => {

@@ -37,11 +37,16 @@ describe("<TemplateDetails />", () => {
 
     renderComponent();
 
-    await waitFor(async () =>
-      expect(await screen.findByText("Workflow Name-0")).toBeInTheDocument()
+    await waitFor(
+      async () =>
+        await expect(
+          screen.findByText("Workflow Name-0")
+        ).resolves.toBeInTheDocument()
     );
 
-    expect(await screen.findByText("Workflow Name-0")).toBeInTheDocument();
+    await expect(
+      screen.findByText("Workflow Name-0")
+    ).resolves.toBeInTheDocument();
   });
 
   it("should render default", async () => {
@@ -51,10 +56,15 @@ describe("<TemplateDetails />", () => {
 
     renderComponent({ View: undefined });
 
-    await waitFor(async () =>
-      expect(await screen.findByText("Workflow Name-0")).toBeInTheDocument()
+    await waitFor(
+      async () =>
+        await expect(
+          screen.findByText("Workflow Name-0")
+        ).resolves.toBeInTheDocument()
     );
 
-    expect(await screen.findByText("Workflow Name-0")).toBeInTheDocument();
+    await expect(
+      screen.findByText("Workflow Name-0")
+    ).resolves.toBeInTheDocument();
   });
 });

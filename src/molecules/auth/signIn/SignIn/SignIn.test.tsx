@@ -59,11 +59,16 @@ describe("<SignIn />", () => {
 
     userEvent.click(await screen.findByText("Click"));
 
-    await waitFor(async () =>
-      expect(await screen.findByText(defaultUserEmail)).toBeInTheDocument()
+    await waitFor(
+      async () =>
+        await expect(
+          screen.findByText(defaultUserEmail)
+        ).resolves.toBeInTheDocument()
     );
 
-    expect(await screen.findByText(defaultUserEmail)).toBeInTheDocument();
+    await expect(
+      screen.findByText(defaultUserEmail)
+    ).resolves.toBeInTheDocument();
   });
 
   it("should fail to login", async () => {
@@ -74,10 +79,11 @@ describe("<SignIn />", () => {
 
     userEvent.click(await screen.findByText("Click"));
 
-    await waitFor(async () =>
-      expect(await screen.findByText(message)).toBeInTheDocument()
+    await waitFor(
+      async () =>
+        await expect(screen.findByText(message)).resolves.toBeInTheDocument()
     );
 
-    expect(await screen.findByText(message)).toBeInTheDocument();
+    await expect(screen.findByText(message)).resolves.toBeInTheDocument();
   });
 });

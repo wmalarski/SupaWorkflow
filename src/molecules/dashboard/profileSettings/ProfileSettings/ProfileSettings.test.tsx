@@ -50,11 +50,12 @@ describe("<ProfileSettings />", () => {
 
     userEvent.click(await screen.findByText("Click"));
 
-    await waitFor(async () =>
-      expect(await screen.findByText("New Name")).toBeInTheDocument()
+    await waitFor(
+      async () =>
+        await expect(screen.findByText("New Name")).resolves.toBeInTheDocument()
     );
 
-    expect(await screen.findByText("New Name")).toBeInTheDocument();
+    await expect(screen.findByText("New Name")).resolves.toBeInTheDocument();
   });
 
   it("should render default", async () => {
