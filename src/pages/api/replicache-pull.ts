@@ -1,6 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { PullResponse } from "replicache";
-import { selectClient, selectMessages, supabase } from "services";
+import { supabase } from "services";
 import { validateNumberParam } from "utils";
 import resolvePull from "utils/rep/resolvePull";
 
@@ -25,26 +24,12 @@ const handler = async (
   }
 
   try {
-    const [client, changed] = await Promise.all([
-      selectClient({ id: clientID }),
-      selectMessages({ updatedAt: cookie, templateId, workflowId }),
-    ]);
-
-    const newCookie = new Date().toISOString();
-    const lastMutationID = client?.last_mutation_id ?? 0;
-
-    console.log({ changed, newCookie });
-
-    const patch = [
-      ...(!cookie ? [{ op: "clear" } as const] : []),
-      ...changed.map(resolvePull),
-    ];
-
-    const response: PullResponse = {
-      cookie: newCookie,
-      lastMutationID,
-      patch,
-    };
+    const response = resolvePull({
+      clientId: clientID,
+      cookie,
+      templateId,
+      workflowId,
+    });
 
     res.json(response);
     res.end();

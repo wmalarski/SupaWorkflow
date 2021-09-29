@@ -3,18 +3,23 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "==== BUILD ====": "",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "==== LINTERS ====": "",
     "lint": "next lint --dir src",
     "prettier": "prettier 'src/**/*.(ts|tsx)' --write",
     "tsc": "tsc --noEmit",
+    "==== TESTS ====": "",
     "test": "jest  --maxWorkers=2",
     "test:watch": "jest --watch --maxWorkers=2",
     "test:coverage": "jest --coverage --maxWorkers=2",
-    "prepare": "husky install",
+    "==== STORIES ====": "",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "==== OTHERS ====": "",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@chakra-ui/icons": "^1.0.15",
