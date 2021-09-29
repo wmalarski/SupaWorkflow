@@ -5,8 +5,8 @@ import {
   UseMutationResult,
   useQueryClient,
 } from "react-query";
+import fromSupabase from "../../helpers/fromSupabase";
 import { Template } from "../../types";
-import fromSupabase from "../../utils/fromSupabase";
 import { selectAllTemplatesKey } from "./selectTemplates";
 
 export type InsertTemplateArgs = Omit<Template, "id">;

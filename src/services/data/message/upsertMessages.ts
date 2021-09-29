@@ -1,5 +1,5 @@
+import fromSupabase from "../../helpers/fromSupabase";
 import { Message } from "../../types";
-import fromSupabase from "../../utils/fromSupabase";
 
 export type UpsertMessageArgs = Omit<Message, "updated_at">;
 

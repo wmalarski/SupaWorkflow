@@ -4,11 +4,11 @@ import {
   SelectMemberResult,
   useSelectMember,
 } from "../data/members/selectMember";
-import { Organization, OrganizationMember } from "../types";
 import {
   defaultOrganization,
   defaultOrganizationMember,
-} from "../utils/defaults";
+} from "../helpers/defaults";
+import { Organization, OrganizationMember } from "../types";
 import { ProfileContext } from "./ProfileContext";
 
 export type OrganizationValue = {

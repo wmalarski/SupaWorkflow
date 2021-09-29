@@ -1,8 +1,8 @@
 import { PostgrestError } from "@supabase/supabase-js";
 import { createContext, ReactNode, useContext, useMemo } from "react";
 import { useSelectProfile } from "../data/profile/selectProfile";
+import { defaultProfile } from "../helpers/defaults";
 import { Profile } from "../types";
-import { defaultProfile } from "../utils/defaults";
 
 export type ProfileContextValue = {
   profile: Profile;

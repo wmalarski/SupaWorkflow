@@ -1,5 +1,5 @@
+import fromSupabase from "../../helpers/fromSupabase";
 import { Client } from "../../types";
-import fromSupabase from "../../utils/fromSupabase";
 
 export type UpdateClientArgs = Client;
 

@@ -1,7 +1,7 @@
 import { PostgrestError } from "@supabase/supabase-js";
 import { useQuery, UseQueryOptions, UseQueryResult } from "react-query";
+import fromSupabase from "../../helpers/fromSupabase";
 import { Organization } from "../../types";
-import fromSupabase from "../../utils/fromSupabase";
 
 export type SelectOrganizationsKey = ["Organizations"];
 

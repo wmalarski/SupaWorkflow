@@ -5,8 +5,8 @@ import {
   UseQueryOptions,
   UseQueryResult,
 } from "react-query";
+import fromSupabase from "../../helpers/fromSupabase";
 import { Organization, OrganizationMember, Profile } from "../../types";
-import fromSupabase from "../../utils/fromSupabase";
 
 export type SelectMemberArgs = {
   userId: string;

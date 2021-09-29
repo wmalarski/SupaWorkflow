@@ -4,8 +4,8 @@ import {
   UseMutationOptions,
   UseMutationResult,
 } from "react-query";
+import fromSupabase from "../../helpers/fromSupabase";
 import { TeamMember } from "../../types";
-import fromSupabase from "../../utils/fromSupabase";
 
 export type InsertTeamMemberArgs = Omit<TeamMember, "id">;
 

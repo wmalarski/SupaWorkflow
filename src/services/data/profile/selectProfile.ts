@@ -5,8 +5,8 @@ import {
   UseQueryOptions,
   UseQueryResult,
 } from "react-query";
+import fromSupabase from "../../helpers/fromSupabase";
 import { Profile } from "../../types";
-import fromSupabase from "../../utils/fromSupabase";
 
 export type SelectProfileArgs = {
   userId: string;

@@ -5,8 +5,8 @@ import {
   UseMutationResult,
   useQueryClient,
 } from "react-query";
+import fromSupabase from "../../helpers/fromSupabase";
 import { Organization } from "../../types";
-import fromSupabase from "../../utils/fromSupabase";
 import { selectOrganizationsKey } from "./selectOrganizations";
 
 export type InsertOrganizationArgs = Omit<Organization, "id" | "hash">;

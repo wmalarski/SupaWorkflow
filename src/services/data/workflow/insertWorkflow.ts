@@ -4,8 +4,8 @@ import {
   UseMutationOptions,
   UseMutationResult,
 } from "react-query";
+import fromSupabase from "../../helpers/fromSupabase";
 import { Workflow } from "../../types";
-import fromSupabase from "../../utils/fromSupabase";
 
 export type InsertWorkflowArgs = Omit<Workflow, "id">;
 

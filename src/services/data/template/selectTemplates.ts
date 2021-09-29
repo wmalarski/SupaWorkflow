@@ -6,8 +6,8 @@ import {
   UseQueryOptions,
   UseQueryResult,
 } from "react-query";
+import fromSupabase from "../../helpers/fromSupabase";
 import { Template } from "../../types";
-import fromSupabase from "../../utils/fromSupabase";
 
 export type SelectTemplatesArgs = Partial<
   Pick<Template, "name" | "organization_id">

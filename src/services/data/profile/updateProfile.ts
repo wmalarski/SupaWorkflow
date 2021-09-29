@@ -5,8 +5,8 @@ import {
   UseMutationResult,
   useQueryClient,
 } from "react-query";
+import fromSupabase from "../../helpers/fromSupabase";
 import { Profile } from "../../types";
-import fromSupabase from "../../utils/fromSupabase";
 import { selectProfileKey } from "./selectProfile";
 
 export type UpdateProfileArgs = Pick<Profile, "id" | "name">;

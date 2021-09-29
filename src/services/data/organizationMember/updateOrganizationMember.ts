@@ -6,8 +6,8 @@ import {
   useQueryClient,
 } from "react-query";
 import { useProfileContext } from "../../contexts/ProfileContext";
+import fromSupabase from "../../helpers/fromSupabase";
 import { OrganizationMember } from "../../types";
-import fromSupabase from "../../utils/fromSupabase";
 import { selectMemberKey } from "../members/selectMember";
 import { selectAllMembersKey } from "../members/selectMembers";
 
