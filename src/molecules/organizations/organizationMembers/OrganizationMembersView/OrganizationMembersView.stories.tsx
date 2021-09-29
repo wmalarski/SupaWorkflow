@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
-import { defaultMember, defaultOrganizationMember } from "../../../../services";
+import { defaultMember, defaultOrganizationMember } from "services";
 import OrganizationMembersView from "./OrganizationMembersView";
 
 export default {

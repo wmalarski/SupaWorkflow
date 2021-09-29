@@ -1,9 +1,8 @@
 import { Text, VStack } from "@chakra-ui/react";
+import { Link, Pagination } from "atoms";
 import React from "react";
-import { Link, Pagination } from "../../../../atoms";
-import { Template } from "../../../../services";
-import { paths, useText } from "../../../../utils";
-import { OrganizationTab, TemplateTab } from "../../../../utils/routing/types";
+import { Template } from "services";
+import { OrganizationTab, paths, TemplateTab, useText } from "utils";
 
 export type TemplatesListViewProps = {
   page: number;

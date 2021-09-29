@@ -6,13 +6,14 @@
     "source.fixAll": true
   },
   "cSpell.words": [
-    "Postgrest",
-    "Upsert",
     "chakra",
     "mswjs",
     "mutators",
+    "Postgrest",
     "replicache",
+    "supa",
     "supabase",
+    "Upsert",
     "wasm"
   ]
 }

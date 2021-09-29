@@ -1,10 +1,7 @@
 import { useRouter } from "next/router";
 import React from "react";
-import {
-  useDeleteOrganization,
-  useUpdateOrganization,
-} from "../../../../services";
-import { paths, useOrganizationContext } from "../../../../utils";
+import { useDeleteOrganization, useUpdateOrganization } from "services";
+import { paths, useOrganizationContext } from "utils";
 import OrganizationSettingsView from "../OrganizationSettingsView/OrganizationSettingsView";
 
 type ViewProps = React.ComponentProps<typeof OrganizationSettingsView>;

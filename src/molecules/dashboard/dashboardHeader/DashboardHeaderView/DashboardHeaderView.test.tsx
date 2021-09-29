@@ -2,7 +2,7 @@ import "@testing-library/jest-dom";
 import "@testing-library/jest-dom/extend-expect";
 import { render } from "@testing-library/react";
 import React from "react";
-import { DashboardTab } from "../../../../utils";
+import { DashboardTab } from "utils";
 import DashboardHeaderView from "./DashboardHeaderView";
 
 type ComponentProps = Parameters<typeof DashboardHeaderView>[0];

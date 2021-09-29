@@ -1,4 +1,3 @@
-import React from "react";
 import {
   AddOrganizationMember,
   CreateTemplate,
@@ -9,8 +8,9 @@ import {
   OrganizationTeams,
   TemplatesList,
   WorkflowsList,
-} from "../../molecules";
-import { OrganizationTab, useTabParam } from "../../utils";
+} from "molecules";
+import React from "react";
+import { OrganizationTab, useTabParam } from "utils";
 import OrganizationLayout from "./OrganizationLayout";
 
 const OrganizationSwitch = (): React.ReactElement | null => {

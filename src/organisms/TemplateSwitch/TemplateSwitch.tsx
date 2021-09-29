@@ -1,7 +1,7 @@
+import { CreateWorkflow, TemplateDetails } from "molecules";
 import dynamic from "next/dynamic";
 import React from "react";
-import { CreateWorkflow, TemplateDetails } from "../../molecules";
-import { TemplateTab, useTabParam } from "../../utils";
+import { TemplateTab, useTabParam } from "utils";
 import TemplateLayout from "./TemplateLayout";
 
 const TemplateWorkspace = dynamic(() => import("./TemplateWorkspace"), {

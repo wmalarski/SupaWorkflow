@@ -1,9 +1,9 @@
-import { Team } from "../../../../services";
 import {
   MessageTemplateEdgeState,
   MessageTemplateNodeState,
-} from "../../../../services/nodes";
-import { MutationArgs } from "../../../../utils/rep/types";
+  Team,
+} from "services";
+import { MutationArgs } from "utils/rep/types";
 
 export type TemplateNodeData<
   TState extends MessageTemplateNodeState = MessageTemplateNodeState

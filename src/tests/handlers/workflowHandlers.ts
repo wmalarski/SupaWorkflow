@@ -1,7 +1,11 @@
 import { PostgrestError } from "@supabase/supabase-js";
 import { DefaultRequestBody, rest } from "msw";
-import { SUPABASE_ENDPOINT, TABLES, Workflow } from "../../services";
-import { InsertWorkflowArgs } from "../../services/data/workflow/insertWorkflow";
+import {
+  InsertWorkflowArgs,
+  SUPABASE_ENDPOINT,
+  TABLES,
+  Workflow,
+} from "services";
 import { dbIndexCounter, mockDb } from "../mockDb";
 
 export const workflowHandlers = [

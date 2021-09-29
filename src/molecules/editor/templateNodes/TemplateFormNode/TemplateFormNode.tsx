@@ -1,8 +1,8 @@
 import { Heading, StackDivider, VStack } from "@chakra-ui/react";
 import React, { useCallback, useMemo } from "react";
 import { Position } from "react-flow-renderer";
-import { MessageFormTemplateNodeState } from "../../../../services/nodes";
-import { useText } from "../../../../utils";
+import { MessageFormTemplateNodeState } from "services";
+import { useText } from "utils";
 import NodeBoxForm from "../../nodeForms/NodeBoxForm/NodeBoxForm";
 import { TemplateNodeProps } from "../../templateEditor/TemplateEditorView/TemplateEditorView.types";
 import TemplateDetailsForm from "../../templateForms/TemplateDetailsForm/TemplateDetailsForm";

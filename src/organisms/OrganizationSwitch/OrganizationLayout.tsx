@@ -1,11 +1,11 @@
-import React from "react";
 import {
   DashboardCorner,
   OrganizationHeader,
   OrganizationSideBar,
   ProfileHeader,
-} from "../../molecules";
-import { FormPage, GridPage } from "../../templates";
+} from "molecules";
+import React from "react";
+import { FormPage, GridPage } from "templates";
 
 export type OrganizationLayoutProps = {
   isForm?: boolean;

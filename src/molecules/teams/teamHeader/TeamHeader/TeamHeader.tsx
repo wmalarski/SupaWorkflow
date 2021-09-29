@@ -1,5 +1,5 @@
 import React from "react";
-import { useOrganizationContext, useTeamContext } from "../../../../utils";
+import { useOrganizationContext, useTeamContext } from "utils";
 import TeamHeaderView from "../TeamHeaderView/TeamHeaderView";
 
 type ViewProps = React.ComponentProps<typeof TeamHeaderView>;

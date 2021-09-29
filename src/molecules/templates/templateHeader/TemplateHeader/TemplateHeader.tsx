@@ -4,7 +4,7 @@ import {
   useOrganizationContext,
   useTabParam,
   useTemplateContext,
-} from "../../../../utils";
+} from "utils";
 import TemplateHeaderView from "../TemplateHeaderView/TemplateHeaderView";
 
 type ViewProps = React.ComponentProps<typeof TemplateHeaderView>;

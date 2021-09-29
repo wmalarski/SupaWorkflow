@@ -1,6 +1,6 @@
 import { PostgrestError } from "@supabase/supabase-js";
 import { createContext, ReactNode, useContext, useMemo } from "react";
-import { defaultTemplate, Template, useSelectTemplate } from "../../services";
+import { defaultTemplate, Template, useSelectTemplate } from "services";
 
 export type TemplateContextValue = {
   template: Template;

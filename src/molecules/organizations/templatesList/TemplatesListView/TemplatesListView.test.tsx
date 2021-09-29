@@ -2,7 +2,7 @@ import "@testing-library/jest-dom";
 import "@testing-library/jest-dom/extend-expect";
 import { render } from "@testing-library/react";
 import React from "react";
-import { defaultTemplate } from "../../../../services";
+import { defaultTemplate } from "services";
 import TemplatesListView from "./TemplatesListView";
 
 type ComponentProps = Parameters<typeof TemplatesListView>[0];

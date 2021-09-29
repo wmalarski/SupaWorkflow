@@ -6,7 +6,7 @@ import {
   useEffect,
   useState,
 } from "react";
-import { supabase, useUpdateAuth } from "../../services";
+import { supabase, useUpdateAuth } from "services";
 
 export type UserContextValue = {
   isInitialized: boolean;

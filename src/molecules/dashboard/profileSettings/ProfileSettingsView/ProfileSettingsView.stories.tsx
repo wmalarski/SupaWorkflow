@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
-import { defaultProfile } from "../../../../services";
+import { defaultProfile } from "services";
 import ProfileSettingsView from "./ProfileSettingsView";
 
 export default {

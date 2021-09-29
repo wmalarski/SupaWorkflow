@@ -1,7 +1,7 @@
 import { Heading, SimpleGrid, VStack } from "@chakra-ui/react";
 import React from "react";
-import { Organization } from "../../../../services";
-import { useText } from "../../../../utils";
+import { Organization } from "services";
+import { useText } from "utils";
 import OrganizationBox from "../OrganizationBox/OrganizationBox";
 
 export type DashboardOrganizationsViewProps = {

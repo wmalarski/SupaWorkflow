@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import React from "react";
-import { useInsertTemplate } from "../../../../services";
-import { paths, useOrganizationContext } from "../../../../utils";
+import { useInsertTemplate } from "services";
+import { paths, useOrganizationContext } from "utils";
 import CreateTemplateView from "../CreateTemplateView/CreateTemplateView";
 
 type ViewProps = React.ComponentProps<typeof CreateTemplateView>;

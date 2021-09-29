@@ -1,7 +1,7 @@
 import { Button, Td, Tr } from "@chakra-ui/react";
 import React from "react";
-import { OrganizationRole, SelectTeamMemberRow } from "../../../../services";
-import { useText } from "../../../../utils";
+import { OrganizationRole, SelectTeamMemberRow } from "services";
+import { useText } from "utils";
 
 export type TeamMemberRowProps = {
   index: number;

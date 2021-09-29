@@ -4,7 +4,7 @@ import {
   useTabParam,
   useWorkflowContext,
   WorkflowTab,
-} from "../../../../utils";
+} from "utils";
 import WorkflowHeaderView from "../WorkflowHeaderView/WorkflowHeaderView";
 
 type ViewProps = React.ComponentProps<typeof WorkflowHeaderView>;

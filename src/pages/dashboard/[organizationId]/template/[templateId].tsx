@@ -1,13 +1,13 @@
 import { useRouter } from "next/router";
+import { LoadingPane, TemplateSwitch } from "organisms";
 import React, { useEffect } from "react";
-import { LoadingPane, TemplateSwitch } from "../../../../organisms";
 import {
   OrganizationContextProvider,
   paths,
   TemplateContextProvider,
   useNumberParam,
   useUserContext,
-} from "../../../../utils";
+} from "utils";
 
 const TemplatePage = (): React.ReactElement => {
   const router = useRouter();

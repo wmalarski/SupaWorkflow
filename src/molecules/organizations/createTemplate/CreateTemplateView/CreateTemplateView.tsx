@@ -11,8 +11,8 @@ import {
 import { PostgrestError } from "@supabase/supabase-js";
 import React from "react";
 import { useForm } from "react-hook-form";
-import { Template } from "../../../../services";
-import { useText, useTextValidator } from "../../../../utils";
+import { Template } from "services";
+import { useText, useTextValidator } from "utils";
 
 export type CreateTemplateViewData = {
   name: string;

@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
-import { defaultTeams } from "../../../../services";
+import { defaultTeams } from "services";
 import OrganizationTeamsView from "./OrganizationTeamsView";
 
 export default {

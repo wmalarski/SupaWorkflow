@@ -13,7 +13,7 @@ import {
   Team,
   Template,
   Workflow,
-} from "../services";
+} from "services";
 import { dbIndexCounter, mockDb } from "./mockDb";
 
 export const addProfileScenario = (

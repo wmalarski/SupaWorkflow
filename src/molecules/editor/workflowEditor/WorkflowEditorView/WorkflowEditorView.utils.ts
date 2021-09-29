@@ -1,13 +1,14 @@
 import { ArrowHeadType, Elements, FlowElement } from "react-flow-renderer";
-import { Message, Team } from "../../../../services";
 import {
+  Message,
   MessageKind,
   MessageNodeType,
   MessageTemplateEdgeBaseState,
   MessageWorkflowEdgeState,
   MessageWorkflowNodeState,
-} from "../../../../services/nodes";
-import { MutationArgs } from "../../../../utils/rep/types";
+  Team,
+} from "services";
+import { MutationArgs } from "utils/rep/types";
 import { WorkflowData } from "./WorkflowEditorView.types";
 
 const findLabel = (

@@ -11,8 +11,8 @@ import {
 import { PostgrestError } from "@supabase/supabase-js";
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { Organization } from "../../../../services";
-import { useText, useTextValidator } from "../../../../utils";
+import { Organization } from "services";
+import { useText, useTextValidator } from "utils";
 
 export type OrganizationSettingsViewProps = {
   isLoading: boolean;

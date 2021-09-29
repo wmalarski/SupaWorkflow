@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React, { useEffect, useState } from "react";
-import { defaultTeams } from "../../../../services";
+import { defaultTeams } from "services";
 import TemplateTeamsForm from "./TemplateTeamsForm";
 
 export default {

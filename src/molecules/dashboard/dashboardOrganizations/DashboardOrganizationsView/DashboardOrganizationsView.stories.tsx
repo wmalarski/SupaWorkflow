@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
-import { defaultOrganization } from "../../../../services";
+import { defaultOrganization } from "services";
 import DashboardOrganizationsView from "./DashboardOrganizationsView";
 
 export default {

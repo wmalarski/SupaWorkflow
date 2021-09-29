@@ -6,7 +6,7 @@ import {
   useState,
 } from "react";
 import { Replicache } from "replicache";
-import { Message, useSubscribeClient } from "../../services";
+import { Message, useSubscribeClient } from "services";
 import { getUrlSearchParams } from "../routing/params";
 import { useMessages, UseMessagesOptions } from "./messages";
 import mutators from "./mutations";

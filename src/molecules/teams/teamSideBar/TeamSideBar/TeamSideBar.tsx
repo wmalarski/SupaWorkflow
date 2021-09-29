@@ -1,5 +1,5 @@
 import React from "react";
-import { useOrganizationContext, useTeamContext } from "../../../../utils";
+import { useOrganizationContext, useTeamContext } from "utils";
 import TeamSideBarView from "../TeamSideBarView/TeamSideBarView";
 
 type ViewProps = React.ComponentProps<typeof TeamSideBarView>;

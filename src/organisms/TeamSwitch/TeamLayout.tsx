@@ -1,11 +1,11 @@
-import React from "react";
 import {
   DashboardCorner,
   ProfileHeader,
   TeamHeader,
   TeamSideBar,
-} from "../../molecules";
-import { FormPage, GridPage } from "../../templates";
+} from "molecules";
+import React from "react";
+import { FormPage, GridPage } from "templates";
 
 export type TeamLayoutProps = {
   isForm?: boolean;

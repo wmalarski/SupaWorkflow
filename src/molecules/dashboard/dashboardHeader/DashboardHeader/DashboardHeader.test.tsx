@@ -3,7 +3,7 @@ import "@testing-library/jest-dom/extend-expect";
 import { render, screen } from "@testing-library/react";
 import React from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
-import { DashboardTab } from "../../../../utils";
+import { DashboardTab } from "utils";
 import { DashboardHeaderViewProps } from "../DashboardHeaderView/DashboardHeaderView";
 import DashboardHeader from "./DashboardHeader";
 

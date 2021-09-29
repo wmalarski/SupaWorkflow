@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
-import { defaultWorkflows } from "../../../../services";
+import { defaultWorkflows } from "services";
 import WorkflowsListView from "./WorkflowsListView";
 
 export default {

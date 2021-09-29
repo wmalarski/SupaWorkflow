@@ -3,7 +3,7 @@ import "@testing-library/jest-dom/extend-expect";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import React from "react";
-import { defaultOrganization, Organization } from "../../../../services";
+import { defaultOrganization, Organization } from "services";
 import { mockDb } from "../../../../tests/mockDb";
 import {
   addMembersScenario,

@@ -2,8 +2,8 @@ import "@testing-library/jest-dom";
 import "@testing-library/jest-dom/extend-expect";
 import { render, screen } from "@testing-library/react";
 import React from "react";
+import { OrganizationTab } from "utils";
 import { ContextsMock } from "../../../../tests/wrappers";
-import { OrganizationTab } from "../../../../utils";
 import { OrganizationHeaderViewProps } from "../OrganizationHeaderView/OrganizationHeaderView";
 import OrganizationHeader from "./OrganizationHeader";
 

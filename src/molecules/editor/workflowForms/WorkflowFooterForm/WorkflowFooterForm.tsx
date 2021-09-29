@@ -1,7 +1,7 @@
 import { HStack } from "@chakra-ui/layout";
 import { Checkbox } from "@chakra-ui/react";
 import React from "react";
-import { useText } from "../../../../utils";
+import { useText } from "utils";
 
 export type WorkflowFooterFormProps = {
   isDone: boolean;

@@ -1,7 +1,7 @@
+import WorkflowEditor from "molecules/editor/workflowEditor/WorkflowEditor/WorkflowEditor";
 import React from "react";
-import WorkflowEditor from "../../molecules/editor/workflowEditor/WorkflowEditor/WorkflowEditor";
-import { useWorkflowContext } from "../../utils";
-import { RepContextProvider } from "../../utils/rep/RepContext";
+import { useWorkflowContext } from "utils";
+import { RepContextProvider } from "utils/rep/RepContext";
 
 const WorkflowWorkspace = (): React.ReactElement => {
   const workflow = useWorkflowContext();

@@ -7,7 +7,7 @@ import {
   OrganizationMember,
   SelectMemberResult,
   useSelectMember,
-} from "../../services";
+} from "services";
 import ProfileContext from "./ProfileContext";
 
 export type OrganizationValue = {

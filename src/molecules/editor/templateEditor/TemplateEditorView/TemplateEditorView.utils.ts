@@ -6,13 +6,14 @@ import {
   Elements,
   FlowElement,
 } from "react-flow-renderer";
-import { Message, Team } from "../../../../services";
 import {
+  Message,
   MessageKind,
   MessageNodeType,
   MessageTemplateEdgeState,
-} from "../../../../services/nodes";
-import { MutationArgs } from "../../../../utils/rep/types";
+  Team,
+} from "services";
+import { MutationArgs } from "utils/rep/types";
 import { TemplateData } from "./TemplateEditorView.types";
 
 export type MessageToElementOptions = {

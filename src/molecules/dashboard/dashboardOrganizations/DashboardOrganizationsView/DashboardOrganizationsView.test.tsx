@@ -2,7 +2,7 @@ import "@testing-library/jest-dom";
 import "@testing-library/jest-dom/extend-expect";
 import { render } from "@testing-library/react";
 import React from "react";
-import { defaultOrganization } from "../../../../services";
+import { defaultOrganization } from "services";
 import DashboardOrganizationsView from "./DashboardOrganizationsView";
 
 type ComponentProps = Parameters<typeof DashboardOrganizationsView>[0];

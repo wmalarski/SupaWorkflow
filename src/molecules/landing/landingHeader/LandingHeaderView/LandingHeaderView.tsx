@@ -1,7 +1,7 @@
 import { Heading, HStack } from "@chakra-ui/react";
+import { Link } from "atoms";
 import React from "react";
-import { Link } from "../../../../atoms";
-import { paths, useText } from "../../../../utils";
+import { paths, useText } from "utils";
 
 const LandingHeaderView = (): React.ReactElement => {
   const text = useText();

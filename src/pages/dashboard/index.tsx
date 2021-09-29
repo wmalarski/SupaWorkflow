@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
+import { DashboardSwitch, LoadingPane } from "organisms";
 import React, { useEffect } from "react";
-import { DashboardSwitch, LoadingPane } from "../../organisms";
-import { paths, ProfileContextProvider, useUserContext } from "../../utils";
+import { paths, ProfileContextProvider, useUserContext } from "utils";
 
 const DashboardPage = (): React.ReactElement => {
   const router = useRouter();

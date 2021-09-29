@@ -13,7 +13,7 @@ import {
   Team,
   Template,
   Workflow,
-} from "../services";
+} from "services";
 import OrganizationContext from "../utils/contexts/OrganizationContext";
 import ProfileContext from "../utils/contexts/ProfileContext";
 import TeamContext from "../utils/contexts/TeamContext";

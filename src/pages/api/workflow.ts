@@ -1,14 +1,12 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import {
+  insertWorkflow,
+  InsertWorkflowArgs,
   mapTemplateToWorkflow,
   selectMessages,
   supabase,
   upsertMessages,
-} from "../../services";
-import {
-  insertWorkflow,
-  InsertWorkflowArgs,
-} from "../../services/data/workflow/insertWorkflow";
+} from "services";
 
 const handler = async (
   req: NextApiRequest,

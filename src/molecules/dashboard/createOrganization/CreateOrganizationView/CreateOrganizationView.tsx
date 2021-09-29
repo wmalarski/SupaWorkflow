@@ -11,8 +11,8 @@ import {
 import { PostgrestError } from "@supabase/supabase-js";
 import React from "react";
 import { useForm } from "react-hook-form";
-import { Organization } from "../../../../services";
-import { useText, useTextValidator } from "../../../../utils";
+import { Organization } from "services";
+import { useText, useTextValidator } from "utils";
 
 export type CreateOrganizationViewData = {
   name: string;

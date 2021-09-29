@@ -1,7 +1,7 @@
+import TemplateEditor from "molecules/editor/templateEditor/TemplateEditor/TemplateEditor";
 import React from "react";
-import TemplateEditor from "../../molecules/editor/templateEditor/TemplateEditor/TemplateEditor";
-import { useTemplateContext } from "../../utils";
-import { RepContextProvider } from "../../utils/rep/RepContext";
+import { useTemplateContext } from "utils";
+import { RepContextProvider } from "utils/rep/RepContext";
 
 const TemplateWorkspace = (): React.ReactElement => {
   const template = useTemplateContext();

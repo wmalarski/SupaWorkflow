@@ -1,9 +1,5 @@
 import React from "react";
-import {
-  OrganizationTab,
-  useOrganizationContext,
-  useTabParam,
-} from "../../../../utils";
+import { OrganizationTab, useOrganizationContext, useTabParam } from "utils";
 import OrganizationHeaderView from "../OrganizationHeaderView/OrganizationHeaderView";
 
 type ViewProps = React.ComponentProps<typeof OrganizationHeaderView>;

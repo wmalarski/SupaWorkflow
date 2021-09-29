@@ -1,11 +1,7 @@
 import { useRouter } from "next/router";
 import React from "react";
-import { useInsertWorkflow } from "../../../../services/data/workflow/insertWorkflow";
-import {
-  paths,
-  useOrganizationContext,
-  useTemplateContext,
-} from "../../../../utils";
+import { useInsertWorkflow } from "services";
+import { paths, useOrganizationContext, useTemplateContext } from "utils";
 import CreateWorkflowView from "../CreateWorkflowView/CreateWorkflowView";
 
 type ViewProps = React.ComponentProps<typeof CreateWorkflowView>;

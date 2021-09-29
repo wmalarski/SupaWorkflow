@@ -1,8 +1,8 @@
 import { Heading, LinkBox, Text } from "@chakra-ui/react";
+import { LinkOverlay } from "atoms";
 import React from "react";
-import { LinkOverlay } from "../../../../atoms";
-import { Organization } from "../../../../services";
-import { paths } from "../../../../utils";
+import { Organization } from "services";
+import { paths } from "utils";
 
 export type OrganizationBoxProps = {
   organization: Organization;

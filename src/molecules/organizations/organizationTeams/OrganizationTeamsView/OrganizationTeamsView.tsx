@@ -1,9 +1,8 @@
 import { Button, Text, VStack } from "@chakra-ui/react";
+import { Link, Pagination } from "atoms";
 import React from "react";
-import { Link, Pagination } from "../../../../atoms";
-import { OrganizationRole, Team } from "../../../../services";
-import { paths, useText } from "../../../../utils";
-import { OrganizationTab } from "../../../../utils/routing/types";
+import { OrganizationRole, Team } from "services";
+import { OrganizationTab, paths, useText } from "utils";
 
 export type OrganizationTeamsViewProps = {
   page: number;

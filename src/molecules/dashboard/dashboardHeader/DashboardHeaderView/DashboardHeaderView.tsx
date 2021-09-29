@@ -1,7 +1,7 @@
 import { Breadcrumb, BreadcrumbItem } from "@chakra-ui/react";
+import { BreadcrumbLink } from "atoms";
 import React from "react";
-import { BreadcrumbLink } from "../../../../atoms";
-import { DashboardTab, paths, useText } from "../../../../utils";
+import { DashboardTab, paths, useText } from "utils";
 import { getTabText } from "./DashboardHeaderView.utils";
 
 export type DashboardHeaderViewProps = {

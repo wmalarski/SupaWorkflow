@@ -4,7 +4,7 @@ import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import React from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
-import { paths } from "../../../../utils";
+import { paths } from "utils";
 import { SignOutViewProps } from "../SignOutView/SignOutView";
 import SignOut from "./SignOut";
 

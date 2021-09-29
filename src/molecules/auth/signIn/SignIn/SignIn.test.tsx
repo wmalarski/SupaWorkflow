@@ -4,7 +4,7 @@ import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import React from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
-import { defaultUser } from "../../../../services";
+import { defaultUser } from "services";
 import { addProfileScenario } from "../../../../tests/mockScenarios";
 import { SignInViewProps } from "../SignInView/SignInView";
 import SignIn from "./SignIn";

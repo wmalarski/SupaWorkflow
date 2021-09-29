@@ -2,7 +2,7 @@ import "@testing-library/jest-dom";
 import "@testing-library/jest-dom/extend-expect";
 import { render, screen, waitFor } from "@testing-library/react";
 import React from "react";
-import { defaultOrganization, Organization } from "../../../../services";
+import { defaultOrganization, Organization } from "services";
 import {
   addMembersScenario,
   addOrganizationScenario,

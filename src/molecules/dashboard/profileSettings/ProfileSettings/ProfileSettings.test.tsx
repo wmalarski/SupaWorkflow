@@ -3,7 +3,7 @@ import "@testing-library/jest-dom/extend-expect";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import React from "react";
-import { defaultProfile, Profile } from "../../../../services";
+import { defaultProfile, Profile } from "services";
 import { addProfileScenario } from "../../../../tests/mockScenarios";
 import { ContextsMock } from "../../../../tests/wrappers";
 import { ProfileSettingsViewProps } from "../ProfileSettingsView/ProfileSettingsView";

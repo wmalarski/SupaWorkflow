@@ -10,11 +10,7 @@ import {
 import { PostgrestError, User } from "@supabase/supabase-js";
 import React from "react";
 import { useForm } from "react-hook-form";
-import {
-  useEmailValidator,
-  usePasswordValidator,
-  useText,
-} from "../../../../utils";
+import { useEmailValidator, usePasswordValidator, useText } from "utils";
 
 export type SignInViewData = {
   email: string;

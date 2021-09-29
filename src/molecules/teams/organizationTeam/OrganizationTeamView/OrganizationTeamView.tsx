@@ -1,8 +1,8 @@
 import { Table, Tbody, Th, Thead, Tr, VStack } from "@chakra-ui/react";
+import { Pagination } from "atoms";
 import React from "react";
-import { Pagination } from "../../../../atoms";
-import { OrganizationRole, SelectTeamMemberRow } from "../../../../services";
-import { useText } from "../../../../utils";
+import { OrganizationRole, SelectTeamMemberRow } from "services";
+import { useText } from "utils";
 import TeamMemberRow from "../TeamMemberRow/TeamMemberRow";
 
 export type OrganizationTeamViewProps = {

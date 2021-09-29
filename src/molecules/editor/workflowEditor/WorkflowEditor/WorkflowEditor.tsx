@@ -1,7 +1,7 @@
 import React from "react";
-import { useSelectTeams } from "../../../../services";
-import { useOrganizationContext, useWorkflowContext } from "../../../../utils";
-import { useRepContext } from "../../../../utils/rep/RepContext";
+import { useSelectTeams } from "services";
+import { useOrganizationContext, useWorkflowContext } from "utils";
+import { useRepContext } from "utils/rep/RepContext";
 import WorkflowEditorView from "../WorkflowEditorView/WorkflowEditorView";
 
 type ViewProps = React.ComponentProps<typeof WorkflowEditorView>;

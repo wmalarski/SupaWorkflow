@@ -1,7 +1,11 @@
 import { PostgrestError } from "@supabase/supabase-js";
 import { rest } from "msw";
-import { Profile, SUPABASE_ENDPOINT, TABLES } from "../../services";
-import { UpdateProfileArgs } from "../../services/data/profile/updateProfile";
+import {
+  Profile,
+  SUPABASE_ENDPOINT,
+  TABLES,
+  UpdateProfileArgs,
+} from "services";
 import { mockDb } from "../mockDb";
 
 export const profileHandlers = [

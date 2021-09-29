@@ -1,6 +1,6 @@
 import { Heading, Radio, RadioGroup, VStack } from "@chakra-ui/react";
 import React from "react";
-import { useText } from "../../../../utils";
+import { useText } from "utils";
 
 export type WorkflowRadioFormProps = {
   selected: number | null;

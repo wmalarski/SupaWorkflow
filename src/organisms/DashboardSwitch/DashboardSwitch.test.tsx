@@ -2,8 +2,8 @@ import "@testing-library/jest-dom";
 import "@testing-library/jest-dom/extend-expect";
 import { render } from "@testing-library/react";
 import React from "react";
+import { DashboardTab } from "utils";
 import { ContextsMock } from "../../tests/wrappers";
-import { DashboardTab } from "../../utils";
 import DashboardSwitch from "./DashboardSwitch";
 
 const Wrapped = (): React.ReactElement => (

@@ -1,13 +1,13 @@
-import type { NextPage } from "next";
-import React from "react";
 import {
   AnonHeader,
   LandingHeader,
   LandingTop,
   ProfileHeader,
-} from "../molecules";
-import { Header, Page } from "../templates";
-import { useUserContext } from "../utils";
+} from "molecules";
+import type { NextPage } from "next";
+import React from "react";
+import { Header, Page } from "templates";
+import { useUserContext } from "utils";
 
 const IndexPage: NextPage = () => (
   <Page

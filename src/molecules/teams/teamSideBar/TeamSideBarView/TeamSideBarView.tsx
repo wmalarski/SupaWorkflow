@@ -1,8 +1,8 @@
 import { AddIcon } from "@chakra-ui/icons";
 import { Heading, HStack, Text, VStack } from "@chakra-ui/react";
+import { Link } from "atoms";
 import React from "react";
-import { Link } from "../../../../atoms";
-import { OrganizationTab, paths, useText } from "../../../../utils";
+import { OrganizationTab, paths, useText } from "utils";
 
 export type TeamSideBarViewProps = {
   organizationId: number;

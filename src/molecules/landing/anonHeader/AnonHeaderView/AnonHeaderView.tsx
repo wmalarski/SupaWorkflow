@@ -1,8 +1,7 @@
 import { Heading, HStack } from "@chakra-ui/react";
+import { Link, ThemeButton } from "atoms";
 import React from "react";
-import { Link } from "../../../../atoms";
-import ThemeButton from "../../../../atoms/ThemeButton/ThemeButton";
-import { paths, useText } from "../../../../utils";
+import { paths, useText } from "utils";
 
 const AnonHeaderView = (): React.ReactElement => {
   const text = useText();

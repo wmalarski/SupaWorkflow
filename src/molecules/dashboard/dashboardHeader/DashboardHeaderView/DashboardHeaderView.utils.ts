@@ -1,4 +1,4 @@
-import { DashboardTab, UseTextFnc } from "../../../../utils";
+import { DashboardTab, UseTextFnc } from "utils";
 
 export const getTabText = (
   tab: DashboardTab,

@@ -2,7 +2,7 @@ import "@testing-library/jest-dom";
 import "@testing-library/jest-dom/extend-expect";
 import { render } from "@testing-library/react";
 import React from "react";
-import { defaultMember, defaultOrganizationMember } from "../../../../services";
+import { defaultMember, defaultOrganizationMember } from "services";
 import OrganizationMembersView from "./OrganizationMembersView";
 
 type ComponentProps = Parameters<typeof OrganizationMembersView>[0];

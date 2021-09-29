@@ -1,5 +1,5 @@
 import { WriteTransaction } from "replicache";
-import { Message } from "../../services";
+import { Message } from "services";
 import repKeys from "./repKeys";
 
 const mutators = {

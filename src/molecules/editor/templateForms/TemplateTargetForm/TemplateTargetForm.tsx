@@ -2,7 +2,7 @@ import { FormControl, FormLabel } from "@chakra-ui/form-control";
 import { Heading, VStack } from "@chakra-ui/layout";
 import { Switch } from "@chakra-ui/react";
 import React from "react";
-import { useText } from "../../../../utils";
+import { useText } from "utils";
 
 export type TemplateTargetFormProps = {
   isTargetAll: boolean;

@@ -1,5 +1,5 @@
 import React from "react";
-import { useSelectOrganizations } from "../../../../services";
+import { useSelectOrganizations } from "services";
 import DashboardOrganizationsView from "../DashboardOrganizationsView/DashboardOrganizationsView";
 
 type ViewProps = React.ComponentProps<typeof DashboardOrganizationsView>;

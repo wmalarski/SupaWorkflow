@@ -1,13 +1,13 @@
 import { useRouter } from "next/router";
+import { LoadingPane, WorkflowSwitch } from "organisms";
 import React, { useEffect } from "react";
-import { LoadingPane, WorkflowSwitch } from "../../../../organisms";
 import {
   OrganizationContextProvider,
   paths,
   useNumberParam,
   useUserContext,
   WorkflowContextProvider,
-} from "../../../../utils";
+} from "utils";
 
 const WorkflowPage = (): React.ReactElement => {
   const router = useRouter();

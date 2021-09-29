@@ -2,9 +2,9 @@ import { ChakraProvider } from "@chakra-ui/react";
 import type { AppProps } from "next/app";
 import React from "react";
 import { QueryClientProvider } from "react-query";
-import { queryClient } from "../services";
+import { queryClient } from "services";
+import { UserContextProvider } from "utils";
 import theme from "../styles/theme";
-import { UserContextProvider } from "../utils";
 
 const MyApp = ({ Component, pageProps }: AppProps): React.ReactElement => (
   <ChakraProvider theme={theme}>

@@ -1,7 +1,6 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
-import { defaultTeams } from "../../../../services";
-import { MessageKind, MessageNodeType } from "../../../../services/nodes";
+import { defaultTeams, MessageKind, MessageNodeType } from "services";
 import TemplateFormNode from "./TemplateFormNode";
 
 export default {

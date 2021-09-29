@@ -6,7 +6,7 @@ import {
   SUPABASE_ENDPOINT,
   TABLES,
   TeamMember,
-} from "../../services";
+} from "services";
 import { dbIndexCounter, mockDb } from "../mockDb";
 
 export const teamMemberHandlers = [

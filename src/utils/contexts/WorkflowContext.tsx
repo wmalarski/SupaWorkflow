@@ -1,6 +1,6 @@
 import { PostgrestError } from "@supabase/supabase-js";
 import { createContext, ReactNode, useContext, useMemo } from "react";
-import { defaultWorkflow, useSelectWorkflow, Workflow } from "../../services";
+import { defaultWorkflow, useSelectWorkflow, Workflow } from "services";
 
 export type WorkflowContextValue = {
   workflow: Workflow;

@@ -7,7 +7,7 @@ import {
   SUPABASE_ENDPOINT,
   TABLES,
   UpdateOrganizationMemberArgs,
-} from "../../services";
+} from "services";
 import { mockDb } from "../mockDb";
 
 export const organizationMemberHandlers = [

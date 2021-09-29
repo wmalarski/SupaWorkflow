@@ -2,7 +2,7 @@ import { Input } from "@chakra-ui/input";
 import { GridItem, Heading, VStack } from "@chakra-ui/layout";
 import { Grid, Text } from "@chakra-ui/react";
 import React from "react";
-import { useText } from "../../../../utils";
+import { useText } from "utils";
 
 export type WorkflowFieldsFormProps = {
   values: Record<number, string>;

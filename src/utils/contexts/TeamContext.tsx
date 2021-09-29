@@ -1,7 +1,6 @@
 import { PostgrestError } from "@supabase/supabase-js";
 import { createContext, ReactNode, useContext, useMemo } from "react";
-import { defaultTeam, Team } from "../../services";
-import { useSelectTeam } from "../../services/data/team/selectTeam";
+import { defaultTeam, Team, useSelectTeam } from "services";
 
 export type TeamContextValue = {
   team: Team;

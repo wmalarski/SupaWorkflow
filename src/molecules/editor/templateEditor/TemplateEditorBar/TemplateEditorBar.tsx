@@ -1,9 +1,9 @@
 import { CheckIcon, EditIcon, HamburgerIcon } from "@chakra-ui/icons";
 import { Button, ButtonGroup } from "@chakra-ui/react";
 import React, { useCallback } from "react";
-import { MessageNodeType } from "../../../../services/nodes";
-import { useText } from "../../../../utils";
-import { MutationArgs } from "../../../../utils/rep/types";
+import { MessageNodeType } from "services";
+import { useText } from "utils";
+import { MutationArgs } from "utils/rep/types";
 import { getNewNodeMessage } from "./TemplateEditorBar.utils";
 
 export type TemplateEditorBarProps = {

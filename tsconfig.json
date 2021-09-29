@@ -16,7 +16,31 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "baseUrl": "./src",
+    "paths": {
+      "@/atoms": [
+        "./atoms/index"
+      ],
+      "@/organisms": [
+        "./organisms/index"
+      ],
+      "@/molecules": [
+        "./molecules/index"
+      ],
+      "@/templates": [
+        "./templates/index"
+      ],
+      "@/utils": [
+        "./utils/index"
+      ],
+      "@/utils/*": [
+        "./utils/*"
+      ],
+      "@/services": [
+        "./services/index"
+      ]
+    }
   },
   "include": [
     "next-env.d.ts",

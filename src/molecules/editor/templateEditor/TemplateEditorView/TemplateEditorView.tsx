@@ -8,9 +8,8 @@ import ReactFlow, {
   Elements,
   Node,
 } from "react-flow-renderer";
-import { Message, Team } from "../../../../services";
-import { MessageKind, MessageNodeType } from "../../../../services/nodes";
-import { MutationArgs } from "../../../../utils/rep/types";
+import { Message, MessageKind, MessageNodeType, Team } from "services";
+import { MutationArgs } from "utils/rep/types";
 import TemplateChecklistNode from "../../templateNodes/TemplateChecklistNode/TemplateChecklistNode";
 import TemplateDecisionNode from "../../templateNodes/TemplateDecisionNode/TemplateDecisionNode";
 import TemplateFormNode from "../../templateNodes/TemplateFormNode/TemplateFormNode";

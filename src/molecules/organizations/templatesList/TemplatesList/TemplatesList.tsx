@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { useSelectTemplates } from "../../../../services";
-import { useOrganizationContext } from "../../../../utils";
+import { useSelectTemplates } from "services";
+import { useOrganizationContext } from "utils";
 import TemplatesListView from "../TemplatesListView/TemplatesListView";
 
 type ViewProps = React.ComponentProps<typeof TemplatesListView>;

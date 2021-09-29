@@ -1,6 +1,6 @@
 import { Checkbox, CheckboxGroup, Heading, VStack } from "@chakra-ui/react";
 import React from "react";
-import { useText } from "../../../../utils";
+import { useText } from "utils";
 
 export type WorkflowCheckboxesFormProps = {
   checked: number[];

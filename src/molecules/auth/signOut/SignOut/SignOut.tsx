@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import React from "react";
-import { useSignOut } from "../../../../services";
-import { paths } from "../../../../utils";
+import { useSignOut } from "services";
+import { paths } from "utils";
 import SignOutView, { SignOutViewProps } from "../SignOutView/SignOutView";
 
 export type SignOutProps = {

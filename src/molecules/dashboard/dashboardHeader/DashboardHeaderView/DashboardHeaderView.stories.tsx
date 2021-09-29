@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
-import { DashboardTab } from "../../../../utils";
+import { DashboardTab } from "utils";
 import DashboardHeaderView from "./DashboardHeaderView";
 
 export default {

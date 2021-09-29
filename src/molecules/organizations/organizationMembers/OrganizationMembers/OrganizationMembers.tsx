@@ -1,13 +1,10 @@
 import React, { useState } from "react";
 import {
+  useDeleteOrganizationMember,
   useSelectMembers,
   useUpdateOrganizationMember,
-} from "../../../../services";
-import { useDeleteOrganizationMember } from "../../../../services/data/organizationMember/deleteOrganizationMember";
-import {
-  useOrganizationContext,
-  useOrganizationMemberContext,
-} from "../../../../utils";
+} from "services";
+import { useOrganizationContext, useOrganizationMemberContext } from "utils";
 import OrganizationMembersView from "../OrganizationMembersView/OrganizationMembersView";
 
 type ViewProps = React.ComponentProps<typeof OrganizationMembersView>;

@@ -7,7 +7,7 @@ import {
   SUPABASE_ENDPOINT,
   TABLES,
   UpdateOrganizationArgs,
-} from "../../services";
+} from "services";
 import { dbIndexCounter, mockDb } from "../mockDb";
 
 export const organizationHandlers = [

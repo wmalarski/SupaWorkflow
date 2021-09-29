@@ -1,4 +1,4 @@
-import { TemplateTab, UseTextFnc } from "../../../../utils";
+import { TemplateTab, UseTextFnc } from "utils";
 
 export const getTabText = (
   tab: TemplateTab,

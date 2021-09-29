@@ -1,7 +1,7 @@
 import { StackDivider, VStack } from "@chakra-ui/react";
 import React, { useCallback, useMemo } from "react";
 import { Handle, Position } from "react-flow-renderer";
-import { MessageDecisionWorkflowNodeState } from "../../../../services/nodes";
+import { MessageDecisionWorkflowNodeState } from "services";
 import NodeBoxForm from "../../nodeForms/NodeBoxForm/NodeBoxForm";
 import { WorkflowNodeProps } from "../../workflowEditor/WorkflowEditorView/WorkflowEditorView.types";
 import WorkflowHeaderForm from "../../workflowForms/WorkflowHeaderForm/WorkflowHeaderForm";
