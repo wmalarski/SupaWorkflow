@@ -13,7 +13,9 @@ const OrganizationBox = ({
 }: OrganizationBoxProps): React.ReactElement => (
   <LinkBox as="article" maxW="sm" p="5" borderWidth="1px" rounded="md">
     <Heading size="md" my="2">
-      <LinkOverlay href={paths.organization(organization.id)}>
+      <LinkOverlay
+        href={paths.organization({ organizationId: organization.id })}
+      >
         {organization.name}
       </LinkOverlay>
     </Heading>

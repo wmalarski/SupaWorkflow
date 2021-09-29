@@ -28,18 +28,21 @@ const TemplatesListView = ({
   return (
     <VStack>
       <Link
-        href={paths.organization(organizationId, OrganizationTab.newTemplate)}
+        href={paths.organization({
+          organizationId,
+          tab: OrganizationTab.newTemplate,
+        })}
       >
         {text("navigationTemplateNew")}
       </Link>
       {templates?.map((template) => (
         <Link
           key={template.id}
-          href={paths.template(
-            template.organization_id,
-            template.id,
-            TemplateTab.edit
-          )}
+          href={paths.template({
+            organizationId: template.organization_id,
+            templateId: template.id,
+            tab: TemplateTab.edit,
+          })}
         >
           <Text fontSize="sm">{template.name}</Text>
         </Link>

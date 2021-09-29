@@ -61,7 +61,7 @@ export const OrganizationContextProvider = ({
   onError,
 }: OrganizationContextProviderProps): React.ReactElement | null => {
   const { data } = useSelectMember(
-    { organizationId: organizationId, userId },
+    { organizationId, userId },
     { initialData, enabled, onError }
   );
 

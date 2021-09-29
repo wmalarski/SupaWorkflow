@@ -28,7 +28,7 @@ const DashboardHeaderView = ({
       {tab && (
         <BreadcrumbItem>
           <BreadcrumbLink
-            href={paths.dashboard(tab)}
+            href={paths.dashboard({ tab })}
             nextProps={{ shallow: true }}
           >
             {getTabText(tab, text)}

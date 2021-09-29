@@ -27,20 +27,23 @@ const TeamHeaderView = ({
         </BreadcrumbLink>
       </BreadcrumbItem>
       <BreadcrumbItem>
-        <BreadcrumbLink href={paths.organization(organizationId)}>
+        <BreadcrumbLink href={paths.organization({ organizationId })}>
           {text("navigationOrganization")}
         </BreadcrumbLink>
       </BreadcrumbItem>
       <BreadcrumbItem>
         <BreadcrumbLink
-          href={paths.organization(organizationId, OrganizationTab.teams)}
+          href={paths.organization({
+            organizationId,
+            tab: OrganizationTab.teams,
+          })}
         >
           {text("navigationTeams")}
         </BreadcrumbLink>
       </BreadcrumbItem>
       <BreadcrumbItem>
         <BreadcrumbLink
-          href={paths.team(organizationId, teamId)}
+          href={paths.team({ organizationId, teamId })}
           nextProps={{ shallow: true }}
         >
           {text("navigationTeam")}

@@ -30,20 +30,23 @@ const WorkflowHeaderView = ({
         </BreadcrumbLink>
       </BreadcrumbItem>
       <BreadcrumbItem>
-        <BreadcrumbLink href={paths.organization(organizationId)}>
+        <BreadcrumbLink href={paths.organization({ organizationId })}>
           {text("navigationOrganization")}
         </BreadcrumbLink>
       </BreadcrumbItem>
       <BreadcrumbItem>
         <BreadcrumbLink
-          href={paths.organization(organizationId, OrganizationTab.workflows)}
+          href={paths.organization({
+            organizationId,
+            tab: OrganizationTab.workflows,
+          })}
         >
           {text("navigationWorkflows")}
         </BreadcrumbLink>
       </BreadcrumbItem>
       <BreadcrumbItem>
         <BreadcrumbLink
-          href={paths.workflow(organizationId, workflowId)}
+          href={paths.workflow({ organizationId, workflowId })}
           nextProps={{ shallow: true }}
         >
           {text("navigationWorkflow")}
@@ -52,7 +55,11 @@ const WorkflowHeaderView = ({
       {tab && (
         <BreadcrumbItem>
           <BreadcrumbLink
-            href={paths.workflow(organizationId, workflowId, tab)}
+            href={paths.workflow({
+              organizationId,
+              workflowId,
+              tab,
+            })}
             nextProps={{ shallow: true }}
           >
             {getTabText(tab, text)}

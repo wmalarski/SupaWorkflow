@@ -19,7 +19,7 @@ const WorkflowSideBarView = ({
       <Heading size="sm">{text("navigationWorkflow")}</Heading>
 
       <Link
-        href={paths.workflow(organizationId, workflowId)}
+        href={paths.workflow({ organizationId, workflowId })}
         nextProps={{ shallow: true }}
       >
         <Text pl={3} fontSize="sm">
@@ -28,7 +28,11 @@ const WorkflowSideBarView = ({
       </Link>
 
       <Link
-        href={paths.workflow(organizationId, workflowId, WorkflowTab.edit)}
+        href={paths.workflow({
+          organizationId,
+          workflowId,
+          tab: WorkflowTab.edit,
+        })}
         nextProps={{ shallow: true }}
       >
         <Text pl={3} fontSize="sm">

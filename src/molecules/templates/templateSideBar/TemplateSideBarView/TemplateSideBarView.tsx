@@ -20,7 +20,7 @@ const TemplateSideBarView = ({
       <Heading size="sm">{text("navigationTemplate")}</Heading>
 
       <Link
-        href={paths.template(organizationId, templateId)}
+        href={paths.template({ organizationId, templateId })}
         nextProps={{ shallow: true }}
       >
         <Text pl={3} fontSize="sm">
@@ -29,7 +29,11 @@ const TemplateSideBarView = ({
       </Link>
 
       <Link
-        href={paths.template(organizationId, templateId, TemplateTab.edit)}
+        href={paths.template({
+          organizationId,
+          templateId,
+          tab: TemplateTab.edit,
+        })}
         nextProps={{ shallow: true }}
       >
         <Text pl={3} fontSize="sm">
@@ -38,7 +42,11 @@ const TemplateSideBarView = ({
       </Link>
 
       <Link
-        href={paths.template(organizationId, templateId, TemplateTab.new)}
+        href={paths.template({
+          organizationId,
+          templateId,
+          tab: TemplateTab.new,
+        })}
         nextProps={{ shallow: true }}
       >
         <HStack pl={3}>

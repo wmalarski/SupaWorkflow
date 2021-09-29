@@ -17,7 +17,7 @@ const SignIn = ({ View = SignInView }: SignInProps): React.ReactElement => {
     isLoading,
     data: user,
   } = useSignIn({
-    onSuccess: () => router.push(paths.dashboard(null)),
+    onSuccess: () => router.push(paths.dashboard()),
   });
 
   return (

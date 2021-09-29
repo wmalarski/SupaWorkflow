@@ -20,7 +20,7 @@ const DashboardSideBarView = ({
       <Heading size="sm">{text("navigationOrganizations")}</Heading>
       <Link
         pl={3}
-        href={paths.dashboard(DashboardTab.new)}
+        href={paths.dashboard({ tab: DashboardTab.new })}
         nextProps={{ shallow: true }}
       >
         <HStack>
@@ -28,7 +28,7 @@ const DashboardSideBarView = ({
           <Text fontSize="sm">{text("navigationOrganizationNew")}</Text>
         </HStack>
       </Link>
-      <Link href={paths.dashboard(null)} nextProps={{ shallow: true }}>
+      <Link href={paths.dashboard()} nextProps={{ shallow: true }}>
         <Text pl={3} fontSize="sm">
           {text("navigationOrganizations")}
         </Text>
@@ -40,7 +40,7 @@ const DashboardSideBarView = ({
       {organizations?.map((organization) => (
         <Link
           key={organization.id}
-          href={paths.organization(organization.id, null)}
+          href={paths.organization({ organizationId: organization.id })}
         >
           <Text pl={3} fontSize="sm">
             {organization.name}
@@ -52,7 +52,7 @@ const DashboardSideBarView = ({
         {text("navigationProfile")}
       </Heading>
       <Link
-        href={paths.dashboard(DashboardTab.profile)}
+        href={paths.dashboard({ tab: DashboardTab.profile })}
         nextProps={{ shallow: true }}
       >
         <HStack pl={3}>

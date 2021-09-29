@@ -31,12 +31,22 @@ const OrganizationTeamsView = ({
 
   return (
     <VStack>
-      <Link href={paths.organization(organizationId, OrganizationTab.newTeam)}>
+      <Link
+        href={paths.organization({
+          organizationId,
+          tab: OrganizationTab.newTeam,
+        })}
+      >
         {text("navigationTeamNew")}
       </Link>
       {teams?.map((team) => (
         <React.Fragment key={team.id}>
-          <Link href={paths.team(team.organization_id, team.id)}>
+          <Link
+            href={paths.team({
+              organizationId: team.organization_id,
+              teamId: team.id,
+            })}
+          >
             <Text fontSize="sm">{team.name}</Text>
           </Link>
           {["mod", "owner"].includes(organizationRole) && (

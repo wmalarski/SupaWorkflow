@@ -24,7 +24,12 @@ const CreateTemplate = ({
     error,
   } = useInsertTemplate({
     onSuccess: (template) =>
-      router.push(paths.template(organization.id, template.id)),
+      router.push(
+        paths.template({
+          organizationId: organization.id,
+          templateId: template.id,
+        })
+      ),
   });
 
   return (

@@ -26,7 +26,7 @@ const OrganizationSettings = ({
     isLoading,
     error: deleteError,
   } = useDeleteOrganization({
-    onSuccess: () => router.push(paths.dashboard(null)),
+    onSuccess: () => router.push(paths.dashboard()),
   });
 
   const {

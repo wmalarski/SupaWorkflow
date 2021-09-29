@@ -29,7 +29,12 @@ const CreateWorkflow = ({
     error,
   } = useInsertWorkflow({
     onSuccess: (workflow) =>
-      router.push(paths.workflow(organization.id, workflow.id)),
+      router.push(
+        paths.workflow({
+          organizationId: organization.id,
+          workflowId: workflow.id,
+        })
+      ),
   });
 
   return (

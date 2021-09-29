@@ -7,27 +7,44 @@ import {
 
 const paths = {
   home: "/",
+
   notFound: "/404",
+
   signIn: "/signIn",
+
   signUp: "/signUp",
-  dashboard: (tab?: DashboardTab | null): string =>
-    `/dashboard${tab ? `?tab=${tab}` : ""}`,
-  organization: (orgId: number, tab?: OrganizationTab | null): string =>
-    `/dashboard/${orgId}${tab ? `?tab=${tab}` : ""}`,
-  team: (orgId: number, teamId: number): string =>
-    `/dashboard/${orgId}/teams/${teamId}`,
-  template: (
-    orgId: number,
-    templateId: number,
-    tab?: TemplateTab | null
-  ): string =>
-    `/dashboard/${orgId}/template/${templateId}${tab ? `?tab=${tab}` : ""}`,
-  workflow: (
-    orgId: number,
-    workflowId: number,
-    tab?: WorkflowTab | null
-  ): string =>
-    `/dashboard/${orgId}/workflow/${workflowId}${tab ? `?tab=${tab}` : ""}`,
+
+  dashboard: (options: { tab?: DashboardTab | null } = {}): string =>
+    `/dashboard${options.tab ? `?tab=${options.tab}` : ""}`,
+
+  organization: (options: {
+    organizationId: number;
+    tab?: OrganizationTab | null;
+  }): string =>
+    `/dashboard/${options.organizationId}${
+      options.tab ? `?tab=${options.tab}` : ""
+    }`,
+
+  team: (options: { organizationId: number; teamId: number }): string =>
+    `/dashboard/${options.organizationId}/teams/${options.teamId}`,
+
+  template: (options: {
+    organizationId: number;
+    templateId: number;
+    tab?: TemplateTab | null;
+  }): string =>
+    `/dashboard/${options.organizationId}/template/${options.templateId}${
+      options.tab ? `?tab=${options.tab}` : ""
+    }`,
+
+  workflow: (options: {
+    organizationId: number;
+    workflowId: number;
+    tab?: WorkflowTab | null;
+  }): string =>
+    `/dashboard/${options.organizationId}/workflow/${options.workflowId}${
+      options.tab ? `?tab=${options.tab}` : ""
+    }`,
 };
 
 export default paths;

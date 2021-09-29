@@ -23,7 +23,10 @@ const NewOrganizationTeam = ({
     data,
   } = useInsertTeam({
     onSuccess: (team) => {
-      team && router.push(paths.team(organization.id, team?.id));
+      team &&
+        router.push(
+          paths.team({ organizationId: organization.id, teamId: team?.id })
+        );
     },
   });
 

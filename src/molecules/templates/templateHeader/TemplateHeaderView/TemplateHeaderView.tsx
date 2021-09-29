@@ -30,20 +30,23 @@ const TemplateHeaderView = ({
         </BreadcrumbLink>
       </BreadcrumbItem>
       <BreadcrumbItem>
-        <BreadcrumbLink href={paths.organization(organizationId)}>
+        <BreadcrumbLink href={paths.organization({ organizationId })}>
           {text("navigationOrganization")}
         </BreadcrumbLink>
       </BreadcrumbItem>
       <BreadcrumbItem>
         <BreadcrumbLink
-          href={paths.organization(organizationId, OrganizationTab.templates)}
+          href={paths.organization({
+            organizationId,
+            tab: OrganizationTab.templates,
+          })}
         >
           {text("navigationTemplates")}
         </BreadcrumbLink>
       </BreadcrumbItem>
       <BreadcrumbItem>
         <BreadcrumbLink
-          href={paths.template(organizationId, templateId)}
+          href={paths.template({ organizationId, templateId })}
           nextProps={{ shallow: true }}
         >
           {text("navigationTemplate")}
@@ -52,7 +55,11 @@ const TemplateHeaderView = ({
       {tab && (
         <BreadcrumbItem>
           <BreadcrumbLink
-            href={paths.template(organizationId, templateId, tab)}
+            href={paths.template({
+              organizationId,
+              templateId,
+              tab,
+            })}
             nextProps={{ shallow: true }}
           >
             {getTabText(tab, text)}

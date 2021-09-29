@@ -20,7 +20,7 @@ const OrganizationSideBarView = ({
     <VStack align="start" spacing={5}>
       <Heading size="sm">{text("navigationOrganization")}</Heading>
       <Link
-        href={paths.organization(organizationId)}
+        href={paths.organization({ organizationId })}
         nextProps={{ shallow: true }}
       >
         <Text pl={3} fontSize="sm">
@@ -29,7 +29,10 @@ const OrganizationSideBarView = ({
       </Link>
 
       <Link
-        href={paths.organization(organizationId, OrganizationTab.workflows)}
+        href={paths.organization({
+          organizationId,
+          tab: OrganizationTab.workflows,
+        })}
         nextProps={{ shallow: true }}
       >
         <Text pl={3} fontSize="sm">
@@ -38,7 +41,10 @@ const OrganizationSideBarView = ({
       </Link>
 
       <Link
-        href={paths.organization(organizationId, OrganizationTab.members)}
+        href={paths.organization({
+          organizationId,
+          tab: OrganizationTab.members,
+        })}
         nextProps={{ shallow: true }}
       >
         <Text pl={3} fontSize="sm">
@@ -47,7 +53,10 @@ const OrganizationSideBarView = ({
       </Link>
       {["mod", "owner"].includes(organizationRole) && (
         <Link
-          href={paths.organization(organizationId, OrganizationTab.settings)}
+          href={paths.organization({
+            organizationId,
+            tab: OrganizationTab.settings,
+          })}
           nextProps={{ shallow: true }}
         >
           <Text pl={3} fontSize="sm">
@@ -60,7 +69,10 @@ const OrganizationSideBarView = ({
         {text("navigationTemplates")}
       </Heading>
       <Link
-        href={paths.organization(organizationId, OrganizationTab.newTemplate)}
+        href={paths.organization({
+          organizationId,
+          tab: OrganizationTab.newTemplate,
+        })}
         nextProps={{ shallow: true }}
       >
         <HStack pl={3}>
@@ -69,7 +81,10 @@ const OrganizationSideBarView = ({
         </HStack>
       </Link>
       <Link
-        href={paths.organization(organizationId, OrganizationTab.templates)}
+        href={paths.organization({
+          organizationId,
+          tab: OrganizationTab.templates,
+        })}
         nextProps={{ shallow: true }}
       >
         <Text pl={3} fontSize="sm">
@@ -81,7 +96,10 @@ const OrganizationSideBarView = ({
         {text("navigationTeams")}
       </Heading>
       <Link
-        href={paths.organization(organizationId, OrganizationTab.newTeam)}
+        href={paths.organization({
+          organizationId,
+          tab: OrganizationTab.newTeam,
+        })}
         nextProps={{ shallow: true }}
       >
         <HStack pl={3}>
@@ -90,7 +108,10 @@ const OrganizationSideBarView = ({
         </HStack>
       </Link>
       <Link
-        href={paths.organization(organizationId, OrganizationTab.teams)}
+        href={paths.organization({
+          organizationId,
+          tab: OrganizationTab.teams,
+        })}
         nextProps={{ shallow: true }}
       >
         <Text pl={3} fontSize="sm">

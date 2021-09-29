@@ -11,9 +11,7 @@ const LandingHeaderView = (): React.ReactElement => {
       <Link href={paths.home}>
         <Heading size="md">{text("appName")}</Heading>
       </Link>
-      <Link href={paths.dashboard(null)}>
-        {text("navigationOrganizations")}
-      </Link>
+      <Link href={paths.dashboard()}>{text("navigationOrganizations")}</Link>
     </HStack>
   );
 };

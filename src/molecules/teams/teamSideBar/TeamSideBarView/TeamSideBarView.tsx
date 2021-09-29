@@ -20,7 +20,7 @@ const TeamSideBarView = ({
       <Heading size="sm">{text("navigationTeam")}</Heading>
 
       <Link
-        href={paths.team(organizationId, teamId)}
+        href={paths.team({ organizationId, teamId })}
         nextProps={{ shallow: true }}
       >
         <Text pl={3} fontSize="sm">
@@ -28,7 +28,12 @@ const TeamSideBarView = ({
         </Text>
       </Link>
 
-      <Link href={paths.organization(organizationId, OrganizationTab.newTeam)}>
+      <Link
+        href={paths.organization({
+          organizationId,
+          tab: OrganizationTab.newTeam,
+        })}
+      >
         <HStack pl={3}>
           <AddIcon />
           <Text fontSize="sm">{text("navigationTeamNew")}</Text>
