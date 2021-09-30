@@ -1,3 +1,4 @@
+import { UrlObject } from "url";
 import {
   DashboardTab,
   OrganizationTab,
@@ -14,37 +15,41 @@ const paths = {
 
   signUp: "/signUp",
 
-  dashboard: (options: { tab?: DashboardTab | null } = {}): string =>
-    `/dashboard${options.tab ? `?tab=${options.tab}` : ""}`,
+  dashboard: (query: { tab?: DashboardTab | null } = {}): UrlObject => ({
+    pathname: "/dashboard",
+    query,
+  }),
 
-  organization: (options: {
+  organization: (query: {
     organizationId: number;
     tab?: OrganizationTab | null;
-  }): string =>
-    `/dashboard/${options.organizationId}${
-      options.tab ? `?tab=${options.tab}` : ""
-    }`,
+  }): UrlObject => ({
+    pathname: "/dashboard/[organizationId]",
+    query,
+  }),
 
-  team: (options: { organizationId: number; teamId: number }): string =>
-    `/dashboard/${options.organizationId}/teams/${options.teamId}`,
+  team: (query: { organizationId: number; teamId: number }): UrlObject => ({
+    pathname: "/dashboard/[organizationId]/teams/[teamId]",
+    query,
+  }),
 
-  template: (options: {
+  template: (query: {
     organizationId: number;
     templateId: number;
     tab?: TemplateTab | null;
-  }): string =>
-    `/dashboard/${options.organizationId}/template/${options.templateId}${
-      options.tab ? `?tab=${options.tab}` : ""
-    }`,
+  }): UrlObject => ({
+    pathname: "/dashboard/[organizationId]/template/[templateId]",
+    query,
+  }),
 
-  workflow: (options: {
+  workflow: (query: {
     organizationId: number;
     workflowId: number;
     tab?: WorkflowTab | null;
-  }): string =>
-    `/dashboard/${options.organizationId}/workflow/${options.workflowId}${
-      options.tab ? `?tab=${options.tab}` : ""
-    }`,
+  }): UrlObject => ({
+    pathname: "/dashboard/[organizationId]/workflow/[workflowId]",
+    query,
+  }),
 };
 
 export default paths;
