@@ -5,34 +5,21 @@ import {
   TeamSideBar,
 } from "molecules";
 import React from "react";
-import { FormPage, GridPage } from "templates";
+import { GridPage } from "templates";
 
 export type TeamLayoutProps = {
-  isForm?: boolean;
   children: React.ReactNode;
 };
 
-const TeamLayout = ({
-  isForm,
-  children,
-}: TeamLayoutProps): React.ReactElement =>
-  isForm ? (
-    <FormPage
-      corner={<DashboardCorner />}
-      headerLeft={<TeamHeader />}
-      headerRight={<ProfileHeader />}
-    >
-      {children}
-    </FormPage>
-  ) : (
-    <GridPage
-      corner={<DashboardCorner />}
-      headerLeft={<TeamHeader />}
-      headerRight={<ProfileHeader />}
-      sideBar={<TeamSideBar />}
-    >
-      {children}
-    </GridPage>
-  );
+const TeamLayout = ({ children }: TeamLayoutProps): React.ReactElement => (
+  <GridPage
+    corner={<DashboardCorner />}
+    headerLeft={<TeamHeader />}
+    headerRight={<ProfileHeader />}
+    sideBar={<TeamSideBar />}
+  >
+    {children}
+  </GridPage>
+);
 
 export default TeamLayout;

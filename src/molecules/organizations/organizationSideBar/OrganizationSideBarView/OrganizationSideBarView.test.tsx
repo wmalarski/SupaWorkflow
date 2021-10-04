@@ -10,6 +10,7 @@ function renderComponent(props: Partial<ComponentProps> = {}) {
   const defaultProps: ComponentProps = {
     organizationRole: "mod",
     organizationId: 1,
+    tab: null,
   };
   return render(<OrganizationSideBarView {...defaultProps} {...props} />);
 }

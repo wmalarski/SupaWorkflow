@@ -11,20 +11,12 @@ const WorkflowWorkspace = dynamic(() => import("./WorkflowWorkspace"), {
 const WorkflowSwitch = (): React.ReactElement | null => {
   const tab = useTabParam(WorkflowTab);
 
-  switch (tab) {
-    case WorkflowTab.edit:
-      return (
-        <WorkflowLayout>
-          <WorkflowWorkspace />
-        </WorkflowLayout>
-      );
-    default:
-      return (
-        <WorkflowLayout>
-          <WorkflowDetails />
-        </WorkflowLayout>
-      );
-  }
+  return (
+    <WorkflowLayout>
+      {tab === WorkflowTab.edit && <WorkflowWorkspace />}
+      {!tab && <WorkflowDetails />}
+    </WorkflowLayout>
+  );
 };
 
 export default WorkflowSwitch;

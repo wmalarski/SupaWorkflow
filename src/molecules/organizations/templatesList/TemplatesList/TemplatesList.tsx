@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useOrganizationContext, useSelectTemplates } from "services";
+import { OrganizationTab, useTabParam } from "utils";
 import TemplatesListView from "../TemplatesListView/TemplatesListView";
 
 const PAGE_SIZE = 10;
@@ -12,6 +13,8 @@ const TemplatesList = ({
   View = TemplatesListView,
 }: TemplatesListProps): React.ReactElement => {
   const organization = useOrganizationContext();
+
+  const tab = useTabParam(OrganizationTab);
 
   const [page, setPage] = useState(0);
 
@@ -30,6 +33,7 @@ const TemplatesList = ({
       onPageChange={setPage}
       page={page}
       pageSize={PAGE_SIZE}
+      tab={tab}
     />
   );
 };

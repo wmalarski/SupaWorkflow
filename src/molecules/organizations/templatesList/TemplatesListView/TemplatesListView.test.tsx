@@ -15,6 +15,7 @@ function renderComponent(props: Partial<ComponentProps> = {}) {
     page: 0,
     pageSize: 10,
     count: 20,
+    tab: null,
     templates: Array(5)
       .fill(defaultTemplate)
       .map((template, index) => ({ ...template, id: index })),

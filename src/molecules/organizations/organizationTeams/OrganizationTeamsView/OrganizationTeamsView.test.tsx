@@ -17,6 +17,7 @@ function renderComponent(props: Partial<ComponentProps> = {}) {
     page: 0,
     pageSize: 10,
     count: 20,
+    tab: null,
     teams: Array(5)
       .fill(defaultTeam)
       .map((team, index) => ({ ...team, id: index })),

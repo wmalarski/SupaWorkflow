@@ -1,7 +1,10 @@
 import { UrlObject } from "url";
 import {
+  DashboardDialog,
   DashboardTab,
+  OrganizationDialog,
   OrganizationTab,
+  TemplateDialog,
   TemplateTab,
   WorkflowTab,
 } from "./types";
@@ -15,7 +18,12 @@ const paths = {
 
   signUp: "/signUp",
 
-  dashboard: (query: { tab?: DashboardTab | null } = {}): UrlObject => ({
+  dashboard: (
+    query: {
+      tab?: DashboardTab | null;
+      dialog?: DashboardDialog | null;
+    } = {}
+  ): UrlObject => ({
     pathname: "/dashboard",
     query,
   }),
@@ -23,6 +31,7 @@ const paths = {
   organization: (query: {
     organizationId: number;
     tab?: OrganizationTab | null;
+    dialog?: OrganizationDialog | null;
   }): UrlObject => ({
     pathname: "/dashboard/[organizationId]",
     query,
@@ -37,6 +46,7 @@ const paths = {
     organizationId: number;
     templateId: number;
     tab?: TemplateTab | null;
+    dialog?: TemplateDialog | null;
   }): UrlObject => ({
     pathname: "/dashboard/[organizationId]/template/[templateId]",
     query,

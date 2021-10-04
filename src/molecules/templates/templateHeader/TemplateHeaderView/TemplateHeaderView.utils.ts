@@ -5,8 +5,6 @@ export const getTabText = (
   text: UseTextFnc
 ): string | null => {
   switch (tab) {
-    case TemplateTab.new:
-      return text("navigationNewWorkflow");
     case TemplateTab.edit:
       return text("navigationTemplateEdit");
   }

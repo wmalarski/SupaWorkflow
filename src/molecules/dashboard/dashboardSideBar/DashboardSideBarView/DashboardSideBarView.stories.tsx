@@ -15,6 +15,7 @@ const Template: ComponentStory<typeof DashboardSideBarView> = (args) => (
 export const Playground = Template.bind({});
 Playground.args = {
   isLoading: false,
+  tab: null,
   organizations: [
     { ...defaultOrganization, id: 1, name: "Org 1" },
     { ...defaultOrganization, id: 2, name: "Org 2" },

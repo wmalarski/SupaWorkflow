@@ -5,34 +5,26 @@ import {
   TemplateSideBar,
 } from "molecules";
 import React from "react";
-import { FormPage, GridPage } from "templates";
+import { GridPage } from "templates";
 
 export type TemplateLayoutProps = {
-  isForm?: boolean;
+  dialogs?: React.ReactNode;
   children: React.ReactNode;
 };
 
 const TemplateLayout = ({
-  isForm,
+  dialogs,
   children,
-}: TemplateLayoutProps): React.ReactElement =>
-  isForm ? (
-    <FormPage
-      corner={<DashboardCorner />}
-      headerLeft={<TemplateHeader />}
-      headerRight={<ProfileHeader />}
-    >
-      {children}
-    </FormPage>
-  ) : (
-    <GridPage
-      corner={<DashboardCorner />}
-      headerLeft={<TemplateHeader />}
-      headerRight={<ProfileHeader />}
-      sideBar={<TemplateSideBar />}
-    >
-      {children}
-    </GridPage>
-  );
+}: TemplateLayoutProps): React.ReactElement => (
+  <GridPage
+    corner={<DashboardCorner />}
+    headerLeft={<TemplateHeader />}
+    headerRight={<ProfileHeader />}
+    sideBar={<TemplateSideBar />}
+  >
+    {dialogs}
+    {children}
+  </GridPage>
+);
 
 export default TemplateLayout;

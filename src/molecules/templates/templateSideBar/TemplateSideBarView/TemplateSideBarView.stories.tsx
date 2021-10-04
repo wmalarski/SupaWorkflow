@@ -15,4 +15,5 @@ export const Playground = Template.bind({});
 Playground.args = {
   organizationId: 1,
   templateId: 1,
+  tab: null,
 };

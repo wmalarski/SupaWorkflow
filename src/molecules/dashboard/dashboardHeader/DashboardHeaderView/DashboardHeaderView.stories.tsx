@@ -19,5 +19,5 @@ const Template: ComponentStory<typeof DashboardHeaderView> = (args) => (
 
 export const Playground = Template.bind({});
 Playground.args = {
-  tab: DashboardTab.new,
+  tab: DashboardTab.profile,
 };

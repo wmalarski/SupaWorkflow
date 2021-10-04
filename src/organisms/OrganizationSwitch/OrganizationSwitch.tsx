@@ -10,63 +10,42 @@ import {
   WorkflowsList,
 } from "molecules";
 import React from "react";
-import { OrganizationTab, useTabParam } from "utils";
+import { useOrganizationContext } from "services";
+import { ModalLayer } from "templates";
+import {
+  OrganizationDialog,
+  OrganizationTab,
+  paths,
+  useDialogParam,
+  useTabParam,
+} from "utils";
 import OrganizationLayout from "./OrganizationLayout";
 
 const OrganizationSwitch = (): React.ReactElement | null => {
   const tab = useTabParam(OrganizationTab);
+  const dialog = useDialogParam(OrganizationDialog);
 
-  switch (tab) {
-    case OrganizationTab.members:
-      return (
-        <OrganizationLayout>
-          <AddOrganizationMember />
-          <OrganizationMembers />
-        </OrganizationLayout>
-      );
-    case OrganizationTab.settings:
-      return (
-        <OrganizationLayout>
-          <OrganizationSettings />
-        </OrganizationLayout>
-      );
-    case OrganizationTab.workflows:
-      return (
-        <OrganizationLayout>
-          <WorkflowsList />
-        </OrganizationLayout>
-      );
-    case OrganizationTab.newTemplate:
-      return (
-        <OrganizationLayout isForm>
-          <CreateTemplate />
-        </OrganizationLayout>
-      );
-    case OrganizationTab.templates:
-      return (
-        <OrganizationLayout>
-          <TemplatesList />
-        </OrganizationLayout>
-      );
-    case OrganizationTab.newTeam:
-      return (
-        <OrganizationLayout isForm>
-          <NewOrganizationTeam />
-        </OrganizationLayout>
-      );
-    case OrganizationTab.teams:
-      return (
-        <OrganizationLayout>
-          <OrganizationTeams />
-        </OrganizationLayout>
-      );
-    default:
-      return (
-        <OrganizationLayout>
-          <OrganizationDashboard />
-        </OrganizationLayout>
-      );
-  }
+  const organization = useOrganizationContext();
+
+  const resetUrl = paths.organization({ organizationId: organization.id, tab });
+
+  return (
+    <>
+      <OrganizationLayout>
+        {tab === OrganizationTab.members && <AddOrganizationMember />}
+        {tab === OrganizationTab.members && <OrganizationMembers />}
+        {tab === OrganizationTab.settings && <OrganizationSettings />}
+        {tab === OrganizationTab.workflows && <WorkflowsList />}
+        {tab === OrganizationTab.templates && <TemplatesList />}
+        {tab === OrganizationTab.teams && <OrganizationTeams />}
+        {!tab && <OrganizationDashboard />}
+      </OrganizationLayout>
+      <ModalLayer isOpen={!!dialog} resetUrl={resetUrl}>
+        {dialog === OrganizationDialog.newTemplate && <CreateTemplate />}
+        {dialog === OrganizationDialog.newTeam && <NewOrganizationTeam />}
+      </ModalLayer>
+    </>
+  );
 };
 
 export default OrganizationSwitch;

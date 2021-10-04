@@ -3,15 +3,17 @@ import { Heading, HStack, Text, VStack } from "@chakra-ui/react";
 import { Link } from "atoms";
 import React from "react";
 import { Organization } from "services";
-import { DashboardTab, paths, useText } from "utils";
+import { DashboardDialog, DashboardTab, paths, useText } from "utils";
 
 export type DashboardSideBarViewProps = {
   organizations?: Organization[] | null;
   isLoading: boolean;
+  tab: DashboardTab | null;
 };
 
 const DashboardSideBarView = ({
   organizations,
+  tab,
 }: DashboardSideBarViewProps): React.ReactElement => {
   const text = useText();
 
@@ -20,7 +22,7 @@ const DashboardSideBarView = ({
       <Heading size="sm">{text("navigationOrganizations")}</Heading>
       <Link
         pl={3}
-        href={paths.dashboard({ tab: DashboardTab.new })}
+        href={paths.dashboard({ tab, dialog: DashboardDialog.new })}
         nextProps={{ shallow: true }}
       >
         <HStack>

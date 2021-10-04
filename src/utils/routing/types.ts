@@ -1,16 +1,22 @@
 export enum DashboardTab {
   profile = "profile",
+}
+
+export enum DashboardDialog {
   new = "new",
 }
 
 export enum OrganizationTab {
   teams = "teams",
-  newTeam = "newTeam",
   templates = "templates",
-  newTemplate = "newTemplate",
   workflows = "workflows",
   members = "members",
   settings = "settings",
+}
+
+export enum OrganizationDialog {
+  newTeam = "newTeam",
+  newTemplate = "newTemplate",
 }
 
 export enum WorkflowTab {
@@ -19,5 +25,8 @@ export enum WorkflowTab {
 
 export enum TemplateTab {
   edit = "edit",
+}
+
+export enum TemplateDialog {
   new = "new",
 }

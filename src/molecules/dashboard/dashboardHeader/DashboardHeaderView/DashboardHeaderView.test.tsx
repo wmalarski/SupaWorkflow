@@ -9,7 +9,7 @@ type ComponentProps = Parameters<typeof DashboardHeaderView>[0];
 
 function renderComponent(props: Partial<ComponentProps> = {}) {
   const defaultProps: ComponentProps = {
-    tab: DashboardTab.new,
+    tab: DashboardTab.profile,
   };
   return render(<DashboardHeaderView {...defaultProps} {...props} />);
 }

@@ -23,4 +23,5 @@ Playground.args = {
   pageSize: 10,
   count: 20,
   teams: defaultTeams,
+  tab: null,
 };

@@ -1,5 +1,6 @@
 import React from "react";
 import { useOrganizationContext, useTemplateContext } from "services";
+import { TemplateTab, useTabParam } from "utils";
 import TemplateSideBarView from "../TemplateSideBarView/TemplateSideBarView";
 
 export type TemplateSideBarProps = {
@@ -12,7 +13,11 @@ const TemplateSideBar = ({
   const organization = useOrganizationContext();
   const template = useTemplateContext();
 
-  return <View organizationId={organization.id} templateId={template.id} />;
+  const tab = useTabParam(TemplateTab);
+
+  return (
+    <View organizationId={organization.id} templateId={template.id} tab={tab} />
+  );
 };
 
 export default React.memo(TemplateSideBar);

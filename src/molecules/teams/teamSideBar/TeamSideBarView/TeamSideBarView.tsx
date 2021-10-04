@@ -2,7 +2,7 @@ import { AddIcon } from "@chakra-ui/icons";
 import { Heading, HStack, Text, VStack } from "@chakra-ui/react";
 import { Link } from "atoms";
 import React from "react";
-import { OrganizationTab, paths, useText } from "utils";
+import { OrganizationDialog, paths, useText } from "utils";
 
 export type TeamSideBarViewProps = {
   organizationId: number;
@@ -31,7 +31,7 @@ const TeamSideBarView = ({
       <Link
         href={paths.organization({
           organizationId,
-          tab: OrganizationTab.newTeam,
+          dialog: OrganizationDialog.newTeam,
         })}
       >
         <HStack pl={3}>

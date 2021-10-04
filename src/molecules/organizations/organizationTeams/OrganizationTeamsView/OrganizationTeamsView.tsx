@@ -2,7 +2,7 @@ import { Button, Text, VStack } from "@chakra-ui/react";
 import { Link, Pagination } from "atoms";
 import React from "react";
 import { OrganizationRole, Team } from "services";
-import { OrganizationTab, paths, useText } from "utils";
+import { OrganizationDialog, OrganizationTab, paths, useText } from "utils";
 
 export type OrganizationTeamsViewProps = {
   page: number;
@@ -12,6 +12,7 @@ export type OrganizationTeamsViewProps = {
   teams?: Team[] | null;
   count?: number | null;
   isLoading: boolean;
+  tab: OrganizationTab | null;
   onPageChange: (page: number) => void;
   onDeleteTeam: (teamId: number) => void;
 };
@@ -24,6 +25,7 @@ const OrganizationTeamsView = ({
   pageSize,
   count,
   teams,
+  tab,
   onPageChange,
   onDeleteTeam,
 }: OrganizationTeamsViewProps): React.ReactElement => {
@@ -34,7 +36,8 @@ const OrganizationTeamsView = ({
       <Link
         href={paths.organization({
           organizationId,
-          tab: OrganizationTab.newTeam,
+          tab,
+          dialog: OrganizationDialog.newTeam,
         })}
       >
         {text("navigationTeamNew")}

@@ -2,7 +2,13 @@ import { Text, VStack } from "@chakra-ui/react";
 import { Link, Pagination } from "atoms";
 import React from "react";
 import { Template } from "services";
-import { OrganizationTab, paths, TemplateTab, useText } from "utils";
+import {
+  OrganizationDialog,
+  OrganizationTab,
+  paths,
+  TemplateTab,
+  useText,
+} from "utils";
 
 export type TemplatesListViewProps = {
   page: number;
@@ -11,6 +17,7 @@ export type TemplatesListViewProps = {
   templates?: Template[] | null;
   count?: number | null;
   isLoading: boolean;
+  tab: OrganizationTab | null;
   onPageChange: (page: number) => void;
 };
 
@@ -21,6 +28,7 @@ const TemplatesListView = ({
   count,
   pageSize,
   isLoading,
+  tab,
   onPageChange,
 }: TemplatesListViewProps): React.ReactElement => {
   const text = useText();
@@ -30,7 +38,8 @@ const TemplatesListView = ({
       <Link
         href={paths.organization({
           organizationId,
-          tab: OrganizationTab.newTemplate,
+          tab,
+          dialog: OrganizationDialog.newTemplate,
         })}
       >
         {text("navigationTemplateNew")}

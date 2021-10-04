@@ -35,6 +35,21 @@ export const useTabParam = <
   return tabParam in tabs ? (tabs[tabParam] as T[K]) : null;
 };
 
+export const useDialogParam = <
+  T extends Record<string, string>,
+  K extends keyof T
+>(
+  tabs: T
+): T[K] | null => {
+  const router = useRouter();
+
+  const dialogParam = validateParam(router.query?.dialog);
+
+  if (!dialogParam) return null;
+
+  return dialogParam in tabs ? (tabs[dialogParam] as T[K]) : null;
+};
+
 export const useNumberParam = (param: string): number | null => {
   const router = useRouter();
 

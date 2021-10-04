@@ -1,35 +1,32 @@
-import {
-  CreateOrganization,
-  DashboardOrganizations,
-  ProfileSettings,
-} from "molecules";
+import { CreateOrganization, ProfileSettings } from "molecules";
 import React from "react";
-import { DashboardTab, useTabParam } from "utils";
+import { ModalLayer } from "templates";
+import {
+  DashboardDialog,
+  DashboardTab,
+  paths,
+  useDialogParam,
+  useTabParam,
+} from "utils";
 import DashboardLayout from "./DashboardLayout";
 
 const DashboardSwitch = (): React.ReactElement => {
   const tab = useTabParam(DashboardTab);
+  const dialog = useDialogParam(DashboardDialog);
 
-  switch (tab) {
-    case DashboardTab.new:
-      return (
-        <DashboardLayout isForm>
-          <CreateOrganization />
-        </DashboardLayout>
-      );
-    case DashboardTab.profile:
-      return (
-        <DashboardLayout>
-          <ProfileSettings />
-        </DashboardLayout>
-      );
-    default:
-      return (
-        <DashboardLayout>
-          <DashboardOrganizations />
-        </DashboardLayout>
-      );
-  }
+  const resetUrl = paths.dashboard({ tab });
+
+  return (
+    <>
+      <DashboardLayout>
+        {tab === DashboardTab.profile && <ProfileSettings />}
+        {!tab && <ProfileSettings />}
+      </DashboardLayout>
+      <ModalLayer isOpen={!!dialog} resetUrl={resetUrl}>
+        {dialog === DashboardDialog.new && <CreateOrganization />}
+      </ModalLayer>
+    </>
+  );
 };
 
 export default DashboardSwitch;

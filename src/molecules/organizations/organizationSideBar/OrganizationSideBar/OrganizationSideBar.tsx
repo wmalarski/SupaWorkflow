@@ -1,5 +1,6 @@
 import React from "react";
 import { useOrganizationContext, useOrganizationMemberContext } from "services";
+import { OrganizationTab, useTabParam } from "utils";
 import OrganizationSideBarView from "../OrganizationSideBarView/OrganizationSideBarView";
 
 export type OrganizationSideBarProps = {
@@ -14,8 +15,14 @@ const OrganizationSideBar = ({
   const organization = useOrganizationContext();
   const member = useOrganizationMemberContext();
 
+  const tab = useTabParam(OrganizationTab);
+
   return (
-    <View organizationId={organization.id} organizationRole={member.role} />
+    <View
+      organizationId={organization.id}
+      organizationRole={member.role}
+      tab={tab}
+    />
   );
 };
 

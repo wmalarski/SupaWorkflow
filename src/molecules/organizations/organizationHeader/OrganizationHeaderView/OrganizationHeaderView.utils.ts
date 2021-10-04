@@ -7,10 +7,6 @@ export const getTabText = (
   switch (tab) {
     case OrganizationTab.members:
       return text("navigationMembers");
-    case OrganizationTab.newTeam:
-      return text("navigationTeamNew");
-    case OrganizationTab.newTemplate:
-      return text("navigationTemplateNew");
     case OrganizationTab.settings:
       return text("navigationSettings");
     case OrganizationTab.teams:

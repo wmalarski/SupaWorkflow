@@ -1,7 +1,15 @@
 import { CreateWorkflow, TemplateDetails } from "molecules";
 import dynamic from "next/dynamic";
 import React from "react";
-import { TemplateTab, useTabParam } from "utils";
+import { useOrganizationContext, useTemplateContext } from "services";
+import { ModalLayer } from "templates";
+import {
+  paths,
+  TemplateDialog,
+  TemplateTab,
+  useDialogParam,
+  useTabParam,
+} from "utils";
 import TemplateLayout from "./TemplateLayout";
 
 const TemplateWorkspace = dynamic(() => import("./TemplateWorkspace"), {
@@ -10,27 +18,28 @@ const TemplateWorkspace = dynamic(() => import("./TemplateWorkspace"), {
 
 const TemplateSwitch = (): React.ReactElement | null => {
   const tab = useTabParam(TemplateTab);
+  const dialog = useDialogParam(TemplateDialog);
 
-  switch (tab) {
-    case TemplateTab.edit:
-      return (
-        <TemplateLayout>
-          <TemplateWorkspace />
-        </TemplateLayout>
-      );
-    case TemplateTab.new:
-      return (
-        <TemplateLayout isForm>
-          <CreateWorkflow />
-        </TemplateLayout>
-      );
-    default:
-      return (
-        <TemplateLayout>
-          <TemplateDetails />
-        </TemplateLayout>
-      );
-  }
+  const organization = useOrganizationContext();
+  const template = useTemplateContext();
+
+  const resetUrl = paths.template({
+    organizationId: organization.id,
+    templateId: template.id,
+    tab,
+  });
+
+  return (
+    <>
+      <TemplateLayout>
+        {tab === TemplateTab.edit && <TemplateWorkspace />}
+        {!tab && <TemplateDetails />}
+      </TemplateLayout>
+      <ModalLayer isOpen={!!dialog} resetUrl={resetUrl}>
+        {dialog === TemplateDialog.new && <CreateWorkflow />}
+      </ModalLayer>
+    </>
+  );
 };
 
 export default TemplateSwitch;

@@ -15,4 +15,5 @@ export const Playground = Template.bind({});
 Playground.args = {
   organizationId: 1,
   organizationRole: "mod",
+  tab: null,
 };

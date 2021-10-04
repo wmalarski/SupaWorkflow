@@ -10,6 +10,7 @@ type ComponentProps = Parameters<typeof DashboardSideBarView>[0];
 function renderComponent(props: Partial<ComponentProps> = {}) {
   const defaultProps: ComponentProps = {
     isLoading: false,
+    tab: null,
     organizations: [
       { ...defaultOrganization, id: 1, name: "Org 1" },
       { ...defaultOrganization, id: 2, name: "Org 2" },

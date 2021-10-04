@@ -2,16 +2,18 @@ import { AddIcon } from "@chakra-ui/icons";
 import { Heading, HStack, Text, VStack } from "@chakra-ui/react";
 import { Link } from "atoms";
 import React from "react";
-import { paths, TemplateTab, useText } from "utils";
+import { paths, TemplateDialog, TemplateTab, useText } from "utils";
 
 export type TemplateSideBarViewProps = {
   organizationId: number;
   templateId: number;
+  tab: TemplateTab | null;
 };
 
 const TemplateSideBarView = ({
   organizationId,
   templateId,
+  tab,
 }: TemplateSideBarViewProps): React.ReactElement => {
   const text = useText();
 
@@ -45,7 +47,8 @@ const TemplateSideBarView = ({
         href={paths.template({
           organizationId,
           templateId,
-          tab: TemplateTab.new,
+          tab,
+          dialog: TemplateDialog.new,
         })}
         nextProps={{ shallow: true }}
       >

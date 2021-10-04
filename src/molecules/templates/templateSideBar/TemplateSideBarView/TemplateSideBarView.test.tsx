@@ -10,6 +10,7 @@ function renderComponent(props: Partial<ComponentProps> = {}) {
   const defaultProps: ComponentProps = {
     organizationId: 1,
     templateId: 1,
+    tab: null,
   };
   return render(<TemplateSideBarView {...defaultProps} {...props} />);
 }

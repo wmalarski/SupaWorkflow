@@ -3,7 +3,7 @@ import React from "react";
 import { useInsertTemplate, useOrganizationContext } from "services";
 import { paths } from "utils";
 import CreateTemplateView, {
-  CreateTemplateViewData
+  CreateTemplateViewData,
 } from "../CreateTemplateView/CreateTemplateView";
 
 export type CreateTemplateProps = {

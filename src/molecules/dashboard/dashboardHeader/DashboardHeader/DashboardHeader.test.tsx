@@ -46,12 +46,12 @@ describe("<DashboardHeader />", () => {
     expect.hasAssertions();
 
     const { queryMock } = jest.requireMock("next/router");
-    queryMock.mockReturnValue({ tab: DashboardTab.new });
+    queryMock.mockReturnValue({ tab: DashboardTab.profile });
 
     renderComponent();
 
     await expect(
-      screen.findByText(DashboardTab.new)
+      screen.findByText(DashboardTab.profile)
     ).resolves.toBeInTheDocument();
   });
 });

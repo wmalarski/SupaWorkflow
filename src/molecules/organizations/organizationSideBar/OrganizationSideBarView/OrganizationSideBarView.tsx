@@ -3,16 +3,18 @@ import { Heading, HStack, Text, VStack } from "@chakra-ui/react";
 import { Link } from "atoms";
 import React from "react";
 import { OrganizationRole } from "services";
-import { OrganizationTab, paths, useText } from "utils";
+import { OrganizationDialog, OrganizationTab, paths, useText } from "utils";
 
 export type OrganizationSideBarViewProps = {
   organizationRole: OrganizationRole;
   organizationId: number;
+  tab: OrganizationTab | null;
 };
 
 const OrganizationSideBarView = ({
   organizationRole,
   organizationId,
+  tab,
 }: OrganizationSideBarViewProps): React.ReactElement => {
   const text = useText();
 
@@ -71,7 +73,8 @@ const OrganizationSideBarView = ({
       <Link
         href={paths.organization({
           organizationId,
-          tab: OrganizationTab.newTemplate,
+          tab,
+          dialog: OrganizationDialog.newTemplate,
         })}
         nextProps={{ shallow: true }}
       >
@@ -98,7 +101,8 @@ const OrganizationSideBarView = ({
       <Link
         href={paths.organization({
           organizationId,
-          tab: OrganizationTab.newTeam,
+          tab,
+          dialog: OrganizationDialog.newTeam,
         })}
         nextProps={{ shallow: true }}
       >

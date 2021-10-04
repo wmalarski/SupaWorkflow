@@ -5,6 +5,7 @@ import {
   useOrganizationMemberContext,
   useSelectTeams,
 } from "services";
+import { OrganizationTab, useTabParam } from "utils";
 import OrganizationTeamsView from "../OrganizationTeamsView/OrganizationTeamsView";
 
 const PAGE_SIZE = 10;
@@ -20,6 +21,8 @@ const OrganizationTeams = ({
 }: OrganizationTeamsProps): React.ReactElement => {
   const organization = useOrganizationContext();
   const member = useOrganizationMemberContext();
+
+  const tab = useTabParam(OrganizationTab);
 
   const [page, setPage] = useState(0);
 
@@ -43,6 +46,7 @@ const OrganizationTeams = ({
       onPageChange={setPage}
       page={page}
       pageSize={PAGE_SIZE}
+      tab={tab}
       onDeleteTeam={handleDeleteTeam}
     />
   );
