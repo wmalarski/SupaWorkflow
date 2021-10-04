@@ -1,10 +1,8 @@
 import React from "react";
 import WorkflowDetailsView from "../WorkflowDetailsView/WorkflowDetailsView";
 
-type ViewProps = React.ComponentProps<typeof WorkflowDetailsView>;
-
 export type WorkflowDetailsProps = {
-  View?: React.ComponentType<ViewProps>;
+  View?: React.ComponentType<React.ComponentProps<typeof WorkflowDetailsView>>;
 };
 
 const WorkflowDetails = ({

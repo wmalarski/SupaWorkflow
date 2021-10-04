@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import {
+  OrganizationRole,
   useDeleteOrganizationMember,
   useOrganizationContext,
   useOrganizationMemberContext,
@@ -8,12 +9,12 @@ import {
 } from "services";
 import OrganizationMembersView from "../OrganizationMembersView/OrganizationMembersView";
 
-type ViewProps = React.ComponentProps<typeof OrganizationMembersView>;
-
 const PAGE_SIZE = 10;
 
 export type OrganizationMembersProps = {
-  View?: React.ComponentType<ViewProps>;
+  View?: React.ComponentType<
+    React.ComponentProps<typeof OrganizationMembersView>
+  >;
 };
 
 const OrganizationMembers = ({
@@ -42,6 +43,11 @@ const OrganizationMembers = ({
     isSuccess: isDeleteSuccess,
   } = useDeleteOrganizationMember();
 
+  const handleDeleteClick = (id: number) => deleteOrganizationMember({ id });
+
+  const handleUpdateClick = (id: number, role: OrganizationRole) =>
+    updateOrganizationMember({ id, role });
+
   return (
     <View
       page={page}
@@ -54,8 +60,8 @@ const OrganizationMembers = ({
       isUpdateLoading={isUpdateLoading || isDeleteLoading}
       authorId={organization.author_id}
       loadingMemberId={updateVariables?.id}
-      onDeleteClick={(id) => deleteOrganizationMember({ id })}
-      onUpdateClick={(id, role) => updateOrganizationMember({ id, role })}
+      onDeleteClick={handleDeleteClick}
+      onUpdateClick={handleUpdateClick}
     />
   );
 };

@@ -3,10 +3,8 @@ import { useOrganizationContext, useTemplateContext } from "services";
 import { TemplateTab, useTabParam } from "utils";
 import TemplateHeaderView from "../TemplateHeaderView/TemplateHeaderView";
 
-type ViewProps = React.ComponentProps<typeof TemplateHeaderView>;
-
 export type TemplateHeaderProps = {
-  View?: React.ComponentType<ViewProps>;
+  View?: React.ComponentType<React.ComponentProps<typeof TemplateHeaderView>>;
 };
 
 const TemplateHeader = ({

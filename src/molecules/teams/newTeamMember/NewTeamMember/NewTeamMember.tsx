@@ -5,12 +5,12 @@ import {
   useSelectMembers,
   useTeamContext,
 } from "services";
-import NewTeamMemberView from "../NewTeamMemberView/NewTeamMemberView";
-
-type ViewProps = React.ComponentProps<typeof NewTeamMemberView>;
+import NewTeamMemberView, {
+  NewTeamMemberViewData,
+} from "../NewTeamMemberView/NewTeamMemberView";
 
 export type NewTeamMemberProps = {
-  View?: React.ComponentType<ViewProps>;
+  View?: React.ComponentType<React.ComponentProps<typeof NewTeamMemberView>>;
 };
 
 const SEARCH_SIZE = 5;
@@ -32,19 +32,20 @@ const NewTeamMember = ({
 
   const { mutate: insertTeamMember, isLoading, error } = useInsertTeamMember();
 
+  const handleSubmit = (data: NewTeamMemberViewData) =>
+    insertTeamMember({
+      profile_id: data.profileId,
+      role: data.role,
+      team_id: team.id,
+    });
+
   return (
     <View
       onSearch={setName}
       members={members?.entries}
       isLoading={isLoading}
       error={error}
-      onSubmit={(data) =>
-        insertTeamMember({
-          profile_id: data.profileId,
-          role: data.role,
-          team_id: team.id,
-        })
-      }
+      onSubmit={handleSubmit}
     />
   );
 };

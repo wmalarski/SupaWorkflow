@@ -2,12 +2,10 @@ import React, { useState } from "react";
 import { useOrganizationContext, useSelectWorkflows } from "services";
 import WorkflowsListView from "../WorkflowsListView/WorkflowsListView";
 
-type ViewProps = React.ComponentProps<typeof WorkflowsListView>;
-
 const PAGE_SIZE = 10;
 
 export type WorkflowsListProps = {
-  View?: React.ComponentType<ViewProps>;
+  View?: React.ComponentType<React.ComponentProps<typeof WorkflowsListView>>;
 };
 
 const WorkflowsList = ({

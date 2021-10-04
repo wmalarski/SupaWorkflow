@@ -6,12 +6,14 @@ import {
   useUpdateOrganization,
 } from "services";
 import { paths } from "utils";
-import OrganizationSettingsView from "../OrganizationSettingsView/OrganizationSettingsView";
-
-type ViewProps = React.ComponentProps<typeof OrganizationSettingsView>;
+import OrganizationSettingsView, {
+  OrganizationSettingsViewData,
+} from "../OrganizationSettingsView/OrganizationSettingsView";
 
 export type OrganizationSettingsProps = {
-  View?: React.ComponentType<ViewProps>;
+  View?: React.ComponentType<
+    React.ComponentProps<typeof OrganizationSettingsView>
+  >;
 };
 
 const OrganizationSettings = ({
@@ -37,6 +39,18 @@ const OrganizationSettings = ({
     data: updatedOrganization,
   } = useUpdateOrganization();
 
+  const handleUpdateSubmit = (data: OrganizationSettingsViewData) =>
+    updateOrganization({
+      description: data.description,
+      name: data.name,
+      id: organization.id,
+    });
+
+  const handleDeleteSubmit = () =>
+    deleteOrganization({
+      id: organization.id,
+    });
+
   return (
     <View
       error={deleteError ?? updateError}
@@ -44,18 +58,8 @@ const OrganizationSettings = ({
       organization={organization}
       updatedOrganization={updatedOrganization}
       isLoading={isUpdateLoading || isLoading}
-      onUpdateSubmit={(data) =>
-        updateOrganization({
-          description: data.description,
-          name: data.name,
-          id: organization.id,
-        })
-      }
-      onDeleteSubmit={() =>
-        deleteOrganization({
-          id: organization.id,
-        })
-      }
+      onUpdateSubmit={handleUpdateSubmit}
+      onDeleteSubmit={handleDeleteSubmit}
     />
   );
 };

@@ -1,10 +1,10 @@
 import React from "react";
 import OrganizationDashboardView from "../OrganizationDashboardView/OrganizationDashboardView";
 
-type ViewProps = React.ComponentProps<typeof OrganizationDashboardView>;
-
 export type OrganizationDashboardProps = {
-  View?: React.ComponentType<ViewProps>;
+  View?: React.ComponentType<
+    React.ComponentProps<typeof OrganizationDashboardView>
+  >;
 };
 
 const OrganizationDashboard = ({

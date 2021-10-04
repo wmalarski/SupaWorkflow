@@ -1,10 +1,8 @@
 import React from "react";
 import DashboardCornerView from "../DashboardCornerView/DashboardCornerView";
 
-type ViewProps = React.ComponentProps<typeof DashboardCornerView>;
-
 export type DashboardCornerProps = {
-  View?: React.ComponentType<ViewProps>;
+  View?: React.ComponentType<React.ComponentProps<typeof DashboardCornerView>>;
 };
 
 const DashboardCorner = ({

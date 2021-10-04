@@ -2,10 +2,8 @@ import React from "react";
 import { useOrganizationContext, useTeamContext } from "services";
 import TeamHeaderView from "../TeamHeaderView/TeamHeaderView";
 
-type ViewProps = React.ComponentProps<typeof TeamHeaderView>;
-
 export type TeamHeaderProps = {
-  View?: React.ComponentType<ViewProps>;
+  View?: React.ComponentType<React.ComponentProps<typeof TeamHeaderView>>;
 };
 
 const TeamHeader = ({

@@ -2,10 +2,10 @@ import React from "react";
 import { useOrganizationContext, useOrganizationMemberContext } from "services";
 import OrganizationSideBarView from "../OrganizationSideBarView/OrganizationSideBarView";
 
-type ViewProps = React.ComponentProps<typeof OrganizationSideBarView>;
-
 export type OrganizationSideBarProps = {
-  View?: React.ComponentType<ViewProps>;
+  View?: React.ComponentType<
+    React.ComponentProps<typeof OrganizationSideBarView>
+  >;
 };
 
 const OrganizationSideBar = ({

@@ -17,13 +17,16 @@ const WorkflowCheckboxesForm = ({
 }: WorkflowCheckboxesFormProps): React.ReactElement => {
   const text = useText();
 
+  const handleChange = (nextValue: (string | number)[]) =>
+    onChange(nextValue.map(Number));
+
   return (
     <VStack>
       <Heading size="xs">{text("workflowRadioSelect")}</Heading>
       <CheckboxGroup
         isDisabled={!isEnabled}
         value={checked.map(String)}
-        onChange={(nextValue) => onChange(nextValue.map(Number))}
+        onChange={handleChange}
       >
         <VStack>
           {options.map((option, index) => (

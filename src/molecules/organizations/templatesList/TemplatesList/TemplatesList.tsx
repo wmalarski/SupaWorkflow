@@ -2,12 +2,10 @@ import React, { useState } from "react";
 import { useOrganizationContext, useSelectTemplates } from "services";
 import TemplatesListView from "../TemplatesListView/TemplatesListView";
 
-type ViewProps = React.ComponentProps<typeof TemplatesListView>;
-
 const PAGE_SIZE = 10;
 
 export type TemplatesListProps = {
-  View?: React.ComponentType<ViewProps>;
+  View?: React.ComponentType<React.ComponentProps<typeof TemplatesListView>>;
 };
 
 const TemplatesList = ({

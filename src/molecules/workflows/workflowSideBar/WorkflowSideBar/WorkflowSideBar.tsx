@@ -2,10 +2,8 @@ import React from "react";
 import { useOrganizationContext, useWorkflowContext } from "services";
 import WorkflowSideBarView from "../WorkflowSideBarView/WorkflowSideBarView";
 
-type ViewProps = React.ComponentProps<typeof WorkflowSideBarView>;
-
 export type WorkflowSideBarProps = {
-  View?: React.ComponentType<ViewProps>;
+  View?: React.ComponentType<React.ComponentProps<typeof WorkflowSideBarView>>;
 };
 
 const WorkflowSideBar = ({

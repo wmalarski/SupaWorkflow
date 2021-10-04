@@ -6,10 +6,8 @@ import {
 } from "services";
 import TemplateDetailsView from "../TemplateDetailsView/TemplateDetailsView";
 
-type ViewProps = React.ComponentProps<typeof TemplateDetailsView>;
-
 export type TemplateDetailsProps = {
-  View?: React.ComponentType<ViewProps>;
+  View?: React.ComponentType<React.ComponentProps<typeof TemplateDetailsView>>;
 };
 
 const PAGE_SIZE = 10;

@@ -7,12 +7,12 @@ import {
 } from "services";
 import OrganizationTeamsView from "../OrganizationTeamsView/OrganizationTeamsView";
 
-type ViewProps = React.ComponentProps<typeof OrganizationTeamsView>;
-
 const PAGE_SIZE = 10;
 
 export type OrganizationTeamsProps = {
-  View?: React.ComponentType<ViewProps>;
+  View?: React.ComponentType<
+    React.ComponentProps<typeof OrganizationTeamsView>
+  >;
 };
 
 const OrganizationTeams = ({
@@ -31,6 +31,8 @@ const OrganizationTeams = ({
 
   const { mutate: deleteTeam } = useDeleteTeam();
 
+  const handleDeleteTeam = (id: number) => deleteTeam({ id });
+
   return (
     <View
       organizationRole={member.role}
@@ -41,7 +43,7 @@ const OrganizationTeams = ({
       onPageChange={setPage}
       page={page}
       pageSize={PAGE_SIZE}
-      onDeleteTeam={(id) => deleteTeam({ id })}
+      onDeleteTeam={handleDeleteTeam}
     />
   );
 };

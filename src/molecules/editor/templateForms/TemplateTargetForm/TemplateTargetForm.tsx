@@ -15,6 +15,9 @@ const TemplateTargetForm = ({
 }: TemplateTargetFormProps): React.ReactElement => {
   const text = useText();
 
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) =>
+    onChange(event.target.checked);
+
   return (
     <VStack>
       <Heading size="xs">{text("targetTemplateNode")}</Heading>
@@ -25,7 +28,7 @@ const TemplateTargetForm = ({
         <Switch
           id="is-target-all"
           isChecked={isTargetAll}
-          onChange={(event) => onChange(event.target.checked)}
+          onChange={handleChange}
         />
       </FormControl>
     </VStack>

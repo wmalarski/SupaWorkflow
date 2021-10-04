@@ -4,10 +4,8 @@ import { useSignOut } from "services";
 import { paths } from "utils";
 import ProfileHeaderView from "../ProfileHeaderView/ProfileHeaderView";
 
-type ViewProps = React.ComponentProps<typeof ProfileHeaderView>;
-
 export type ProfileHeaderProps = {
-  View?: React.ComponentType<ViewProps>;
+  View?: React.ComponentType<React.ComponentProps<typeof ProfileHeaderView>>;
 };
 
 const ProfileHeader = ({

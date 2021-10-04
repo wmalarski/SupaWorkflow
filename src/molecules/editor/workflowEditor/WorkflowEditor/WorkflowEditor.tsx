@@ -7,10 +7,8 @@ import {
 import { useRepContext } from "utils/rep/RepContext";
 import WorkflowEditorView from "../WorkflowEditorView/WorkflowEditorView";
 
-type ViewProps = React.ComponentProps<typeof WorkflowEditorView>;
-
 export type WorkflowEditorProps = {
-  View?: React.ComponentType<ViewProps>;
+  View?: React.ComponentType<React.ComponentProps<typeof WorkflowEditorView>>;
 };
 
 const WorkflowEditor = ({

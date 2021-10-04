@@ -1,11 +1,11 @@
 import React from "react";
 import { useProfileContext, useUpdateProfile } from "services";
-import ProfileSettingsView from "../ProfileSettingsView/ProfileSettingsView";
-
-type ViewProps = React.ComponentProps<typeof ProfileSettingsView>;
+import ProfileSettingsView, {
+  ProfileSettingsViewData,
+} from "../ProfileSettingsView/ProfileSettingsView";
 
 export type ProfileSettingsProps = {
-  View?: React.ComponentType<ViewProps>;
+  View?: React.ComponentType<React.ComponentProps<typeof ProfileSettingsView>>;
 };
 
 const ProfileSettings = ({
@@ -20,18 +20,19 @@ const ProfileSettings = ({
     error,
   } = useUpdateProfile();
 
+  const handleSubmit = (data: ProfileSettingsViewData) =>
+    updateProfile({
+      id: profile.id,
+      name: data.name,
+    });
+
   return (
     <View
       isLoading={isLoading}
       profile={profile}
       updatedProfile={updatedProfile}
       error={error}
-      onSubmit={(data) =>
-        updateProfile({
-          id: profile.id,
-          name: data.name,
-        })
-      }
+      onSubmit={handleSubmit}
     />
   );
 };

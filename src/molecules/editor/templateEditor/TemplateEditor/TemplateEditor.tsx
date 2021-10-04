@@ -7,10 +7,8 @@ import {
 import { useRepContext } from "utils/rep/RepContext";
 import TemplateEditorView from "../TemplateEditorView/TemplateEditorView";
 
-type ViewProps = React.ComponentProps<typeof TemplateEditorView>;
-
 export type TemplateEditorProps = {
-  View?: React.ComponentType<ViewProps>;
+  View?: React.ComponentType<React.ComponentProps<typeof TemplateEditorView>>;
 };
 
 const TemplateEditor = ({

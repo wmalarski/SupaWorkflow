@@ -1,11 +1,13 @@
 import React from "react";
 import { useInviteOrganizationMember, useOrganizationContext } from "services";
-import AddOrganizationMemberView from "../AddOrganizationMemberView/AddOrganizationMemberView";
-
-type ViewProps = React.ComponentProps<typeof AddOrganizationMemberView>;
+import AddOrganizationMemberView, {
+  AddOrganizationMemberViewData,
+} from "../AddOrganizationMemberView/AddOrganizationMemberView";
 
 export type AddOrganizationMemberProps = {
-  View?: React.ComponentType<ViewProps>;
+  View?: React.ComponentType<
+    React.ComponentProps<typeof AddOrganizationMemberView>
+  >;
 };
 
 const AddOrganizationMember = ({
@@ -19,19 +21,14 @@ const AddOrganizationMember = ({
     isLoading,
   } = useInviteOrganizationMember();
 
-  return (
-    <View
-      error={error}
-      isLoading={isLoading}
-      onSubmit={(data) => {
-        inviteMember({
-          email: data.email,
-          organizationId: organization.id,
-          role: data.role,
-        });
-      }}
-    />
-  );
+  const handleSubmit = (data: AddOrganizationMemberViewData) =>
+    inviteMember({
+      email: data.email,
+      organizationId: organization.id,
+      role: data.role,
+    });
+
+  return <View error={error} isLoading={isLoading} onSubmit={handleSubmit} />;
 };
 
 export default React.memo(AddOrganizationMember);

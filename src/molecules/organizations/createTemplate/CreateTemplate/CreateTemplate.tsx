@@ -2,12 +2,12 @@ import { useRouter } from "next/router";
 import React from "react";
 import { useInsertTemplate, useOrganizationContext } from "services";
 import { paths } from "utils";
-import CreateTemplateView from "../CreateTemplateView/CreateTemplateView";
-
-type ViewProps = React.ComponentProps<typeof CreateTemplateView>;
+import CreateTemplateView, {
+  CreateTemplateViewData
+} from "../CreateTemplateView/CreateTemplateView";
 
 export type CreateTemplateProps = {
-  View?: React.ComponentType<ViewProps>;
+  View?: React.ComponentType<React.ComponentProps<typeof CreateTemplateView>>;
 };
 
 const CreateTemplate = ({
@@ -32,19 +32,20 @@ const CreateTemplate = ({
       ),
   });
 
+  const handleSubmit = (data: CreateTemplateViewData) =>
+    insertTemplate({
+      avatar: null,
+      description: data.description,
+      name: data.name,
+      organization_id: organization.id,
+    });
+
   return (
     <View
       isLoading={isLoading}
       template={template}
       error={error}
-      onSubmit={(data) =>
-        insertTemplate({
-          avatar: null,
-          description: data.description,
-          name: data.name,
-          organization_id: organization.id,
-        })
-      }
+      onSubmit={handleSubmit}
     />
   );
 };

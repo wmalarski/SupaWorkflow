@@ -6,12 +6,12 @@ import {
   useTemplateContext,
 } from "services";
 import { paths } from "utils";
-import CreateWorkflowView from "../CreateWorkflowView/CreateWorkflowView";
-
-type ViewProps = React.ComponentProps<typeof CreateWorkflowView>;
+import CreateWorkflowView, {
+  CreateWorkflowViewData,
+} from "../CreateWorkflowView/CreateWorkflowView";
 
 export type CreateWorkflowProps = {
-  View?: React.ComponentType<ViewProps>;
+  View?: React.ComponentType<React.ComponentProps<typeof CreateWorkflowView>>;
 };
 
 const CreateWorkflow = ({
@@ -37,20 +37,21 @@ const CreateWorkflow = ({
       ),
   });
 
+  const handleSubmit = (data: CreateWorkflowViewData) =>
+    insertWorkflow({
+      avatar: null,
+      description: data.description,
+      name: data.name,
+      organization_id: organization.id,
+      template_id: template.id,
+    });
+
   return (
     <View
       error={error}
       workflow={data}
       isLoading={isLoading}
-      onSubmit={(data) =>
-        insertWorkflow({
-          avatar: null,
-          description: data.description,
-          name: data.name,
-          organization_id: organization.id,
-          template_id: template.id,
-        })
-      }
+      onSubmit={handleSubmit}
     />
   );
 };

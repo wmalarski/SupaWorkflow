@@ -1,10 +1,8 @@
 import React from "react";
 import LandingHeaderView from "../LandingHeaderView/LandingHeaderView";
 
-type ViewProps = React.ComponentProps<typeof LandingHeaderView>;
-
 export type LandingHeaderProps = {
-  View?: React.ComponentType<ViewProps>;
+  View?: React.ComponentType<React.ComponentProps<typeof LandingHeaderView>>;
 };
 
 const LandingHeader = ({

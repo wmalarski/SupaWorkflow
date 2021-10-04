@@ -3,10 +3,8 @@ import { useOrganizationContext, useWorkflowContext } from "services";
 import { useTabParam, WorkflowTab } from "utils";
 import WorkflowHeaderView from "../WorkflowHeaderView/WorkflowHeaderView";
 
-type ViewProps = React.ComponentProps<typeof WorkflowHeaderView>;
-
 export type WorkflowHeaderProps = {
-  View?: React.ComponentType<ViewProps>;
+  View?: React.ComponentType<React.ComponentProps<typeof WorkflowHeaderView>>;
 };
 
 const WorkflowHeader = ({

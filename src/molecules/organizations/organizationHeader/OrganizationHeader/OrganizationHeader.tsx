@@ -3,10 +3,10 @@ import { useOrganizationContext } from "services";
 import { OrganizationTab, useTabParam } from "utils";
 import OrganizationHeaderView from "../OrganizationHeaderView/OrganizationHeaderView";
 
-type ViewProps = React.ComponentProps<typeof OrganizationHeaderView>;
-
 export type OrganizationHeaderProps = {
-  View?: React.ComponentType<ViewProps>;
+  View?: React.ComponentType<
+    React.ComponentProps<typeof OrganizationHeaderView>
+  >;
 };
 
 const OrganizationHeader = ({

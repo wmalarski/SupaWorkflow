@@ -2,10 +2,8 @@ import React from "react";
 import { useOrganizationContext, useTeamContext } from "services";
 import TeamSideBarView from "../TeamSideBarView/TeamSideBarView";
 
-type ViewProps = React.ComponentProps<typeof TeamSideBarView>;
-
 export type TeamSideBarProps = {
-  View?: React.ComponentType<ViewProps>;
+  View?: React.ComponentType<React.ComponentProps<typeof TeamSideBarView>>;
 };
 
 const TeamSideBar = ({

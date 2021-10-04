@@ -2,10 +2,10 @@ import { useRouter } from "next/router";
 import React from "react";
 import { useSignIn } from "services";
 import { paths } from "utils";
-import SignInView, { SignInViewProps } from "../SignInView/SignInView";
+import SignInView, { SignInViewData } from "../SignInView/SignInView";
 
 export type SignInProps = {
-  View?: React.ComponentType<SignInViewProps>;
+  View?: React.ComponentType<React.ComponentProps<typeof SignInView>>;
 };
 
 const SignIn = ({ View = SignInView }: SignInProps): React.ReactElement => {
@@ -20,17 +20,18 @@ const SignIn = ({ View = SignInView }: SignInProps): React.ReactElement => {
     onSuccess: () => router.push(paths.dashboard()),
   });
 
+  const handleSubmit = (data: SignInViewData) =>
+    signUp({
+      email: data.email,
+      password: data.password,
+    });
+
   return (
     <View
       user={user}
       error={error}
       isLoading={isLoading}
-      onSubmit={(data) =>
-        signUp({
-          email: data.email,
-          password: data.password,
-        })
-      }
+      onSubmit={handleSubmit}
     />
   );
 };

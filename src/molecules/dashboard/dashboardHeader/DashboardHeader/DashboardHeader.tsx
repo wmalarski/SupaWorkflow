@@ -2,10 +2,8 @@ import React from "react";
 import { DashboardTab, useTabParam } from "utils";
 import DashboardHeaderView from "../DashboardHeaderView/DashboardHeaderView";
 
-type ViewProps = React.ComponentProps<typeof DashboardHeaderView>;
-
 export type DashboardHeaderProps = {
-  View?: React.ComponentType<ViewProps>;
+  View?: React.ComponentType<React.ComponentProps<typeof DashboardHeaderView>>;
 };
 
 const DashboardHeader = ({

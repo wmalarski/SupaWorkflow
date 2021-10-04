@@ -2,12 +2,14 @@ import { useRouter } from "next/router";
 import React from "react";
 import { useInsertOrganization, useProfileContext } from "services";
 import { paths } from "utils";
-import CreateOrganizationView from "../CreateOrganizationView/CreateOrganizationView";
-
-type ViewProps = React.ComponentProps<typeof CreateOrganizationView>;
+import CreateOrganizationView, {
+  CreateOrganizationViewData,
+} from "../CreateOrganizationView/CreateOrganizationView";
 
 export type CreateOrganizationProps = {
-  View?: React.ComponentType<ViewProps>;
+  View?: React.ComponentType<
+    React.ComponentProps<typeof CreateOrganizationView>
+  >;
 };
 
 const CreateOrganization = ({
@@ -27,19 +29,20 @@ const CreateOrganization = ({
       router.push(paths.organization({ organizationId: organization.id })),
   });
 
+  const handleSubmit = (data: CreateOrganizationViewData) =>
+    insertOrganization({
+      author_id: profile.id,
+      avatar: null,
+      description: data.description,
+      name: data.name,
+    });
+
   return (
     <View
       isLoading={isLoading}
       organization={organization}
       error={error}
-      onSubmit={(data) =>
-        insertOrganization({
-          author_id: profile.id,
-          avatar: null,
-          description: data.description,
-          name: data.name,
-        })
-      }
+      onSubmit={handleSubmit}
     />
   );
 };

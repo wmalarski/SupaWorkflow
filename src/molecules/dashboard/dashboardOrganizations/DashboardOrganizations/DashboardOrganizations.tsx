@@ -2,10 +2,10 @@ import React from "react";
 import { useSelectOrganizations } from "services";
 import DashboardOrganizationsView from "../DashboardOrganizationsView/DashboardOrganizationsView";
 
-type ViewProps = React.ComponentProps<typeof DashboardOrganizationsView>;
-
 export type DashboardOrganizationsProps = {
-  View?: React.ComponentType<ViewProps>;
+  View?: React.ComponentType<
+    React.ComponentProps<typeof DashboardOrganizationsView>
+  >;
 };
 
 const DashboardOrganizations = ({

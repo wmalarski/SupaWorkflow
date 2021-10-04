@@ -2,10 +2,8 @@ import React from "react";
 import { useOrganizationContext, useTemplateContext } from "services";
 import TemplateSideBarView from "../TemplateSideBarView/TemplateSideBarView";
 
-type ViewProps = React.ComponentProps<typeof TemplateSideBarView>;
-
 export type TemplateSideBarProps = {
-  View?: React.ComponentType<ViewProps>;
+  View?: React.ComponentType<React.ComponentProps<typeof TemplateSideBarView>>;
 };
 
 const TemplateSideBar = ({

@@ -1,10 +1,8 @@
 import React from "react";
 import AnonHeaderView from "../AnonHeaderView/AnonHeaderView";
 
-type ViewProps = React.ComponentProps<typeof AnonHeaderView>;
-
 export type AnonHeaderProps = {
-  View?: React.ComponentType<ViewProps>;
+  View?: React.ComponentType<React.ComponentProps<typeof AnonHeaderView>>;
 };
 
 const AnonHeader = ({

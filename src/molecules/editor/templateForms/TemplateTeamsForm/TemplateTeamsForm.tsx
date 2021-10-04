@@ -16,14 +16,13 @@ const TemplateTeamsForm = ({
 }: TemplateTeamsFormProps): React.ReactElement => {
   const text = useText();
 
+  const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) =>
+    onChange(Number(event.target.value));
+
   return (
     <VStack>
       <Heading size="xs">{text("teamsTemplateNode")}</Heading>
-      <Select
-        size="sm"
-        value={selected ?? undefined}
-        onChange={(event) => onChange(Number(event.target.value))}
-      >
+      <Select size="sm" value={selected ?? undefined} onChange={handleChange}>
         {teams.map((team) => (
           <Text as="option" key={team.id} value={team.id} fontSize="sm">
             {team.name}

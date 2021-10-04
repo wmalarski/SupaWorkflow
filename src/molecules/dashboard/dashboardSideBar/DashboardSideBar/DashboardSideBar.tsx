@@ -2,10 +2,8 @@ import React from "react";
 import { useSelectOrganizations } from "services";
 import DashboardSideBarView from "../DashboardSideBarView/DashboardSideBarView";
 
-type ViewProps = React.ComponentProps<typeof DashboardSideBarView>;
-
 export type DashboardSideBarProps = {
-  View?: React.ComponentType<ViewProps>;
+  View?: React.ComponentType<React.ComponentProps<typeof DashboardSideBarView>>;
 };
 
 const DashboardSideBar = ({
