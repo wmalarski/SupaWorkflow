@@ -21,7 +21,7 @@ import {
 } from "utils";
 import OrganizationLayout from "./OrganizationLayout";
 
-const OrganizationSwitch = (): React.ReactElement | null => {
+const OrganizationSwitch = (): React.ReactElement => {
   const tab = useTabParam(OrganizationTab);
   const dialog = useDialogParam(OrganizationDialog);
 
@@ -32,13 +32,13 @@ const OrganizationSwitch = (): React.ReactElement | null => {
   return (
     <>
       <OrganizationLayout>
+        {!tab && <OrganizationDashboard />}
         {tab === OrganizationTab.members && <AddOrganizationMember />}
         {tab === OrganizationTab.members && <OrganizationMembers />}
         {tab === OrganizationTab.settings && <OrganizationSettings />}
         {tab === OrganizationTab.workflows && <WorkflowsList />}
         {tab === OrganizationTab.templates && <TemplatesList />}
         {tab === OrganizationTab.teams && <OrganizationTeams />}
-        {!tab && <OrganizationDashboard />}
       </OrganizationLayout>
       <ModalLayer isOpen={!!dialog} resetUrl={resetUrl}>
         {dialog === OrganizationDialog.newTemplate && <CreateTemplate />}

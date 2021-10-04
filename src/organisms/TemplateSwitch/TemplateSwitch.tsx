@@ -16,7 +16,7 @@ const TemplateWorkspace = dynamic(() => import("./TemplateWorkspace"), {
   ssr: false,
 });
 
-const TemplateSwitch = (): React.ReactElement | null => {
+const TemplateSwitch = (): React.ReactElement => {
   const tab = useTabParam(TemplateTab);
   const dialog = useDialogParam(TemplateDialog);
 
@@ -32,8 +32,8 @@ const TemplateSwitch = (): React.ReactElement | null => {
   return (
     <>
       <TemplateLayout>
-        {tab === TemplateTab.edit && <TemplateWorkspace />}
         {!tab && <TemplateDetails />}
+        {tab === TemplateTab.edit && <TemplateWorkspace />}
       </TemplateLayout>
       <ModalLayer isOpen={!!dialog} resetUrl={resetUrl}>
         {dialog === TemplateDialog.new && <CreateWorkflow />}

@@ -19,8 +19,8 @@ const DashboardSwitch = (): React.ReactElement => {
   return (
     <>
       <DashboardLayout>
-        {tab === DashboardTab.profile && <ProfileSettings />}
         {!tab && <ProfileSettings />}
+        {tab === DashboardTab.profile && <ProfileSettings />}
       </DashboardLayout>
       <ModalLayer isOpen={!!dialog} resetUrl={resetUrl}>
         {dialog === DashboardDialog.new && <CreateOrganization />}

@@ -1,4 +1,25 @@
 import { useRouter } from "next/router";
+import * as Types from "./types";
+
+export const paramsMapping = {
+  dashboardTab: { key: "tab", values: Types.DashboardTab },
+  dashboardDialog: { key: "dialog", values: Types.DashboardDialog },
+  organizationTab: { key: "tab", values: Types.OrganizationTab },
+  organizationDialog: { key: "dialog", values: Types.OrganizationDialog },
+  workflowTab: { key: "tab", values: Types.WorkflowTab },
+  templateTab: { key: "tab", values: Types.TemplateTab },
+  templateDialog: { key: "dialog", values: Types.TemplateDialog },
+};
+
+export type ParamsMapping = {
+  dashboardTab: Types.DashboardTab;
+  dashboardDialog: Types.DashboardDialog;
+  organizationTab: Types.OrganizationTab;
+  organizationDialog: Types.OrganizationDialog;
+  workflowTab: Types.WorkflowTab;
+  templateTab: Types.TemplateTab;
+  templateDialog: Types.TemplateDialog;
+};
 
 export const validateParam = (
   param?: string | string[],
